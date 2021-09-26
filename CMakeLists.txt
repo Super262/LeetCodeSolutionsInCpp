@@ -3,4 +3,4 @@ project(LeetCodeSolutionsInCpp)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(LeetCodeSolutionsInCpp main.cpp Problem0012.h Problem0043.h Problem0056.h Problem0217.h Problem0218.h Problem0219.h Problem0215.h Problem0216.h Problem0220.h Problem0221.h)
+add_executable(LeetCodeSolutionsInCpp main.cpp Problem0012.h Problem0043.h Problem0056.h Problem0217.h Problem0218.h Problem0219.h Problem0215.h Problem0216.h Problem0220.h Problem0221.h Problem0222.h)
