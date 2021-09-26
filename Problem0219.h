@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0219_H
 
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 

@@ -5,9 +5,13 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0216_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0216_H
 
+#include <vector>
+
+using namespace std;
+
 class Problem0216 {
 private:
-    void dfs(vector <vector<int>> &result,
+    void dfs(vector<vector<int>> &result,
              vector<int> &temp,
              const int currentNum,
              const int n,
@@ -27,8 +31,8 @@ private:
         }
     }
 
-    vector <vector<int>> combinationSum3(int k, int n) {
-        vector <vector<int>> result;
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> result;
         vector<int> temp;
         dfs(result, temp, 0, n, 0, k);
         return result;
