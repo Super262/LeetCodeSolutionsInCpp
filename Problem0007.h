@@ -7,20 +7,11 @@
 
 class Problem0007 {
 private:
-    int reverse(const int x) {
-        long long temp = x;
-        bool isNeg = false;
-        if (temp < 0) {
-            isNeg = true;
-            temp = -temp; // 若temp是int类型，这一步可能会溢出（x = INT_MIN时）
-        }
+    int reverse(int x) {
         long long result = 0;
-        while (temp > 0) {
-            result = result * 10 + temp % 10;
-            temp /= 10;
-        }
-        if (isNeg) {
-            result = -result;
+        while (x) {
+            result = result * 10 + x % 10;
+            x /= 10;
         }
         if (result > INT_MAX || result < INT_MIN) {
             return 0;
