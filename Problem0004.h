@@ -24,13 +24,16 @@ private:
             }
         }
         if (s1 == nums1.size()) {
+            // nums1为空（无需测试nums2，前面已保证len(nums2) > len(num1）
             return nums2[s2 + k - 1];
         }
         auto nextS1 = min(s1 + k / 2, (int) nums1.size());
         auto nextS2 = min(s2 + k - k / 2, (int) nums2.size());
         if (nums1[nextS1 - 1] > nums2[nextS2 - 1]) {
+            // 舍弃nums2的左半部
             return findHelper(nums1, s1, nums2, nextS2, k - (nextS2 - s2));
         } else {
+            // 舍弃nums1的左半部
             return findHelper(nums1, nextS1, nums2, s2, k - (nextS1 - s1));
         }
     }
