@@ -7,66 +7,52 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Problem0043 {
 private:
-    string intMulStr(string num, const unsigned long long digit) {
-        string result;
-        unsigned long long t = 0;
-        unsigned long long i = 0;
-        reverse(num.begin(), num.end());
-        while (i < num.size() || t != 0) {
-            if (i < num.size()) {
-                t += digit * (num[i] - '0');
-                ++i;
-            }
-            result.push_back('0' + t % 10);
-            t /= 10;
-        }
-        while (result.size() > 1 && result.back() == '0') {
-            result.pop_back();
-        }
-        reverse(result.begin(), result.end());
-        return result;
-    }
-
-    string strPlusStr(string a, string b) {
-        reverse(a.begin(), a.end());
-        reverse(b.begin(), b.end());
-        string result;
-        unsigned long long t = 0;
-        for (unsigned long long i = 0; i < a.size() || i < b.size(); ++i) {
-            if (i < a.size()) {
-                t += a[i] - '0';
-            }
-            if (i < b.size()) {
-                t += b[i] - '0';
-            }
-            result.push_back('0' + t % 10);
-            t /= 10;
-        }
-        while (t > 0) {
-            result.push_back('0' + t % 10);
-            t /= 10;
-        }
-        reverse(result.begin(), result.end());
-        return result;
-    }
-
+    // 技巧：延迟进位！
     string multiply(string num1, string num2) {
-        string result = "0";
-        reverse(num2.begin(), num2.end());
-        unsigned long long exp = 1;
-        for (unsigned long long i = 0; i < num2.size(); ++i) {
-            string highPart = intMulStr(num1, (num2[i] - '0'));
-            for (unsigned long long j = 1; j < exp; ++j) {
-                highPart = intMulStr(highPart, 10);
-            }
-            result = strPlusStr(result, highPart);
-            ++exp;
+        vector<int> a(num1.size(), 0);
+        vector<int> b(num2.size(), 0);
+
+        // 提取每位数字，从低位开始保存
+        for (int i = (int) num1.size() - 1, j = 0; i >= 0; --i, ++j) {
+            a[j] = num1[i] - '0';
         }
+        for (int i = (int) num2.size() - 1, j = 0; i >= 0; --i, ++j) {
+            b[j] = num2[i] - '0';
+        }
+
+        // 计算乘积，暂缓进位
+        vector<int> c(num1.size() + num2.size(), 0);
+        for (int i = 0; i < (int) a.size(); ++i) {
+            for (int j = 0; j < (int) b.size(); ++j) {
+                c[i + j] += a[i] * b[j];
+            }
+        }
+
+        // 进位
+        for (int i = 0, t = 0; i < (int) c.size(); ++i) {
+            t += c[i];
+            c[i] = t % 10;
+            t /= 10;
+        }
+
+        // 找到第1个非0高位
+        auto highStart = (int) c.size() - 1;
+        while (highStart > 0 && c[highStart] == 0) {
+            --highStart;
+        }
+
+        // 从高位开始保存结果
+        string result(highStart + 1, '0');
+        for (int i = 0; i <= highStart; ++i) {
+            result[highStart - i] = (char) (c[i] + '0');
+        }
+
         return result;
     }
 };
