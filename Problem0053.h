@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0053_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0053_H
 
+#include <vector>
+
+using namespace std;
+
 class Problem0053 {
 public:
     int maxSubArray(const vector<int> &nums) {
