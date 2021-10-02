@@ -1,0 +1,33 @@
+//
+// Created by Fengwei Zhang on 10/2/21.
+//
+
+#ifndef LEETCODESOLUTIONSINCPP_PROBLEM0062_H
+#define LEETCODESOLUTIONSINCPP_PROBLEM0062_H
+
+#include <vector>
+#include <string>
+#include <cstring>
+
+using namespace std;
+
+class Problem0062 {
+private:
+    int uniquePaths(int m, int n) {
+        int dp[m][n];
+        for (int i = 0; i < n; ++i) {
+            dp[0][i] = 1;
+        }
+        for (int i = 0; i < m; ++i) {
+            dp[i][0] = 1;
+        }
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+        return dp[m - 1][n - 1];
+    }
+};
+
+#endif //LEETCODESOLUTIONSINCPP_PROBLEM0062_H
