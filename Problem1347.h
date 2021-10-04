@@ -16,7 +16,7 @@ using namespace std;
 
 class Problem1347 {
 private:
-    int minSteps(string s, string t) {
+    int minSteps(const string &s, const string &t) {
         const int n = (int) s.size();
         int chCntS[26];
         int chCntT[26];
