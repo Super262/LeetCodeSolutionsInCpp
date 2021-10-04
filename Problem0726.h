@@ -16,7 +16,7 @@ using namespace std;
 class Problem0726 {
     // map存储时，key是有序的
 private:
-    map<string, int> dfs(const string &formula, int &chIdx) {
+    map<string, int> dfs(const string &formula, int &chIdx) {  // 不要忘记：chIdx是引用
         map<string, int> result;
         while (chIdx < (int) formula.size()) {
             if (formula[chIdx] == ')') {  // 递归的结束条件
