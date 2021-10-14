@@ -57,7 +57,7 @@ public:
         const int m = (int) numbers.size();
         int ft[m + 1];
         memset(ft, 0, sizeof ft);  // 必须初始化为0
-        updateItem(getNumIdx(0, numbers), 1, m, ft);  // 树状数组初始包含S0
+        updateItem(getNumIdx(s[0], numbers), 1, m, ft);  // 树状数组初始包含S0
 
         int result = 0;
         for (int i = 1; i <= n; ++i) {
