@@ -22,11 +22,11 @@ private:
             }
             auto x = nums[i];
             auto lt = S.lower_bound(x);  // element greater or equal
-            if (*lt - x <= t) {  // 较大元素
+            if (*lt - x <= t) {  // 最接近x的较大元素
                 return true;
             }
             --lt;
-            if (x - *lt <= t) {  // 较小元素
+            if (x - *lt <= t) {  // 最接近x的较小元素
                 return true;
             }
             S.insert(x);
