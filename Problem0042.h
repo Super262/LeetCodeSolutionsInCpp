@@ -16,12 +16,12 @@ private:
         int result = 0;
         for (int i = 0; i < (int) height.size(); ++i) {
             int prevH = 0;
-            while (!stk.empty() && height[i] >= height[stk.top()]) {
+            while (!stk.empty() && height[i] >= height[stk.top()]) {  // 高度分布：次高(top)，低(prevH)，最高（i）
                 result += (i - stk.top() - 1) * (height[stk.top()] - prevH);
                 prevH = height[stk.top()];
                 stk.pop();
             }
-            if (!stk.empty()) {
+            if (!stk.empty()) {  // 高度分布：最高(top)，低(prevH)，次高（i）
                 result += (i - stk.top() - 1) * (height[i] - prevH);
             }
             stk.emplace(i);
