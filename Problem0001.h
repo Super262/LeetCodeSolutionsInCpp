@@ -14,15 +14,15 @@ class Problem0001 {
 private:
     vector<int> twoSum(vector<int> &nums, int target) {
         vector<int> result;
-        unordered_map<int, int> numCount;
+        unordered_map<int, int> numIdx;
         for (int i = 0; i < (int) nums.size(); ++i) {
             auto y = target - nums[i];
-            if (numCount.count(y)) {
-                result.emplace_back(numCount[y]);
+            if (numIdx.count(y)) {
+                result.emplace_back(numIdx[y]);
                 result.emplace_back(i);
                 break;
             }
-            numCount[nums[i]] = i;
+            numIdx[nums[i]] = i;
         }
         return result;
     }
