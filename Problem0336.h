@@ -46,6 +46,7 @@ public:
                     w.size() != words[reversedIdx[rightPart]].size()) {
                     // 尝试构建(reverse(rightPart) + leftPart + rightPart)为回文字符串
                     // 注意：reverse(rightPart)不能等于rightPart，因为题目要求由2个单词构建字符串
+                    // 同时：避免重复加入(reverse(w) + w)的情况（即leftPart == ""）
                     result.push_back({reversedIdx[rightPart], i});
                 }
             }
