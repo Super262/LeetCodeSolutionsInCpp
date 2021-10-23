@@ -22,7 +22,7 @@ private:
         f[0][0] = true;
         for (int i = 0; i <= n; ++i) {
             for (int j = 1; j <= m; ++j) {
-                if (j + 1 <= m && p[j + 1] == '*') {
+                if (j + 1 <= m && p[j + 1] == '*') {  // 将'*'和其前的字符当作一个整体对待
                     continue;
                 }
                 if (i && p[j] != '*') {
