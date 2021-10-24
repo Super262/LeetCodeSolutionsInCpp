@@ -9,23 +9,20 @@
 
 using namespace std;
 
-class Solution {
+class Problem0035 {
 public:
     int searchInsert(const vector<int> &nums, const int &target) {
         int left = 0;
-        int right = (int) nums.size() - 1;
+        int right = (int) nums.size();
         while (left < right) {
-            auto mid = left + (right - left + 1) / 2;
-            if (nums[mid] <= target) {
-                left = mid;
+            auto mid = left + (right - left) / 2;
+            if (nums[mid] >= target) {
+                right = mid;
             } else {
-                right = mid - 1;
+                left = mid + 1;
             }
         }
-        if (nums[right] < target) {
-            return right + 1;
-        }
-        return right;
+        return left;
     }
 };
 
