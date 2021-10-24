@@ -25,8 +25,7 @@ private:
             nums[i] = n + 1;
         }
 
-        // 若a（1 <= a <= n）在nums中出现，则设置nums[a - 1] = -1;
-        // 这里采用相反数作为替代，非常巧妙
+        // 这里采用相反数作为替代，非常巧妙：若nums[a - 1] < 0，a存在
         for (int i = 0; i < n; ++i) {
             auto t = abs(nums[i]);
             if (t > n || t < 1) {
