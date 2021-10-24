@@ -26,7 +26,7 @@ private:
             b[j] = num2[i] - '0';
         }
 
-        // 计算乘积，暂缓进位
+        // 计算乘积，暂缓进位：C[i + j] = sum(A[i] * B[j])
         vector<int> c(num1.size() + num2.size(), 0);
         for (int i = 0; i < (int) a.size(); ++i) {
             for (int j = 0; j < (int) b.size(); ++j) {
