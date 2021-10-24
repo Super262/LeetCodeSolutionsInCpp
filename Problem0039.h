@@ -23,6 +23,8 @@ private:
         if (cIdx == (int) candidates.size()) {
             return;
         }
+
+        // 技巧：渐进式加入当前元素，最后再还原到初始状态
         for (int i = 0; candidates[cIdx] * i <= target; ++i) {
             dfs(candidates, target - candidates[cIdx] * i, cIdx + 1, temp, result);
             temp.emplace_back(candidates[cIdx]);
