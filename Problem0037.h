@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0037 {
 public:
     static const int N = 9;
     bool colUsed[N][N];
