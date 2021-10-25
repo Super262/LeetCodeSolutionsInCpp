@@ -17,7 +17,7 @@ public:
 
         // 中间有交集的一段
         if (k < (int) intervals.size()) {
-            x[0] = min(x[0], intervals[k][0]);  // 注意：这里只能改动x[0]，x[1]不变
+            x[0] = min(x[0], intervals[k][0]);  // 注意：这里只能改动x[0]，x[1]不变（因为左边的无交集段可能不存在）
             while (k < (int) intervals.size() && x[1] >= intervals[k][0]) {
                 x[1] = max(x[1], intervals[k][1]);
                 ++k;
