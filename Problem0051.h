@@ -21,7 +21,7 @@ private:
              vector<vector<string>> &result
     ) {
         if (rowIdx == n) {
-            result.emplace_back(vector<string>(temp));
+            result.emplace_back(temp);
             return;
         }
         for (int colIdx = 0; colIdx < n; ++colIdx) {
