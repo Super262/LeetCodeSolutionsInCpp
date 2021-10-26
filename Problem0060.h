@@ -14,16 +14,15 @@ using namespace std;
 class Problem0060 {
 private:
     string getPermutation(int n, int k) {
-        string result;
-        int factorial[n + 1];
-        bool used[n + 1];
-
         // 预计算n!（n个数字可组成的n位数有n!个）
+        int factorial[n + 1];
         factorial[0] = 1;
         for (int i = 1; i <= n; ++i) {
             factorial[i] = factorial[i - 1] * i;
         }
 
+        bool used[n + 1];
+        string result;
         memset(used, 0, sizeof used);
         for (int i = 0; i < n; ++i) {
             for (int digit = 1; digit <= n; ++digit) {
@@ -39,7 +38,6 @@ private:
                 }
             }
         }
-
         return result;
     }
 };
