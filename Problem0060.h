@@ -22,7 +22,7 @@ private:
         }
 
         bool used[n + 1];
-        string result;
+        string result(n, '\0');
         memset(used, 0, sizeof used);
         for (int i = 0; i < n; ++i) {
             for (int digit = 1; digit <= n; ++digit) {
@@ -32,7 +32,7 @@ private:
                 if (k > factorial[n - i - 1]) {  // 检测k是否大于以当前数字开头的n位数的个数
                     k -= factorial[n - i - 1];
                 } else {
-                    result.push_back((char) ('0' + digit));
+                    result[i] = (char) '0' + digit;
                     used[digit] = true;
                     break;
                 }
