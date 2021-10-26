@@ -32,7 +32,7 @@ private:
                 if (k > factorial[n - i - 1]) {  // 检测k是否大于以当前数字开头的n位数的个数
                     k -= factorial[n - i - 1];
                 } else {
-                    result[i] = (char) '0' + digit;
+                    result[i] = (char) ('0' + digit);
                     used[digit] = true;
                     break;
                 }
