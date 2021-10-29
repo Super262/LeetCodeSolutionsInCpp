@@ -22,7 +22,7 @@ private:
             nums1 = nums2;
             return;
         }
-        // 技巧：从后向前合并数字
+        // 技巧：从后向前合并数字，避免未实用的数被覆盖
         int tt = m + n - 1;
         int h2 = n - 1;
         int h1 = m - 1;
