@@ -12,61 +12,40 @@
 
 using namespace std;
 
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode() : val(0), next(nullptr) {}
+
+    ListNode(int x) : val(x), next(nullptr) {}
+
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 class Problem0092 {
 private:
-    struct ListNode {
-        int val;
-        ListNode *next;
-
-        ListNode() : val(0), next(nullptr) {}
-
-        ListNode(int x) : val(x), next(nullptr) {}
-
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
-
-    ListNode *reverseBetween(ListNode *head, int left, int right) {
-        if (left >= right) {  // 边界值：待反转区域长度小于2
+    ListNode *reverseBetween(ListNode *head, const int &left, const int &right) {
+        if (!head || right - left + 1 < 2) {
             return head;
         }
-
-        ListNode *dummyNode = new ListNode(-501);
-        dummyNode->next = head;
-
-        ListNode *leftStartPrev = dummyNode;  // 待反转区域的前驱节点
-        ListNode *leftStart = head;  // 待反转区域的头节点
-
-        // 用于链表反转的3个指针（前、中、后）
-        ListNode *prev = head;
-        ListNode *current = prev->next;
-        ListNode *temp = current->next;
-
-        for (int i = 1; i < left; ++i) {
-            leftStartPrev = leftStartPrev->next;
-            leftStart = leftStart->next;
-            prev = prev->next;
-            current = current->next;
-            temp = temp->next;
+        auto dummy = new ListNode(-1);
+        dummy->next = head;
+        auto a = dummy;
+        for (int i = 0; i < left - 1; ++i) {
+            a = a->next;
         }
-
-        ListNode *rightEnd;  // 待反转区域的末尾节点
-        ListNode *rightEndNext; // 待反转区域的后继节点
-
-        for (int i = left; i < right; ++i) { // 反转并更新后继和末尾节点
-            rightEnd = current;
-            current->next = prev;
-            prev = current;
-            current = temp;
-            rightEndNext = current;
-            if (temp) {
-                temp = temp->next;
-            }
+        auto b = a->next;
+        auto c = b->next;
+        for (int i = 0; i < right - left; ++i) {
+            auto t = c->next;
+            c->next = b;
+            b = c;
+            c = t;
         }
-
-        leftStartPrev->next = rightEnd;
-        leftStart->next = rightEndNext;
-
-        return dummyNode->next;
+        a->next->next = c;
+        a->next = b;
+        return dummy->next;
     }
 };
 
