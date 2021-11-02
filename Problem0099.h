@@ -27,7 +27,7 @@ private:
         TreeNode *prep = nullptr;
         while (root) {
             if (root->left) {
-                TreeNode *p = root->left;
+                auto *p = root->left;
                 while (p->right && p->right != root) {
                     p = p->right;
                 }
