@@ -24,7 +24,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Solution {
+class Problem0107 {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode *root) {
         vector<vector<int>> res;
