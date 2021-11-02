@@ -29,7 +29,7 @@ public:
 
     TreeNode *helper(const vector<int> &preorder, const vector<int> &inorder, const unordered_map<int, int> &inOrderPos,
                      const int &pl, const int &pr, const int &il, const int &ir) {
-        if (pl > pr) {
+        if (il > ir) {
             return NULL;
         }
         auto root = new TreeNode(preorder[pl]);
