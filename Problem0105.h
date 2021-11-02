@@ -5,6 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0105_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0105_H
 
+#include <unordered_map>
+#include <vector>
+
+using namespace std;
+
 struct TreeNode {
     int val;
     TreeNode *left;
