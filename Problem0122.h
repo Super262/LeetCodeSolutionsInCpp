@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0122_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0122_H
 
+#include <vector>
+
+using namespace std;
+
 class Problem0122 {
 public:
     int maxProfit(const vector<int> &prices) {  // 一段时间内的交易 == 多个单天的交易
