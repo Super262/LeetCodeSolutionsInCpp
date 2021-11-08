@@ -17,7 +17,7 @@ public:
         vector<vector<bool>> isPa(n, vector<bool>(n, false));
         // 预处理：isPa[l][r]指示s[l][r]是否为回文串
         for (int r = 0; r < n; ++r) {
-            for (int l = 0; l <= r; ++l) {
+            for (int l = r; l >= 0; --l) {
                 if (l == r) {
                     isPa[l][r] = true;
                 } else {
