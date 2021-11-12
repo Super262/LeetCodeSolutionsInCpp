@@ -12,13 +12,13 @@ using namespace std;
 
 class Solution {
 public:
-    string convertToTitle(int n) {
+    string convertToTitle(int n) {  // 直接背诵
         int k = 1;  // 结果长度
         for (long long p = 26; (long long) n > p; p *= 26) {
             n -= (int) p;
             ++k;
         }
-        n--;
+        n--;  // 不要忘记这步
         string res;
         while (k--) {
             res += (char) ('A' + n % 26);
