@@ -23,18 +23,18 @@ public:
     int read(char *buf, const int &n) {
         int result = 0;
         int size = 0;  // buf当前长度
-        int cnt;
+        int cnt;  // 每次被存入buf的字符个数
         for (int i = 0; i < n; i += cnt) {
-            if (tt >= hh) {
+            if (tt >= hh) {  // 缓存不为空
                 cnt = 1;
                 buf[size++] = temp[hh++];
                 ++result;
-            } else {
+            } else {  // 缓存为空，需要读取新数据
                 cnt = read4(temp);
                 if (cnt == 0) {
                     return result;
                 }
-                hh = 0, tt = cnt - 1;
+                hh = 0, tt = cnt - 1;  // 重置指针
                 if (i + cnt > n) {
                     cnt = n - i;
                 }
