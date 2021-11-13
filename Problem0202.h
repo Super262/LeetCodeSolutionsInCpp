@@ -17,6 +17,7 @@ public:
     }
 
     bool isHappy(int n) {  // 类似于142题（Linked List Cycle II）
+        // 注意：这里的快慢指针的起点不能相同
         auto slowP = n;
         auto fastP = squareSum(slowP);
         while (fastP != slowP) {
