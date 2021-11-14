@@ -11,7 +11,7 @@ using namespace std;
 
 class Solution {
 public:
-    int rob(vector<int> &nums) {
+    int rob(const vector<int> &nums) {
         // https://www.acwing.com/solution/content/19758/
         if (nums.empty()) {
             return 0;
