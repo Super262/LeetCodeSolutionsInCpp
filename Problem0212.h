@@ -14,12 +14,12 @@ class Problem0212 {
 private:
     struct Node {
         int idx;
-        Node *sons[26];
+        Node *sons[26]{};
 
         Node() {
             idx = -1;
             for (int i = 0; i < 26; ++i) {
-                sons[i] = NULL;
+                sons[i] = nullptr;
             }
         }
     };
