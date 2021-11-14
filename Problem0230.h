@@ -11,7 +11,9 @@ private:
         if (!root) {
             return false;
         }
-        dfs(root->left, k, answer);
+        if (dfs(root->left, k, answer)) {
+            return true;
+        }
         --k;
         if (k == 0) {
             answer = root->val;
