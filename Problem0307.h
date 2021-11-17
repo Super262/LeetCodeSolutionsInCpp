@@ -36,8 +36,11 @@ public:
     NumArray(const vector<int> &nums) {
         n = (int) nums.size();
         ft = vector<int>(n + 1, 0);
-        for (int i = 1; i <= n; ++i) {
-            updateItem(i, nums[i - 1]);
+        for (int i = 1; i <= n; ++i) { // O(n)时间初始化树状数组
+            ft[i] = nums[i - 1];
+            for (int j = i - 1; j > i - lowBit(i); j -= lowBit(j)) {
+                ft[i] += ft[j];
+            }
         }
     }
 
