@@ -13,7 +13,7 @@ class Solution {
 public:
     int bulbSwitch(const int &n) {
         // 灯泡i被按下的次数：i的约数个数
-        // 数学性质：完全平方数的约数个数是奇数
+        // 数学性质：完全平方数的约数个数是奇数（充要条件）
         return (int) sqrt(n);
     }
 };
