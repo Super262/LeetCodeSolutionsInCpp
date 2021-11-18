@@ -9,6 +9,8 @@
 #include <vector>
 #include <cstring>
 
+using namespace std;
+
 class Solution {
 public:
     string removeDuplicateLetters(const string &s) {
