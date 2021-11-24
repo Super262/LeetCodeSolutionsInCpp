@@ -13,7 +13,7 @@ using namespace std;
 class Solution {
 public:
     vector<string> removeInvalidParentheses(const string &s) {
-        int extraLeftCnt = 0;  // 左括号数量 - 右括号数量
+        int extraLeftCnt = 0;  // 待删掉的左括号的数量
         int extraRightCnt = 0;  // 待删掉的右括号的数量
         for (const auto &ch: s) {
             if (ch == '(') {
@@ -32,10 +32,10 @@ public:
     }
 
 private:
-    void dfs(const string &s,
-             int chIdx,
-             string current,
-             int curDiff,
+    void dfs(const string &s,  // 原序列
+             int chIdx,  // 当前字符索引
+             string current,  // 被操作后的序列
+             int curDiff,  // current的(左括号数量 - 右括号数量)
              int extraLeftCnt,
              int extraRightCnt,
              vector<string> &answer) {
