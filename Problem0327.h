@@ -10,33 +10,10 @@
 
 using namespace std;
 
-class Problem0327 {
+class Solution {
     // 原题目转化：Si - upper <= Sj <= Si - lower（S是前缀和数组，0 <= j <= i - 1），寻找(i, j)的个数
     // 也就是F(Si - lower) - F(Si - upper - 1)的值（F是树状数组的前缀和函数）
     // 使用离散化和树状数组来替代平衡树
-private:
-    int lowBit(const int x) {
-        return x & -x;
-    }
-
-    int prefixSum(const int idx, const int ft[]) {
-        int result = 0;
-        for (int i = idx; i > 0; i -= lowBit(i)) {
-            result += ft[i];
-        }
-        return result;
-    }
-
-    void updateItem(const int idx, const int val, const int n, int ft[]) {
-        for (int i = idx; i <= n; i += lowBit(i)) {
-            ft[i] += val;
-        }
-    }
-
-    int getNumIdx(const long long x, const vector<long long> &numbers) {  // 注意：做差后要加1（树状数组的索引从1开始）
-        return (int) (lower_bound(numbers.begin(), numbers.end(), x) - numbers.begin() + 1);
-    }
-
 public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
         const int n = (int) nums.size();
@@ -66,6 +43,29 @@ public:
             updateItem(getNumIdx(s[i], numbers), 1, m, ft);  // 这里被插入的Si会作为后续的Sj
         }
         return result;
+    }
+
+private:
+    int lowBit(const int x) {
+        return x & -x;
+    }
+
+    int prefixSum(const int idx, const int ft[]) {
+        int result = 0;
+        for (int i = idx; i > 0; i -= lowBit(i)) {
+            result += ft[i];
+        }
+        return result;
+    }
+
+    void updateItem(const int idx, const int val, const int n, int ft[]) {
+        for (int i = idx; i <= n; i += lowBit(i)) {
+            ft[i] += val;
+        }
+    }
+
+    int getNumIdx(const long long x, const vector<long long> &numbers) {  // 注意：做差后要加1（树状数组的索引从1开始）
+        return (int) (lower_bound(numbers.begin(), numbers.end(), x) - numbers.begin() + 1);
     }
 };
 
