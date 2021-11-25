@@ -35,6 +35,7 @@ public:
         auto py = (int) storage.size() - 1;
         auto y = storage[py];
         swap(storage[px], storage[py]);
+        // 注意：对包含x的索引的集合，先执行插入py，再删除py，不能省略任何操作（因为可能 x == y）！
         num2IdxSet[x].erase(px);
         num2IdxSet[x].insert(py);
         num2IdxSet[y].erase(py);
