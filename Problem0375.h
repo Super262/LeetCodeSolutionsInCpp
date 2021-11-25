@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0375_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0375_H
 
-#include <vector>
+#include <cstring>
 
 using namespace std;
 
