@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 贪心思想，巧妙排序：若defense比之前小，说明attack也比之前小
 public:
     int numberOfWeakCharacters(vector<vector<int>> &properties) {
         sort(properties.begin(), properties.end(), [](const vector<int> &a, const vector<int> &b) {
