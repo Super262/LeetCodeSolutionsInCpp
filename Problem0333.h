@@ -58,7 +58,7 @@ private:
         }
         auto left_is_valid = !left_res.node || (left_res.node == root->left && left_res.upper < root->val);
         auto right_is_valid = !right_res.node || (right_res.node == root->right && right_res.lower > root->val);
-        if (left_is_valid && right_is_valid) {
+        if (left_is_valid && right_is_valid) {  // 左、右子树可以和root构成BST
             Result result;
             result.node = root;
             result.upper = right_res.node ? right_res.upper : root->val;
@@ -66,7 +66,7 @@ private:
             result.size = 1 + (right_res.node ? right_res.size : 0) + (left_res.node ? left_res.size : 0);
             return result;
         }
-        if (left_res.node && right_res.node) {
+        if (left_res.node && right_res.node) {  // 左、右都有结果，返回大者
             return left_res.size > right_res.size ? left_res : right_res;
         }
         if (left_res.node) {
