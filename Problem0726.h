@@ -61,7 +61,8 @@ private:
     }
 
     string countOfAtoms(const string &formula) {
-        auto eleCnt = dfs(formula, 0);
+        int chIdx = 0;
+        auto eleCnt = dfs(formula, chIdx);
         string result;
         for (auto &item: eleCnt) {
             result += item.first;
