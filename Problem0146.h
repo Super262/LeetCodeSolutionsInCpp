@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0146_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0146_H
 
+#include <unordered_map>
+
+using namespace std;
+
 class LRUCache {
     // https://www.acwing.com/solution/content/1013/
     // 双链表的价值：O(1)删除
