@@ -14,11 +14,11 @@ class Problem0054 {
 private:
     vector<int> spiralOrder(vector<vector<int>> &matrix) {
         vector<int> result;
-        const int n = matrix.size();
+        const int n = (int) matrix.size();
         if (n == 0) {
             return result;
         }
-        const int m = matrix[0].size();
+        const int m = (int) matrix[0].size();
         bool visited[n][m];
         int dx[] = {0, 1, 0, -1};
         int dy[] = {1, 0, -1, 0};
