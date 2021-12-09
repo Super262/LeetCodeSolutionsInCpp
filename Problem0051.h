@@ -19,8 +19,7 @@ private:
              bool dgUsed[],
              bool udgUsed[],
              vector<string> &temp,
-             vector<vector<string>> &result
-    ) {
+             vector<vector<string>> &result) {
         if (rowIdx == n) {
             result.emplace_back(temp);
             return;
