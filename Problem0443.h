@@ -25,11 +25,15 @@ public:
                 ++k;
             }
             if (r - l > 1) {
-                auto temp = to_string(r - l);
-                for (const auto &ch: temp) {
-                    chars[k] = ch;
+                // 这里不要使用to_string方法：不满足空间为O(1)
+                auto len = r - l;
+                auto t = k;
+                while (len) {
+                    chars[k] = (char) ('0' + (len % 10));
+                    len /= 10;
                     ++k;
                 }
+                reverse(chars.begin() + t, chars.begin() + k);
             }
             l = r - 1;
         }
