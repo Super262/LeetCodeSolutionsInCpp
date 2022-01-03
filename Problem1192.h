@@ -46,7 +46,7 @@ private:
                 if (disc[u] < low[v]) {
                     result.push_back({u, v});
                 }
-            } else if (v != p) {
+            } else if (v != p) {  // 本题无重边，因此p指示父节点编号即可
                 low[u] = min(low[u], disc[v]);
             }
         }
