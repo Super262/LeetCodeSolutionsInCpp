@@ -23,7 +23,7 @@ public:
         vector<int> result;
         for (int l = 0, r = 0, current_cnt = 0; r < s.size(); ++r) {
             --counter[s[r]];
-            if (counter[s[r]] == 0) {
+            if (counter[s[r]] == 0) {  // key不存在时，counter[key]为"-1"（无效值）
                 ++current_cnt;
             }
             if (r - l + 1 > p.size()) {
