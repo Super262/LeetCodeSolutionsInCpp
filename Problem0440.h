@@ -11,6 +11,7 @@ using namespace std;
 
 class Solution {
     // https://www.acwing.com/solution/content/6248/
+    // 时间复杂度：10(LogN)^2
 public:
     int findKthNumber(int n, int k) {
         int prefix = 1;
