@@ -15,12 +15,36 @@ class Solution {
     // 转化为货仓选址问题
 public:
     int minMoves2(vector<int> &nums) {
-        sort(nums.begin(), nums.end());
+        // 利用快速选择找到中位数
+        auto k = (int) (nums.size() + 1) / 2;
+        quickSelect(nums, 0, (int) nums.size() - 1, k);
         int res = 0;
         for (auto &x: nums) {
-            res += abs(x - nums[nums.size() / 2]);
+            res += abs(x - nums[k - 1]);
         }
         return res;
+    }
+
+private:
+    void quickSelect(vector<int> &nums, int st, int ed, int k) {
+        if (st >= ed) {
+            return;
+        }
+        auto p = nums[st + (ed - st) / 2];
+        auto l = st - 1;
+        auto r = ed + 1;
+        while (l < r) {
+            while (nums[++l] < p);
+            while (nums[--r] > p);
+            if (l < r) {
+                swap(nums[l], nums[r]);
+            }
+        }
+        if (k <= r - st + 1) {
+            quickSelect(nums, st, r, k);
+        } else {
+            quickSelect(nums, r + 1, ed, k - (r - st + 1));
+        }
     }
 };
 
