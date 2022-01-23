@@ -21,7 +21,7 @@ public:
                 ++j;
             }
             while (i < j) {
-                counter[p[i]] = max(counter[p[i]], j - i);
+                counter[p[i]] = max(counter[p[i]], j - i);  // counter[p[i]]：以p[i]开头的连续子串的个数
                 ++i;
             }
         }
