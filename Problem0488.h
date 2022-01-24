@@ -15,11 +15,9 @@ class Solution {
     // 记忆化搜索 + 剪枝：https://leetcode-cn.com/problems/zuma-game/solution/zu-ma-you-xi-by-leetcode-solution-lrp4/
     // 只在以下两种情况放置新球：当前球颜色与后面的球的颜色相同；当前后颜色相同且与当前颜色不同
 public:
-    int findMinStep(const string &board, string &hand) {
+    int findMinStep(const string &board, const string &hand) {
         unordered_map<string, int> prev_state;
-        bool used[hand.size()];
-        memset(used, 0, sizeof used);
-        auto answer = dfs(board, hand, used, prev_state);
+        auto answer = dfs(board, hand, prev_state);
         if (answer == INF) {
             return -1;
         }
@@ -27,19 +25,16 @@ public:
     }
 
 private:
-    int dfs(const string &board, const string &hand, bool used[], unordered_map<string, int> &prev_state) {
+    int dfs(const string &board, const string &hand, unordered_map<string, int> &prev_state) {
         if (board.empty()) {
             return 0;
         }
-        if (prev_state.count(board)) {
-            return prev_state[board];
+        auto key = board + '_' + hand;  // 用2个关键字查询
+        if (prev_state.count(key)) {
+            return prev_state[key];
         }
         int answer = INF;
         for (int i = 0; i < hand.size(); ++i) {
-            if (used[i]) {
-                continue;
-            }
-            used[i] = true;
             for (int j = 0; j <= board.size(); ++j) {  // 尝试放置球在board[j-1]和board[j]之间
                 bool selected = false;
                 if (j < board.size() && board[j] == hand[i]) {
@@ -51,13 +46,13 @@ private:
                 if (!selected) {
                     continue;
                 }
-                auto s = board.substr(0, j) + hand[i] + board.substr(j);
-                prune(s, j);
-                answer = min(answer, 1 + dfs(s, hand, used, prev_state));
+                auto nb = board.substr(0, j) + hand[i] + board.substr(j);
+                prune(nb, j);
+                auto nh = hand.substr(0, i) + hand.substr(i + 1);
+                answer = min(answer, 1 + dfs(nb, nh, prev_state));
             }
-            used[i] = false;
         }
-        prev_state[board] = answer;
+        prev_state[key] = answer;
         return answer;
     }
 
