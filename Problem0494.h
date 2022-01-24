@@ -1,0 +1,40 @@
+//
+// Created by Fengwei Zhang on 1/24/22.
+//
+
+#ifndef LEETCODESOLUTIONSINCPP_PROBLEM0494_H
+#define LEETCODESOLUTIONSINCPP_PROBLEM0494_H
+
+#include <vector>
+#include <cstring>
+
+using namespace std;
+
+class Solution {
+    // 转化为背包问题：设所有整数和为sum，添加负号的整数的和为neg，添加正号的整数的和为 sum - neg，
+    // target = (sum - neg) - neg，由等式可以推出 neg = (sum - target) / 2
+    // 如果 sum - target 为负数或奇数，无解
+public:
+    int findTargetSumWays(const vector<int> &nums, int target) {
+        const auto n = (int) nums.size();
+        int sum = 0;
+        for (const auto &x: nums) {
+            sum += x;
+        }
+        if (sum - target < 0 || (sum - target) % 2) {
+            return 0;
+        }
+        auto neg = (sum - target) / 2;
+        int dp[neg + 1];
+        memset(dp, 0, sizeof dp);
+        dp[0] = 1;
+        for (const auto &x: nums) {
+            for (int j = neg; j >= x; --j) {
+                dp[j] += dp[j - x];
+            }
+        }
+        return dp[neg];
+    }
+};
+
+#endif //LEETCODESOLUTIONSINCPP_PROBLEM0494_H
