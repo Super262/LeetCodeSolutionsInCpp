@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 没有按秩合并，并查集时间复杂度为O(logN)
 public:
     int findCircleNum(const vector<vector<int>> &isConnected) {
         const auto n = (int) isConnected.size();
