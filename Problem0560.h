@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 经典操作：双指针 + 哈希表
 public:
     int subarraySum(const vector<int> &nums, int k) {
         int result = 0;
