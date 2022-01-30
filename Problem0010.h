@@ -19,7 +19,7 @@ public:
         const int m = (int) p.size();
         bool dp[n + 1][m + 1];
         memset(dp, 0, sizeof dp);
-        dp[0][0] = true;
+        dp[0][0] = true;  // 不要忘记初始化
         for (int i = 0; i <= n; ++i) {
             for (int j = 1; j <= m; ++j) {
                 if (j + 1 <= m && p[j] == '*') {  // 将后面的'*'和当前字符当作一个整体
