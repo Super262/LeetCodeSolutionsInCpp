@@ -25,7 +25,7 @@ public:
         }
         auto left = head; // the slow pointer
         auto right = head; // the fast pointer
-        ++n;  // Increase n to get prev of nth node
+        ++n;  // Increase n to make "left" can get the prev of nth node
         while (n > 0 && right) {  // The fast pointer moves
             right = right->next;
             --n;
