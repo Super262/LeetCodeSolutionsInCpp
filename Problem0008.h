@@ -5,7 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0008_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0008_H
 
-class Problem0008 {
+#include <string>
+
+using namespace std;
+
+class Solution {
 public:
     int myAtoi(const string &s) {
         int k = 0;
@@ -19,29 +23,29 @@ public:
         }
 
         // Check '-'
-        bool isNeg = false;
+        bool is_neg = false;
         if (s[k] == '-') {
             ++k;
-            isNeg = true;
+            is_neg = true;
         } else if (s[k] == '+') {
             ++k;
         }
 
         long long res = 0;
-        while (k < s.size() && s[k] >= '0' && s[k] <= '9') {
+        while (k < s.size() && isdigit(s[k])) {
             int x = s[k] - '0';
             // Detect overflow smartly.
-            if (!isNeg && res > (INT_MAX - x) / 10) {
+            if (!is_neg && res > (INT_MAX - x) / 10) {
                 return INT_MAX;
             }
-            if (isNeg && -res < (INT_MIN + x) / 10) {
+            if (is_neg && -res < (INT_MIN + x) / 10) {
                 return INT_MIN;
             }
             res = res * 10 + x;
             ++k;
         }
 
-        if (isNeg) {
+        if (is_neg) {
             res = -res;
         }
         if (res < INT_MIN) {
