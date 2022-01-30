@@ -9,19 +9,20 @@
 
 using namespace std;
 
-class Problem0029 {
+class Solution {
+    // 贪心算法：https://www.acwing.com/solution/content/15056/
 public:
-    int divide(const int &dividend, const int &divisor) {
+    int divide(const int dividend, const int divisor) {
         long long a = dividend;
         long long b = divisor;
-        bool isNeg = false;
+        bool is_neg = false;
         if ((a < 0 && b > 0) || (a > 0 && b < 0)) {
-            isNeg = true;
+            is_neg = true;
         }
         a = abs(a);
         b = abs(b);
         vector<long long> exps;  // (2^i) * b;
-        for (auto e = b; e <= a; e <<= 1) {
+        for (auto e = b; e <= a; e *= 2) {
             exps.emplace_back(e);
         }
         long long result = 0;
@@ -32,7 +33,7 @@ public:
             a -= exps[i];
             result += 1ll << i;  // Don't use "1 << i" instead of "1ll << 1"!
         }
-        if (isNeg) {
+        if (is_neg) {
             result = -result;
         }
         if (result < INT_MIN || result > INT_MAX) {
