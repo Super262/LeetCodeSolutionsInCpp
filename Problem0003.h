@@ -16,11 +16,7 @@ public:
         unordered_map<char, int> counter;
         int result = 0;
         for (int l = 0, r = 0; r < (int) s.size(); ++r) {
-            if (counter.count(s[r])) {
-                ++counter[s[r]];
-            } else {
-                counter[s[r]] = 1;
-            }
+            ++counter[s[r]];
             while (l < r && counter[s[r]] > 1) {
                 --counter[s[l]];
                 ++l;
