@@ -27,7 +27,7 @@ public:
         char prev = 'N';
         for (auto ch: s) {
             if (ch_to_num[ch] > ch_to_num[prev]) {  // 出现逆序，遇到特殊字符组合：IV......CM
-                result -= 2 * ch_to_num[prev];
+                result -= 2 * ch_to_num[prev];  // 细节：上一轮循环中，result加过了ch_to_num[prev]，因此这里应减去2倍
             }
             result += ch_to_num[ch];
             prev = ch;
