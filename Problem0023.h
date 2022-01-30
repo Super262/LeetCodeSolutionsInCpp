@@ -32,8 +32,8 @@ public:
             }
             heap.emplace(lh);
         }
-        auto dummy = new ListNode(-1);
-        auto current = dummy;
+        ListNode dummy(-1);
+        auto current = &dummy;
         while (!heap.empty()) {
             auto lh = heap.top();
             heap.pop();
@@ -43,7 +43,7 @@ public:
                 heap.emplace(lh->next);
             }
         }
-        return dummy->next;
+        return dummy.next;
     }
 
 private:
