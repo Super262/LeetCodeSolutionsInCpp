@@ -10,26 +10,32 @@
 
 using namespace std;
 
-class Problem0016 {
+class Solution {
+    // 经典算法，直接背诵：双指针 + 排序
+    // https://www.acwing.com/solution/content/15002/
 public:
-    int threeSumClosest(vector<int> &nums, const int &target) {
+    int threeSumClosest(vector<int> &nums, const int target) {
         sort(nums.begin(), nums.end());
-        pair<int, int> res(INT_MAX, INT_MAX);
+        int answer = 0x3f3f3f3f;
         for (int i = 0; i < nums.size(); ++i) {
-            for (int j = i + 1, k = (int) nums.size() - 1; j < k; ++j) {
-                while (j < k - 1 && nums[i] + nums[j] + nums[k - 1] >= target) {
-                    --k;
+            for (auto l = i + 1, r = (int) nums.size() - 1; l < r; ++l) {
+                while (l < r - 1 && nums[i] + nums[l] + nums[r - 1] >= target) {  // 固定l，移动r
+                    --r;
                 }
-                auto s1 = nums[i] + nums[j] + nums[k];
-                res = min(res, make_pair(abs(s1 - target), s1));  // s may be less than target, use abs.
-                if (j == k - 1) {
+                auto s1 = nums[i] + nums[l] + nums[r];
+                if (abs(s1 - target) < abs(answer - target)) {
+                    answer = s1;
+                }
+                if (l == r - 1) {  // 若nums[l]和nums[r]间无其他数字，继续
                     continue;
                 }
-                auto s2 = nums[i] + nums[j] + nums[k - 1];
-                res = min(res, make_pair(abs(s2 - target), s2));
+                auto s2 = nums[i] + nums[l] + nums[r - 1];
+                if (abs(s2 - target) < abs(answer - target)) {
+                    answer = s2;
+                }
             }
         }
-        return res.second;
+        return answer;
     }
 };
 
