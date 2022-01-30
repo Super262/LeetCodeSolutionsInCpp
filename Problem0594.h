@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 直接背诵思路
     // https://leetcode-cn.com/problems/longest-harmonious-subsequence/solution/zui-chang-he-xie-zi-xu-lie-by-leetcode-s-8cyr/
 public:
     int findLHS(const vector<int> &nums) {
