@@ -24,7 +24,8 @@ public:
 
 private:
     int helper(const vector<int> &nums1, const int st1, const vector<int> &nums2, const int st2, const int k) {
-        // k从1开始计数；nums1是长度较小的数组，nums2是长度较长的数组；st1，s2分别是数组的起始位置
+        // k从1开始计数；nums1是长度较小的数组，nums2是长度较长的数组
+        // st1，st2分别是数组的起始位置（0 <= st1, st2 < nums.size()）
         if (nums1.size() - st1 > nums2.size() - st2) {  // nums1比nums2长
             return helper(nums2, st2, nums1, st1, k);
         }
