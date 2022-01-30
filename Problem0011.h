@@ -9,9 +9,10 @@
 
 using namespace std;
 
-class Problem0011 {
-private:
-    int maxArea(vector<int>& height) {
+class Solution {
+    // 直接背诵，双指针算法经典题目
+public:
+    int maxArea(const vector<int> &height) {
         int result = 0;
         int l = 0;
         int r = (int) height.size() - 1;
