@@ -23,15 +23,15 @@ private:
             if (i > 0 && nums[i] == nums[i - 1]) {  // 去重
                 continue;
             }
-            for (int j = i + 1, k = (int) nums.size() - 1; j < k; ++j) {
-                if (j > i + 1 && nums[j] == nums[j - 1]) {  // 去重
+            for (auto l = i + 1, r = (int) nums.size() - 1; l < r; ++l) {
+                if (l > i + 1 && nums[l] == nums[l - 1]) {  // 去重
                     continue;
                 }
-                while (j < k - 1 && nums[i] + nums[j] + nums[k - 1] >= 0) {  // 测试k是否还能向左移动
-                    --k;
+                while (l < r - 1 && nums[i] + nums[l] + nums[r - 1] >= 0) {  // 测试k是否还能向左移动
+                    --r;
                 }
-                if (nums[i] + nums[j] + nums[k] == 0) {
-                    result.push_back({nums[i], nums[j], nums[k]});
+                if (nums[i] + nums[l] + nums[r] == 0) {
+                    result.push_back({nums[i], nums[l], nums[r]});
                 }
             }
         }
