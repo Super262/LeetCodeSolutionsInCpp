@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 贪心算法：https://www.acwing.com/solution/content/15056/
+    // 直接背诵，贪心算法：https://www.acwing.com/solution/content/15056/
 public:
     int divide(const int dividend, const int divisor) {
         long long a = dividend;
