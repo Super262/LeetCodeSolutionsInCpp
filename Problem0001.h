@@ -13,13 +13,13 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int> &nums, int target) {
-        unordered_map<int, int> numIdx;
+        unordered_map<int, int> num_to_idx;
         for (int i = 0; i < (int) nums.size(); ++i) {
             auto y = target - nums[i];
-            if (numIdx.count(y)) {
-                return {numIdx[y], i};
+            if (num_to_idx.count(y)) {
+                return {num_to_idx[y], i};
             }
-            numIdx[nums[i]] = i;
+            num_to_idx[nums[i]] = i;
         }
         return {};
     }
