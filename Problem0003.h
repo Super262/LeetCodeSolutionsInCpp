@@ -10,19 +10,19 @@
 
 using namespace std;
 
-class Problem0003 {
-private:
-    int lengthOfLongestSubstring(const string& s) {
-        unordered_map<char, int> charCount;
+class Solution {
+public:
+    int lengthOfLongestSubstring(const string &s) {
+        unordered_map<char, int> counter;
         int result = 0;
         for (int l = 0, r = 0; r < (int) s.size(); ++r) {
-            if (charCount.count(s[r])) {
-                ++charCount[s[r]];
+            if (counter.count(s[r])) {
+                ++counter[s[r]];
             } else {
-                charCount[s[r]] = 1;
+                counter[s[r]] = 1;
             }
-            while (l < r && charCount[s[r]] > 1) {
-                --charCount[s[l]];
+            while (l < r && counter[s[r]] > 1) {
+                --counter[s[l]];
                 ++l;
             }
             result = max(result, r - l + 1);
