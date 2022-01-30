@@ -5,9 +5,9 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0009_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0009_H
 
-class Problem0009 {
-private:
-    bool isPalindrome(const int &x) {
+class Solution {
+public:
+    bool isPalindrome(const int x) {
         if (x < 0) {
             return false;
         }
