@@ -11,16 +11,39 @@
 using namespace std;
 
 class Problem0018 {
+    // 经典题目，直接背诵
 public:
+    vector<vector<int>> fourSum(vector<int> &nums, const int target) {
+        if (nums.size() < 4) {
+            return {};
+        }
+        vector<vector<int>> result;
+        sort(nums.begin(), nums.end());
+        for (int a = 0; a < (int) nums.size() - 3; ++a) {
+            if (a && nums[a - 1] == nums[a]) {
+                continue;
+            }
+            for (auto b = a + 1; b < (int) nums.size() - 2; ++b) {
+                if (b > a + 1 && nums[b - 1] == nums[b]) {
+                    continue;
+                }
+                vector<int> temp = {nums[a], nums[b], 0, 0};
+                twoSum(nums, b + 1, target - nums[a] - nums[b], temp, result);
+            }
+        }
+        return result;
+    }
+
+private:
     void twoSum(const vector<int> &nums,
-                const int &start,
-                const int &target,
+                const int start,
+                const int target,
                 vector<int> &temp,
                 vector<vector<int>> &result) {
         if (start >= (int) nums.size() - 1) {
             return;
         }
-        for (int c = start, d = (int) nums.size() - 1; c < d; ++c) {
+        for (auto c = start, d = (int) nums.size() - 1; c < d; ++c) {
             if (c > start && nums[c - 1] == nums[c]) {
                 continue;
             }
@@ -36,27 +59,6 @@ public:
                 result.emplace_back(temp);
             }
         }
-    }
-
-    vector<vector<int>> fourSum(vector<int> &nums, const int &target) {
-        vector<vector<int>> result;
-        if (nums.size() < 4) {
-            return result;
-        }
-        sort(nums.begin(), nums.end());
-        for (int a = 0; a < (int) nums.size() - 3; ++a) {
-            if (a > 0 && nums[a - 1] == nums[a]) {
-                continue;
-            }
-            for (int b = a + 1; b < (int) nums.size() - 2; ++b) {
-                if (b > a + 1 && nums[b - 1] == nums[b]) {
-                    continue;
-                }
-                vector<int> temp = {nums[a], nums[b], 0, 0};
-                twoSum(nums, b + 1, target - nums[a] - nums[b], temp, result);
-            }
-        }
-        return result;
     }
 };
 
