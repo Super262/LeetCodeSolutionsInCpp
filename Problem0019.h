@@ -34,7 +34,7 @@ public:
             head = head->next;
             return head;
         }
-        while (right) {  // Two ones move together
+        while (right) {  // Two pointers move together
             right = right->next;
             left = left->next;
         }
