@@ -5,8 +5,12 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0007_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0007_H
 
-class Problem0007 {
-private:
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
     int reverse(int x) {
         long long result = 0;
         while (x) {
