@@ -27,7 +27,7 @@ private:
                 if (l > i + 1 && nums[l] == nums[l - 1]) {  // 去重
                     continue;
                 }
-                while (l < r - 1 && nums[i] + nums[l] + nums[r - 1] >= 0) {  // 测试k是否还能向左移动
+                while (l < r - 1 && nums[i] + nums[l] + nums[r - 1] >= 0) {  // 测试r是否还能向左移动
                     --r;
                 }
                 if (nums[i] + nums[l] + nums[r] == 0) {
