@@ -17,6 +17,7 @@ struct ListNode {
 };
 
 class Solution {
+    // 经典算法，直接背诵；常用技巧：建立伪头（dummy）
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         if (!l1) {
