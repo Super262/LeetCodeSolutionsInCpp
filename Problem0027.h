@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Problem0027 {
+class Solution {
 public:
     int removeElement(vector<int> &nums, const int &val) {
         int k = 0;
@@ -18,7 +18,8 @@ public:
             if (nums[i] == val) {
                 continue;
             }
-            nums[k++] = nums[i];
+            nums[k] = nums[i];
+            ++k;
         }
         return k;
     }
