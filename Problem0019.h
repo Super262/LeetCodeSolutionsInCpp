@@ -5,19 +5,20 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0019_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0019_H
 
-class Problem0019 {
-private:
-    struct ListNode {
-        int val;
-        ListNode *next;
+struct ListNode {
+    int val;
+    ListNode *next;
 
-        ListNode() : val(0), next(nullptr) {}
+    ListNode() : val(0), next(nullptr) {}
 
-        ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
+class Solution {
+    // 经典算法，直接背诵
+public:
     ListNode *removeNthFromEnd(ListNode *head, int n) {
         if (!head) {
             return head;
