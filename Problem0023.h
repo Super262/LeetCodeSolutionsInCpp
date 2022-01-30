@@ -10,25 +10,20 @@
 
 using namespace std;
 
-class Problem0023 {
-private:
-    struct ListNode {
-        int val;
-        ListNode *next;
+struct ListNode {
+    int val;
+    ListNode *next;
 
-        ListNode() : val(0), next(nullptr) {}
+    ListNode() : val(0), next(nullptr) {}
 
-        ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
-    struct nodeGreater {
-        bool operator()(ListNode *a, ListNode *b) const {
-            return a->val > b->val;
-        }
-    };
-
+class Solution {
+    // 堆的经典应用
+public:
     ListNode *mergeKLists(vector<ListNode *> &lists) {
         priority_queue<ListNode *, vector<ListNode *>, nodeGreater> heap;
         for (auto lh: lists) {
@@ -50,6 +45,13 @@ private:
         }
         return dummyHead->next;
     }
+
+private:
+    struct nodeGreater {
+        bool operator()(ListNode *a, ListNode *b) const {
+            return a->val > b->val;
+        }
+    };
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0023_H
