@@ -10,15 +10,16 @@
 
 using namespace std;
 
-class Problem0018 {
+class Solution {
     // 经典题目，直接背诵
 public:
     vector<vector<int>> fourSum(vector<int> &nums, const int target) {
         if (nums.size() < 4) {
             return {};
         }
-        vector<vector<int>> result;
         sort(nums.begin(), nums.end());
+        vector<vector<int>> result;
+        vector<int> temp(4, 0);  // 公用临时结果
         for (int a = 0; a < (int) nums.size() - 3; ++a) {
             if (a && nums[a - 1] == nums[a]) {
                 continue;
@@ -27,7 +28,8 @@ public:
                 if (b > a + 1 && nums[b - 1] == nums[b]) {
                     continue;
                 }
-                vector<int> temp = {nums[a], nums[b], 0, 0};
+                temp[0] = nums[a];
+                temp[1] = nums[b];
                 twoSum(nums, b + 1, target - nums[a] - nums[b], temp, result);
             }
         }
