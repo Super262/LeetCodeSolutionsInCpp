@@ -22,18 +22,18 @@ struct ListNode {
 };
 
 class Solution {
-    // 堆的经典应用
+    // 直接背诵，堆的经典应用
 public:
     ListNode *mergeKLists(vector<ListNode *> &lists) {
-        priority_queue<ListNode *, vector<ListNode *>, nodeGreater> heap;
+        priority_queue<ListNode *, vector<ListNode *>, NodeGreater> heap;
         for (auto lh: lists) {
             if (!lh) {
                 continue;
             }
             heap.emplace(lh);
         }
-        auto dummyHead = new ListNode(-1);
-        auto current = dummyHead;
+        auto dummy = new ListNode(-1);
+        auto current = dummy;
         while (!heap.empty()) {
             auto lh = heap.top();
             heap.pop();
@@ -43,11 +43,11 @@ public:
                 heap.emplace(lh->next);
             }
         }
-        return dummyHead->next;
+        return dummy->next;
     }
 
 private:
-    struct nodeGreater {
+    struct NodeGreater {
         bool operator()(ListNode *a, ListNode *b) const {
             return a->val > b->val;
         }
