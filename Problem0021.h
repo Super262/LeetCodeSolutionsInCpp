@@ -5,19 +5,19 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0021_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0021_H
 
-class Problem0021 {
-private:
-    struct ListNode {
-        int val;
-        ListNode *next;
+struct ListNode {
+    int val;
+    ListNode *next;
 
-        ListNode() : val(0), next(nullptr) {}
+    ListNode() : val(0), next(nullptr) {}
 
-        ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
+class Solution {
+public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
         if (!l1) {
             return l2;
@@ -25,25 +25,25 @@ private:
         if (!l2) {
             return l1;
         }
-        auto dummyNode = new ListNode(-1);
-        dummyNode->next = l1;
-        auto resCur = dummyNode;
-        auto l2Cur = l2;
-        ListNode *l2Next;
-        while (l2Cur && resCur->next) {
-            if (resCur->next->val >= l2Cur->val) {
-                l2Next = l2Cur->next;
-                l2Cur->next = resCur->next;
-                resCur->next = l2Cur;
-                l2Cur = l2Next;
+        auto dummy = new ListNode(-1);
+        dummy->next = l1;
+        auto res_cur = dummy;
+        auto l2_cur = l2;
+        ListNode *l2_next;
+        while (l2_cur && res_cur->next) {
+            if (res_cur->next->val >= l2_cur->val) {
+                l2_next = l2_cur->next;
+                l2_cur->next = res_cur->next;
+                res_cur->next = l2_cur;
+                l2_cur = l2_next;
             } else {
-                resCur = resCur->next;
+                res_cur = res_cur->next;
             }
         }
-        if (l2Cur) {
-            resCur->next = l2Cur;
+        if (l2_cur) {
+            res_cur->next = l2_cur;
         }
-        return dummyNode->next;
+        return dummy->next;
     }
 };
 
