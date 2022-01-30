@@ -5,9 +5,14 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0014_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0014_H
 
-class Problem0014 {
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Solution {
 public:
-    string longestCommonPrefix(const vector <string> &strs) {
+    string longestCommonPrefix(const vector<string> &strs) {
         if (strs.empty()) {
             return "";
         }
@@ -27,7 +32,7 @@ public:
             }
             res.push_back(ch);
         }
-        return res;
+        return "";
     }
 };
 
