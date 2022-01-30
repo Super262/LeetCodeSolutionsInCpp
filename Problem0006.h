@@ -5,8 +5,12 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0006_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0006_H
 
-class Problem0006 {
-private:
+#include <string>
+
+using namespace std;
+
+class Solution {
+public:
     string convert(const string &s, const int &n) {
         if (n == 1) {
             return s;
