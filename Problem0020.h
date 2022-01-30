@@ -10,43 +10,26 @@
 
 using namespace std;
 
-class Problem0020 {
-private:
+class Solution {
+public:
     bool isValid(const string &s) {
-        stack<char> temp;
-        for (char c: s) {
-            switch (c) {
-                case ')': {
-                    if (!temp.empty() && temp.top() == '(') {
-                        temp.pop();
-                    } else {
-                        return false;
-                    }
-                    break;
+        char couple[256];
+        couple[')'] = '(';
+        couple[']'] = '[';
+        couple['}'] = '{';
+        stack<char> stk;
+        for (const char &ch: s) {
+            if (ch == ')' || ch == ']' || ch == '}') {
+                if (!stk.empty() && stk.top() == couple[ch]) {
+                    stk.pop();
+                } else {
+                    return false;
                 }
-                case ']': {
-                    if (!temp.empty() && temp.top() == '[') {
-                        temp.pop();
-                    } else {
-                        return false;
-                    }
-                    break;
-                }
-                case '}': {
-                    if (!temp.empty() && temp.top() == '{') {
-                        temp.pop();
-                    } else {
-                        return false;
-                    }
-                    break;
-                }
-                default: {
-                    temp.emplace(c);
-                    break;
-                }
+            } else {
+                stk.emplace(ch);
             }
         }
-        return temp.empty();
+        return stk.empty();
     }
 };
 
