@@ -15,15 +15,15 @@ class Solution {
     // 直接背诵思路：计算出任意两点间的距离，排序；若最小的6个距离相等，则为正方形
 public:
     bool validSquare(vector<int> &p1, vector<int> &p2, vector<int> &p3, vector<int> &p4) {
-        vector<int> dist(6);
-        vector<vector<int> *> points = {&p1, &p2, &p3, &p4};
-        for (int i = 0, k = 0; i < points.size(); ++i) {
-            for (int j = i + 1; j < points.size(); ++j) {
+        int dist[6];
+        vector<int> *points[4] = {&p1, &p2, &p3, &p4};
+        for (int i = 0, k = 0; i < 4; ++i) {
+            for (int j = i + 1; j < 4; ++j) {
                 dist[k] = getDist(*points[i], *points[j]);
                 ++k;
             }
         }
-        sort(dist.begin(), dist.end());
+        sort(dist, dist + 6);
         if (!dist[0]) {  // 说明某2个点重合
             return false;
         }
