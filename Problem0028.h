@@ -10,20 +10,21 @@
 
 using namespace std;
 
-class Problem0028 {
+class Solution {
+    // KMP算法，直接背诵
 public:
     int strStr(const string &haystack, const string &needle) {
         if (needle.empty()) {
             return 0;
         }
-        auto nextStart = buildNextStart(needle);
+        auto next_start = buildNextStart(needle);
         int hi = 0, ni = 0;
         while (hi < (int) haystack.size()) {
             if (haystack[hi] == needle[ni]) {
                 ++hi;
                 ++ni;
             } else if (ni) {
-                ni = nextStart[ni - 1];
+                ni = next_start[ni - 1];
             } else {
                 ++hi;
             }
@@ -34,23 +35,24 @@ public:
         return -1;
     }
 
-    vector<int> buildNextStart(const string &needle) {
-        vector<int> nextStart(needle.size(), 0);
-        nextStart[0] = 0;
+private:
+    vector<int> buildNextStart(const string &p) {
+        vector<int> next_start(p.size(), 0);
+        next_start[0] = 0;
         int left = 0, right = 1;
-        while (right < (int) needle.size()) {
-            if (needle[left] == needle[right]) {
+        while (right < (int) p.size()) {
+            if (p[left] == p[right]) {
                 ++left;
-                nextStart[right] = left;
+                next_start[right] = left;
                 ++right;
             } else if (left) {
-                left = nextStart[left - 1];
+                left = next_start[left - 1];
             } else {
-                nextStart[right] = 0;
+                next_start[right] = 0;
                 ++right;
             }
         }
-        return nextStart;
+        return next_start;
     }
 };
 
