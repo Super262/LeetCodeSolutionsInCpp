@@ -10,21 +10,18 @@
 
 using namespace std;
 
-class Problem0001 {
-private:
+class Solution {
+public:
     vector<int> twoSum(vector<int> &nums, int target) {
-        vector<int> result;
         unordered_map<int, int> numIdx;
         for (int i = 0; i < (int) nums.size(); ++i) {
             auto y = target - nums[i];
             if (numIdx.count(y)) {
-                result.emplace_back(numIdx[y]);
-                result.emplace_back(i);
-                break;
+                return {numIdx[y], i};
             }
             numIdx[nums[i]] = i;
         }
-        return result;
+        return {};
     }
 };
 
