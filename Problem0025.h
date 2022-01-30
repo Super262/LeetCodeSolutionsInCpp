@@ -17,6 +17,7 @@ struct ListNode {
 };
 
 class Solution {
+    // 经典算法，直接背诵
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
         auto dummy = new ListNode(-1);
