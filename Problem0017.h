@@ -12,6 +12,18 @@ using namespace std;
 
 class Solution {
 public:
+    vector<string> letterCombinations(const string &digits) {
+        if (digits.empty()) {
+            return {};
+        }
+        string d_to_s[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        string temp(digits.size(), '\0');
+        vector<string> result;
+        dfs(d_to_s, digits, 0, temp, result);
+        return result;
+    }
+
+private:
     void dfs(const string d_to_s[],
              const string &digits,
              const int &d_idx,
@@ -25,17 +37,6 @@ public:
             temp[d_idx] = ch;
             dfs(d_to_s, digits, d_idx + 1, temp, result);
         }
-    }
-
-    vector<string> letterCombinations(const string &digits) {
-        if (digits.empty()) {
-            return {};
-        }
-        string d_to_s[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-        string temp(digits.size(), '\0');
-        vector<string> result;
-        dfs(d_to_s, digits, 0, temp, result);
-        return result;
     }
 };
 
