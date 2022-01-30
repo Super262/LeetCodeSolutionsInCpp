@@ -31,7 +31,7 @@ public:
                 continue;
             }
             a -= exps[i];
-            result += 1ll << i;  // Don't use "1 << i" instead of "1ll << 1"!
+            result += 1ll << i;  // 非常重要的细节，类型转换防止溢出（不是"1"而是"1ll"）
         }
         if (is_neg) {
             result = -result;
