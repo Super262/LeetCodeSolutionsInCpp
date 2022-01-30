@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 合法的括号序列：left_cnt < n, right_cnt < n && left_cnt > right_cnt
+    // 合法的括号序列：left_cnt <= n, right_cnt <= n && left_cnt >= right_cnt
 public:
     vector<string> generateParenthesis(const int n) {
         vector<string> result;
