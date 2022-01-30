@@ -39,14 +39,14 @@ private:
             // nums1为空（无需测试nums2，前面已保证len(nums2) > len(num1）
             return nums2[st2 + k - 1];
         }
-        auto next_st1 = min(st1 + k / 2, (int) nums1.size());
-        auto next_st2 = min(st2 + k - k / 2, (int) nums2.size());
-        if (nums1[next_st1 - 1] > nums2[next_st2 - 1]) {
-            // 舍弃nums2的左半部
-            return helper(nums1, st1, nums2, next_st2, k - (next_st2 - st2));
+        auto next1 = min(st1 + k / 2, (int) nums1.size());
+        auto next2 = min(st2 + k - k / 2, (int) nums2.size());
+        if (nums1[next1 - 1] > nums2[next2 - 1]) {
+            // 舍弃nums2的左半部，舍弃nums1的右半部
+            return helper(nums1, st1, nums2, next2, k - (next2 - st2));
         } else {
-            // 舍弃nums1的左半部
-            return helper(nums1, next_st1, nums2, st2, k - (next_st1 - st1));
+            // 舍弃nums2的右半部，舍弃nums1的左半部
+            return helper(nums1, next1, nums2, st2, k - (next1 - st1));
         }
     }
 };
