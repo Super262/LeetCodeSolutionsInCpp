@@ -28,12 +28,12 @@ public:
     }
 
     vector<string> letterCombinations(const string &digits) {
-        vector<string> result;
         if (digits.empty()) {
-            return result;
+            return {};
         }
         string d_to_s[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         string temp(digits.size(), '\0');
+        vector<string> result;
         dfs(d_to_s, digits, 0, temp, result);
         return result;
     }
