@@ -15,11 +15,10 @@ public:
         auto total = (int) nums1.size() + (int) nums2.size();
         if (total % 2) {
             return helper(nums1, 0, nums2, 0, total / 2 + 1);
-        } else {
-            auto left_mid = helper(nums1, 0, nums2, 0, total / 2);
-            auto right_mid = helper(nums1, 0, nums2, 0, total / 2 + 1);
-            return (left_mid + right_mid) / 2.0;
         }
+        auto left_mid = helper(nums1, 0, nums2, 0, total / 2);
+        auto right_mid = helper(nums1, 0, nums2, 0, total / 2 + 1);
+        return (left_mid + right_mid) / 2.0;
     }
 
 private:
@@ -45,10 +44,9 @@ private:
         if (nums1[next1 - 1] > nums2[next2 - 1]) {
             // 舍弃nums2的左半部，舍弃nums1的右半部
             return helper(nums1, st1, nums2, next2, k - (next2 - st2));
-        } else {
-            // 舍弃nums2的右半部，舍弃nums1的左半部
-            return helper(nums1, next1, nums2, st2, k - (next1 - st1));
         }
+        // 舍弃nums2的右半部，舍弃nums1的左半部
+        return helper(nums1, next1, nums2, st2, k - (next1 - st1));
     }
 };
 
