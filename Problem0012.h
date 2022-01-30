@@ -10,11 +10,12 @@
 
 using namespace std;
 
-class Problem0012 {
-private:
+class Solution {
+    // 从大到小试除因子
+public:
     string intToRoman(int num) {
-        const int bases[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        const string symbols[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+        const int bases[13] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        const string symbols[13] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         string result;
         while (num > 0) {
             for (int i = 0; i < 13; ++i) {
@@ -23,7 +24,7 @@ private:
                 }
                 const int factor = num / bases[i];
                 for (int j = 0; j < factor; ++j) {
-                    result += symbols[i];
+                    result.append(symbols[i]);
                     num -= bases[i];
                 }
             }
