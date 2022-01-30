@@ -17,7 +17,7 @@ public:
     int threeSumClosest(vector<int> &nums, const int target) {
         sort(nums.begin(), nums.end());
         int answer = 0x3f3f3f3f;
-        for (int i = 0; i < nums.size(); ++i) {
+        for (int i = 0; i < nums.size(); ++i) {  // 固定i
             for (auto l = i + 1, r = (int) nums.size() - 1; l < r; ++l) {
                 while (l < r - 1 && nums[i] + nums[l] + nums[r - 1] >= target) {  // 固定l，移动r
                     --r;
