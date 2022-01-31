@@ -47,7 +47,7 @@ public:
                     ++counter;
                 }
                 if (counter == m) {  // 匹配成功
-                    res.emplace_back(j - (m - 1) * w);
+                    res.emplace_back(j - (m - 1) * w);  // j在第(m-1)个单词的终点后面，j是第m个单词的起点
                 }
             }
             window.clear();
