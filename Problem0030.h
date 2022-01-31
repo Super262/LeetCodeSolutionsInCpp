@@ -30,27 +30,27 @@ public:
         const int w = (int) words[0].size();
         const int m = (int) words.size();
         vector<int> res;
-        unordered_map<string, int> cur_freq;
+        unordered_map<string, int> window;
         for (int i = 0; i < w; ++i) {  // 枚举单词序列可能的起点位置
             int counter = 0;
             for (auto j = i; j + w <= (int) s.size(); j += w) {  // 滑动窗口，枚举新单词的起点
                 if (j - m * w >= i) {  // 删除最早的单词
                     auto prev_w = s.substr(j - m * w, w);
-                    --cur_freq[prev_w];
-                    if (word_freq.count(prev_w) && cur_freq[prev_w] < word_freq[prev_w]) {
+                    --window[prev_w];
+                    if (word_freq.count(prev_w) && window[prev_w] < word_freq[prev_w]) {
                         --counter;
                     }
                 }
                 auto seg = s.substr(j, w);
-                ++cur_freq[seg];
-                if (word_freq.count(seg) && cur_freq[seg] <= word_freq[seg]) {  // 词典中的单词出现
+                ++window[seg];
+                if (word_freq.count(seg) && window[seg] <= word_freq[seg]) {  // 词典中的单词出现
                     ++counter;
                 }
                 if (counter == m) {  // 匹配成功
                     res.emplace_back(j - (m - 1) * w);
                 }
             }
-            cur_freq.clear();
+            window.clear();
         }
         return res;
     }
