@@ -9,9 +9,9 @@
 
 using namespace std;
 
-class Problem0035 {
-private:
-    bool isValidSudoku(vector<vector<char>> &board) {
+class Solution {
+public:
+    bool isValidSudoku(const vector<vector<char>> &board) {
         bool existed[10];
 
         // Test rows
