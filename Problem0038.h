@@ -11,7 +11,7 @@ using namespace std;
 
 class Problem0038 {
 public:
-    string countAndSay(const int &n) {
+    string countAndSay(const int n) {
         string s = "1";
         for (int i = 0; i < n - 1; ++i) {
             string t;
