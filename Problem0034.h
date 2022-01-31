@@ -9,8 +9,8 @@
 
 using namespace std;
 
-class Problem0034 {
-private:
+class Solution {
+public:
     vector<int> searchRange(const vector<int> &nums, int target) {
         if (nums.empty()) {
             return {-1, -1};
