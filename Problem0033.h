@@ -9,9 +9,11 @@
 
 using namespace std;
 
-class Problem0033 {
-private:
-    int search(vector<int> &nums, int target) {
+class Solution {
+    // 经典算法，直接背诵
+    // 2步二分，先找分界点，再找target
+public:
+    int search(const vector<int> &nums, int target) {
         if (nums.empty()) {
             return -1;
         }
