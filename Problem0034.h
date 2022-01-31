@@ -24,11 +24,11 @@ public:
                 l = mid + 1;
             }
         }
-        if (nums[l] != target) {
+        if (nums[r] != target) {
             return {-1, -1};
         }
-        vector<int> result(2, l);
-        l = 0, r = r = (int) nums.size() - 1;
+        vector<int> result(2, r);
+        l = 0, r = (int) nums.size() - 1;
         while (l < r) {
             auto mid = l + (r - l + 1) / 2;
             if (nums[mid] <= target) {
