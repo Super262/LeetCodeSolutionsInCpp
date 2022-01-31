@@ -10,12 +10,31 @@
 
 using namespace std;
 
-class Problem0037 {
+class Solution {
 public:
+    void solveSudoku(vector<vector<char>> &board) {
+        memset(col_used, 0, sizeof col_used);
+        memset(row_used, 0, sizeof row_used);
+        memset(block_used, 0, sizeof block_used);
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                if (board[i][j] == '.') {
+                    continue;
+                }
+                auto digit = board[i][j] - '1';
+                row_used[i][digit] = true;
+                col_used[j][digit] = true;
+                block_used[i / 3 * 3 + j / 3][digit] = true;
+            }
+        }
+        dfs(0, 0, board);
+    }
+
+private:
     static const int N = 9;
-    bool colUsed[N][N];
-    bool rowUsed[N][N];
-    bool blockUsed[N][N];
+    bool col_used[N][N];
+    bool row_used[N][N];
+    bool block_used[N][N];
 
     bool dfs(int x, int y, vector<vector<char>> &board) {
         if (y == N) {
@@ -29,36 +48,18 @@ public:
             return dfs(x, y + 1, board);
         }
         for (int d = 0; d < 9; ++d) {
-            if (rowUsed[x][d] || colUsed[y][d] || blockUsed[x / 3 * 3 + y / 3][d]) {
+            if (row_used[x][d] || col_used[y][d] || block_used[x / 3 * 3 + y / 3][d]) {
                 continue;
             }
             board[x][y] = (char) ('1' + d);
-            rowUsed[x][d] = colUsed[y][d] = blockUsed[x / 3 * 3 + y / 3][d] = true;
+            row_used[x][d] = col_used[y][d] = block_used[x / 3 * 3 + y / 3][d] = true;
             if (dfs(x, y + 1, board)) {
                 return true;
             }
             board[x][y] = '.';
-            rowUsed[x][d] = colUsed[y][d] = blockUsed[x / 3 * 3 + y / 3][d] = false;
+            row_used[x][d] = col_used[y][d] = block_used[x / 3 * 3 + y / 3][d] = false;
         }
         return false;
-    }
-
-    void solveSudoku(vector<vector<char>> &board) {
-        memset(colUsed, 0, sizeof colUsed);
-        memset(rowUsed, 0, sizeof rowUsed);
-        memset(blockUsed, 0, sizeof blockUsed);
-        for (int i = 0; i < N; ++i) {
-            for (int j = 0; j < N; ++j) {
-                if (board[i][j] == '.') {
-                    continue;
-                }
-                auto digit = board[i][j] - '1';
-                rowUsed[i][digit] = true;
-                colUsed[j][digit] = true;
-                blockUsed[i / 3 * 3 + j / 3][digit] = true;
-            }
-        }
-        dfs(0, 0, board);
     }
 };
 
