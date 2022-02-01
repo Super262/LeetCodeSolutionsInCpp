@@ -17,7 +17,7 @@ using namespace std;
 class Solution {
 public:
     bool isNumber(string s) {
-        // 去空格
+        // 首部、尾部去空格
         int l = 0, r = (int) s.size() - 1;
         while (l <= r && s[l] == ' ') {
             ++l;
@@ -44,25 +44,25 @@ public:
         }
 
         bool has_dot = false;
-        bool has_e = false;
+        bool has_exp = false;
         for (int i = 0; i < (int) s.size(); ++i) {
             if (s[i] == '.') {
-                if (has_dot || has_e) {  // 小数点多次出现或小数在e后出现，不合法
+                if (has_dot || has_exp) {  // 小数点多次出现或小数在e后出现，不合法
                     return false;
                 }
                 has_dot = true;
             } else if (s[i] == 'e' || s[i] == 'E') {
-                if (has_e || i == 0 || i + 1 == s.size()) {  // e多次出现或e后无数字，不合法
+                if (has_exp || i == 0 || i + 1 == s.size()) {  // e多次出现或e后无数字，不合法
                     return false;
                 }
-                has_e = true;
+                has_exp = true;
                 if (s[i + 1] == '+' || s[i + 1] == '-') {
                     if (i + 2 == s.size()) {  // e后有符号位但符号位后无数字，不合法
                         return false;
                     }
                     ++i;
                 }
-            } else if (s[i] < '0' || s[i] > '9') {  // 非数字出现，不合法
+            } else if (!isdigit(s[i])) {  // 非数字出现，不合法
                 return false;
             }
         }
