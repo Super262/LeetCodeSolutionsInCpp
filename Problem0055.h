@@ -13,11 +13,11 @@ using namespace std;
 class Solution {
 public:
     bool canJump(const vector<int> &nums) {
-        for (int i = 0, j = 0; i < (int) nums.size(); ++i) {
-            if (j < i) {
+        for (int l = 0, r = 0; l < (int) nums.size(); ++l) {
+            if (r < l) {
                 return false;
             }
-            j = max(j, i + nums[i]);
+            r = max(r, l + nums[l]);
         }
         return true;
     }
