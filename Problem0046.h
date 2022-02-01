@@ -27,7 +27,7 @@ private:
              vector<int> &path,
              vector<vector<int>> &result) {
         if (path.size() == nums.size()) {
-            result.emplace_back(vector<int>(path));
+            result.emplace_back(path);
             return;
         }
         for (int i = 0; i < (int) nums.size(); ++i) {
