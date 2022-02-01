@@ -10,9 +10,9 @@
 
 using namespace std;
 
-class Problem0054 {
-private:
-    vector<int> spiralOrder(vector<vector<int>> &matrix) {
+class Solution {
+public:
+    vector<int> spiralOrder(const vector<vector<int>> &matrix) {
         vector<int> result;
         const int n = (int) matrix.size();
         if (n == 0) {
@@ -20,8 +20,8 @@ private:
         }
         const int m = (int) matrix[0].size();
         bool visited[n][m];
-        int dx[] = {0, 1, 0, -1};
-        int dy[] = {1, 0, -1, 0};
+        const int dx[] = {0, 1, 0, -1};
+        const int dy[] = {1, 0, -1, 0};
         memset(visited, 0, sizeof visited);
         for (int x = 0, y = 0, d = 0, i = 0; i < n * m; ++i) {
             result.emplace_back(matrix[x][y]);
