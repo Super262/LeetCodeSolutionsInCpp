@@ -5,7 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0050_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0050_H
 
-class Problem0050 {
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
 public:
     double myPow(double x, int n) {  // 快速幂，背诵
         double res = 1;
