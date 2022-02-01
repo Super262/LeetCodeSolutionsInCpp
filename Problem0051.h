@@ -36,15 +36,15 @@ private:
             result.emplace_back(temp);
             return;
         }
-        for (int colIdx = 0; colIdx < n; ++colIdx) {
-            if (col_used[colIdx] || dg_used[row_idx + colIdx] || udg_used[row_idx - colIdx + n]) {
+        for (int col_idx = 0; col_idx < n; ++col_idx) {
+            if (col_used[col_idx] || dg_used[row_idx + col_idx] || udg_used[row_idx - col_idx + n]) {
                 continue;
             }
-            col_used[colIdx] = dg_used[row_idx + colIdx] = udg_used[row_idx - colIdx + n] = true;
-            temp[row_idx][colIdx] = 'Q';
+            col_used[col_idx] = dg_used[row_idx + col_idx] = udg_used[row_idx - col_idx + n] = true;
+            temp[row_idx][col_idx] = 'Q';
             dfs(row_idx + 1, n, col_used, dg_used, udg_used, temp, result);
-            temp[row_idx][colIdx] = '.';
-            col_used[colIdx] = dg_used[row_idx + colIdx] = udg_used[row_idx - colIdx + n] = false;
+            temp[row_idx][col_idx] = '.';
+            col_used[col_idx] = dg_used[row_idx + col_idx] = udg_used[row_idx - col_idx + n] = false;
         }
     }
 };
