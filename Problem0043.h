@@ -43,7 +43,7 @@ public:
 
         // 找到第1个非0的最高位
         auto num_end = (int) c.size() - 1;
-        while (num_end > 0 && c[num_end] == 0) {
+        while (num_end > 0 && c[num_end] == 0) {// 注意细节：设置"num_end > 0"而不是"num_end >= 0"，因为结果的最小长度应大于0
             --num_end;
         }
 
