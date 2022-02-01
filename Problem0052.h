@@ -9,36 +9,37 @@
 
 using namespace std;
 
-class Problem0052 {
+class Solution {
 public:
-    int dfs(const int rowIdx,
+    int totalNQueens(int n) {
+        bool col_used[n];
+        bool dg_used[2 * n];
+        bool udg_used[2 * n];
+        memset(col_used, 0, sizeof col_used);
+        memset(dg_used, 0, sizeof dg_used);
+        memset(udg_used, 0, sizeof udg_used);
+        return dfs(0, n, col_used, dg_used, udg_used);
+    }
+
+private:
+    int dfs(const int r_idx,
             const int n,
-            bool colUsed[],
-            bool dgUsed[],
-            bool udgUsed[]) {
-        if (rowIdx == n) {
+            bool col_used[],
+            bool dg_used[],
+            bool udg_used[]) {
+        if (r_idx == n) {
             return 1;
         }
         int result = 0;
         for (int colIdx = 0; colIdx < n; ++colIdx) {
-            if (colUsed[colIdx] || dgUsed[rowIdx + colIdx] || udgUsed[n + rowIdx - colIdx]) {
+            if (col_used[colIdx] || dg_used[r_idx + colIdx] || udg_used[n + r_idx - colIdx]) {
                 continue;
             }
-            colUsed[colIdx] = dgUsed[rowIdx + colIdx] = udgUsed[n + rowIdx - colIdx] = true;
-            result += dfs(rowIdx + 1, n, colUsed, dgUsed, udgUsed);
-            colUsed[colIdx] = dgUsed[rowIdx + colIdx] = udgUsed[n + rowIdx - colIdx] = false;
+            col_used[colIdx] = dg_used[r_idx + colIdx] = udg_used[n + r_idx - colIdx] = true;
+            result += dfs(r_idx + 1, n, col_used, dg_used, udg_used);
+            col_used[colIdx] = dg_used[r_idx + colIdx] = udg_used[n + r_idx - colIdx] = false;
         }
         return result;
-    }
-
-    int totalNQueens(int n) {
-        bool colUsed[n];
-        bool dgUsed[2 * n];
-        bool udgUsed[2 * n];
-        memset(colUsed, 0, sizeof colUsed);
-        memset(dgUsed, 0, sizeof dgUsed);
-        memset(udgUsed, 0, sizeof udgUsed);
-        return dfs(0, n, colUsed, dgUsed, udgUsed);
     }
 };
 
