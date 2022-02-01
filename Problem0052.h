@@ -31,13 +31,13 @@ private:
             return 1;
         }
         int result = 0;
-        for (int colIdx = 0; colIdx < n; ++colIdx) {
-            if (col_used[colIdx] || dg_used[r_idx + colIdx] || udg_used[n + r_idx - colIdx]) {
+        for (int c_idx = 0; c_idx < n; ++c_idx) {
+            if (col_used[c_idx] || dg_used[r_idx + c_idx] || udg_used[n + r_idx - c_idx]) {
                 continue;
             }
-            col_used[colIdx] = dg_used[r_idx + colIdx] = udg_used[n + r_idx - colIdx] = true;
+            col_used[c_idx] = dg_used[r_idx + c_idx] = udg_used[n + r_idx - c_idx] = true;
             result += dfs(r_idx + 1, n, col_used, dg_used, udg_used);
-            col_used[colIdx] = dg_used[r_idx + colIdx] = udg_used[n + r_idx - colIdx] = false;
+            col_used[c_idx] = dg_used[r_idx + c_idx] = udg_used[n + r_idx - c_idx] = false;
         }
         return result;
     }
