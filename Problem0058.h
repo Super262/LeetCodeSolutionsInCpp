@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0058 {
+class Solution {
+public:
     int lengthOfLastWord(const string &s) {
         for (int i = (int) s.size() - 1; i >= 0; --i) {
             if (s[i] == ' ') {
