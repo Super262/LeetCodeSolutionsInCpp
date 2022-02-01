@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Problem0045 {
+class Solution {
 public:
     int jump(const vector<int> &nums) {
         int dp[nums.size()];
