@@ -9,14 +9,14 @@
 
 using namespace std;
 
-class Problem0053 {
+class Solution {
 public:
     int maxSubArray(const vector<int> &nums) {
-        auto currentMax = nums[0];
-        auto result = currentMax;
+        auto cur_max = nums[0];
+        auto result = cur_max;
         for (int i = 1; i < (int) nums.size(); ++i) {
-            currentMax = max(nums[i], currentMax + nums[i]);
-            result = max(result, currentMax);
+            cur_max = max(nums[i], cur_max + nums[i]);
+            result = max(result, cur_max);
         }
         return result;
     }
