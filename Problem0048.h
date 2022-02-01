@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0048 {
+class Solution {
+    // 经典算法，直接背诵
 public:
     void rotate(vector<vector<int>> &matrix) {  // 先沿对角线翻转，再沿中轴翻转
         const int n = (int) matrix.size();
