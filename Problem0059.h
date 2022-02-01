@@ -14,7 +14,7 @@ using namespace std;
 class Solution {
     // 经典算法，直接背诵
 public:
-    vector<vector<int>> generateMatrix(const int &n) {
+    vector<vector<int>> generateMatrix(const int n) {
         static const int dx[4] = {0, 1, 0, -1};
         static const int dy[4] = {1, 0, -1, 0};
         vector<vector<int>> result(n, vector<int>(n, 0));
