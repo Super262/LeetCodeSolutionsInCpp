@@ -11,10 +11,10 @@
 
 using namespace std;
 
-class Problem0043 {
-private:
+class Solution {
+public:
     // 技巧：延迟进位！
-    string multiply(string num1, string num2) {
+    string multiply(const string &num1, const string &num2) {
         vector<int> a(num1.size(), 0);
         vector<int> b(num2.size(), 0);
 
@@ -41,16 +41,16 @@ private:
             t /= 10;
         }
 
-        // 找到第1个非0高位
-        auto highStart = (int) c.size() - 1;
-        while (highStart > 0 && c[highStart] == 0) {
-            --highStart;
+        // 找到第1个非0的最高位
+        auto num_end = (int) c.size() - 1;
+        while (num_end > 0 && c[num_end] == 0) {
+            --num_end;
         }
 
         // 从高位开始保存结果
-        string result(highStart + 1, '0');
-        for (int i = 0; i <= highStart; ++i) {
-            result[highStart - i] = (char) (c[i] + '0');
+        string result(num_end + 1, '0');
+        for (int i = 0; i <= num_end; ++i) {
+            result[result.size() - 1 - i] = (char) (c[i] + '0');
         }
 
         return result;
