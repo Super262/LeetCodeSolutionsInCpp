@@ -6,24 +6,27 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0047_H
 
 #include <vector>
+#include <algorithm>
+#include <cstring>
 
 using namespace std;
 
-class Problem0047 {
+class Solution {
 public:
     vector<vector<int>> permuteUnique(vector<int> &nums) {
         vector<vector<int>> result;
         vector<int> temp(nums.size(), 0);
-        vector<bool> visited(nums.size(), false);
+        bool visited[nums.size()];
+        memset(visited, 0, sizeof visited);
         sort(nums.begin(), nums.end());
         dfs(nums, 0, temp, visited, result);
         return result;
     }
 
-    void dfs(const vector<int> &nums, const int numIdx, vector<int> &temp, vector<bool> &visited,
-             vector<vector<int>> &result) {
-        if (numIdx == (int) nums.size()) {
-            result.emplace_back(temp);
+private:
+    void dfs(const vector<int> &nums, const int idx, vector<int> &temp, bool visited[], vector<vector<int>> &res) {
+        if (idx == (int) nums.size()) {
+            res.emplace_back(temp);
             return;
         }
         for (int i = 0; i < (int) nums.size(); ++i) {
@@ -33,9 +36,9 @@ public:
             if (i > 0 && nums[i] == nums[i - 1] && !visited[i - 1]) {
                 continue;
             }
-            temp[numIdx] = nums[i];
+            temp[idx] = nums[i];
             visited[i] = true;
-            dfs(nums, numIdx + 1, temp, visited, result);
+            dfs(nums, idx + 1, temp, visited, res);
             visited[i] = false;
         }
     }
