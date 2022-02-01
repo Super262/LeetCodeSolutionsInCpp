@@ -11,40 +11,41 @@
 
 using namespace std;
 
-class Problem0051 {
+class Solution {
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vector<string> temp(n, string(n, '.'));
+        vector<vector<string>> result;
+        bool col_used[n], dg_used[2 * n], udg_used[2 * n];
+        memset(col_used, 0, sizeof col_used);
+        memset(dg_used, 0, sizeof dg_used);
+        memset(udg_used, 0, sizeof udg_used);
+        dfs(0, n, col_used, dg_used, udg_used, temp, result);
+        return result;
+    }
+
 private:
-    void dfs(const int rowIdx,
+    void dfs(const int row_idx,
              const int n,
-             bool colUsed[],
-             bool dgUsed[],
-             bool udgUsed[],
+             bool col_used[],
+             bool dg_used[],
+             bool udg_used[],
              vector<string> &temp,
              vector<vector<string>> &result) {
-        if (rowIdx == n) {
+        if (row_idx == n) {
             result.emplace_back(temp);
             return;
         }
         for (int colIdx = 0; colIdx < n; ++colIdx) {
-            if (colUsed[colIdx] || dgUsed[rowIdx + colIdx] || udgUsed[rowIdx - colIdx + n]) {
+            if (col_used[colIdx] || dg_used[row_idx + colIdx] || udg_used[row_idx - colIdx + n]) {
                 continue;
             }
-            colUsed[colIdx] = dgUsed[rowIdx + colIdx] = udgUsed[rowIdx - colIdx + n] = true;
-            temp[rowIdx][colIdx] = 'Q';
-            dfs(rowIdx + 1, n, colUsed, dgUsed, udgUsed, temp, result);
-            temp[rowIdx][colIdx] = '.';
-            colUsed[colIdx] = dgUsed[rowIdx + colIdx] = udgUsed[rowIdx - colIdx + n] = false;
+            col_used[colIdx] = dg_used[row_idx + colIdx] = udg_used[row_idx - colIdx + n] = true;
+            temp[row_idx][colIdx] = 'Q';
+            dfs(row_idx + 1, n, col_used, dg_used, udg_used, temp, result);
+            temp[row_idx][colIdx] = '.';
+            col_used[colIdx] = dg_used[row_idx + colIdx] = udg_used[row_idx - colIdx + n] = false;
         }
-    }
-
-    vector<vector<string>> solveNQueens(int n) {
-        vector<string> temp(n, string(n, '.'));
-        vector<vector<string>> result;
-        bool colUsed[n], dgUsed[2 * n], udgUsed[2 * n];
-        memset(colUsed, 0, sizeof colUsed);
-        memset(dgUsed, 0, sizeof dgUsed);
-        memset(udgUsed, 0, sizeof udgUsed);
-        dfs(0, n, colUsed, dgUsed, udgUsed, temp, result);
-        return result;
     }
 };
 
