@@ -27,8 +27,7 @@ public:
             return head;
         }
 
-        // Find the tail and get the length.
-        int n = 0;
+        int n = 0;  // 链表长度
         ListNode *tail;
         for (auto p = head; p != NULL; p = p->next) {
             tail = p;
@@ -36,10 +35,9 @@ public:
         }
 
 
-        // Find the parent of Node K.
-        k %= n;
+        k %= n;  // 关键一步，不要忘记！
         ListNode *prev = head;
-        for (int i = 0; i < n - k - 1; ++i) {
+        for (int i = 0; i < n - k - 1; ++i) {  // 找到第k个结点的前驱
             prev = prev->next;
         }
 
