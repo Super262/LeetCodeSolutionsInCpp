@@ -10,7 +10,17 @@
 
 using namespace std;
 
-class Problem0046 {
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int> &nums) {
+        vector<vector<int>> result;
+        vector<int> path;
+        bool visited[nums.size()];
+        memset(visited, 0, sizeof visited);
+        dfs(nums, visited, path, result);
+        return result;
+    }
+
 private:
     void dfs(const vector<int> &nums,
              bool visited[],
@@ -30,15 +40,6 @@ private:
             visited[i] = false;
             path.pop_back();
         }
-    }
-
-    vector<vector<int>> permute(vector<int> &nums) {
-        vector<vector<int>> result;
-        vector<int> path;
-        bool visited[nums.size()];
-        memset(visited, 0, sizeof visited);
-        dfs(nums, visited, path, result);
-        return result;
     }
 };
 
