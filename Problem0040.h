@@ -39,7 +39,7 @@ private:
                 continue;
             }
             if (nums[i] > target) {  // 必要的剪枝！！
-                continue;
+                return;
             }
             visited[i] = true;
             temp.emplace_back(nums[i]);
