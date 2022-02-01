@@ -9,36 +9,36 @@
 
 using namespace std;
 
-class Problem0039 {
-private:
-    void dfs(const vector<int> &candidates,
-             const int target,
-             const int cIdx,
-             vector<int> &temp,
-             vector<vector<int>> &result) {
-        if (target == 0) {
-            result.emplace_back(vector<int>(temp));
-            return;
-        }
-        if (cIdx == (int) candidates.size()) {
-            return;
-        }
-
-        // 技巧：渐进式加入当前元素，最后再还原到初始状态
-        for (int i = 0; candidates[cIdx] * i <= target; ++i) {
-            dfs(candidates, target - candidates[cIdx] * i, cIdx + 1, temp, result);
-            temp.emplace_back(candidates[cIdx]);
-        }
-        for (int i = 0; candidates[cIdx] * i <= target; ++i) {
-            temp.pop_back();
-        }
-    }
-
-    vector<vector<int>> combinationSum(vector<int> &candidates, int target) {
+class Solution {
+public:
+    vector<vector<int>> combinationSum(const vector<int> &candidates, int target) {
         vector<vector<int>> result;
         vector<int> temp;
         dfs(candidates, target, 0, temp, result);
         return result;
+    }
+
+private:
+    void dfs(const vector<int> &nums,
+             const int target,
+             const int c_idx,
+             vector<int> &temp,
+             vector<vector<int>> &result) {
+        if (target == 0) {
+            result.emplace_back(temp);
+            return;
+        }
+        if (c_idx == (int) nums.size()) {
+            return;
+        }
+        // 技巧：渐进式加入当前元素，最后再还原到初始状态
+        for (int i = 0; nums[c_idx] * i <= target; ++i) {
+            dfs(nums, target - nums[c_idx] * i, c_idx + 1, temp, result);
+            temp.emplace_back(nums[c_idx]);
+        }
+        for (int i = 0; nums[c_idx] * i <= target; ++i) {
+            temp.pop_back();
+        }
     }
 };
 
