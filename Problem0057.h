@@ -5,10 +5,15 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0057_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0057_H
 
-class Problem0057 {
+#include <vector>
+
+using namespace std;
+
+class Solution {
+    // 经典算法，直接背诵：分段处理
 public:
-    vector <vector<int>> insert(const vector <vector<int>> &intervals, vector<int> x) {
-        vector <vector<int>> result;
+    vector<vector<int>> insert(const vector<vector<int>> &intervals, vector<int> x) {
+        vector<vector<int>> result;
         int k = 0;
         while (k < (int) intervals.size() && x[0] > intervals[k][1]) {  // 左边无交集的一段
             result.emplace_back(intervals[k]);
