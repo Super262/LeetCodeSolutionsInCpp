@@ -13,6 +13,7 @@ class Solution {
 public:
     double myPow(double x, int n) {  // 快速幂，背诵
         double res = 1;
+        // 为防止abs执行时发生溢出，将n转为long long
         for (long long k = abs((long long) n); k > 0; k >>= 1) {
             if (k & 1) {
                 res *= x;
