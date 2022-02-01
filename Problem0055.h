@@ -10,9 +10,9 @@
 
 using namespace std;
 
-class Problem0055 {
-private:
-    bool canJump(vector<int> &nums) {
+class Solution {
+public:
+    bool canJump(const vector<int> &nums) {
         for (int i = 0, j = 0; i < (int) nums.size(); ++i) {
             if (j < i) {
                 return false;
