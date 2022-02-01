@@ -14,7 +14,7 @@ using namespace std;
 // 3. e的后面不能有小数
 // 4. 不能有连续多个正负符号
 // 5. e和'.'最多出现1次
-class Problem0065 {
+class Solution {
 public:
     bool isNumber(string s) {
         // 去空格
@@ -43,18 +43,19 @@ public:
             return false;
         }
 
-        bool hasDot = false, hasE = false;
+        bool has_dot = false;
+        bool has_e = false;
         for (int i = 0; i < (int) s.size(); ++i) {
             if (s[i] == '.') {
-                if (hasDot || hasE) {  // 小数点多次出现或小数在e后出现，不合法
+                if (has_dot || has_e) {  // 小数点多次出现或小数在e后出现，不合法
                     return false;
                 }
-                hasDot = true;
+                has_dot = true;
             } else if (s[i] == 'e' || s[i] == 'E') {
-                if (hasE || i == 0 || i + 1 == s.size()) {  // e多次出现或e后无数字，不合法
+                if (has_e || i == 0 || i + 1 == s.size()) {  // e多次出现或e后无数字，不合法
                     return false;
                 }
-                hasE = true;
+                has_e = true;
                 if (s[i + 1] == '+' || s[i + 1] == '-') {
                     if (i + 2 == s.size()) {  // e后有符号位但符号位后无数字，不合法
                         return false;
