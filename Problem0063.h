@@ -11,9 +11,9 @@
 
 using namespace std;
 
-class Problem0063 {
+class Solution {
 public:
-    int uniquePathsWithObstacles(vector<vector<int>> &obstacleGrid) {
+    int uniquePathsWithObstacles(const vector<vector<int>> &obstacleGrid) {
         const int m = (int) obstacleGrid.size();
         const int n = (int) obstacleGrid[0].size();
         if (obstacleGrid[0][0] || obstacleGrid[m - 1][n - 1]) { // 注意边界情况（输入数据为[[1]]）
