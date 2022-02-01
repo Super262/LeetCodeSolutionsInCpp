@@ -11,8 +11,9 @@
 
 using namespace std;
 
-class Problem0056 {
-private:
+class Solution {
+    // 经典算法，直接背诵
+public:
     // We can sort vectors!
     vector<vector<int>> merge(vector<vector<int>> &intervals) {
         sort(intervals.begin(), intervals.end());
