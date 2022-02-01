@@ -35,7 +35,7 @@ private:
             return;
         }
         for (int i = idx; i < (int) nums.size(); ++i) {
-            if (i > 0 && nums[i] == nums[i - 1] && !visited[i - 1]) {  // 避免重复的组合！！
+            if (i > idx && nums[i] == nums[i - 1] && !visited[i - 1]) {  // 避免重复的组合！！
                 continue;
             }
             if (nums[i] > target) {  // 必要的剪枝！！
