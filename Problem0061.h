@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0061_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0061_H
 
+#include <algorithm>
+
+using namespace std;
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -16,7 +20,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-class Problem0061 {
+class Solution {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
         if (!head) {
