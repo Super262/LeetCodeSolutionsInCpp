@@ -20,8 +20,8 @@ public:
             }
         }
         for (int i = 0; i < n; ++i) {
-            for (int j = 0, k = n - 1; j < k; ++j, --k) {
-                swap(matrix[i][j], matrix[i][k]);
+            for (int l = 0, r = n - 1; l < r; ++l, --r) {
+                swap(matrix[i][l], matrix[i][r]);
             }
         }
     }
