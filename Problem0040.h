@@ -9,43 +9,44 @@
 
 using namespace std;
 
-class Problem0040 {
-private:
-    void dfs(const vector<int> &candidates,
-             vector<bool> &visited,
-             const int cIdx,
-             const int target,
-             vector<int> &temp,
-             vector<vector<int>> &result) {
-        if (target == 0) {
-            result.emplace_back(vector<int>(temp));
-            return;
-        }
-        if (cIdx == (int) candidates.size()) {
-            return;
-        }
-        for (int i = cIdx; i < (int) candidates.size(); ++i) {
-            if (i > 0 && candidates[i] == candidates[i - 1] && !visited[i - 1]) {  // 避免重复的组合！！
-                continue;
-            }
-            if (candidates[i] > target) {  // 必要的剪枝！！
-                continue;
-            }
-            visited[i] = true;
-            temp.emplace_back(candidates[i]);
-            dfs(candidates, visited, i + 1, target - candidates[i], temp, result);
-            temp.pop_back();
-            visited[i] = false;
-        }
-    }
-
-    vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int> &candidates, const int target) {
         sort(candidates.begin(), candidates.end());
         vector<vector<int>> result;
         vector<int> temp;
         vector<bool> visited(candidates.size(), false);
         dfs(candidates, visited, 0, target, temp, result);
         return result;
+    }
+
+private:
+    void dfs(const vector<int> &nums,
+             vector<bool> &visited,
+             const int idx,
+             const int target,
+             vector<int> &temp,
+             vector<vector<int>> &res) {
+        if (target == 0) {
+            res.emplace_back(temp);
+            return;
+        }
+        if (idx == (int) nums.size()) {
+            return;
+        }
+        for (int i = idx; i < (int) nums.size(); ++i) {
+            if (i > 0 && nums[i] == nums[i - 1] && !visited[i - 1]) {  // 避免重复的组合！！
+                continue;
+            }
+            if (nums[i] > target) {  // 必要的剪枝！！
+                continue;
+            }
+            visited[i] = true;
+            temp.emplace_back(nums[i]);
+            dfs(nums, visited, i + 1, target - nums[i], temp, res);
+            temp.pop_back();
+            visited[i] = false;
+        }
     }
 };
 
