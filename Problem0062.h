@@ -5,14 +5,13 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0062_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0062_H
 
-#include <vector>
 #include <string>
 #include <cstring>
 
 using namespace std;
 
-class Problem0062 {
-private:
+class Solution {
+public:
     int uniquePaths(int m, int n) {
         int dp[m][n];
         for (int i = 0; i < n; ++i) {
