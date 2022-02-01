@@ -9,18 +9,18 @@
 
 using namespace std;
 
-class Problem0038 {
+class Solution {
 public:
     string countAndSay(const int n) {
         string s = "1";
-        for (int i = 0; i < n - 1; ++i) {
+        for (int i = 1; i < n; ++i) {
             string t;
-            for (int j = 0, k = j + 1; j < (int) s.size(); ++j) {
-                while (k < (int) s.size() && s[j] == s[k]) {
-                    ++k;
+            for (int l = 0, r = l + 1; l < (int) s.size(); ++l) {
+                while (r < (int) s.size() && s[l] == s[r]) {
+                    ++r;
                 }
-                t += to_string(k - j) + s[j];
-                j = k - 1;
+                t += to_string(r - l) + s[l];
+                l = r - 1;
             }
             s = t;
         }
