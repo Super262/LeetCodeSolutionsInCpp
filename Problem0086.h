@@ -16,7 +16,8 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-class Problem0086 {
+class Solution {
+    // 经典算法，直接背诵
 public:
     ListNode *partition(ListNode *head, int x) {
         auto lh = new ListNode(-1);
@@ -32,7 +33,7 @@ public:
             }
         }
         lt->next = rh->next;
-        rt->next = NULL;
+        rt->next = nullptr;
         return lh->next;
     }
 };
