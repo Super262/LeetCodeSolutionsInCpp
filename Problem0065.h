@@ -21,18 +21,15 @@ public:
         int st = 0, ed = (int) s.size() - 1;  // s[st:ed]表示有效的字符串部分
 
         // 首部、尾部去空格
-        int l = st, r = ed;
-        while (l <= r && s[l] == ' ') {
-            ++l;
+        while (st <= ed && s[st] == ' ') {
+            ++st;
         }
-        while (l <= r && s[r] == ' ') {
-            --r;
+        while (st <= ed && s[ed] == ' ') {
+            --ed;
         }
-        if (l > r) {
+        if (st > ed) {
             return false;
         }
-        st = l;
-        ed = r;
 
         // 判断正负号是否合法并去掉符号位
         if (s[st] == '+' || s[st] == '-') {
