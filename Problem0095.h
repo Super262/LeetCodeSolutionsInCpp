@@ -33,12 +33,12 @@ private:
         if (l > r) {
             res.emplace_back(nullptr);
         }
-        for (int rootIdx = l; rootIdx <= r; ++rootIdx) {
-            auto left_kids = dfs(l, rootIdx - 1);
-            auto right_kids = dfs(rootIdx + 1, r);
+        for (int idx = l; idx <= r; ++idx) {
+            auto left_kids = dfs(l, idx - 1);
+            auto right_kids = dfs(idx + 1, r);
             for (auto lk: left_kids) {
                 for (auto rk: right_kids) {
-                    res.emplace_back(new TreeNode(rootIdx, lk, rk));
+                    res.emplace_back(new TreeNode(idx, lk, rk));
                 }
             }
         }
