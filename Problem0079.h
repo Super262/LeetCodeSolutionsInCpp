@@ -18,7 +18,7 @@ public:
                 if (word[0] != board[i][j]) {
                     continue;
                 }
-                if (dfs(board, word, i, j, 1)) {
+                if (dfs(board, word, i, j, 0)) {
                     return true;
                 }
             }
@@ -27,11 +27,8 @@ public:
     }
 
 private:
-    const int dx[4] = {0, 0, 1, -1};
-    const int dy[4] = {1, -1, 0, 0};
-
     bool dfs(vector<vector<char>> &board, const string &word, const int x, const int y, const int idx) {
-        if (idx == word.size()) {
+        if (idx == word.size() - 1) {
             return true;
         }
         auto ch = board[x][y];
@@ -42,7 +39,7 @@ private:
             if (nx < 0 || nx >= board.size() || ny < 0 || ny >= board[0].size()) {
                 continue;
             }
-            if (board[nx][ny] != word[idx]) {
+            if (board[nx][ny] != word[idx + 1]) {
                 continue;
             }
             if (dfs(board, word, nx, ny, idx + 1)) {
@@ -53,6 +50,9 @@ private:
         board[x][y] = ch;
         return false;
     }
+
+    const int dx[4] = {0, 0, 1, -1};
+    const int dy[4] = {1, -1, 0, 0};
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0079_H
