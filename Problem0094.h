@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0094_H
 
 #include <vector>
+#include <stack>
 
 using namespace std;
 
@@ -21,11 +22,11 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0094 {
+class Solution {
 public:
     vector<int> inorderTraversal(TreeNode *root) {
         vector<int> res;
-        stack < TreeNode * > stk;
+        stack<TreeNode *> stk;
         while (root || !stk.empty()) {
             while (root) {
                 stk.emplace(root);
