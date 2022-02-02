@@ -52,7 +52,7 @@ public:
                 }
                 has_dot = true;
             } else if (s[i] == 'e' || s[i] == 'E') {
-                if (has_exp || i == 0 || i + 1 == s.size()) {  // e多次出现或e后无数字，不合法
+                if (has_exp || i == 0 || i + 1 == s.size()) {  // e在首位出现或e后无数字，不合法
                     return false;
                 }
                 has_exp = true;
