@@ -14,10 +14,10 @@ class Solution {
 public:
     int largestRectangleArea(const vector<int> &heights) {
         vector<int> stk;
-        int left_bro[heights.size()];
         stk.reserve(heights.size());
 
         // 求左边界
+        int left_bro[heights.size()];
         for (int i = 0; i < (int) heights.size(); ++i) {
             while (!stk.empty() && heights[stk.back()] >= heights[i]) {
                 stk.pop_back();
