@@ -9,24 +9,25 @@
 
 using namespace std;
 
-class Problem0081 {
+class Solution {
+    // 直接背诵，二分算法经典题目
+    // 时间复杂度：O(n)最坏情况下数组元素均相等且不为target，我们需要访问所有位置才能得出结果。
+    // 优化策略：忽略部分重复元素
 public:
     bool search(const vector<int> &nums, const int &target) {
-        // 时间复杂度：O(n)
-        // 优化策略：忽略部分重复元素
         if (nums.empty()) {
             return false;
         }
-        int R = (int) nums.size() - 1;
-        while (R >= 0 && nums[R] == nums[0]) {
-            --R;
+        auto ed = (int) nums.size() - 1;
+        while (ed >= 0 && nums[ed] == nums[0]) {
+            --ed;
         }
-        if (R < 0) {  // 所有元素重复
+        if (ed < 0) {  // 所有元素重复
             return nums[0] == target;
         }
 
         // 二分查找分界点
-        int l = 0, r = R;
+        int l = 0, r = ed;
         while (l < r) {
             auto mid = l + (r - l + 1) / 2;
             if (nums[mid] >= nums[0]) {
@@ -42,7 +43,7 @@ public:
             l = 0;
         } else {
             l++;
-            r = R;
+            r = ed;
         }
         while (l < r) {
             auto mid = l + (r - l) / 2;
