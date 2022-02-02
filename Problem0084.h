@@ -13,12 +13,13 @@ class Solution {
     // 经典算法，直接背诵
 public:
     int largestRectangleArea(const vector<int> &heights) {
+        const auto n = (int) heights.size();
         vector<int> stk;
-        stk.reserve(heights.size());
+        stk.reserve(n);
 
-        // 求左边界
-        int left_bro[heights.size()];
-        for (int i = 0; i < (int) heights.size(); ++i) {
+        // 求左边界，边界值为-1
+        int left_bro[n];
+        for (int i = 0; i < n; ++i) {
             while (!stk.empty() && heights[stk.back()] >= heights[i]) {
                 stk.pop_back();
             }
@@ -33,14 +34,14 @@ public:
         // 清空栈！！
         stk.clear();
 
-        // 求右边界
-        int right_bro[heights.size()];
-        for (int i = (int) heights.size() - 1; i >= 0; --i) {
+        // 求右边界，边界值为n
+        int right_bro[n];
+        for (auto i = n - 1; i >= 0; --i) {
             while (!stk.empty() && heights[stk.back()] >= heights[i]) {
                 stk.pop_back();
             }
             if (stk.empty()) {
-                right_bro[i] = (int) heights.size();
+                right_bro[i] = n;
             } else {
                 right_bro[i] = stk.back();
             }
@@ -48,7 +49,7 @@ public:
         }
 
         int result = 0;
-        for (int i = 0; i < (int) heights.size(); ++i) {
+        for (int i = 0; i < n; ++i) {
             result = max(result, (right_bro[i] - left_bro[i] - 1) * heights[i]);
         }
 
