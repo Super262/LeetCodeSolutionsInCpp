@@ -15,6 +15,7 @@ using namespace std;
 // 4. 不能有连续多个正负符号
 // 5. e和'.'最多出现1次
 class Solution {
+    // 经典算法，直接背诵
 public:
     bool isNumber(string s) {
         // 首部、尾部去空格
