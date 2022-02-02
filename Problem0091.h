@@ -12,9 +12,9 @@
 
 using namespace std;
 
-class Problem0091 {
+class Solution {
 public:
-    int numDecodings(string s) {
+    int numDecodings(const string &s) {
         int dp[s.size() + 1];
         dp[0] = 1;
         for (int len = 1; len <= (int) s.size(); ++len) {
