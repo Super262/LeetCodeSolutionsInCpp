@@ -12,8 +12,9 @@
 
 using namespace std;
 
-class Problem0088 {
-private:
+class Solution {
+    // 经典算法，直接背诵
+public:
     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
         if (n == 0) {
             return;
