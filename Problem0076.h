@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 经典思路，直接背诵：https://www.acwing.com/solution/content/160/
 public:
     string minWindow(const string &s, const string &t) {
         int hs[256], ht[256];
