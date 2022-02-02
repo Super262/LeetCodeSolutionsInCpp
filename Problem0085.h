@@ -59,6 +59,7 @@ private:
 
         // 清空栈！！
         stk.clear();
+        stk.reserve(n);
 
         // 求右边界
         int right_bro[n];
