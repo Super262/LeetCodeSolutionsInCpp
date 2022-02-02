@@ -6,18 +6,15 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0084_H
 
 #include <vector>
-#include <stack>
-#include <string>
-#include <cstring>
 
 using namespace std;
 
-class Problem0084 {
-private:
+class Solution {
+public:
     int largestRectangleArea(const vector<int> &heights) {
         vector<int> stk;
-        int leftH[heights.size()];
-        int rightH[heights.size()];
+        int left_bro[heights.size()];
+        int right_bro[heights.size()];
 
         // 求左边界
         for (int i = 0; i < (int) heights.size(); ++i) {
@@ -25,9 +22,9 @@ private:
                 stk.pop_back();
             }
             if (stk.empty()) {
-                leftH[i] = -1;
+                left_bro[i] = -1;
             } else {
-                leftH[i] = stk.back();
+                left_bro[i] = stk.back();
             }
             stk.emplace_back(i);
         }
@@ -41,16 +38,16 @@ private:
                 stk.pop_back();
             }
             if (stk.empty()) {
-                rightH[i] = (int) heights.size();
+                right_bro[i] = (int) heights.size();
             } else {
-                rightH[i] = stk.back();
+                right_bro[i] = stk.back();
             }
             stk.emplace_back(i);
         }
 
         int result = 0;
         for (int i = 0; i < (int) heights.size(); ++i) {
-            result = max(result, (rightH[i] - leftH[i] - 1) * heights[i]);
+            result = max(result, (right_bro[i] - left_bro[i] - 1) * heights[i]);
         }
 
         return result;
