@@ -7,11 +7,10 @@
 
 #include <vector>
 #include <string>
-#include <cstring>
 
 using namespace std;
 
-class Problem0066 {
+class Solution {
 public:
     vector<int> plusOne(vector<int> &digits) {
         reverse(digits.begin(), digits.end());
