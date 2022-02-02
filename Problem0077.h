@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Problem0077 {
+class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> result;
@@ -18,7 +18,8 @@ public:
         return result;
     }
 
-    void dfs(const int &n, const int &start, const int &k, vector<int> &temp, vector<vector<int>> &result) {
+private:
+    void dfs(const int n, const int start, const int k, vector<int> &temp, vector<vector<int>> &result) {
         if (k == 0) {
             result.emplace_back(temp);
             return;
