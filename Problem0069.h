@@ -11,8 +11,8 @@
 
 using namespace std;
 
-class Problem0069 {
-private:
+class Solution {
+public:
     int mySqrt(int x) {
         long long left = 0;
         long long right = x;
@@ -24,7 +24,7 @@ private:
                 right = mid - 1;
             }
         }
-        return (int) right;
+        return (int) left;
     }
 };
 
