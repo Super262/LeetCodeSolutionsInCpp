@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0073 {
+class Solution {
+    // 经典解法，直接背诵：使用第一行和第一列暂存信息
 public:
     void setZeroes(vector<vector<int>> &matrix) {
         if (matrix.empty() || matrix[0].empty()) {
@@ -18,16 +19,18 @@ public:
         const int n = (int) matrix.size();
         const int m = (int) matrix[0].size();
         // 使用2个变量记录第1行和第1列有无0
-        bool firstRowHasZero = false;
-        bool firstColHasZero = false;
+        bool first_row_has_zero = false;
+        bool first_col_has_zero = false;
         for (int j = 0; j < m; ++j) {
             if (!matrix[0][j]) {
-                firstRowHasZero = true;
+                first_row_has_zero = true;
+                break;
             }
         }
         for (int i = 0; i < n; ++i) {
             if (!matrix[i][0]) {
-                firstColHasZero = true;
+                first_col_has_zero = true;
+                break;
             }
         }
         // 使用第1行和第1列记录其他所有列和行有无0
@@ -64,12 +67,12 @@ public:
                 matrix[i][j] = 0;
             }
         }
-        if (firstRowHasZero) {
+        if (first_row_has_zero) {
             for (int j = 0; j < m; ++j) {
                 matrix[0][j] = 0;
             }
         }
-        if (firstColHasZero) {
+        if (first_col_has_zero) {
             for (int i = 0; i < n; ++i) {
                 matrix[i][0] = 0;
             }
