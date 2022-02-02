@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0075 {
+class Solution {
+    // 经典算法，直接背诵
 public:
     void sortColors(vector<int> &nums) {
         int i = 0, j = 0, k = (int) nums.size() - 1;
