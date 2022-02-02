@@ -7,56 +7,12 @@
 
 #include <vector>
 #include <stack>
-#include <string>
-#include <cstring>
 
 using namespace std;
 
-class Problem0085 {
-private:
-    int largestRectangleArea(const int heights[], const int n) {
-        vector<int> stk;
-        int leftH[n];
-        int rightH[n];
-
-        // 求左边界
-        for (int i = 0; i < n; ++i) {
-            while (!stk.empty() && heights[stk.back()] >= heights[i]) {
-                stk.pop_back();
-            }
-            if (stk.empty()) {
-                leftH[i] = -1;
-            } else {
-                leftH[i] = stk.back();
-            }
-            stk.emplace_back(i);
-        }
-
-        // 清空栈！！
-        stk.clear();
-
-        // 求右边界
-        for (int i = n - 1; i >= 0; --i) {
-            while (!stk.empty() && heights[stk.back()] >= heights[i]) {
-                stk.pop_back();
-            }
-            if (stk.empty()) {
-                rightH[i] = n;
-            } else {
-                rightH[i] = stk.back();
-            }
-            stk.emplace_back(i);
-        }
-
-        int result = 0;
-        for (int i = 0; i < n; ++i) {
-            result = max(result, (rightH[i] - leftH[i] - 1) * heights[i]);
-        }
-
-        return result;
-    }
-
-    int maximalRectangle(vector<vector<char>> &matrix) {
+class Solution {
+public:
+    int maximalRectangle(const vector<vector<char>> &matrix) {
         if (matrix.empty() || matrix[0].empty()) {
             return 0;
         }
@@ -79,6 +35,50 @@ private:
         for (int i = 0; i < m; ++i) {
             result = max(result, largestRectangleArea(heights[i], n));
         }
+        return result;
+    }
+
+private:
+    int largestRectangleArea(const int heights[], const int n) {
+        vector<int> stk;
+        stk.reserve(n);
+
+        // 求左边界
+        int left_bro[n];
+        for (int i = 0; i < n; ++i) {
+            while (!stk.empty() && heights[stk.back()] >= heights[i]) {
+                stk.pop_back();
+            }
+            if (stk.empty()) {
+                left_bro[i] = -1;
+            } else {
+                left_bro[i] = stk.back();
+            }
+            stk.emplace_back(i);
+        }
+
+        // 清空栈！！
+        stk.clear();
+
+        // 求右边界
+        int right_bro[n];
+        for (int i = n - 1; i >= 0; --i) {
+            while (!stk.empty() && heights[stk.back()] >= heights[i]) {
+                stk.pop_back();
+            }
+            if (stk.empty()) {
+                right_bro[i] = n;
+            } else {
+                right_bro[i] = stk.back();
+            }
+            stk.emplace_back(i);
+        }
+
+        int result = 0;
+        for (int i = 0; i < n; ++i) {
+            result = max(result, (right_bro[i] - left_bro[i] - 1) * heights[i]);
+        }
+
         return result;
     }
 };
