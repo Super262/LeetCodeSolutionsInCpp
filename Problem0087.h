@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵：https://www.acwing.com/solution/content/170/
+    // 区间DP，经典算法，直接背诵：https://www.acwing.com/solution/content/170/
 public:
     bool isScramble(const string &s1, const string &s2) {
         if (s1 == s2) {
