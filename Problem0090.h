@@ -12,12 +12,21 @@
 
 using namespace std;
 
-class Problem0090 {
+class Solution {
 public:
+    vector<vector<int>> subsetsWithDup(vector<int> &nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> result;
+        vector<int> temp;
+        temp.reserve(nums.size());
+        dfs(0, nums, temp, result);
+        return result;
+    }
 
+private:
     void dfs(const int idx, const vector<int> &nums, vector<int> &temp, vector<vector<int>> &result) {
         if (idx == (int) nums.size()) {
-            result.emplace_back(vector<int>(temp));
+            result.emplace_back(temp);
             return;
         }
         int k = idx + 1;
@@ -31,14 +40,6 @@ public:
         for (int i = 0; i <= k - idx; ++i) { // 弹出k-i个数字
             temp.pop_back();
         }
-    }
-
-    vector<vector<int>> subsetsWithDup(vector<int> &nums) {
-        sort(nums.begin(), nums.end());
-        vector<vector<int>> result;
-        vector<int> temp;
-        dfs(0, nums, temp, result);
-        return result;
     }
 };
 
