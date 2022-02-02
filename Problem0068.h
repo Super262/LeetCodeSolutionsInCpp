@@ -7,24 +7,23 @@
 
 #include <vector>
 #include <string>
-#include <cstring>
 
 using namespace std;
 
-class Problem0068 {
+class Solution {
     // 最后一行：左对齐
     // 只包含一个单词：左对齐
     // 其他：左右对齐
-private:
-    vector<string> fullJustify(vector<string> &words, int maxWidth) {
-        vector<string> result;
+public:
+    vector<string> fullJustify(const vector<string> &words, int max_width) {
+        vector<string> res;
         for (int i = 0; i < (int) words.size(); ++i) {
             auto j = i + 1;  // words[j - 1]指示当前行的终点单词
-            auto strLen = (int) words[i].size();  // str首单词是words[i]
+            auto str_len = (int) words[i].size();  // str首单词是words[i]
 
-            // 尝试加入前导空格和新单词，求得最大可行长度
-            while (j < (int) words.size() && strLen + 1 + (int) words[j].size() <= maxWidth) {
-                strLen += 1 + (int) words[j].size();
+            // 尝试加入1个前导空格和新单词，求当前最大可行长度
+            while (j < (int) words.size() && str_len + 1 + (int) words[j].size() <= max_width) {
+                str_len += 1 + (int) words[j].size();
                 ++j;
             }
 
@@ -35,32 +34,30 @@ private:
                     line.push_back(' ');  // 左对齐：每个前单词只有1个空格
                     line += words[k];
                 }
-                while (line.size() < maxWidth) {
+                while (line.size() < max_width) {
                     line.push_back(' ');
                 }
             } else {
-                auto blanksCount = j - i - 1;  // 空白区域个数
-                // 需要添加的空格数（不要忘记加上blanksCount：strLen包含blanksCount）
-                auto spacesCount = maxWidth - strLen + blanksCount;
+                auto blank_cnt = j - i - 1;  // 空白区域个数
+                // 需要添加的空格数（不要忘记加上blank_cnt：str_len包含blank_cnt个前导空格）
+                auto space_cnt = max_width - str_len + blank_cnt;
                 int k = 1;
                 line += words[i];
-                while (k <= spacesCount % blanksCount) {  // 左边的空白区域空格数更多
-                    line += string(spacesCount / blanksCount + 1, ' ');
+                while (k <= space_cnt % blank_cnt) {  // 左边的空白区域空格数更多
+                    line += string(space_cnt / blank_cnt + 1, ' ');
                     line += words[i + k];
                     ++k;
                 }
-                while (k <= blanksCount) {
-                    line += string(spacesCount / blanksCount, ' ');
+                while (k <= blank_cnt) {
+                    line += string(space_cnt / blank_cnt, ' ');
                     line += words[i + k];
                     ++k;
                 }
-
             }
-            result.emplace_back(line);
+            res.emplace_back(line);
             i = j - 1;
-
         }
-        return result;
+        return res;
     }
 };
 
