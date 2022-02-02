@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0087 {
+class Solution {
+    // 经典算法，直接背诵：https://www.acwing.com/solution/content/170/
 public:
     bool isScramble(const string &s1, const string &s2) {
         if (s1 == s2) {
