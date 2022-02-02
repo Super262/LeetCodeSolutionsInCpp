@@ -38,7 +38,7 @@ public:
             return false;
         }
 
-        // 浮点数是否合法
+        // 浮点数是否合法：".4"是合法的
         if (s[0] == '.' && (s.size() == 1 || s[1] == 'e' || s[1] == 'E')) {
             return false;
         }
