@@ -15,7 +15,6 @@ public:
     int largestRectangleArea(const vector<int> &heights) {
         vector<int> stk;
         int left_bro[heights.size()];
-        int right_bro[heights.size()];
         stk.reserve(heights.size());
 
         // 求左边界
@@ -35,6 +34,7 @@ public:
         stk.clear();
 
         // 求右边界
+        int right_bro[heights.size()];
         for (int i = (int) heights.size() - 1; i >= 0; --i) {
             while (!stk.empty() && heights[stk.back()] >= heights[i]) {
                 stk.pop_back();
