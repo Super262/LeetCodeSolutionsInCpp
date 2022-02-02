@@ -11,25 +11,26 @@
 
 using namespace std;
 
-class Problem0074 {
-private:
-    bool searchMatrix(vector<vector<int>> &matrix, int target) {
+class Solution {
+    // 经典解法，直接背诵
+public:
+    bool searchMatrix(const vector<vector<int>> &matrix, int target) {
         const int m = (int) matrix.size();
         const int n = (int) matrix[0].size();
         if (target < matrix[0][0] || target > matrix[m - 1][n - 1]) {
             return false;
         }
-        int left = 0;
-        int right = m * n - 1;
-        while (left < right) {
-            auto mid = left + (right - left + 1) / 2;
+        int l = 0;
+        int r = m * n - 1;
+        while (l < r) {
+            auto mid = l + (r - l + 1) / 2;
             if (matrix[mid / n][mid % n] <= target) {
-                left = mid;
+                l = mid;
             } else {
-                right = mid - 1;
+                r = mid - 1;
             }
         }
-        return matrix[right / n][right % n] == target;
+        return matrix[l / n][l % n] == target;
     }
 };
 
