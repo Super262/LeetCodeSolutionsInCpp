@@ -17,9 +17,11 @@ using namespace std;
 class Solution {
     // 经典算法，直接背诵
 public:
-    bool isNumber(string s) {
+    bool isNumber(const string &s) {
+        int st = 0, ed = (int) s.size() - 1;  // s[st:ed]表示有效的字符串部分
+
         // 首部、尾部去空格
-        int l = 0, r = (int) s.size() - 1;
+        int l = st, r = ed;
         while (l <= r && s[l] == ' ') {
             ++l;
         }
@@ -29,31 +31,32 @@ public:
         if (l > r) {
             return false;
         }
-        s = s.substr(l, r - l + 1);
+        st = l;
+        ed = r;
 
         // 判断正负号是否合法并去掉符号位
-        if (s[0] == '+' || s[0] == '-') {
-            s = s.substr(1);
+        if (s[st] == '+' || s[st] == '-') {
+            ++st;
         }
-        if (s.empty()) {
+        if (st > ed) {
             return false;
         }
 
         // 浮点数是否合法：".4"是合法的
-        if (s[0] == '.' && (s.size() == 1 || s[1] == 'e' || s[1] == 'E')) {
+        if (s[st] == '.' && (ed - st + 1 == 1 || s[st + 1] == 'e' || s[st + 1] == 'E')) {
             return false;
         }
 
         bool has_dot = false;
         bool has_exp = false;
-        for (int i = 0; i < (int) s.size(); ++i) {
+        for (int i = st; i <= ed; ++i) {
             if (s[i] == '.') {
                 if (has_dot || has_exp) {  // 小数点多次出现或小数在e后出现，不合法
                     return false;
                 }
                 has_dot = true;
             } else if (s[i] == 'e' || s[i] == 'E') {
-                if (has_exp || i == 0 || i + 1 == s.size()) {  // e在首位出现或e后无数字，不合法
+                if (has_exp || i == st || i == ed) {  // e在首位出现或e后无数字，不合法
                     return false;
                 }
                 has_exp = true;
