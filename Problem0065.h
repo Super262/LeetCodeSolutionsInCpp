@@ -61,7 +61,7 @@ public:
                 }
                 has_exp = true;
                 if (s[i + 1] == '+' || s[i + 1] == '-') {
-                    if (i + 2 == s.size()) {  // e后有符号位但符号位后无数字，不合法
+                    if (i + 2 == ed + 1) {  // e后有符号位但符号位后无数字，不合法
                         return false;
                     }
                     ++i;
