@@ -23,7 +23,7 @@ public:
         }
         int valid_length = 0;  // 当前窗口中的“有效长度”（包含所有类型的字符且相应字符频率不低于t的窗口长度）
         int res_st = 0;  // 结果的起点
-        int res_len = 0;  // 结果的长度
+        int res_len = 0;  // 结果的长度（注意，初始值必须为0，存在一种边界情况使结果为空）
         for (int l = 0, r = 0; r < (int) s.size(); ++r) {
             ++hs[s[r]];
             if (hs[s[r]] <= ht[s[r]]) {  // 没有冗余字符
