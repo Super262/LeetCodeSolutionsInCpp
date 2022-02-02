@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Problem0079 {
+class Solution {
 public:
     bool exist(vector<vector<char>> &board, const string &word) {
         for (int i = 0; i < board.size(); ++i) {
@@ -26,12 +26,15 @@ public:
         return false;
     }
 
-    bool dfs(vector<vector<char>> &board, const string &word, const int &x, const int &y, const int &idx) {
+private:
+    const int dx[4] = {0, 0, 1, -1};
+    const int dy[4] = {1, -1, 0, 0};
+
+    bool dfs(vector<vector<char>> &board, const string &word, const int x, const int y, const int idx) {
         if (idx == word.size()) {
             return true;
         }
         auto ch = board[x][y];
-        int dx[] = {0, 0, 1, -1}, dy[] = {1, -1, 0, 0};
         board[x][y] = '.';
         for (int i = 0; i < 4; ++i) {
             auto nx = x + dx[i];
