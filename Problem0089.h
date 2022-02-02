@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0089 {
+class Solution {
+    // 经典算法，直接背诵
 public:
     vector<int> grayCode(int n) {
         // 特殊规律，要牢记
