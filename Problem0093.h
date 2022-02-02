@@ -12,25 +12,33 @@
 
 using namespace std;
 
-class Problem0093 {
+class Solution {
+public:
+    vector<string> restoreIpAddresses(const string &s) {
+        vector<string> result;
+        string temp;
+        dfs(s, 0, 0, temp, result);
+        return result;
+    }
+
 private:
-    void dfs(const string &s, const int chIdx, const int numIdx, string &temp, vector<string> &result) {
-        if (chIdx == (int) s.size()) {
-            if (numIdx == 4) {
+    void dfs(const string &s, const int ch_idx, const int num_idx, string &temp, vector<string> &res) {
+        if (ch_idx == (int) s.size()) {
+            if (num_idx == 4) {
                 temp.pop_back();  // 弹出分隔符
-                result.emplace_back(string(temp));
+                res.emplace_back(string(temp));
             }
             return;
         }
-        if (numIdx == 4) {
+        if (num_idx == 4) {
             return;
         }
 
-        int inputSize = (int) temp.size();
+        auto input_size = (int) temp.size();
 
-        for (int i = chIdx, t = 0; i < s.size(); ++i) {
+        for (auto i = ch_idx, t = 0; i < (int) s.size(); ++i) {
             t = t * 10 + (s[i] - '0');
-            if (i > chIdx && s[chIdx] == '0') {  // 每位地址可以是0，但不能是0开头的多位数
+            if (i > ch_idx && s[ch_idx] == '0') {  // 每位地址可以是0，但不能是0开头的多位数
                 break;
             }
             if (t > 255) {
@@ -38,21 +46,14 @@ private:
             }
             temp.push_back(s[i]);
             temp.push_back('.');
-            dfs(s, i + 1, numIdx + 1, temp, result);
+            dfs(s, i + 1, num_idx + 1, temp, res);
             temp.pop_back();  // 弹出分隔符
         }
 
         // 恢复现场
-        while (temp.size() > inputSize) {
+        while (temp.size() > input_size) {
             temp.pop_back();
         }
-    }
-
-    vector<string> restoreIpAddresses(const string &s) {
-        vector<string> result;
-        string temp;
-        dfs(s, 0, 0, temp, result);
-        return result;
     }
 };
 
