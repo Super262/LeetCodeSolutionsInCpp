@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0099_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0099_H
 
+#include <algorithm>
+
+using namespace std;
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -17,10 +21,11 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0099 {
+class Solution {
+    // 直接背诵：Morris遍历
     // https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
     // https://www.acwing.com/solution/content/181/
-private:
+public:
     void recoverTree(TreeNode *root) {
         TreeNode *first = nullptr;
         TreeNode *second = nullptr;
