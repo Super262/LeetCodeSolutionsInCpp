@@ -10,7 +10,8 @@
 
 using namespace std;
 
-class Problem0097 {
+class Solution {
+    // 经典算法，直接背诵
 public:
     bool isInterleave(const string &s1, const string &s2, const string &s3) {
         if (s3.size() != s1.size() + s2.size()) {
