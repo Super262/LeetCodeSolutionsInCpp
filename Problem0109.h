@@ -29,11 +29,12 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0109 {
+class Solution {
+    // 经典算法，必须掌握
 public:
     TreeNode *sortedListToBST(ListNode *head) {
         if (!head) {
-            return NULL;
+            return nullptr;
         }
         int n = 0;
         auto current = head;
@@ -45,12 +46,12 @@ public:
             return new TreeNode(head->val);
         }
         current = head;
-        for (int i = 0; i < n / 2 - 1; ++i) {
+        for (int i = 0; i < n / 2 - 1; ++i) {  // 找到中点的前驱结点
             current = current->next;
         }
         auto root = new TreeNode(current->next->val);
         root->right = sortedListToBST(current->next->next);
-        current->next = NULL;
+        current->next = nullptr;  // 不要忘记"拆链"操作
         root->left = sortedListToBST(head);
         return root;
     }
