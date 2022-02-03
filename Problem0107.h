@@ -24,19 +24,19 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0107 {
+class Solution {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode *root) {
-        vector<vector<int>> res;
         if (!root) {
-            return res;
+            return {};
         }
+        vector<vector<int>> res;
         queue<TreeNode *> q;
         q.emplace(root);
         while (!q.empty()) {
-            auto curSize = (int) q.size();
+            auto cur_size = (int) q.size();
             vector<int> values;
-            while (curSize--) {
+            while (cur_size--) {
                 auto rt = q.front();
                 q.pop();
                 values.emplace_back(rt->val);
