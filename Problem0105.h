@@ -34,13 +34,13 @@ public:
         auto *root = new TreeNode(preorder[0]);
         int inorder_idx = 0;  // 当前节点不断往左走达到的最终节点
         stack<TreeNode *> stk;  // 当前节点的所有还没有考虑过右儿子的祖先节点
-        stk.push(root);
+        stk.emplace(root);
         for (int i = 1; i < (int) preorder.size(); ++i) {
             auto value = preorder[i];
             auto *node = stk.top();
             if (node->val != inorder[inorder_idx]) {
                 node->left = new TreeNode(value);
-                stk.push(node->left);
+                stk.emplace(node->left);
             } else {
                 while (!stk.empty() && stk.top()->val == inorder[inorder_idx]) {
                     node = stk.top();
@@ -48,7 +48,7 @@ public:
                     ++inorder_idx;
                 }
                 node->right = new TreeNode(value);
-                stk.push(node->right);
+                stk.emplace(node->right);
             }
         }
         return root;
