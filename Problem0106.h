@@ -5,6 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0106_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0106_H
 
+#include <stack>
 #include <unordered_map>
 #include <vector>
 
@@ -22,34 +23,67 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0106 {
+class Solution {
+    // 非递归方法，必须掌握
+    // https://leetcode-cn.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/solution/cong-zhong-xu-yu-hou-xu-bian-li-xu-lie-gou-zao-14/
 public:
     TreeNode *buildTree(const vector<int> &inorder, const vector<int> &postorder) {
-        unordered_map<int, int> inOrderPos;
-        for (int i = 0; i < (int) inorder.size(); ++i) {
-            inOrderPos[inorder[i]] = i;
+        if (postorder.empty()) {
+            return nullptr;
         }
-        return helper(postorder, inorder, inOrderPos, 0, (int) postorder.size() - 1, 0, (int) inorder.size() - 1);
-    }
-
-    TreeNode *
-    helper(const vector<int> &postorder,
-           const vector<int> &inorder,
-           const unordered_map<int, int> &inOrderPos,
-           const int &pl,
-           const int &pr,
-           const int &il,
-           const int &ir) {
-        if (il > ir) {
-            return NULL;
+        auto root = new TreeNode(postorder[postorder.size() - 1]);
+        stack<TreeNode *> stk;
+        stk.emplace(root);
+        auto inorder_idx = (int) inorder.size() - 1;
+        for (int i = int(postorder.size()) - 2; i >= 0; i--) {
+            auto val = postorder[i];
+            auto node = stk.top();
+            if (node->val != inorder[inorder_idx]) {
+                node->right = new TreeNode(val);
+                stk.emplace(node->right);
+            } else {
+                while (!stk.empty() && stk.top()->val == inorder[inorder_idx]) {
+                    node = stk.top();
+                    stk.pop();
+                    --inorder_idx;
+                }
+                node->left = new TreeNode(val);
+                stk.emplace(node->left);
+            }
         }
-        auto root = new TreeNode(postorder[pr]);
-        auto imid = inOrderPos.find(postorder[pr])->second;
-        root->left = helper(postorder, inorder, inOrderPos, pl, pl + (imid - il) - 1, il, imid - 1);
-        root->right = helper(postorder, inorder, inOrderPos, pl + (imid - il), pr - 1, imid + 1, ir);
         return root;
     }
 };
+
+/*class Solution {
+    // 递归方法，必须掌握
+public:
+    TreeNode *buildTree(const vector<int> &inorder, const vector<int> &postorder) {
+        unordered_map<int, int> in_order_pos;
+        for (int i = 0; i < (int) inorder.size(); ++i) {
+            in_order_pos[inorder[i]] = i;
+        }
+        return helper(postorder, inorder, in_order_pos, 0, (int) postorder.size() - 1, 0, (int) inorder.size() - 1);
+    }
+
+private:
+    TreeNode *helper(const vector<int> &postorder,
+                     const vector<int> &inorder,
+                     const unordered_map<int, int> &in_order_pos,
+                     const int pl,
+                     const int pr,
+                     const int il,
+                     const int ir) {
+        if (il > ir) {
+            return nullptr;
+        }
+        auto root = new TreeNode(postorder[pr]);
+        auto mid = in_order_pos.find(postorder[pr])->second;
+        root->left = helper(postorder, inorder, in_order_pos, pl, pl + (mid - il) - 1, il, mid - 1);
+        root->right = helper(postorder, inorder, in_order_pos, pl + (mid - il), pr - 1, mid + 1, ir);
+        return root;
+    }
+};*/
 
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0106_H
