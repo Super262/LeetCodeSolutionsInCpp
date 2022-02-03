@@ -27,7 +27,7 @@ class Solution {
     // 非递归方法，必须掌握
     // https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/
 public:
-    TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+    TreeNode *buildTree(const vector<int> &preorder, const vector<int> &inorder) {
         if (preorder.empty()) {
             return nullptr;
         }
