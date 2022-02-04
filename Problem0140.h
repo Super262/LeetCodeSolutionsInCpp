@@ -29,9 +29,9 @@ public:
                 }
             }
         }
-        vector<string> tempSegs;
+        vector<string> temp_segs;
         vector<string> result;
-        dfs(n - 1, s, dict, dp, tempSegs, result);
+        dfs(n - 1, s, dict, dp, temp_segs, result);
         return result;
     }
 
