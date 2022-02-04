@@ -10,10 +10,37 @@
 
 using namespace std;
 
-class Problem0135 {
+class Solution {
+    // 经典算法，直接背诵
+    // https://leetcode-cn.com/problems/candy/solution/fen-fa-tang-guo-by-leetcode-solution-f01p/
 public:
     int candy(const vector<int> &ratings) {
-        // 转化为AcWing0901（https://www.acwing.com/solution/content/18288/）
+        int result = 1;
+        int pre = 1, inc = 1, dec = 0;
+        for (int i = 1; i < (int) ratings.size(); ++i) {
+            if (ratings[i] >= ratings[i - 1]) {
+                dec = 0;
+                pre = ratings[i] == ratings[i - 1] ? 1 : pre + 1;
+                result += pre;
+                inc = pre;
+            } else {
+                ++dec;
+                if (dec == inc) {
+                    ++dec;
+                }
+                result += dec;
+                pre = 1;
+            }
+        }
+        return result;
+    }
+};
+
+/*class Solution {
+    // 经典算法，直接背诵
+    // 转化为AcWing0901（https://www.acwing.com/solution/content/18288/）
+public:
+    int candy(const vector<int> &ratings) {
         const int n = (int) ratings.size();
         int dp[n];
         memset(dp, -1, sizeof dp);
@@ -24,6 +51,7 @@ public:
         return result;
     }
 
+private:
     int dfs(const vector<int> &ratings, const int &idx, int dp[]) {
         if (dp[idx] != -1) {
             return dp[idx];
@@ -38,6 +66,6 @@ public:
         }
         return dp[idx];
     }
-};
+};*/
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0135_H
