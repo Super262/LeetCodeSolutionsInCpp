@@ -36,7 +36,7 @@ private:
         if (!root) {
             return 0;
         }
-        auto ls = max(0, dfs(root->left, answer));
+        auto ls = max(0, dfs(root->left, answer));  // ls、rs的下限是0！
         auto rs = max(0, dfs(root->right, answer));
         answer = max(answer, ls + rs + root->val);
         return max(ls, rs) + root->val;
