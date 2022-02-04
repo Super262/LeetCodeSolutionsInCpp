@@ -9,7 +9,9 @@
 
 using namespace std;
 
-class Problem0134 {
+class Solution {
+    // 经典算法，直接背诵：若ed不可达，[st, ed]所有点都不是合法起点
+    // https://www.acwing.com/video/1499/
 public:
     int canCompleteCircuit(const vector<int> &gas, const vector<int> &cost) {
         const int n = (int) gas.size();
@@ -28,7 +30,7 @@ public:
             if (steps == n) {
                 return st;
             }
-            st += steps + 1;  // 技巧：若ed不可达，[st, ed]所有点都不是合法起点
+            st += steps + 1;
         }
         return -1;
     }
