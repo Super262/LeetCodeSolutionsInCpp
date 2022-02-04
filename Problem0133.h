@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0133_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0133_H
 
+#include <vector>
+#include <unordered_map>
+
+using namespace std;
 
 class Node {
 public:
@@ -27,31 +31,32 @@ public:
     }
 };
 
-class Problem0133 {
+class Solution {
 public:
     Node *cloneGraph(Node *root) {
         if (!root) {
             return root;
         }
-        unordered_map < Node * , Node * > nodesCopied;
-        dfs(root, nodesCopied);  // 复制所有点
-        for (auto item: nodesCopied) {
+        unordered_map<Node *, Node *> nodes_copied;
+        dfs(root, nodes_copied);  // 复制所有点
+        for (auto item: nodes_copied) {
             auto a = item.first;
             auto b = item.second;
             for (auto node: a->neighbors) {
-                b->neighbors.emplace_back(nodesCopied[node]);
+                b->neighbors.emplace_back(nodes_copied[node]);
             }
         }
-        return nodesCopied[root];
+        return nodes_copied[root];
     }
 
-    void dfs(Node *root, unordered_map<Node *, Node *> &nodesCopied) {
-        nodesCopied[root] = new Node(root->val);
+private:
+    void dfs(Node *root, unordered_map<Node *, Node *> &nodes_copied) {
+        nodes_copied[root] = new Node(root->val);
         for (auto node: root->neighbors) {
-            if (nodesCopied.count(node)) {
+            if (nodes_copied.count(node)) {
                 continue;
             }
-            dfs(node, nodesCopied);
+            dfs(node, nodes_copied);
         }
     }
 };
