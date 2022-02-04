@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Problem0125 {
+class Solution {
 public:
     bool isPalindrome(const string &s) {
         int l = 0;
@@ -30,6 +30,7 @@ public:
         return true;
     }
 
+private:
     bool checkCh(const char &ch) {
         if (ch >= '0' && ch <= '9') {
             return true;
