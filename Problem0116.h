@@ -5,19 +5,24 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0116_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0116_H
 
-struct TreeNode {
+#include <algorithm>
+
+class Node {
+public:
     int val;
-    TreeNode *left;
-    TreeNode *right;
+    Node *left;
+    Node *right;
+    Node *next;
 
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
 
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+    Node(int _val, Node *_left, Node *_right, Node *_next)
+            : val(_val), left(_left), right(_right), next(_next) {}
 };
 
-class Problem0116 {
+class Solution {
 public:
     Node *connect(Node *root) { // 注意：输入是满二叉树
         if (!root) {
@@ -35,6 +40,6 @@ public:
         }
         return root;
     }
-}
+};
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0116_H
