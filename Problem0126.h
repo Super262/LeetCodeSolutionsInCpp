@@ -63,7 +63,7 @@ private:
              const string &ed,
              vector<string> &path,
              vector<vector<string>> &result,
-             unordered_set<string> &wordsSet,
+             unordered_set<string> &words_set,
              unordered_map<string, int> &dist) {
         if (st == ed) {
             result.emplace_back(path);
@@ -73,12 +73,12 @@ private:
             auto temp = st;
             for (char ch = 'a'; ch <= 'z'; ++ch) {
                 temp[i] = ch;
-                if (!wordsSet.count(temp) || !dist.count(temp) || dist[temp] != dist[st] + 1) {
+                if (!words_set.count(temp) || !dist.count(temp) || dist[temp] != dist[st] + 1) {
                     // 剪枝：下一个点未出现、下一个点的距离不合法
                     continue;
                 }
                 path.emplace_back(temp);
-                dfs(temp, ed, path, result, wordsSet, dist);
+                dfs(temp, ed, path, result, words_set, dist);
                 path.pop_back();
             }
         }
