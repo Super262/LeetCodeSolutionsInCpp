@@ -44,12 +44,14 @@ private:
              vector<string> &result) {  // 搜索s[0:idx]的所有分割方案
         if (idx < 0) {
             string path;
-            for (auto seg: temp_segs) {
-                seg += " " + path;
-                path = seg;
+            reverse(temp_segs.begin(), temp_segs.end());
+            for (const auto &seg: temp_segs) {
+                path += seg;
+                path += " ";
             }
             path.pop_back();
             result.emplace_back(path);
+            reverse(temp_segs.begin(), temp_segs.end());
             return;
         }
         for (int ed = idx; ed >= 0; --ed) {
