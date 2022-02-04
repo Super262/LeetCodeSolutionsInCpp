@@ -38,10 +38,12 @@ private:
         }
         auto lh = dfs(root->left, ans);
         if (lh == -1) {
+            ans = false;
             return -1;
         }
         auto rh = dfs(root->right, ans);
         if (rh == -1) {
+            ans = false;
             return -1;
         }
         if (abs(rh - lh) > 1) {
