@@ -10,13 +10,14 @@
 
 using namespace std;
 
-class Problem0115 {
+class Solution {
+    // 经典DP，直接背诵
+    // dp[i][j]表示s[1,i]的子序列生成t[1,j]的方式数
 public:
     int numDistinct(const string &s, const string &t) {
         // 最终答案不超过INT_MAX，但中间结果可能超过INT_MAX
         const int n = (int) s.size();
         const int m = (int) t.size();
-        // dp[i][j]表示s[1,i]的子序列生成t[1,j]的方式数
         unsigned long long dp[2][m + 1]; // 滚动数组优化
         memset(dp, 0, sizeof dp);
         for (int i = 0; i <= n; ++i) {
