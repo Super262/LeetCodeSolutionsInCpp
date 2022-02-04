@@ -15,20 +15,19 @@ class Solution {
 public:
     int longestConsecutive(const vector<int> &nums) {
         unordered_set<int> nums_set(nums.begin(), nums.end());
-        int result = 0;
-        for (const auto &x: nums) {  // 搜索以x为起点的最长序列
-            if (!nums_set.count(x) || nums_set.count(x - 1)) {  // 存在前驱结点，跳过
+        int res = 0;
+        for (const auto &l: nums) {  // 搜索以l为起点的最长序列
+            if (!nums_set.count(l) || nums_set.count(l - 1)) {  // 存在前驱结点，跳过
                 continue;
             }
-            nums_set.erase(x);
-            auto y = x;
-            while (nums_set.count(y + 1)) {  // 探索最大后继
-                nums_set.erase(y);
-                ++y;
+            auto r = l;
+            while (nums_set.count(r)) {  // 探索最大后继r-1
+                nums_set.erase(r);
+                ++r;
             }
-            result = max(result, y - x + 1);
+            res = max(res, r - l);
         }
-        return result;
+        return res;
     }
 };
 
