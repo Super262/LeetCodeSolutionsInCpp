@@ -17,7 +17,8 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0129 {
+class Solution {
+    // DFS解法，必须掌握
 public:
     int sumNumbers(TreeNode *root) {
         if (!root) {
@@ -26,6 +27,7 @@ public:
         return dfs(root, 0);
     }
 
+private:
     int dfs(TreeNode *root, const int prev) {
         if (!root->left && !root->right) {
             return prev + root->val;
