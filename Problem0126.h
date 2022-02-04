@@ -19,16 +19,15 @@ public:
                                        const string &endWord,
                                        const vector<string> &wordList) {
         unordered_set<string> words_set; // 单词集合
-        unordered_map<string, int> dist; // 其它单词距起点的距离
-        queue<string> q;
         for (const auto &s: wordList) {
             words_set.insert(s);
         }
         words_set.insert(beginWord);
-        vector<vector<string>> result;
         if (!words_set.count(endWord)) {  // 终点未出现
-            return result;
+            return {};
         }
+        queue<string> q;
+        unordered_map<string, int> dist; // 其它单词距起点的距离
         dist[beginWord] = 0;
         q.emplace(beginWord);
         while (!q.empty()) {  // BFS建图
@@ -50,8 +49,9 @@ public:
             }
         }
         if (!dist.count(endWord)) {  // 终点不可达
-            return result;
+            return {};
         }
+        vector<vector<string>> result;
         vector<string> path;
         path.emplace_back(beginWord);
         dfs(beginWord, endWord, path, result, words_set, dist);
