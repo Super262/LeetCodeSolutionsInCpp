@@ -17,7 +17,8 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0114 {
+class Solution {
+    // 经典算法，必须掌握
 public:
     void flatten(TreeNode *root) {
         while (root) {
