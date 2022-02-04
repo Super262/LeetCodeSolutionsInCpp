@@ -13,12 +13,14 @@
 using namespace std;
 
 class Solution {
+    // 经典算法，直接背诵
+    // dp[i]：前i个字符是否可被分割（1 <= i<= n）
 public:
     bool wordBreak(const string &s, const vector<string> &words) {
         // 优化查找速度：Trie替代哈希表（O(n) -> O (1)）
         unordered_set<string> dict(words.begin(), words.end());
         const int n = (int) s.size();
-        bool dp[n + 1];  // dp[i]：前i个字符是否可被分割（1 <= i<= n）
+        bool dp[n + 1];
         memset(dp, 0, sizeof dp);
         dp[0] = true;
         for (int r = 1; r <= n; ++r) {
