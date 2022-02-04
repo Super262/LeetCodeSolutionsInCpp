@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0112_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0112_H
 
+#include <queue>
+
+using namespace std;
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -17,7 +21,38 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0112 {
+class Solution {
+    // BFS，必须掌握
+public:
+    bool hasPathSum(TreeNode *root, const int targetSum) {
+        if (!root) {
+            return false;
+        }
+        queue<pair<TreeNode *, int>> q;
+        q.emplace(root, root->val);
+        while (!q.empty()) {
+            auto p = q.front();
+            q.pop();
+            auto node = p.first;
+            auto s = p.second;
+            if (!node->left && !node->right) {
+                if (s == targetSum) {
+                    return true;
+                }
+            }
+            if (node->left) {
+                q.emplace(node->left, s + node->left->val);
+            }
+            if (node->right) {
+                q.emplace(node->right, s + node->right->val);
+            }
+        }
+        return false;
+    }
+};
+
+/*class Solution {
+    // DFS，必须掌握
 public:
     bool hasPathSum(TreeNode *root, int sum) {
         if (!root) {
@@ -29,6 +64,6 @@ public:
         }
         return (root->left && hasPathSum(root->left, sum)) || (root->right && hasPathSum(root->right, sum));
     }
-};
+};*/
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0112_H
