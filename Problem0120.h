@@ -5,14 +5,16 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0120_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0120_H
 
+#include <cstring>
 #include <vector>
 
 using namespace std;
 
-class Problem0120 {
+class Solution {
 public:
     int minimumTotal(const vector<vector<int>> &triangle) {
-        vector<vector<int>> dp(2, vector<int>(triangle.size(), 0));
+        int dp[2][triangle.size()];
+        memset(dp, 0x3f, sizeof dp);
         dp[0][0] = triangle[0][0];
         for (int i = 1; i < (int) triangle.size(); ++i) {
             dp[i % 2][0] = triangle[i][0] + dp[(i - 1) % 2][0];
