@@ -6,26 +6,27 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0126_H
 
 #include <string>
+#include <queue>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
 using namespace std;
 
-class Problem0126 {
+class Solution {
 public:
     vector<vector<string>> findLadders(const string &beginWord,
                                        const string &endWord,
                                        const vector<string> &wordList) {
-        unordered_set<string> wordsSet; // 单词集合
+        unordered_set<string> words_set; // 单词集合
         unordered_map<string, int> dist; // 其它单词距起点的距离
-        queue <string> q;
+        queue<string> q;
         for (const auto &s: wordList) {
-            wordsSet.insert(s);
+            words_set.insert(s);
         }
-        wordsSet.insert(beginWord);
+        words_set.insert(beginWord);
         vector<vector<string>> result;
-        if (!wordsSet.count(endWord)) {  // 终点未出现
+        if (!words_set.count(endWord)) {  // 终点未出现
             return result;
         }
         dist[beginWord] = 0;
@@ -40,7 +41,7 @@ public:
                 auto temp = root;
                 for (char ch = 'a'; ch <= 'z'; ++ch) {
                     temp[i] = ch;
-                    if (!wordsSet.count(temp) || dist.count(temp)) {
+                    if (!words_set.count(temp) || dist.count(temp)) {
                         continue;
                     }
                     dist[temp] = dist[root] + 1;
@@ -53,10 +54,11 @@ public:
         }
         vector<string> path;
         path.emplace_back(beginWord);
-        dfs(beginWord, endWord, path, result, wordsSet, dist);
+        dfs(beginWord, endWord, path, result, words_set, dist);
         return result;
     }
 
+private:
     void dfs(const string &st,
              const string &ed,
              vector<string> &path,
