@@ -5,6 +5,8 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0117_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0117_H
 
+#include <algorithm>
+
 class Node {
 public:
     int val;
@@ -20,7 +22,8 @@ public:
             : val(_val), left(_left), right(_right), next(_next) {}
 };
 
-class Problem0117 {
+class Solution {
+    // 经典算法，必须掌握
 public:
     Node *connect(Node *root) {
         auto current = root;
