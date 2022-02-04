@@ -9,14 +9,14 @@
 
 using namespace std;
 
-class Problem0121 {
+class Solution {
 public:
     int maxProfit(const vector<int> &prices) {
         int result = 0;
-        int preMin = 0x3f3f3f3f;
-        for (auto p: prices) {
-            result = max(result, p - preMin);
-            preMin = min(preMin, p);
+        int pre_min = 0x3f3f3f3f;
+        for (const auto &p: prices) {
+            result = max(result, p - pre_min);
+            pre_min = min(pre_min, p);
         }
         return result;
     }
