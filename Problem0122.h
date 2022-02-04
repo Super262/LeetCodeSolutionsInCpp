@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Problem0122 {
+class Solution {
 public:
     int maxProfit(const vector<int> &prices) {  // 一段时间内的交易 == 多个单天的交易
         int result = 0;
