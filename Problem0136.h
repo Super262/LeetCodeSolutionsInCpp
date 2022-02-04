@@ -9,9 +9,9 @@
 
 using namespace std;
 
-class Problem0136 {
+class Solution {
 public:
-    int singleNumber(vector<int> &nums) {
+    int singleNumber(const vector<int> &nums) {
         int result = 0;
         for (const int &a: nums) {
             result ^= a;
