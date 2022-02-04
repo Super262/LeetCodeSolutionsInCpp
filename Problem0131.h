@@ -10,43 +10,44 @@
 
 using namespace std;
 
-class Problem0131 {
+class Solution {
 public:
     vector<vector<string>> partition(const string &s) {
         const int n = (int) s.size();
-        vector<vector<bool>> isPa(n, vector<bool>(n, false));
-        // 预处理：isPa[l][r]指示s[l][r]是否为回文串
+        vector<vector<bool>> is_pa(n, vector<bool>(n, false));
+        // 预处理：is_pa[l][r]指示s[l][r]是否为回文串
         for (int r = 0; r < n; ++r) {
             for (int l = r; l >= 0; --l) {
                 if (l == r) {
-                    isPa[l][r] = true;
+                    is_pa[l][r] = true;
                 } else {
                     // 不要忘记l + 1 > r - 1的情况：这相当于空串
-                    isPa[l][r] = s[l] == s[r] && (isPa[l + 1][r - 1] || (l + 1 > r - 1));
+                    is_pa[l][r] = s[l] == s[r] && (is_pa[l + 1][r - 1] || (l + 1 > r - 1));
                 }
             }
         }
         vector<vector<string>> result;
         vector<string> temp;
-        dfs(s, 0, isPa, temp, result);
+        dfs(s, 0, is_pa, temp, result);
         return result;
     }
 
+private:
     void dfs(const string &s,
-             const int &startIdx,
-             const vector<vector<bool>> &isPa,
+             const int idx,
+             const vector<vector<bool>> &is_pa,
              vector<string> &temp,
              vector<vector<string>> &result) {
-        if (startIdx == (int) s.size()) {
+        if (idx == (int) s.size()) {
             result.emplace_back(temp);
             return;
         }
-        for (int i = startIdx; i < (int) s.size(); ++i) {
-            if (!isPa[startIdx][i]) {
+        for (int i = idx; i < (int) s.size(); ++i) {
+            if (!is_pa[idx][i]) {
                 continue;
             }
-            temp.emplace_back(s.substr(startIdx, i - startIdx + 1));
-            dfs(s, i + 1, isPa, temp, result);
+            temp.emplace_back(s.substr(idx, i - idx + 1));
+            dfs(s, i + 1, is_pa, temp, result);
             temp.pop_back();
         }
     }
