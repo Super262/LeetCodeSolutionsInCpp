@@ -28,21 +28,23 @@ public:
         dist[beginWord] = 0;
         q.emplace(beginWord);
         while (!q.empty()) {  // BFS建图
-            const auto root = q.front();
-            q.pop();
+            auto root = q.front();
             if (root == endWord) {
                 break;
             }
+            q.pop();
+            auto rd = dist[root];
             for (int i = 0; i < (int) root.size(); ++i) {
-                auto temp = root;
+                auto t = root[i];
                 for (char ch = 'a'; ch <= 'z'; ++ch) {
-                    temp[i] = ch;
-                    if (!words_set.count(temp) || dist.count(temp)) {
+                    root[i] = ch;
+                    if (!words_set.count(root) || dist.count(root)) {
                         continue;
                     }
-                    dist[temp] = dist[root] + 1;
-                    q.emplace(temp);
+                    dist[root] = rd + 1;
+                    q.emplace(root);
                 }
+                root[i] = t;
             }
         }
         if (!dist.count(endWord)) {  // 终点不可达
@@ -59,25 +61,28 @@ private:
     void dfs(const string &st,
              const string &ed,
              vector<string> &path,
-             vector<vector<string>> &result,
-             unordered_set<string> &words_set,
-             unordered_map<string, int> &dist) {
+             vector<vector<string>> &res,
+             const unordered_set<string> &words_set,
+             const unordered_map<string, int> &dist) {
         if (st == ed) {
-            result.emplace_back(path);
+            res.emplace_back(path);
             return;
         }
-        for (int i = 0; i < (int) st.size(); ++i) {
-            auto temp = st;
+        string temp = st;
+        auto rd = dist.find(st)->second;
+        for (int i = 0; i < (int) temp.size(); ++i) {
+            char t = temp[i];
             for (char ch = 'a'; ch <= 'z'; ++ch) {
                 temp[i] = ch;
-                if (!words_set.count(temp) || !dist.count(temp) || dist[temp] != dist[st] + 1) {
-                    // 剪枝：下一个点未出现、下一个点的距离不合法
+                // 剪枝：下一个点未出现、下一个点的距离不合法
+                if (!words_set.count(st) || !dist.count(temp) || dist.find(temp)->second != rd + 1) {
                     continue;
                 }
                 path.emplace_back(temp);
-                dfs(temp, ed, path, result, words_set, dist);
+                dfs(temp, ed, path, res, words_set, dist);
                 path.pop_back();
             }
+            temp[i] = t;
         }
     }
 };
