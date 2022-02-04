@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Problem0132 {
+class Solution {
 public:
     int minCut(const string &s) {
         const int n = (int) s.size();
