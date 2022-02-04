@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0124_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0124_H
 
+#include <algorithm>
+
+using namespace std;
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -17,7 +21,9 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-class Problem0124 {
+class Solution {
+    // 经典算法，直接背诵
+    // https://www.acwing.com/solution/content/215/
 public:
     int maxPathSum(TreeNode *root) {
         int answer = -0x3f3f3f3f;
@@ -25,6 +31,7 @@ public:
         return answer;
     }
 
+private:
     int dfs(TreeNode *root, int &answer) {
         if (!root) {
             return 0;
