@@ -27,8 +27,9 @@ class Solution {
 public:
     Node *connect(Node *root) {
         auto current = root;
+        auto dummy = new Node(-1);
         while (current) {
-            auto dummy = new Node(-1);
+            dummy->next = nullptr;
             auto tail = dummy;
             for (auto p = current; p; p = p->next) {
                 if (p->left) {
