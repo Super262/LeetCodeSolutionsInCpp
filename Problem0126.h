@@ -18,10 +18,7 @@ public:
     vector<vector<string>> findLadders(const string &beginWord,
                                        const string &endWord,
                                        const vector<string> &wordList) {
-        unordered_set<string> words_set; // 单词集合
-        for (const auto &s: wordList) {
-            words_set.insert(s);
-        }
+        unordered_set<string> words_set(wordList.begin(), wordList.end()); // 单词集合
         words_set.insert(beginWord);
         if (!words_set.count(endWord)) {  // 终点未出现
             return {};
