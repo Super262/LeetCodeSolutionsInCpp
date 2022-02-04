@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0133_H
 
 #include <vector>
+#include <queue>
 #include <unordered_map>
 
 using namespace std;
@@ -32,6 +33,44 @@ public:
 };
 
 class Solution {
+    // BFS 解法
+public:
+    Node *cloneGraph(Node *root) {
+        if (!root) {
+            return root;
+        }
+        auto nodes_copied = bfs(root);
+        for (const auto &item: nodes_copied) {
+            for (const auto &ne: item.first->neighbors) {
+                item.second->neighbors.emplace_back(nodes_copied[ne]);
+            }
+        }
+        return nodes_copied[root];
+    }
+
+private:
+    unordered_map<Node *, Node *> bfs(Node *root) {
+        unordered_map<Node *, Node *> nodes_copied;
+        queue<Node *> q;
+        nodes_copied[root] = new Node(root->val);
+        q.emplace(root);
+        while (!q.empty()) {
+            auto node = q.front();
+            q.pop();
+            for (const auto &ne: node->neighbors) {
+                if (nodes_copied.count(ne)) {
+                    continue;
+                }
+                nodes_copied[ne] = new Node(ne->val);
+                q.emplace(ne);
+            }
+        }
+        return nodes_copied;
+    }
+};
+
+/*class Solution {
+    // DFS解法
 public:
     Node *cloneGraph(Node *root) {
         if (!root) {
@@ -59,6 +98,6 @@ private:
             dfs(node, nodes_copied);
         }
     }
-};
+};*/
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0133_H
