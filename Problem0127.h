@@ -6,46 +6,45 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0127_H
 
 #include <string>
+#include <queue>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
 using namespace std;
 
-class Problem0127 {
+class Solution {
 public:
     int ladderLength(const string &beginWord,
                      const string &endWord,
                      const vector<string> &wordList) {
-        unordered_set<string> wordsSet;
-        unordered_map<string, int> dist;
-        queue <string> q;
-        for (const auto &s: wordList) {
-            wordsSet.insert(s);
-        }
-        wordsSet.insert(beginWord);
-        vector<vector<string>> result;
-        if (!wordsSet.count(endWord)) {
+        unordered_set<string> words_set(wordList.begin(), wordList.end());
+        words_set.insert(beginWord);
+        if (!words_set.count(endWord)) {
             return 0;
         }
+        unordered_map<string, int> dist;
+        queue<string> q;
         dist[beginWord] = 1;
         q.emplace(beginWord);
         while (!q.empty()) {
-            const auto root = q.front();
+            string root = q.front();
             q.pop();
             if (root == endWord) {
                 break;
             }
+            auto rd = dist[root];
             for (int i = 0; i < (int) root.size(); ++i) {
-                auto temp = root;
+                auto t = root[i];
                 for (char ch = 'a'; ch <= 'z'; ++ch) {
-                    temp[i] = ch;
-                    if (!wordsSet.count(temp) || dist.count(temp)) {
+                    root[i] = ch;
+                    if (!words_set.count(root) || dist.count(root)) {
                         continue;
                     }
-                    dist[temp] = dist[root] + 1;
-                    q.emplace(temp);
+                    dist[root] = rd + 1;
+                    q.emplace(root);
                 }
+                root[i] = t;
             }
         }
         if (!dist.count(endWord)) {
