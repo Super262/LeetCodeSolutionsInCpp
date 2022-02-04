@@ -9,10 +9,10 @@
 
 using namespace std;
 
-class Problem0137 {
+class Solution {
+    // https://www.acwing.com/solution/content/232/
 public:
     int singleNumber(const vector<int> &nums) {
-        // https://www.acwing.com/solution/content/232/
         int answer = 0;
         for (int offset = 0; offset < 32; ++offset) {
             int ones = 0;
