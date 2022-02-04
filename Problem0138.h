@@ -5,6 +5,8 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0138_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0138_H
 
+#include <algorithm>
+
 class Node {
 public:
     int val;
@@ -18,8 +20,7 @@ public:
     }
 };
 
-
-class Problem0138 {
+class Solution {
 public:
     Node *copyRandomList(Node *head) {
         if (!head) {
