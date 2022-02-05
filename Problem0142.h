@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0142_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0142_H
 
+#include <algorithm>
+
+using namespace std;
+
 struct ListNode {
     int val;
     ListNode *next;
@@ -12,10 +16,11 @@ struct ListNode {
     ListNode(int x) : val(x), next(NULL) {}
 };
 
-class Problem0142 {
+class Solution {
+    // 经典算法，直接背诵
+    // https://www.acwing.com/solution/content/2946/
 public:
     ListNode *detectCycle(ListNode *head) {
-        // https://www.acwing.com/solution/content/2946/
         auto slow = head;
         auto fast = head;
         while (fast && fast->next) {
