@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0141_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0141_H
 
+#include <iostream>
+
+using namespace std;
+
 struct ListNode {
     int val;
     ListNode *next;
