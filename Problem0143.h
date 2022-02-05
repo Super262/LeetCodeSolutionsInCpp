@@ -17,9 +17,10 @@ struct ListNode {
 };
 
 class Solution {
+    // 经典算法，必须掌握
+    // https://www.acwing.com/solution/content/240/
 public:
     void reorderList(ListNode *head) {
-        // https://www.acwing.com/solution/content/240/
         int n = 0;
         for (auto p = head; p; p = p->next) {
             ++n;
@@ -27,7 +28,7 @@ public:
         if (n <= 2) {
             return;
         }
-        // 找到索引为(n + 1) / 2 - 1的点
+        // 找到索引为(n + 1) / 2 - 1的点的前驱
         auto later = head;
         for (int i = 0; i < (n + 1) / 2 - 1; ++i) {
             later = later->next;
