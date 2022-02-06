@@ -30,26 +30,25 @@ public:
         if (!root) {
             return {};
         }
-        TreeNode *p1 = root;
         vector<int> res;
-        while (p1) {
-            auto p2 = p1->left;
-            if (p2) {
-                while (p2->right && p2->right != p1) {
-                    p2 = p2->right;
+        while (root) {
+            auto p = root->left;
+            if (p) {
+                while (p->right && p->right != root) {
+                    p = p->right;
                 }
-                if (!p2->right) {
-                    res.emplace_back(p1->val);
-                    p2->right = p1;
-                    p1 = p1->left;
+                if (!p->right) {
+                    res.emplace_back(root->val);
+                    p->right = root;
+                    root = root->left;
                     continue;
                 } else {
-                    p2->right = nullptr;
+                    p->right = nullptr;
                 }
             } else {
-                res.emplace_back(p1->val);
+                res.emplace_back(root->val);
             }
-            p1 = p1->right;
+            root = root->right;
         }
         return res;
     }
