@@ -14,19 +14,20 @@ using namespace std;
 class Solution {
 public:
     vector<string> findRepeatedDnaSequences(const string &s) {
-        vector<string> result;
         if (s.size() <= 10) {  // 注意边界情况
-            return result;
+            return {};
         }
-        unordered_map<string, int> strCount;
+
+        unordered_map<string, int> str_count;
         int l = 0;
         int r = 9;
-        while (r < (int) s.size()) {
-            ++strCount[s.substr(l, r - l + 1)];
+        while (r < (int) s.size()) {  // 滑动窗口，截取所有长度为10的子串
+            ++str_count[s.substr(l, r - l + 1)];
             ++l;
             ++r;
         }
-        for (const auto &item: strCount) {
+        vector<string> result;
+        for (const auto &item: str_count) {
             if (item.second <= 1) {
                 continue;
             }
