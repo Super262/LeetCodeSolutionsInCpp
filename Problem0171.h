@@ -10,23 +10,14 @@
 using namespace std;
 
 class Solution {
+    // 结合168题，直接背诵！
 public:
-    int titleToNumber(const string &title) {  // 结合168题，直接背诵！
-        const int n = (int) title.size();
-        int result = 0;
-        long long p = 26;
-        for (int i = 0; i < n - 1; ++i) {
-            result += (int) p;
-            p *= 26;
+    int titleToNumber(const string &title) {
+        int res = 0;
+        for (const char &ch: title) {
+            res = res * 26 + (ch - 'A' + 1);
         }
-        int t = 0;
-        for (const auto &ch: title) {
-            t *= 26;
-            t += ch - 'A';
-        }
-        ++t;
-        result += t;
-        return result;
+        return res;
     }
 };
 
