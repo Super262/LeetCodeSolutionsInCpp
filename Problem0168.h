@@ -11,17 +11,13 @@
 using namespace std;
 
 class Solution {
+    // 经典算法，直接背诵
 public:
     string convertToTitle(int n) {  // 直接背诵
-        int k = 1;  // 结果长度
-        for (long long p = 26; (long long) n > p; p *= 26) {
-            n -= (int) p;
-            ++k;
-        }
-        n--;  // 不要忘记这步
         string res;
-        while (k--) {
-            res += (char) ('A' + n % 26);
+        while (n) {
+            n--;
+            res += (char) (n % 26 + 'A');
             n /= 26;
         }
         reverse(res.begin(), res.end());
