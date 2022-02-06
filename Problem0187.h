@@ -12,28 +12,34 @@
 using namespace std;
 
 class Solution {
+    // 经典算法，必须背诵
+    // 字符串哈希
 public:
     vector<string> findRepeatedDnaSequences(const string &s) {
-        if (s.size() <= 10) {  // 注意边界情况
-            return {};
+        const auto n = (int) s.size();
+        unsigned long long hash[n + 1];
+        unsigned long long factor[n + 1];
+        hash[0] = 0;
+        factor[0] = 1;
+        for (int i = 1; i <= n; ++i) {  // 牢记这个运算过程
+            hash[i] = hash[i - 1] * P + s[i - 1];
+            factor[i] = factor[i - 1] * P;
         }
-        unordered_map<string, int> str_count;
-        int l = 0;
-        int r = 9;
-        while (r < (int) s.size()) {  // 滑动窗口，截取所有长度为10的子串
-            ++str_count[s.substr(l, r - l + 1)];
-            ++l;
-            ++r;
-        }
-        vector<string> result;
-        for (const auto &item: str_count) {
-            if (item.second <= 1) {
-                continue;
+        unordered_map<unsigned long long, int> counter;
+        vector<string> res;
+        for (int i = 1; i + 10 - 1 <= n; ++i) {
+            auto j = i + 10 - 1;
+            auto x = hash[j] - hash[i - 1] * factor[j - i + 1];  // 牢记此公式
+            if (counter[x] == 1) {  // 只有更新前哈希等于1的子串是正确结果，避免结果集包含重复字符串
+                res.emplace_back(s.substr(i - 1, 10));
             }
-            result.emplace_back(item.first);
+            ++counter[x];
         }
-        return result;
+        return res;
     }
+
+private:
+    static const unsigned int P = 13131;
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0187_H
