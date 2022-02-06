@@ -21,8 +21,8 @@ public:
         int result = 1;
         unordered_map<long double, int> slope_lines;  // 指定斜率的直线覆盖的点的数量
         for (int i = 0; i < (int) points.size(); ++i) {
-            int same_count = 0;  // 与points[i]重合的点的数量
-            int x_line_size = 1;  // 垂直于x轴的直线覆盖的点的数量
+            int same_count = 0;  // 与points[i]重合的点的数量，初值为0
+            int x_line_size = 1;  // 垂直于x轴的直线覆盖的点的数量，初值为1
             for (int j = i + 1; j < (int) points.size(); ++j) {
                 if (points[j][0] == points[i][0] && points[j][1] == points[i][1]) {
                     ++same_count;
