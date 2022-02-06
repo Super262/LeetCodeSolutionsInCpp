@@ -11,9 +11,10 @@
 using namespace std;
 
 class Solution {
+    // 理解正确性证明（正确比较的3个性质），然后直接背诵！
+    // 设计合理的比较函数
 public:
     string largestNumber(vector<int> &nums) {
-        // 理解正确性证明（正确比较的3个性质），然后直接背诵！
         sort(nums.begin(), nums.end(), cmp);
         string result;
         for (const int &x: nums) {
