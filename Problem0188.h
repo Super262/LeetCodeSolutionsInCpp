@@ -11,8 +11,9 @@
 using namespace std;
 
 class Solution {
+    // 经典DP，必须掌握
 public:
-    int maxProfit(const int &k, const vector<int> &prices) {
+    int maxProfit(const int k, const vector<int> &prices) {
         const int n = (int) prices.size();
         int dp[2][n + 1][k + 1];
         int result = 0;
