@@ -10,8 +10,9 @@
 using namespace std;
 
 class Solution {
+    // 经典算法，直接背诵
 public:
-    int majorityElement(const vector<int> &nums) {  // 直接背诵
+    int majorityElement(const vector<int> &nums) {
         int x;
         int r = 0;
         for (const auto &num: nums) {
