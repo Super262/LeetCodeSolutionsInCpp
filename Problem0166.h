@@ -6,19 +6,21 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0166_H
 
 #include <string>
+#include <unordered_map>
 
 using namespace std;
 
-class Problem0166 {
+class Solution {
+    // 经典算法，直接背诵
+    // 模拟整数除法；哈希表判重
 public:
     string fractionToDecimal(int numerator, int denominator) {
-        // 模拟整数除法；哈希表判重
         long long x = numerator;  // 防止溢出（-2^31 / -1 会发生溢出）
         long long y = denominator;
         if (x % y == 0) {
             return to_string(x / y);
         }
-        unordered_map<int, int> segIdx;
+        unordered_map<int, int> remainder_idx;
         string result;
         if ((x < 0) ^ (y < 0)) {  // 经典操作，要牢记
             result.push_back('-');
@@ -29,12 +31,12 @@ public:
         result.push_back('.');
         x %= y;
         while (x) {
-            segIdx[(int) x] = (int) result.size();
+            remainder_idx[(int) x] = (int) result.size();
             x *= 10;
             result.push_back((char) ('0' + x / y));
             x %= y;
-            if (segIdx.count(x)) {
-                result = result.substr(0, segIdx[(int) x]) + '(' + result.substr(segIdx[(int) x]) + ')';
+            if (remainder_idx.count(x)) {
+                result = result.substr(0, remainder_idx[(int) x]) + '(' + result.substr(remainder_idx[(int) x]) + ')';
                 break;
             }
         }
