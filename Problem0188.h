@@ -11,7 +11,8 @@
 using namespace std;
 
 class Solution {
-    // 经典DP，必须掌握
+    // 经典状态机DP（AcWing1057），必须掌握
+    // https://www.acwing.com/solution/content/22040/
 public:
     int maxProfit(const int k, const vector<int> &prices) {
         const int n = (int) prices.size();
