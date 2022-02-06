@@ -17,7 +17,6 @@ public:
         if (s.size() <= 10) {  // 注意边界情况
             return {};
         }
-
         unordered_map<string, int> str_count;
         int l = 0;
         int r = 9;
