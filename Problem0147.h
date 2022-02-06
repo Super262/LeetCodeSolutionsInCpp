@@ -21,14 +21,14 @@ public:
     ListNode *insertionSortList(ListNode *head) {
         auto *dummy = new ListNode(-1);  // dummy后没有结点，插入排序从头部开始
         while (head) {
-            auto *hnext = head->next;
+            auto *t = head->next;
             auto *p = dummy;
             while (p->next && p->next->val <= head->val) {
                 p = p->next;
             }
             head->next = p->next;
             p->next = head;
-            head = hnext;
+            head = t;
         }
         return dummy->next;
     }
