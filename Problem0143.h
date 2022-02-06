@@ -28,7 +28,7 @@ public:
         if (n <= 2) {
             return;
         }
-        // 找到索引为(n + 1) / 2 - 1的点的前驱
+        // 找到索引为(n + 1) / 2 的点的前驱
         auto later = head;
         for (int i = 0; i < (n + 1) / 2 - 1; ++i) {
             later = later->next;
