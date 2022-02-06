@@ -9,7 +9,10 @@
 
 using namespace std;
 
-class Problem0162 {
+class Solution {
+    // 经典算法，必须掌握
+    // https://www.acwing.com/solution/content/258/
+    // 题目要求返回任意一个峰值，所以并不是连续的二分
 public:
     int findPeakElement(const vector<int> &nums) {
         int l = 0;
