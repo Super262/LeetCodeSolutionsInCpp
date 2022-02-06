@@ -9,15 +9,15 @@
 
 using namespace std;
 
-class Problem0153 {
+class Solution {
 public:
     int findMin(const vector<int> &nums) {
         int l = 0;
         int r = (int) nums.size() - 1;
-        if (nums[r] > nums[l]) {
+        if (nums[r] > nums[l]) {  // 数组元素单调递增
             return nums[l];
         }
-        while (l < r) {
+        while (l < r) {  // 查找分界点
             auto mid = l + (r - l) / 2;
             if (nums[mid] < nums[0]) {
                 r = mid;
