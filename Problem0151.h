@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Problem0151 {
+class Solution {
 public:
     string reverseWords(string s) {
         int k = 0;
