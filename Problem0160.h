@@ -5,15 +5,16 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0160_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0160_H
 
+#include <algorithm>
+
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
-private:
-    struct ListNode {
-        int val;
-        ListNode *next;
-
-        ListNode(int x) : val(x), next(NULL) {}
-    };
-
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         if (!headA || !headB) {
