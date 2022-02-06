@@ -38,16 +38,16 @@ public:
             ranges[idx].max = max(x, ranges[idx].max);
             ranges[idx].min = min(x, ranges[idx].min);
         }
-        int result = 0;
+        long long result = 0;  // 涉及到INT边界值，防止溢出
         // 若结果为(b-a)，则a是当前桶的最大值、b是下一个桶的最小值，因为a、b在数组中是相邻元素
         for (int i = 0, pre_max = minimal; i < n - 1; ++i) {
             if (!ranges[i].used) {
                 continue;
             }
-            result = max(result, ranges[i].min - pre_max);
+            result = max(result, (long long) ranges[i].min - pre_max);
             pre_max = ranges[i].max;
         }
-        return result;
+        return (int) result;
     }
 
 private:
@@ -57,8 +57,8 @@ private:
         bool used;
 
         Range() {
-            min = INT_MIN;
-            max = INT_MAX;
+            min = INT_MAX;
+            max = INT_MIN;
             used = false;
         }
     };
