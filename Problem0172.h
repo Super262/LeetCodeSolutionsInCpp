@@ -6,9 +6,10 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0172_H
 
 class Solution {
+    // 经典算法，直接背诵
+    // https://www.acwing.com/solution/content/19308/
 public:
     int trailingZeroes(int n) {
-        // https://www.acwing.com/solution/content/19308/
         int res = 0;
         while (n) {
             res += n / 5;
