@@ -38,19 +38,19 @@ public:
             detach(node);
             node->value = value;
             addLast(node);
-        } else {
-            if (size == capacity) {
-                auto node = head->next;
-                index.erase(node->key);
-                detach(node);
-                delete node;
-                --size;
-            }
-            ++size;
-            auto node = new Node(key, value);
-            addLast(node);
-            index[key] = node;
+            return;
         }
+        if (size == capacity) {
+            auto node = head->next;
+            index.erase(node->key);
+            detach(node);
+            delete node;
+            --size;
+        }
+        ++size;
+        auto node = new Node(key, value);
+        addLast(node);
+        index[key] = node;
     }
 
 private:
