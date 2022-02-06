@@ -29,7 +29,7 @@ public:
     }
 
 private:
-    static bool cmp(const int &x, const int &y) {
+    static bool cmp(const int x, const int y) {
         auto a = to_string(x);
         auto b = to_string(y);
         return a + b > b + a;
