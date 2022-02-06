@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0144_H
 
 #include <stack>
+#include <vector>
 
 using namespace std;
 
@@ -21,8 +22,42 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-
 class Solution {
+    // Morris遍历，直接背诵
+    // 空间复杂度：O(1)
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+        if (!root) {
+            return {};
+        }
+        TreeNode *p1 = root;
+        vector<int> res;
+        while (p1) {
+            auto p2 = p1->left;
+            if (p2) {
+                while (p2->right && p2->right != p1) {
+                    p2 = p2->right;
+                }
+                if (!p2->right) {
+                    res.emplace_back(p1->val);
+                    p2->right = p1;
+                    p1 = p1->left;
+                    continue;
+                } else {
+                    p2->right = nullptr;
+                }
+            } else {
+                res.emplace_back(p1->val);
+            }
+            p1 = p1->right;
+        }
+        return res;
+    }
+};
+
+/*class Solution {
+    // 经典算法，直接背诵
+    // 空间复杂度：O(n)
 public:
     vector<int> preorderTraversal(TreeNode *root) {
         vector<int> result;
@@ -38,6 +73,6 @@ public:
         }
         return result;
     }
-};
+};*/
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0144_H
