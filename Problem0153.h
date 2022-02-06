@@ -12,11 +12,11 @@ using namespace std;
 class Solution {
 public:
     int findMin(const vector<int> &nums) {
-        int l = 0;
-        int r = (int) nums.size() - 1;
-        if (nums[r] > nums[l]) {  // 数组元素单调递增
-            return nums[l];
+        auto r = (int) nums.size() - 1;
+        if (nums[r] > nums[0]) {  // 数组元素单调递增
+            return nums[0];
         }
+        int l = 0;
         while (l < r) {  // 查找分界点
             auto mid = l + (r - l) / 2;
             if (nums[mid] < nums[0]) {
