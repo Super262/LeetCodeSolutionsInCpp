@@ -11,9 +11,10 @@
 using namespace std;
 
 class Solution {
+    // 经典DP，必须掌握
+    // 已知最终状态（能量大于0），反推初始值
 public:
     int calculateMinimumHP(const vector<vector<int>> &dun) {
-        // 已知最终状态（能量大于0），反推初始值
         const int m = (int) dun.size();
         const int n = (int) dun[0].size();
         // 无法用滚动数组优化
