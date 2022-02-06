@@ -9,15 +9,16 @@
 
 using namespace std;
 
-class Problem0154 {
+class Solution {
+    // 在最坏情况下，如果数组中的元素完全相同，那么 while 循环就需要执行 n 次，每次忽略区间的右端点，时间复杂度为 O(n)。
 public:
     int findMin(const vector<int> &nums) {
         int l = 0;
         int r = (int) nums.size() - 1;
-        while (nums[0] == nums[r] && r > l) {
+        while (nums[0] == nums[r] && r > l) {  // 忽略边界的重复元素
             --r;
         }
-        if (nums[r] > nums[l]) {  // 不要忽略这个特殊情况（数组正序）
+        if (nums[r] > nums[l]) {  // 数组正序
             return nums[l];
         }
         while (l < r) {
