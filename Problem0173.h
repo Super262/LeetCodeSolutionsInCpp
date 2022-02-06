@@ -5,6 +5,9 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0173_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0173_H
 
+#include <stack>
+
+using namespace std;
 
 struct TreeNode {
     int val;
