@@ -5,12 +5,13 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0150_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0150_H
 
+#include <string>
 #include <vector>
 #include <stack>
 
 using namespace std;
 
-class Problem0150 {
+class Solution {
 public:
     int evalRPN(const vector<string> &tokens) {
         stack<int> stk;
