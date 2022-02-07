@@ -6,16 +6,19 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0221_H
 
 #include <vector>
+#include <cstring>
 
 using namespace std;
 
-class Problem0221 {
-private:
-    int maximalSquare(vector<vector<char>> &matrix) {
-        // 动态规划问题：dp[i][j]是(i, j)区域内矩形的最大边长
-        const int m = matrix.size();
-        const int n = matrix[0].size();
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+class Solution {
+    // 经典算法，必须掌握
+    // 动态规划问题：dp[i][j]是(i, j)区域内矩形的最大边长
+public:
+    int maximalSquare(const vector<vector<char>> &matrix) {
+        const auto m = (int) matrix.size();
+        const auto n = (int) matrix[0].size();
+        int dp[m + 1][n + 1];
+        memset(dp, 0, sizeof dp);
         int result = 0;
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
