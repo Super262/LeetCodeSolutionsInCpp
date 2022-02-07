@@ -8,25 +8,27 @@
 #include <cstring>
 #include <string>
 
+using namespace std;
+
 class Solution {
+    // 经典算法，直接背诵
 public:
     bool isIsomorphic(const string &s, const string &t) {
         if (s.size() != t.size()) {
             return false;
         }
-        const int n = (int) s.size();
         int s2t[256];
         int t2s[256];
         memset(s2t, -1, sizeof s2t);
         memset(t2s, -1, sizeof t2s);
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < (int) s.size(); ++i) {
             auto a = s[i];
             auto b = t[i];
-            if (s2t[a] != -1 && s2t[a] != b) {
+            if (s2t[a] != -1 && s2t[a] != b) {  // 第1次判断
                 return false;
             }
             s2t[a] = (int) (unsigned char) b;
-            if (t2s[b] != -1 && t2s[b] != a) {
+            if (t2s[b] != -1 && t2s[b] != a) {  // 第2次判断
                 return false;
             }
             t2s[b] = (int) (unsigned char) a;
