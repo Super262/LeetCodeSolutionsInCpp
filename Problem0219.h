@@ -10,16 +10,16 @@
 
 using namespace std;
 
-class Problem0219 {
-private:
-    bool containsNearbyDuplicate(vector<int> &nums, int k) {
+class Solution {
+public:
+    bool containsNearbyDuplicate(const vector<int> &nums, int k) {
         // 利用哈希表保存数字最近出现位置
-        unordered_map<int, unsigned long long> lastIdx;
-        for (unsigned long long i = 0; i < nums.size(); ++i) {
-            if (lastIdx.count(nums[i]) && i - lastIdx[nums[i]] <= k) {
+        unordered_map<int, int> recent_idx;
+        for (int i = 0; i < (int) nums.size(); ++i) {
+            if (recent_idx.count(nums[i]) && i - recent_idx[nums[i]] <= k) {
                 return true;
             }
-            lastIdx[nums[i]] = i;
+            recent_idx[nums[i]] = i;
         }
         return false;
     }
