@@ -14,7 +14,7 @@ public:
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> result;
         vector<int> temp;
-        dfs(result, temp, 0, n, 0, k);
+        dfs(result, temp, 1, n, 0, k);
         return result;
     }
 
@@ -29,12 +29,12 @@ private:
             result.emplace_back(temp);
             return;
         }
-        if (num == 9 || temp.size() == k) {  // 已搜索到最后一个数字或序列长度达到上限
+        if (num == 10 || temp.size() == k) {  // 已搜索到最后一个数字或序列长度达到上限
             return;
         }
-        for (int i = num + 1; i <= 9; ++i) {
+        for (int i = num; i <= 9; ++i) {
             temp.emplace_back(i);
-            dfs(result, temp, i, n, sum + i, k);
+            dfs(result, temp, i + 1, n, sum + i, k);
             temp.pop_back();
         }
     }
