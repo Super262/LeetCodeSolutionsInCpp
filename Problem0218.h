@@ -11,21 +11,19 @@
 
 using namespace std;
 
-class Problem0218 {
-private:
-    vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
+class Solution {
+public:
+    vector<vector<int>> getSkyline(const vector<vector<int>> &buildings) {
         vector<pair<int, int>> points;
+        points.reserve(buildings.size() * 2);
         for (const auto &b: buildings) {
-            points.push_back({b[0], -b[2]});  // 起点的高度从大到小排序（提示：利用相反数）
-            points.push_back({b[1], b[2]});
+            points.emplace_back(b[0], -b[2]);  // 起点的高度从大到小排序（提示：利用相反数）
+            points.emplace_back(b[1], b[2]);
         }
-
         sort(points.begin(), points.end());
-
         multiset<int> heights;  // 红黑树：有序，支持插入和删除
-
-        vector<vector<int>> result;
         heights.insert(0);  // 题目要求结果包括x轴上的终点
+        vector<vector<int>> result;
         for (const auto &p: points) {
             int x = p.first;
             int h = abs(p.second);
