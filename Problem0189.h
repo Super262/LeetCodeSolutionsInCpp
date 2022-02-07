@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 经典算法，直接背诵
 public:
     void rotate(vector<int> &nums, int k) {
         k %= (int) nums.size();
