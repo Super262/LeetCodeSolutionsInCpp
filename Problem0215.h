@@ -9,7 +9,13 @@
 
 using namespace std;
 
-class Problem0215 {
+class Solution {
+public:
+    int findKthLargest(vector<int> &nums, int k) {
+        helper(nums, 0, (int) nums.size() - 1, k);
+        return nums[k - 1];
+    }
+
 private:
     void helper(vector<int> &nums, const int start, const int end, const int k) {
         if (start >= end) {
@@ -30,11 +36,6 @@ private:
         } else {
             helper(nums, right + 1, end, k - (right - start + 1));
         }
-    }
-
-    int findKthLargest(vector<int> &nums, int k) {
-        helper(nums, 0, (int) nums.size() - 1, k);
-        return nums[k - 1];
     }
 };
 
