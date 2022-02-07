@@ -6,10 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0211_H
 
 #include <string>
+#include <cstring>
 
 using namespace std;
 
 class WordDictionary {
+    // 经典算法，必须掌握：在Trie上执行DFS
 public:
     WordDictionary() {
         root = new Node();
@@ -19,12 +21,12 @@ public:
         auto current = root;
         for (const auto ch: word) {
             auto idx = ch - 'a';
-            if (!current->children[idx]) {
-                current->children[idx] = new Node();
+            if (!current->kids[idx]) {
+                current->kids[idx] = new Node();
             }
-            current = current->children[idx];
+            current = current->kids[idx];
         }
-        current->isWord = true;
+        current->is_word = true;
     }
 
     bool search(const string &word) {
@@ -33,35 +35,33 @@ public:
 
 private:
     struct Node {
-        bool isWord;
-        Node *children[26];
+        bool is_word;
+        Node *kids[26]{};
 
         Node() {
-            isWord = false;
-            for (auto &item: children) {
-                item = nullptr;
-            }
+            is_word = false;
+            memset(kids, 0, sizeof kids);
         }
     };
 
     Node *root;
 
-    bool dfs(Node *start, const string &word, const int &idx) {
+    bool dfs(Node *start, const string &word, const int idx) {
         if (!start) {
             return false;
         }
-        if (idx == word.size()) {
-            return start->isWord;
+        if (idx == (int) word.size()) {
+            return start->is_word;
         }
         if (word[idx] == '.') {
-            for (int i = 0; i < 26; ++i) {
-                if (dfs(start->children[i], word, idx + 1)) {
+            for (const auto &kid: start->kids) {
+                if (dfs(kid, word, idx + 1)) {
                     return true;
                 }
             }
             return false;
         }
-        return dfs(start->children[word[idx] - 'a'], word, idx + 1);
+        return dfs(start->kids[word[idx] - 'a'], word, idx + 1);
     }
 };
 
