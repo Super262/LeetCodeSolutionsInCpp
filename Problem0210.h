@@ -7,21 +7,24 @@
 
 #include <vector>
 #include <queue>
+#include <cstring>
 
 using namespace std;
 
 class Solution {
+    // 经典算法，必须掌握：拓扑排序
 public:
-    vector<int> findOrder(const int &n, const vector<vector<int>> &edges) {
-        vector<vector<int>> graph(n, vector<int>());
-        vector<int> inDegree(n, 0);
+    vector<int> findOrder(const int n, const vector<vector<int>> &edges) {
+        vector<int> graph[n];
+        int in_degree[n];
+        memset(in_degree, 0, sizeof in_degree);
         for (const auto &e: edges) {
             graph[e[1]].emplace_back(e[0]);
-            ++inDegree[e[0]];
+            ++in_degree[e[0]];
         }
         queue<int> q;
         for (int v = 0; v < n; ++v) {
-            if (inDegree[v] != 0) {
+            if (in_degree[v] != 0) {
                 continue;
             }
             q.emplace(v);
@@ -32,14 +35,14 @@ public:
             q.pop();
             result.emplace_back(root);
             for (const auto &v: graph[root]) {
-                --inDegree[v];
-                if (!inDegree[v]) {
+                --in_degree[v];
+                if (!in_degree[v]) {
                     q.emplace(v);
                 }
             }
         }
         if (result.size() < n) {
-            result.clear();
+            return {};
         }
         return result;
     }
