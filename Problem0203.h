@@ -18,6 +18,7 @@ struct ListNode {
 };
 
 class Solution {
+    // 引入dummy结点，统一操作
 public:
     ListNode *removeElements(ListNode *head, const int &val) {
         auto dummy = new ListNode(-1);
