@@ -10,37 +10,34 @@
 using namespace std;
 
 class Solution {
+    // 加强对KMP算法的理解，背诵代码！
+    // https://www.acwing.com/solution/content/19819/
 public:
     string shortestPalindrome(const string &s) {
-        // 加强对KMP算法的理解
-        // 背诵代码！
-        // https://www.acwing.com/solution/content/19819/
-        const int n = (int) s.size();
         const string temp = s + "#" + string(s.rbegin(), s.rend());
-        const int m = (int) temp.size();
-        int nextStart[m];
-        buildNextStart(temp, nextStart);
-        auto leftPart = s.substr(0, nextStart[m - 1]);
-        auto rightPart = s.substr(nextStart[m - 1]);
-        return string(rightPart.rbegin(), rightPart.rend()) + leftPart + rightPart;
+        const auto m = (int) temp.size();
+        int next_start[m];
+        buildNext(temp, next_start);
+        auto left = s.substr(0, next_start[m - 1]);
+        auto right = s.substr(next_start[m - 1]);
+        return string(right.rbegin(), right.rend()) + left + right;
     }
 
 private:
-    void buildNextStart(const string &s, int nextStart[]) {
-        const int n = (int) s.size();
-        int left = 0;
-        int right = 1;
-        nextStart[0] = 0;
-        while (right < n) {
-            if (s[left] == s[right]) {
-                ++left;
-                nextStart[right] = left;
-                ++right;
-            } else if (left) {
-                left = nextStart[left - 1];
+    void buildNext(const string &s, int next_start[]) {
+        int l = 0;
+        int r = 1;
+        next_start[l] = 0;
+        while (r < (int) s.size()) {
+            if (s[l] == s[r]) {
+                ++l;
+                next_start[r] = l;
+                ++r;
+            } else if (l) {
+                l = next_start[l - 1];
             } else {
-                nextStart[right] = 0;
-                ++right;
+                next_start[r] = 0;
+                ++r;
             }
         }
     }
