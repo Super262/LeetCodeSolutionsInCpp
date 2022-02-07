@@ -14,8 +14,9 @@ class Solution {
     // 经典算法：检测拓扑序是否存在
 public:
     bool canFinish(const int n, const vector<vector<int>> &edges) {
-        vector<vector<int>> graph(n, vector<int>());
-        vector<int> in_degree(n, 0);
+        vector<int> graph[n];
+        int in_degree[n];
+        memset(in_degree, 0, sizeof in_degree);
         for (const auto &e: edges) {
             graph[e[1]].emplace_back(e[0]);
             ++in_degree[e[0]];
