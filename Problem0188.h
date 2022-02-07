@@ -18,7 +18,7 @@ public:
         const int n = (int) prices.size();
         int dp[2][n + 1][k + 1];
         int result = 0;
-        memset(dp, -0x3f, sizeof dp);
+        memset(dp, -0x3f, sizeof dp);  // 初始值为负无穷
         dp[0][0][0] = 0;
         for (int i = 1; i <= n; ++i) {
             for (int j = 0; j <= k; ++j) {
