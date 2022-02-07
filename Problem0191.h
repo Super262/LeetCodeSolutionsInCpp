@@ -5,6 +5,8 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0191_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0191_H
 
+#include <algorithm>
+
 class Solution {
 public:
     int hammingWeight(uint32_t n) {
@@ -17,7 +19,7 @@ public:
     }
 
 private:
-    uint32_t lowBit(const uint32_t &x) {
+    uint32_t lowBit(const uint32_t x) {
         return x & -x;
     }
 };
