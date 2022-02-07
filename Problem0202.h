@@ -5,8 +5,22 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0202_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0202_H
 
-class Problem0202 {
+class Solution {
+    // 经典算法，直接背诵
+    // 类似于142题（Linked List Cycle II）
 public:
+    bool isHappy(const int n) {
+        // 注意：这里的快慢指针的起点不能相同
+        auto slow = n;
+        auto fast = squareSum(slow);
+        while (fast != slow) {
+            slow = squareSum(slow);
+            fast = squareSum(squareSum(fast));
+        }
+        return fast == 1;
+    }
+
+private:
     int squareSum(int x) {
         int result = 0;
         while (x) {
@@ -14,17 +28,6 @@ public:
             x /= 10;
         }
         return result;
-    }
-
-    bool isHappy(int n) {  // 类似于142题（Linked List Cycle II）
-        // 注意：这里的快慢指针的起点不能相同
-        auto slowP = n;
-        auto fastP = squareSum(slowP);
-        while (fastP != slowP) {
-            slowP = squareSum(slowP);
-            fastP = squareSum(squareSum(fastP));
-        }
-        return fastP == 1;
     }
 };
 
