@@ -12,7 +12,7 @@ using namespace std;
 class Solution {
     // 经典DP，必须掌握
     // https://www.acwing.com/solution/content/19758/
-    // dp[i % 2][0]：盗取第i个时的最大获利；dp[i % 2][1]：不盗取第i个时的最大获利
+    // dp[i % 2][1]：盗取第i个时的最大获利；dp[i % 2][0]：不盗取第i个时的最大获利
 public:
     int rob(const vector<int> &nums) {
         if (nums.empty()) {
