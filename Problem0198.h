@@ -10,11 +10,13 @@
 using namespace std;
 
 class Solution {
+    // 经典DP，直接背诵
+    // dp[i][0]：不选择第i个房子；dp[i][1]：选择第i个房子
 public:
     int rob(const vector<int> &nums) {
         const int n = (int) nums.size();
         // 滚动数组优化
-        int dp[2][2];  // dp[i][0]：不选择第i个房子；dp[i][1]：选择第i个房子
+        int dp[2][2];
         dp[0][0] = 0;
         dp[0][1] = nums[0];
         for (int i = 1; i < n; ++i) {
