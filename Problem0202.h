@@ -8,6 +8,7 @@
 class Solution {
     // 经典算法，直接背诵
     // 类似于142题（Linked List Cycle II）
+    // https://www.acwing.com/solution/content/19516/
 public:
     bool isHappy(const int n) {
         // 注意：这里的快慢指针的起点不能相同
