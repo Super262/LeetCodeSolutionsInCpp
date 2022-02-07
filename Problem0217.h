@@ -8,15 +8,17 @@
 #include <unordered_set>
 #include <vector>
 
-class Problem0217 {
-private:
-    bool containsDuplicate(std::vector<int> &nums) {
-        std::unordered_set<int> S;
-        for (auto x: nums) {
-            if (S.count(x)) {
+using namespace std;
+
+class Solution {
+public:
+    bool containsDuplicate(const vector<int> &nums) {
+        unordered_set<int> s;
+        for (const auto &x: nums) {
+            if (s.count(x)) {
                 return true;
             }
-            S.insert(x);
+            s.insert(x);
         }
         return false;
     }
