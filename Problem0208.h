@@ -5,6 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0208_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0208_H
 
+#include <string>
+#include <cstring>
+
+using namespace std;
+
 class Trie {
     // 背诵代码！
     // Trie特点：边保存字符，节点保存前缀信息
@@ -17,48 +22,46 @@ public:
         auto current = root;
         for (const auto &ch: word) {
             auto idx = ch - 'a';
-            if (!current->children[idx]) {
-                current->children[idx] = new Node();
+            if (!current->kids[idx]) {
+                current->kids[idx] = new Node();
             }
-            current = current->children[idx];
+            current = current->kids[idx];
         }
-        current->isWord = true;
+        current->is_word = true;
     }
 
     bool search(const string &word) {
         auto current = root;
         for (const auto &ch: word) {
             auto idx = ch - 'a';
-            if (!current->children[idx]) {
+            if (!current->kids[idx]) {
                 return false;
             }
-            current = current->children[idx];
+            current = current->kids[idx];
         }
-        return current->isWord;
+        return current->is_word;
     }
 
     bool startsWith(const string &prefix) {
         auto current = root;
         for (const auto &ch: prefix) {
             auto idx = ch - 'a';
-            if (!current->children[idx]) {
+            if (!current->kids[idx]) {
                 return false;
             }
-            current = current->children[idx];
+            current = current->kids[idx];
         }
         return true;
     }
 
 private:
     struct Node {
-        bool isWord;
-        Node *children[26];
+        bool is_word;
+        Node *kids[26]{};
 
         Node() {
-            isWord = false;
-            for (auto & item : children) {
-                item = nullptr;
-            }
+            is_word = false;
+            memset(kids, 0, sizeof kids);
         }
     };
 
