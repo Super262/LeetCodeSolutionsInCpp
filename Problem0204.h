@@ -8,28 +8,28 @@
 #include <cstring>
 
 class Solution {
+    // 同AcWing0868，直接背诵！
 public:
-    int countPrimes(const int &n) {
+    int countPrimes(const int n) {
         if (n == 0) {
             return 0;
         }
-        // 同AcWing0868，直接背诵！
-        int result = 0;
         int primes[n];
-        bool isFiltered[n];
-        memset(isFiltered, 0, sizeof isFiltered);
+        bool is_filtered[n];
+        memset(is_filtered, 0, sizeof is_filtered);
+        int cnt = 0;
         for (int f = 2; f <= n - 1; ++f) {
-            if (!isFiltered[f]) {
-                primes[result++] = f;
+            if (!is_filtered[f]) {
+                primes[cnt++] = f;
             }
             for (int j = 0; primes[j] <= (n - 1) / f; ++j) {
-                isFiltered[primes[j] * f] = true;
+                is_filtered[primes[j] * f] = true;
                 if (f % primes[j] == 0) {
                     break;
                 }
             }
         }
-        return result;
+        return cnt;
     }
 };
 
