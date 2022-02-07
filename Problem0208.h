@@ -61,7 +61,9 @@ private:
 
         Node() {
             is_word = false;
-            memset(kids, 0, sizeof kids);
+            for (auto &kid: kids) {
+                kid = nullptr;
+            }
         }
     };
 
