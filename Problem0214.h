@@ -16,27 +16,27 @@ public:
     string shortestPalindrome(const string &s) {
         const string temp = s + "#" + string(s.rbegin(), s.rend());
         const auto m = (int) temp.size();
-        int next_start[m];
-        buildNext(temp, next_start);
-        auto left = s.substr(0, next_start[m - 1]);
-        auto right = s.substr(next_start[m - 1]);
+        int fail[m];
+        buildFail(temp, fail);
+        auto left = s.substr(0, fail[m - 1]);
+        auto right = s.substr(fail[m - 1]);
         return string(right.rbegin(), right.rend()) + left + right;
     }
 
 private:
-    void buildNext(const string &s, int next_start[]) {
+    void buildFail(const string &s, int fail[]) {
         int l = 0;
         int r = 1;
-        next_start[l] = 0;
+        fail[l] = 0;
         while (r < (int) s.size()) {
             if (s[l] == s[r]) {
                 ++l;
-                next_start[r] = l;
+                fail[r] = l;
                 ++r;
             } else if (l) {
-                l = next_start[l - 1];
+                l = fail[l - 1];
             } else {
-                next_start[r] = 0;
+                fail[r] = 0;
                 ++r;
             }
         }
