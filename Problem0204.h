@@ -15,15 +15,15 @@ public:
             return 0;
         }
         int primes[n];
-        bool is_filtered[n];
-        memset(is_filtered, 0, sizeof is_filtered);
+        bool filtered[n];
+        memset(filtered, 0, sizeof filtered);
         int cnt = 0;
         for (int f = 2; f <= n - 1; ++f) {
-            if (!is_filtered[f]) {
+            if (!filtered[f]) {
                 primes[cnt++] = f;
             }
             for (int j = 0; primes[j] <= (n - 1) / f; ++j) {
-                is_filtered[primes[j] * f] = true;
+                filtered[primes[j] * f] = true;
                 if (f % primes[j] == 0) {
                     break;
                 }
