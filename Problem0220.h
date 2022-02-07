@@ -18,7 +18,8 @@ public:
         s.insert(-2e10 - 1);  // 插入两个永不可达的边界值，简化查询操作
         for (int i = 0, j = 0; i < (int) nums.size(); ++i) {
             if (i - j > k) {
-                s.erase(s.find(nums[j++]));
+                s.erase(s.find(nums[j]));
+                ++j;
             }
             auto x = nums[i];
             auto lt = s.lower_bound(x);  // element greater or equal
