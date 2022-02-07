@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0199_H
 
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -29,18 +30,18 @@ public:
         if (!root) {
             return result;
         }
-        TreeNode *q[200];
-        int hh = 0, tt = -1;
-        q[++tt] = root;
-        while (hh <= tt) {
-            auto length = tt - hh + 1;
+        queue<TreeNode *> q;
+        q.emplace(root);
+        while (!q.empty()) {
+            auto length = (int) q.size();
             while (length--) {
-                auto rn = q[hh++];
+                auto rn = q.front();
+                q.pop();
                 if (rn->left) {
-                    q[++tt] = rn->left;
+                    q.emplace(rn->left);
                 }
                 if (rn->right) {
-                    q[++tt] = rn->right;
+                    q.emplace(rn->right);
                 }
                 if (length == 0) {
                     result.emplace_back(rn->val);
