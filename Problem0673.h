@@ -10,12 +10,12 @@
 
 using namespace std;
 
-class Problem0673 {
-private:
+class Solution {
+public:
     int findNumberOfLIS(const vector<int> &nums) {
         const int n = (int) nums.size();
         int dp[n], g[n];  // dp[i]表示以nums[i]结尾的LIS的最大长度，g[i]表示以nums[i]结尾的LIS的个数
-        int maxL = 0, maxCnt = 0;
+        int max_l = 0, max_cnt = 0;
         for (int i = 0; i < n; ++i) {
             dp[i] = 1;
             g[i] = 1;
@@ -30,14 +30,14 @@ private:
                     g[i] += g[j];
                 }
             }
-            if (dp[i] > maxL) {
-                maxL = dp[i];
-                maxCnt = g[i];
-            } else if (dp[i] == maxL) {
-                maxCnt += g[i];
+            if (dp[i] > max_l) {
+                max_l = dp[i];
+                max_cnt = g[i];
+            } else if (dp[i] == max_l) {
+                max_cnt += g[i];
             }
         }
-        return maxCnt;
+        return max_cnt;
     }
 };
 
