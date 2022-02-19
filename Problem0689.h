@@ -14,7 +14,7 @@ class Solution {
     // 经典DP，必须掌握
     // f[i][j]：在前i个数中找出j个长度为k的、和最大的无重叠子数组（共j*k项）的方案（i>=0,j>=1）
     // f[i][j] = max(f[i + 1][j], s[i + k - 1] - s[i - 1] + f[i + k][j - 1])，s是前缀和
-    // 因此，我们需要从后向前枚举子数组起点i，同时保证字典序最小
+    // 为保证字典序最小，我们需要从后向前枚举子数组起点i
 public:
     vector<int> maxSumOfThreeSubarrays(const vector<int> &nums, const int k) {
         const auto n = (int) nums.size();
