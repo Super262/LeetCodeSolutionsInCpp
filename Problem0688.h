@@ -11,7 +11,7 @@ using namespace std;
 
 class Solution {
     // 经典动态规划：由内而外汇总结果
-    // f[x][i][j]：在(i,j)处，向外走(k-x)步后在棋盘上的概率
+    // f[x][i][j]：在(i,j)处，向外走x步后在棋盘上的概率
 public:
     double knightProbability(int n, int k, int row, int column) {
         double f[2][n][n];
