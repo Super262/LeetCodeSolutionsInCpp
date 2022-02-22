@@ -16,7 +16,7 @@ private:
     priority_queue<int, vector<int>, greater<int>> heap;
 
 public:
-    KthLargest(int k, vector<int> &nums) {
+    KthLargest(const int k, const vector<int> &nums) {
         limit = k;
         for (const auto &x: nums) {
             heap.emplace(x);
@@ -26,7 +26,7 @@ public:
         }
     }
 
-    int add(int val) {
+    int add(const int val) {
         heap.emplace(val);
         if (heap.size() > limit) {
             heap.pop();
