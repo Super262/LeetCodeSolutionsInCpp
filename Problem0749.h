@@ -7,21 +7,22 @@
 
 #include <set>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
 class Solution {
 public:
     int containVirus(vector<vector<int>> &grid) {
-        int res = 0;
+        int walls = 0;
         while (true) {
             auto cnt = scan(grid);
             if (!cnt) {
                 break;
             }
-            res += cnt;
+            walls += cnt;
         }
-        return res;
+        return walls;
     }
 
 private:
@@ -29,67 +30,78 @@ private:
         const auto m = (int) grid.size();
         const auto n = (int) grid[0].size();
         vector<vector<bool>> visited(m, vector<bool>(n, false));
-        int maximal = 0;  // 可能被感染的区域的最大值
-        int res = 0;  // 防火墙的数量
-        vector<set<pair<int, int>>> points_s_list;
-        vector<pair<int, int>> path;
+        int max_risk = 0;  // 可能被感染的区域的最大值
+        int walls = 0;  // 防火墙的数量
+        vector<set<pair<int, int>>> risk_points_list;  // 即将被感染的点
+        vector<pair<int, int>> infected_points;  // 当前被感染的点（风险点最多）
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] != 1 || visited[i][j]) {
                     continue;
                 }
-                set<pair<int, int>> points;
+                set<pair<int, int>> risk_points;
                 vector<pair<int, int>> temp;
-                auto t = dfs(i, j, m, n, visited, temp, points, grid);
-                if (points.size() > maximal) {
-                    maximal = (int) points.size();
-                    res = t;
-                    path = temp;
+                auto t = countWalls(i, j, m, n, visited, temp, risk_points, grid);
+                if (risk_points.size() > max_risk) {
+                    max_risk = (int) risk_points.size();
+                    walls = t;
+                    infected_points = temp;
                 }
-                points_s_list.emplace_back(points);
+                risk_points_list.emplace_back(risk_points);
             }
         }
-        for (const auto &p: path) {
+        for (const auto &p: infected_points) {  // 标记被感染的点，避免重复搜索
             grid[p.first][p.second] = -1;
         }
-        for (auto &s: points_s_list) {
-            if ((int) s.size() == maximal) {
+        for (const auto &s: risk_points_list) {  // 标记所有未被隔离的风险点为"被感染"
+            if ((int) s.size() == max_risk) {
                 continue;
             }
             for (const auto &p: s) {
                 grid[p.first][p.second] = 1;
             }
         }
-        return res;
+        return walls;
     }
 
-    int dfs(int sx, int sy,
-            int m, int n,
-            vector<vector<bool>> &visited,
-            vector<pair<int, int>> &path,
-            set<pair<int, int>> &points,
-            vector<vector<int>> &grid) {
+    int countWalls(int sx,
+                   int sy,
+                   int m,
+                   int n,
+                   vector<vector<bool>> &visited,
+                   vector<pair<int, int>> &infected_points,
+                   set<pair<int, int>> &risk_points,
+                   const vector<vector<int>> &grid) {
+        const int dx[4] = {-1, 0, 1, 0};
+        const int dy[4] = {0, 1, 0, -1};
+        int walls = 0;
+        queue<pair<int, int>> q;
         visited[sx][sy] = true;
-        path.emplace_back(sx, sy);
-        int res = 0;
-        for (int i = 0; i < 4; ++i) {
-            auto nx = sx + dx[i];
-            auto ny = sy + dy[i];
-            if (nx < 0 || ny < 0 || nx >= m || ny >= n) {
-                continue;
-            }
-            if (grid[nx][ny] == 0) {
-                ++res;
-                points.insert({nx, ny});
-            } else if (grid[nx][ny] == 1 && !visited[nx][ny]) {
-                res += dfs(nx, ny, m, n, visited, path, points, grid);
+        q.emplace(sx, sy);
+        infected_points.emplace_back(sx, sy);
+        while (!q.empty()) {
+            auto p = q.front();
+            q.pop();
+            sx = p.first;
+            sy = p.second;
+            for (int i = 0; i < 4; ++i) {
+                auto nx = sx + dx[i];
+                auto ny = sy + dy[i];
+                if (nx < 0 || ny < 0 || nx >= m || ny >= n) {
+                    continue;
+                }
+                if (grid[nx][ny] == 0) {
+                    ++walls;
+                    risk_points.insert({nx, ny});
+                } else if (grid[nx][ny] == 1 && !visited[nx][ny]) {
+                    visited[nx][ny] = true;
+                    q.emplace(nx, ny);
+                    infected_points.emplace_back(nx, ny);
+                }
             }
         }
-        return res;
+        return walls;
     }
-
-    const int dx[4] = {-1, 0, 1, 0};
-    const int dy[4] = {0, 1, 0, -1};
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0749_H
