@@ -18,7 +18,7 @@ public:
         unordered_map<char, int> counter;
         for (const auto &ch: s) {
             ++counter[ch];
-            if (counter[ch] > (n + 1) / 2) {
+            if (counter[ch] > (n + 1) / 2) {  // 会相邻，无解
                 return "";
             }
         }
@@ -29,14 +29,14 @@ public:
             if (counter[ch] == 0) {
                 continue;
             }
-            if (counter[ch] <= n / 2) {
+            if (counter[ch] <= n / 2) {  // 放在奇数位
                 while (counter[ch] && i < n) {
                     res[i] = ch;
                     --counter[ch];
                     i += 2;
                 }
             }
-            while (counter[ch] && j < n) {
+            while (counter[ch] && j < n) {  // 放在偶数位
                 res[j] = ch;
                 --counter[ch];
                 j += 2;
