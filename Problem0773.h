@@ -19,6 +19,7 @@ public:
         auto m = (int) board.size();
         auto n = (int) board[0].size();
         string str;
+        str.reserve(m * n);
         for (const auto &b: board) {  // 转化二维矩阵为字符串（行优先）
             for (const auto &x: b) {
                 str += (char) ('0' + x);
@@ -29,7 +30,6 @@ public:
         const int dy[4] = {1, 0, -1, 0};
         unordered_map<string, int> dist;
         queue<string> q;
-        int res = 0;
         q.emplace(str);
         dist[str] = 0;
         while (!q.empty()) {
