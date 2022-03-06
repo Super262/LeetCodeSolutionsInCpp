@@ -33,7 +33,7 @@ private:
         int max_risk = 0;  // 可能被感染的区域的最大值
         int walls = 0;  // 防火墙的数量
         vector<set<pair<int, int>>> risk_points_list;  // 即将被感染的点
-        vector<pair<int, int>> infected_points;  // 当前被感染的点（风险点最多）
+        vector<pair<int, int>> infected_points;  // 风险点最多的被感染区域
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] != 1 || visited[i][j]) {
@@ -50,7 +50,7 @@ private:
                 risk_points_list.emplace_back(risk_points);
             }
         }
-        for (const auto &p: infected_points) {  // 标记被感染的点，避免重复搜索
+        for (const auto &p: infected_points) {  // 标记被选中的感染区域，避免重复搜索
             grid[p.first][p.second] = -1;
         }
         for (const auto &s: risk_points_list) {  // 标记所有未被隔离的风险点为"被感染"
