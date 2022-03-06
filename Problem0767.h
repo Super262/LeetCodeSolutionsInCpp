@@ -25,7 +25,8 @@ public:
         string res(s);
         int i = 1;  // 先奇数位，再偶数位
         int j = 0;
-        for (char ch = 'a'; ch <= 'z'; ++ch) {
+        for (const auto &item: counter) {
+            auto ch = item.first;
             if (counter[ch] == 0) {
                 continue;
             }
