@@ -12,7 +12,7 @@
 using namespace std;
 
 class Solution {
-    // 贪心算法：对于分段s，当原数组中这段的数字集合与s的数字集合相等时，s最长
+    // 贪心算法：对于有序数组的某个分段s，当原数组中这段的数字集合与s的数字集合相等时，s最长
     // 判断区间a、b元素相同：若x在a中出现，cnt[x]--；若x在b出现，cnt[x]++；我们维护非零元素数量s；s=0，说明{a}={b}
 public:
     int maxChunksToSorted(const vector<int> &a) {
