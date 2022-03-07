@@ -31,7 +31,7 @@ public:
             }
             return a.second > b.second;
         };
-        make_heap(heap.begin(), heap.end(), cmp);  // make_heap默认建立最大堆，注意自定义比较器的实现
+        make_heap(heap.begin(), heap.end(), cmp);  // make_heap默认建立最大堆，注意自定义比较器的实现（相当于less）
         vector<string> res;
         res.reserve(k);
         while (k--) {
