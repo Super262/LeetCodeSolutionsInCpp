@@ -35,8 +35,9 @@ public:
         }
         vector<set<string>> parent_emails(n);  // 集合i对应的邮件地址
         for (int i = 0; i < n; ++i) {
+            auto pid = findRoot(parent, i);
             for (int j = 1; j < accounts[i].size(); ++j) {
-                parent_emails[findRoot(parent, i)].emplace(accounts[i][j]);
+                parent_emails[pid].emplace(accounts[i][j]);
             }
         }
         vector<vector<string>> res;
