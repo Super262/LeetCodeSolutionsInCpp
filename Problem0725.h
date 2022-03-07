@@ -39,7 +39,7 @@ public:
             for (int j = 0; j < length - 1; ++j) {  // 找到最后结点的前驱
                 p = p->next;
             }
-            if (p) {
+            if (p) {  // 细节：别忘记"断链"
                 auto q = p->next;
                 p->next = nullptr;
                 p = q;
