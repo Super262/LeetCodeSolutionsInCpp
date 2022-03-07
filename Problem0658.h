@@ -29,11 +29,11 @@ public:
         auto l = max(it - 1, -1);
         auto r = min(n, it);
         while (r - l - 1 < k) {
-            if (l < 0) {
+            if (l < 0) {  // l已抵达下限
                 ++r;
                 continue;
             }
-            if (r >= n) {
+            if (r >= n) {  // r已抵达上限
                 --l;
                 continue;
             }
