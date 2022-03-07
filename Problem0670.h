@@ -20,7 +20,7 @@ public:
                 continue;
             }
             auto t = i;  // 逆序点
-            for (int j = i + 1; j < (int) str.size(); ++j) {
+            for (auto j = t + 1; j < (int) str.size(); ++j) {
                 if (str[j] < str[t]) {
                     continue;
                 }
