@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 二分 + 双指针
+    // 巧妙做法，直接背诵：二分 + 双指针
 public:
     int smallestDistancePair(vector<int> &nums, int k) {
         sort(nums.begin(), nums.end());
