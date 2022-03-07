@@ -11,18 +11,11 @@
 using namespace std;
 
 class KthLargest {
-private:
-    int limit;
-    priority_queue<int, vector<int>, greater<int>> heap;
-
 public:
     KthLargest(const int k, const vector<int> &nums) {
         limit = k;
         for (const auto &x: nums) {
-            heap.emplace(x);
-            if (heap.size() > limit) {
-                heap.pop();
-            }
+            add(x);
         }
     }
 
@@ -33,6 +26,10 @@ public:
         }
         return heap.top();
     }
+
+private:
+    int limit;
+    priority_queue<int, vector<int>, greater<int>> heap;
 };
 
 /**
