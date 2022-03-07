@@ -19,7 +19,7 @@ public:
         for (const auto &x: positions) {
             auto a = x[0];
             auto b = x[0] + x[1];
-            xs.emplace_back(a * 2);  // 为了让区间中点坐标
+            xs.emplace_back(a * 2);  // 使中点坐标为整数(a+b)
             xs.emplace_back(b * 2);
             xs.emplace_back(a + b);
         }
