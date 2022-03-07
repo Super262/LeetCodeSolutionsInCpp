@@ -16,7 +16,7 @@ class RangeModule {
     // 线段数或Splay是最好的做法，这里使用"有序集合+线性查找"替代
     // https://www.acwing.com/solution/content/39931/
 public:
-    RangeModule() {
+    RangeModule() {  // 初始化，加入2个哨兵
         rs.insert({-INF, -INF});
         rs.insert({INF, INF});
     }
@@ -24,7 +24,7 @@ public:
     void addRange(int left, int right) {
         auto i = rs.lower_bound({left, -INF});  // 找到可能和当前区间相交的区间
         --i;
-        if (i->second < left) {
+        while (i->second < left) {
             ++i;
         }
         if (i->first > right) {  // 无交集，直接插入
@@ -56,7 +56,7 @@ public:
     void removeRange(int left, int right) {
         auto i = rs.lower_bound({left, -INF});  // 找到可能和当前区间相交的区间
         --i;
-        if (i->second < left) {
+        while (i->second < left) {
             ++i;
         }
         if (i->first > right) {  // 无交集，不操作
