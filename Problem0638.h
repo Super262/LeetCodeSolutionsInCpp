@@ -39,7 +39,8 @@ private:
     int dfs(const vector<int> &price,
             const vector<int> &needs,
             const vector<vector<int>> &valid_special,
-            const int n, map<vector<int>, int> &memo) {
+            const int n,
+            map<vector<int>, int> &memo) {
         if (memo.count(needs)) {
             return memo[needs];
         }
