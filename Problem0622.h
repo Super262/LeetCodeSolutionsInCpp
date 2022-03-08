@@ -14,7 +14,8 @@ class MyCircularQueue {
     // 为了区分队满和队空两种情况，我们要求h==t+1表示队满、h==t表示队空
 private:
     vector<int> q;
-    int hh = 0, tt = 0;
+    int hh = 0;
+    int tt = 0;
 
 public:
     MyCircularQueue(int k) {
@@ -26,10 +27,7 @@ public:
             return false;
         }
         q[tt] = value;
-        ++tt;
-        if (tt == (int) q.size()) {
-            tt = 0;
-        }
+        tt = (tt + 1) % ((int) q.size());
         return true;
     }
 
@@ -37,10 +35,7 @@ public:
         if (isEmpty()) {
             return false;
         }
-        ++hh;
-        if (hh == (int) q.size()) {
-            hh = 0;
-        }
+        hh = (hh + 1) % ((int) q.size());
         return true;
     }
 
@@ -56,9 +51,7 @@ public:
             return -1;
         }
         auto t = tt - 1;
-        if (t < 0) {
-            t += (int) q.size();
-        }
+        t = (t + (int) q.size()) % ((int) q.size());
         return q[t];
     }
 
