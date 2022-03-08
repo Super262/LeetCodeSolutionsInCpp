@@ -11,14 +11,14 @@ using namespace std;
 
 class MyCircularQueue {
     // 经典算法，必须掌握
-    // 为了区分队满和队空两种情况，我们要求h==t表示队满、h==t+1表示队空
+    // 为了区分队满和队空两种情况，我们要求h==t+1表示队满、h==t表示队空
 private:
     vector<int> q;
     int hh = 0, tt = 0;
 
 public:
     MyCircularQueue(int k) {
-        q.resize(k + 1);  // h==t+1表示队空，所以存储空间为k+1
+        q.resize(k + 1);  // h==t+1表示队满，所以存储空间为k+1
     }
 
     bool enQueue(int value) {
