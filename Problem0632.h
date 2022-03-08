@@ -27,9 +27,8 @@ public:
             const auto t = heap.top();
             heap.pop();
             auto l = t[0];
-            auto r = maximal;
-            if (r - l < res[1] - res[0]) {
-                res[1] = r;
+            if (maximal - l < res[1] - res[0]) {
+                res[1] = maximal;
                 res[0] = l;
             }
             auto i = t[1];
