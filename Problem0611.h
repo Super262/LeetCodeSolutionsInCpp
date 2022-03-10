@@ -19,7 +19,7 @@ public:
         int res = 0;
         for (int a = 2; a < (int) nums.size(); ++a) {  // 第1条边
             for (int b = a - 1, c = 0; c < b; --b) {  // 第2、3条边
-                while (c < b && nums[c] + nums[b] <= nums[a]) {  // 保证 a + b > c 成立
+                while (c < b && nums[c] + nums[b] <= nums[a]) {  // 保证 b + c >= a 成立
                     ++c;
                 }
                 res += b - c;
