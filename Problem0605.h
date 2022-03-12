@@ -21,6 +21,9 @@ public:
             if ((i == 0 || !flowerbed[i - 1]) && (i + 1 == (int) flowerbed.size() || !flowerbed[i + 1])) {
                 --n;
                 flowerbed[i] = 1;
+                if (n <= 0) {
+                    return true;
+                }
             }
         }
         return n <= 0;
