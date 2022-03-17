@@ -15,14 +15,14 @@ public:
     int nextGreaterElement(int n) {
         auto s = to_string(n);
         auto k = (int) s.size() - 1;
-        while (k && s[k - 1] >= s[k]) {  // 寻找不减序列的末端
+        while (k && s[k - 1] >= s[k]) {  // 寻找递减序列的起点
             --k;
         }
         if (!k) { // 当前数已经是最大数
             return -1;
         }
         auto t = k;
-        while (t + 1 < s.size() && s[t + 1] > s[k - 1]) {  // 在不减序列中找到比s[k-1]大的最小数
+        while (t + 1 < s.size() && s[t + 1] > s[k - 1]) {  // 在递减序列中找到比s[k-1]大的最小数
             ++t;
         }
         swap(s[k - 1], s[t]);
