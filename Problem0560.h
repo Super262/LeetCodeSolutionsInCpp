@@ -16,14 +16,14 @@ public:
     int subarraySum(const vector<int> &nums, int k) {
         int result = 0;
         int prefix = 0;
-        unordered_map<int, int> pre_cnt;
-        pre_cnt[0] = 1;
+        unordered_map<int, int> prefix_cnt;
+        prefix_cnt[0] = 1;
         for (const auto &x: nums) {
             prefix += x;
-            if (pre_cnt[prefix - k]) {
-                result += pre_cnt[prefix - k];
+            if (prefix_cnt[prefix - k]) {
+                result += prefix_cnt[prefix - k];
             }
-            ++pre_cnt[prefix];
+            ++prefix_cnt[prefix];
         }
         return result;
     }
