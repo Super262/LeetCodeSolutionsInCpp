@@ -19,11 +19,11 @@ public:
         const int MOD = 1e9 + 7;
         int dp[m][n][q + 1];
         memset(dp, 0, sizeof dp);
-        for (int i = 0; i < m; ++i) {
+        for (int i = 0; i < m; ++i) {  // 初始化左、右两侧边界点的方案数
             ++dp[i][0][1];
             ++dp[i][n - 1][1];
         }
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < n; ++i) {  // 初始化上、下两侧边界点的方案数
             ++dp[0][i][1];
             ++dp[m - 1][i][1];
         }
