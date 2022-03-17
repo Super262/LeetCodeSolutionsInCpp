@@ -15,9 +15,8 @@ class Solution {
     // 计算几何，求凸包：https://www.acwing.com/solution/content/7451/
 public:
     vector<vector<int>> outerTrees(vector<vector<int>> &trees) {
-        const auto n = (int) trees.size();
-        set<vector<int>> answer;  // set支持vector为值，unordered_set不可以
         sort(trees.begin(), trees.end());  // 双关键字排序
+        const auto n = (int) trees.size();
         vector<vector<int>> stk;
         for (int i = 0; i < n; ++i) {
             while (stk.size() >= 2 && isOuter(stk[stk.size() - 2], stk.back(), trees[i])) {
@@ -25,6 +24,7 @@ public:
             }
             stk.emplace_back(trees[i]);
         }
+        set<vector<int>> answer;  // set支持vector为值，unordered_set不可以
         for (const auto &p: stk) {
             answer.insert(p);
         }
