@@ -20,13 +20,13 @@ public:
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j <= 1; ++j) {
                 for (int k = 0; k <= 2; ++k) {
-                    if (!j) {
+                    if (!j) {  // 在结尾加入A
                         dp[i + 1][j + 1][0] = (int) (((long long) dp[i + 1][j + 1][0] + dp[i][j][k]) % M);
                     }
-                    if (k + 1 <= 2) {
+                    if (k + 1 <= 2) {  // 在结尾加入L
                         dp[i + 1][j][k + 1] = (int) (((long long) dp[i + 1][j][k + 1] + dp[i][j][k]) % M);
                     }
-                    dp[i + 1][j][0] = (int) (((long long) dp[i + 1][j][0] + dp[i][j][k]) % M);
+                    dp[i + 1][j][0] = (int) (((long long) dp[i + 1][j][0] + dp[i][j][k]) % M);  // 在结尾加入P
                 }
             }
         }
