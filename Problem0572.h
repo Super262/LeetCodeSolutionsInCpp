@@ -22,9 +22,8 @@ class Solution {
     // H(root) = (H(root->val) + H(root->left) * P % MOD + H(root->right) * Q % MOD) % MOD;
 public:
     bool isSubtree(TreeNode *root, TreeNode *subRoot) {
-        int t = -1;
         bool answer = false;
-        t = dfs(subRoot, t, answer);
+        auto t = dfs(subRoot, -1, answer);
         if (t == dfs(root, t, answer)) {
             answer = true;
         }
