@@ -13,7 +13,7 @@ using namespace std;
 
 class Solution {
     // 设n的长度为l，n的前半段为m
-    // 枚举时，我们只考虑前半段m即可。脑筋急转弯，结果产生在5个数中：
+    // 枚举时，我们只考虑前半段m即可。脑筋急转弯，结果产生在5个数中
 public:
     string nearestPalindromic(const string &n) {
         auto length = (int) n.size();
