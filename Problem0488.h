@@ -33,7 +33,7 @@ private:
         if (prev_state.count(key)) {
             return prev_state[key];
         }
-        int answer = INF;
+        auto answer = INF;
         for (int i = 0; i < hand.size(); ++i) {
             for (int j = 0; j <= board.size(); ++j) {  // 尝试放置球在board[j-1]和board[j]之间
                 bool selected = false;
@@ -56,7 +56,7 @@ private:
         return answer;
     }
 
-    void prune(string &s, int x) {  // 删除3个以上的连续字符
+    void prune(string &s, int x) {  // 删除以s[x]为中心的3个以上的连续字符
         while (x >= 0 && x < s.size()) {
             char c = s[x];
             auto l = x, r = x;
