@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0517_H
 
 #include <vector>
+#include <numeric>
 
 using namespace std;
 
@@ -13,10 +14,7 @@ class Solution {
     // 贪心算法，理解背诵：https://www.acwing.com/solution/content/413/
 public:
     int findMinMoves(const vector<int> &machines) {
-        int total = 0;
-        for (const auto &x: machines) {
-            total += x;
-        }
+        auto total = accumulate(machines.begin(), machines.end(), 0);
         auto n = (int) machines.size();
         if (total % n) {
             return -1;
