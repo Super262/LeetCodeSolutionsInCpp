@@ -16,8 +16,8 @@ public:
     vector<int> nextGreaterElements(vector<int> &nums) {
         const auto n = (int) nums.size();
         vector<int> res(n);
-        nums.insert(nums.end(), nums.begin(), nums.end());
         stack<int> stk;
+        nums.insert(nums.end(), nums.begin(), nums.end());
         for (int i = (int) nums.size() - 1; i >= 0; --i) {
             auto x = nums[i];
             while (!stk.empty() && stk.top() <= x) {
