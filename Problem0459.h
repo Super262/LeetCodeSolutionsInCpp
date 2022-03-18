@@ -15,22 +15,22 @@ class Solution {
 public:
     bool repeatedSubstringPattern(const string &s) {
         const auto n = (int) s.size();
-        int next_start[n];
-        next_start[0] = 0;
+        int fail[n];
         int l = 0, r = 1;
+        fail[l] = 0;
         while (r < n) {
             if (s[l] == s[r]) {
                 ++l;
-                next_start[r] = l;
+                fail[r] = l;
                 ++r;
             } else if (l) {
-                l = next_start[l - 1];
+                l = fail[l - 1];
             } else {
-                next_start[r] = 0;
+                fail[r] = 0;
                 ++r;
             }
         }
-        auto t = (n - 1) - next_start[n - 1] + 1;
+        auto t = (n - 1) - fail[n - 1] + 1;
         return t < n && n % t == 0;  // 周期不能等于原串：t < n
     }
 };
