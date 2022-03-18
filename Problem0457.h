@@ -22,7 +22,7 @@ public:
                 continue;
             }
             auto j = st;
-            int direction = nums[j] > 0;  // 同向环，需确定方向
+            auto direction = nums[j] > 0;  // 同向环，需确定方向
             auto label = BASE + st + 1;  // 当前遍历阶段的访问标记
             int last_steps;  // 上一次移动的步数
             do {
