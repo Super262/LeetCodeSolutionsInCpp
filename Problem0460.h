@@ -117,8 +117,11 @@ private:
         }
 
         ~Block() {
-            delete head;
-            delete tail;
+            while (head) {
+                auto t = head->right;
+                delete head;
+                head = t;
+            }
         }
     };
 
