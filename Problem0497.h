@@ -11,7 +11,7 @@ using namespace std;
 
 class Solution {
     // 预处理，使概率和面积成正比：把面积为s的矩形看作是数轴上长度为s的线段
-    // 随机数：先随机生成矩形面积的前缀和（随机数为前缀和可以保证等概率），二分查找到矩形编号
+    // 随机数：先随机生成前缀和（随机数为前缀和可以保证等概率），二分查找到目标矩形；在目标矩形内随机返回一个点
 public:
     Solution(const vector<vector<int>> &rects) {
         this->rects = rects;
