@@ -25,8 +25,8 @@ public:
         if (next_zero_idx.count(t)) {  // 测试位置x
             t = next_zero_idx[t];
         }
-        // 测试后继位置k-1
-        if (next_zero_idx.count(k - 1)) { // k-1位置的数是1
+        // 测试可能的后继位置k-1
+        if (next_zero_idx.count(k - 1)) { // k-1位置被占用
             next_zero_idx[x] = next_zero_idx[k - 1];
             next_zero_idx.erase(k - 1);
         } else {
