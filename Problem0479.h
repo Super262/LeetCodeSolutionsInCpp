@@ -23,7 +23,7 @@ public:
             auto a = to_string(i);
             auto b = string(a.rbegin(), a.rend());
             auto num = stoll(a + b);
-            for (long long j = f; j >= num / j; --j) {
+            for (auto j = f; j >= num / j; --j) {
                 if (num % j) {
                     continue;
                 }
