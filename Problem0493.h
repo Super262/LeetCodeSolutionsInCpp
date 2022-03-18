@@ -9,16 +9,22 @@
 
 using namespace std;
 
-class Problem0493 {
+class Solution {
+public:
+    int reversePairs(vector<int> &nums) {
+        const auto n = (int) nums.size();
+        int temp[n];
+        return mergeSort(nums, 0, n - 1, temp);
+    }
+
 private:
-    int merseSort(vector<int> &nums, const int left, const int right, int temp[]) {
+    int mergeSort(vector<int> &nums, const int left, const int right, int temp[]) {
         if (left >= right) {
             return 0;
         }
         const auto mid = left + (right - left) / 2;
-        int result = merseSort(nums, left, mid, temp) + merseSort(nums, mid + 1, right, temp);
-
-        int l = left, r = mid + 1;
+        auto result = mergeSort(nums, left, mid, temp) + mergeSort(nums, mid + 1, right, temp);
+        auto l = left, r = mid + 1;
         //   以下2种写法均可
         // 左计数
         while (r <= right) {
@@ -39,7 +45,7 @@ private:
 
         // 归并排序
         l = left, r = mid + 1;
-        int tt = left;
+        auto tt = left;
         while (l <= mid && r <= right) {
             if (nums[l] <= nums[r]) {
                 temp[tt++] = nums[l++];
@@ -57,12 +63,6 @@ private:
             nums[i] = temp[i];
         }
         return result;
-    }
-
-    int reversePairs(vector<int> &nums) {
-        const int n = (int) nums.size();
-        int temp[n];
-        return merseSort(nums, 0, n - 1, temp);
     }
 };
 
