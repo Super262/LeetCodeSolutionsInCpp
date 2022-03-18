@@ -37,12 +37,12 @@ public:
             if (!res.empty()) {  // 分离新分组
                 res.push_back('-');
             }
-            for (int cnt = 0; cnt < k && i < s.size();) {
-                if (s[i] != '-') {
-                    res.push_back((char) toupper(s[i]));
-                    ++cnt;
+            for (int cnt = 0; cnt < k && i < s.size(); ++i) {
+                if (s[i] == '-') {
+                    continue;
                 }
-                ++i;
+                res.push_back((char) toupper(s[i]));
+                ++cnt;
             }
         }
         return res;
