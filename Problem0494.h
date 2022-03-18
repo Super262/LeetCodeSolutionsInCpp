@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0494_H
 
 #include <vector>
+#include <numeric>
 #include <cstring>
 
 using namespace std;
@@ -16,11 +17,7 @@ class Solution {
     // 如果 sum - target 为负数或奇数，无解
 public:
     int findTargetSumWays(const vector<int> &nums, int target) {
-        const auto n = (int) nums.size();
-        int sum = 0;
-        for (const auto &x: nums) {
-            sum += x;
-        }
+        auto sum = accumulate(nums.begin(), nums.end(), 0);
         if (sum - target < 0 || (sum - target) % 2) {
             return 0;
         }
