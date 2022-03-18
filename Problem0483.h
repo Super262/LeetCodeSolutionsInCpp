@@ -18,13 +18,13 @@ public:
             unsigned long long l = 2, r = num;  // 注意：l等于2，千万不要写成1
             while (l < r) {
                 auto mid = l + (r - l) / 2;
-                if (CheckBase(num, mid, k) >= 0) {
+                if (checkBase(num, mid, k) >= 0) {
                     r = mid;
                 } else {
                     l = mid + 1;
                 }
             }
-            if (CheckBase(num, r, k) == 0) {
+            if (checkBase(num, r, k) == 0) {
                 return to_string(r);
             }
         }
@@ -32,10 +32,10 @@ public:
     }
 
 private:
-    int CheckBase(unsigned long long n, unsigned long long base, int k) {  // 检查由k个1组成的base进制数字是否为n
+    int checkBase(unsigned long long n, unsigned long long base, int k) {  // 检查由k个1组成的base进制数字是否为n
         unsigned long long res = 0;
         for (int i = 0; i < k; ++i) {
-            if (res > (n - 1) / base) {
+            if (res > (n - 1) / base) { // 测试 res * base + 1 > n，避免溢出
                 return 1;
             }
             res = res * base + 1;
