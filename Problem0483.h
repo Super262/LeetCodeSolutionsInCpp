@@ -14,7 +14,7 @@ class Solution {
 public:
     string smallestGoodBase(const string &n) {
         const auto num = stoull(n);
-        for (int k = 63; k > 0; --k) {
+        for (int k = 63; k > 0; --k) {  // 要求最小的base，所以k递减
             unsigned long long l = 2, r = num;  // 注意：l等于2，千万不要写成1
             while (l < r) {
                 auto mid = l + (r - l) / 2;
