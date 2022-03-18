@@ -15,8 +15,8 @@ public:
         for (auto x = num; x > 0; x >>= 1) {
             ++ones_cnt;
         }
-        // 将[0:ones_cnt-1]取反，忽略最高位（取反后为0）；用long long避免溢出
-        return (int) (~num & ((1ll << ones_cnt) - 1));
+        // ~num的二进制包含前导1，因为num有前导0：通过XOR去掉前导1
+        return (int) (~num & ((1ll << ones_cnt) - 1));  // 用long long避免溢出
     }
 };
 
