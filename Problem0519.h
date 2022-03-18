@@ -14,9 +14,9 @@ class Solution {
     // 映射二维到一维，利用Map保存1的位置和它的替换位置：https://www.acwing.com/solution/content/24184/
 public:
     Solution(int m, int n) {
-        r = m;
-        c = n;
-        k = r * c;
+        this->m = m;
+        this->n = n;
+        k = m * n;
     }
 
     vector<int> flip() {
@@ -33,16 +33,16 @@ public:
             next_zero_idx[x] = k - 1;
         }
         --k;
-        return {t / c, t % c};
+        return {t / n, t % n};
     }
 
     void reset() {
-        k = r * c;
+        k = m * n;
         next_zero_idx.clear();
     }
 
 private:
-    int r, c, k;
+    int m, n, k;
     unordered_map<int, int> next_zero_idx;  // (x,nx)：x位置是1，nx是0
 };
 
