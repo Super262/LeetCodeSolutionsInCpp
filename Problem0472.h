@@ -21,7 +21,7 @@ public:
         for (const auto &w: words) {
             unsigned long long hash = 0;
             for (const auto &ch: w) {
-                hash = hash * P + (ch - 'a') + OFFSET;
+                hash = hash * P + ch;
             }
             dict.insert(hash);
         }
@@ -35,7 +35,7 @@ public:
     }
 
 private:
-    const unsigned long long P = 131, OFFSET = 128;
+    const unsigned long long P = 131;
 
     bool isDividable(const string &s, const unordered_set<unsigned long long> &dict) {
         const auto n = (int) s.size();
@@ -48,7 +48,7 @@ private:
             }
             unsigned long long hash = 0;
             for (auto j = i + 1; j <= n; ++j) {
-                hash = hash * P + (s[j - 1] - 'a') + OFFSET;
+                hash = hash * P + s[j - 1];
                 if (!dict.count(hash)) {
                     continue;
                 }
