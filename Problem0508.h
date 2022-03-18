@@ -42,7 +42,7 @@ private:
         if (!root) {
             return 0;
         }
-        int sum = dfs(root->left, freq, max_freq) + dfs(root->right, freq, max_freq);
+        auto sum = dfs(root->left, freq, max_freq) + dfs(root->right, freq, max_freq);
         sum += root->val;
         ++freq[sum];
         if (freq[sum] > max_freq) {
