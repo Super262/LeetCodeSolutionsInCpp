@@ -32,7 +32,7 @@ public:
 
 private:
     bool dfs(int s_idx, int length, int target, int e_cnt, const vector<int> &nums, bool used[]) {
-        if (e_cnt == 4) {
+        if (e_cnt > 4) {
             return true;
         }
         if (length == target) {
