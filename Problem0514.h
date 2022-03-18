@@ -16,7 +16,9 @@ public:
     int findRotateSteps(const string &ring, const string &key) {
         int dp[key.size() + 1][ring.size()];
         memset(dp, 0x3f, sizeof dp);
-        dp[0][0] = 0;
+        for (int j = 0; j < ring.size(); ++j) {  // 初始化
+            dp[0][j] = j;
+        }
         for (int i = 1; i <= key.size(); ++i) {
             for (int j = 0; j < ring.size(); ++j) {
                 if (key[i - 1] != ring[j]) {
