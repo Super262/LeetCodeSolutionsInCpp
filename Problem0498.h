@@ -12,12 +12,12 @@ using namespace std;
 class Solution {
 public:
     vector<int> findDiagonalOrder(const vector<vector<int>> &mat) {
-        vector<int> result;
         if (mat.empty() || mat[0].empty()) {
-            return result;
+            return {};
         }
         const auto n = (int) mat.size();
         const auto m = (int) mat[0].size();
+        vector<int> result;
         for (int i = 0; i < n + m - 1; ++i) {
             if (i % 2) {
                 for (auto j = max(0, i - m + 1); j <= min(i, n - 1); ++j) {
