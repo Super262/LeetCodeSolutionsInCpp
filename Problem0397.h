@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0397_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0397_H
 
+#include <iostream>
+
+using namespace std;
+
 class Solution {
 public:
     int integerReplacement(const long long &n) {
