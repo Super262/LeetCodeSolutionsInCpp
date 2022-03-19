@@ -19,27 +19,27 @@ public:
         int res = 0;
         for (int t = 1; t <= 26; ++t) {
             counter.clear();
-            int chCnt = 0;  // 字符种类数
-            int validCnt = 0; // 字符频率不少于k的字符种类数
+            int ch_cnt = 0;  // 字符种类数
+            int valid_cnt = 0; // 字符频率不少于k的字符种类数
             for (int l = 0, r = 0; r < s.size(); ++r) {
                 if (counter[s[r]] == 0) {  // 新字符
-                    ++chCnt;
+                    ++ch_cnt;
                 }
                 ++counter[s[r]];
                 if (counter[s[r]] == k) {  // 新字符频率刚好为k
-                    ++validCnt;
+                    ++valid_cnt;
                 }
-                while (chCnt > t) {
+                while (ch_cnt > t) {
                     if (counter[s[l]] == k) {  // 待删除字符频率刚好为k
-                        --validCnt;
+                        --valid_cnt;
                     }
                     --counter[s[l]];
                     if (counter[s[l]] == 0) {
-                        --chCnt;
+                        --ch_cnt;
                     }
                     ++l;
                 }
-                if (chCnt == validCnt) {  // 满足题意
+                if (ch_cnt == valid_cnt) {  // 满足题意
                     res = max(res, r - l + 1);
                 }
             }
