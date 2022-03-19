@@ -12,8 +12,6 @@
 using namespace std;
 
 class Solution {
-private:
-    unordered_map<int, vector<int>> num2Idx;
 public:
     Solution(const vector<int> &nums) {
         for (int i = 0; i < nums.size(); ++i) {
@@ -24,6 +22,9 @@ public:
     int pick(const int &target) {
         return num2Idx[target][random() % num2Idx[target].size()];
     }
+
+private:
+    unordered_map<int, vector<int>> num2Idx;
 };
 
 /**
