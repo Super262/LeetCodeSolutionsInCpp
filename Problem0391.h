@@ -29,35 +29,35 @@ public:
             while (ed < n && lines[ed].x == lines[st].x) {
                 ++ed;
             }
-            vector<vector<int>> segsLeft;
-            vector<vector<int>> segsRight;
+            vector<pair<int, int>> left_segs;
+            vector<pair<int, int>> right_segs;
             for (int i = st; i < ed; ++i) {
-                if (lines[i].isLeft) {  // 按左、右两部分分别合并线段
-                    if (!mergeSegs(segsLeft, lines[i])) {
+                if (lines[i].is_left) {  // 按左、右两部分分别合并线段
+                    if (!mergeSegs(left_segs, lines[i])) {
                         return false;
                     }
                 } else {
-                    if (!mergeSegs(segsRight, lines[i])) {
+                    if (!mergeSegs(right_segs, lines[i])) {
                         return false;
                     }
                 }
             }
             if (st > 0 && ed < n) {  // 该区间不包含大矩形的边缘
-                if (segsRight.size() != segsLeft.size()) {
+                if (right_segs.size() != left_segs.size()) {
                     return false;
                 }
-                const int m = (int) segsLeft.size();
+                const auto m = (int) left_segs.size();
                 for (int i = 0; i < m; ++i) {
-                    if (segsLeft[i] != segsRight[i]) {
+                    if (left_segs[i] != right_segs[i]) {
                         return false;
                     }
                 }
             } else if (st == 0) {  // 该区间包含大矩形左边界
-                if (segsLeft.size() != 1 || !segsRight.empty()) {
+                if (left_segs.size() != 1 || !right_segs.empty()) {
                     return false;
                 }
             } else {  // 该区间包含大矩形右边界
-                if (!segsLeft.empty() || segsRight.size() != 1) {
+                if (!left_segs.empty() || right_segs.size() != 1) {
                     return false;
                 }
             }
@@ -71,13 +71,13 @@ private:
         int x;
         int y1;
         int y2;
-        bool isLeft;
+        bool is_left;
 
-        Line(int x, int y1, int y2, bool isLeft) {
+        Line(int x, int y1, int y2, bool is_left) {
             this->x = x;
             this->y1 = y1;
             this->y2 = y2;
-            this->isLeft = isLeft;
+            this->is_left = is_left;
         }
 
         bool operator<(const Line &b) const {
@@ -88,17 +88,17 @@ private:
         }
     };
 
-    bool mergeSegs(vector<vector<int>> &segs, Line &line) {
-        vector<int> temp = {line.y1, line.y2};
+    bool mergeSegs(vector<pair<int, int>> &segs, const Line &line) {
+        pair<int, int> temp = {line.y1, line.y2};
         if (segs.empty()) {
             segs.emplace_back(temp);
             return true;
         }
         auto &last = segs[segs.size() - 1];
-        if (last[1] > temp[0]) { // 交错
+        if (last.second > temp.first) { // 交错
             return false;
-        } else if (last[1] == temp[0]) {  // 首位可连接
-            temp[0] = last[0];
+        } else if (last.second == temp.first) {  // 首尾可连接
+            temp.first = last.first;
             segs.pop_back();
         }
         segs.emplace_back(temp);  // 其他情况
