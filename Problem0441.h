@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 等差数列的和：x*(x+1)/2=n，求解x
 public:
     int arrangeCoins(int n) {
         return (int) ((sqrt(1ll + 8ll * n) - 1) / 2);
