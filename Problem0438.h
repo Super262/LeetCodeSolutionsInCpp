@@ -19,7 +19,7 @@ public:
         for (const auto &x: p) {
             ++counter[x];
         }
-        const int type_cnt = (int) counter.size();
+        const auto type_cnt = (int) counter.size();
         vector<int> result;
         for (int l = 0, r = 0, current_cnt = 0; r < s.size(); ++r) {
             --counter[s[r]];
