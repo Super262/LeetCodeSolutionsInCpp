@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0392_H
 
 #include <cstring>
+#include <string>
 
 using namespace std;
 
