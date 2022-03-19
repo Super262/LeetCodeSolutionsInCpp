@@ -5,6 +5,12 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0432_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0432_H
 
+#include <string>
+#include <unordered_set>
+#include <unordered_map>
+
+using namespace std;
+
 class AllOne {
     // 双链表保存key的频率：1 -> 2 -> 3 -> ...
 public:
@@ -63,7 +69,7 @@ private:
         Node *prev;
         Node *next;
         int value;
-        unordered_set <string> pool;
+        unordered_set<string> pool;
 
         Node(int v) {
             value = v;
@@ -74,7 +80,6 @@ private:
 
     Node *head;
     Node *tail;
-
     unordered_map<string, Node *> storage;
 
     Node *addToNext(Node *node, const string &key, int val) {
@@ -111,7 +116,6 @@ private:
         node->prev = nullptr;
         node->next = nullptr;
     }
-
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0432_H
