@@ -8,6 +8,7 @@
 #include <vector>
 #include <unordered_map>
 #include <queue>
+#include <cstring>
 
 using namespace std;
 
@@ -23,7 +24,8 @@ public:
         }
         queue<pair<int, int>> q;  // q 存放当前节点索引和上一步的步数
         // visited[i][k] = true 表示索引为i的石子在上次步数为时被访问
-        vector<vector<bool>> visited(n, vector<bool>(n, false));
+        bool visited[n][n];
+        memset(visited, 0, sizeof visited);
         q.emplace(0, 0);
         visited[0][0] = true;
         while (!q.empty()) {
