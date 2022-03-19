@@ -38,7 +38,9 @@ public:
             cur->next = head->next;
             head->next = cur;
         }
-        return head->next;
+        auto res = head->next;
+        delete head;
+        return res;
     }
 
 private:
