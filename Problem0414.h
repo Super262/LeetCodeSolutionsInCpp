@@ -18,26 +18,26 @@ public:
         if (nums.size() == 2) {
             return max(nums[0], nums[1]);
         }
-        long long a = INT_MIN - 1ll;
-        long long b = INT_MIN - 1ll;
-        long long c = INT_MIN - 1ll;
-        int uniqueCnt = 0;
+        auto a = INT_MIN - 1ll;
+        auto b = INT_MIN - 1ll;
+        auto c = INT_MIN - 1ll;
+        int unique_cnt = 0;
         for (int x: nums) {
             if (x > a) {
                 c = b;
                 b = a;
                 a = x;
-                ++uniqueCnt;
+                ++unique_cnt;
             } else if (x < a && x > b) {
                 c = b;
                 b = x;
-                ++uniqueCnt;
+                ++unique_cnt;
             } else if (x < b && x > c) {
                 c = x;
-                ++uniqueCnt;
+                ++unique_cnt;
             }
         }
-        if (uniqueCnt < 3) {
+        if (unique_cnt < 3) {
             return (int) a;
         }
         return (int) c;
