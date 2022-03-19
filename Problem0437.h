@@ -39,7 +39,7 @@ private:
             return;
         }
         current += root->val;
-        result += counter[current - target];  // 采用类似前缀和的计算方式
+        result += counter.count(current - target) ? counter[current - target] : 0;  // 采用类似前缀和的计算方式
         ++counter[current];
         dfs(root->left, current, target, result, counter);
         dfs(root->right, current, target, result, counter);
