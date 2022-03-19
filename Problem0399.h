@@ -16,12 +16,14 @@ class Solution {
     // 1. 转化为图论问题：变量为点，比值（乘法）为边
     // 2. Floyd 求解最短距离
 public:
-    vector<double> calcEquation(vector<vector<string>> &equations,
-                                vector<double> &values,
-                                vector<vector<string>> &queries) {
+    vector<double> calcEquation(const vector<vector<string>> &equations,
+                                const vector<double> &values,
+                                const vector<vector<string>> &queries) {
         unordered_set<string> vertices;
         unordered_map<string, unordered_map<string, double>> dist;
-        const int n = (int) equations.size();
+        const auto n = (int) equations.size();
+        vertices.reserve(n * 2);
+        dist.reserve(n * 2);
         for (int i = 0; i < n; ++i) {
             auto &edge = equations[i];
             auto &d = values[i];
@@ -41,6 +43,7 @@ public:
             }
         }
         vector<double> res;
+        res.reserve(queries.size());
         for (const auto &q: queries) {
             if (!vertices.count(q[0]) || !vertices.count(q[1]) || !dist[q[0]].count(q[1])) {
                 res.emplace_back(-1);
