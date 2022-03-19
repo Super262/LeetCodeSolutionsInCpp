@@ -22,7 +22,7 @@ public:
         auto b = INT_MIN - 1ll;
         auto c = INT_MIN - 1ll;
         int unique_cnt = 0;
-        for (int x: nums) {
+        for (const auto &x: nums) {
             if (x > a) {
                 c = b;
                 b = a;
