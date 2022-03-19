@@ -63,11 +63,11 @@ private:
         if (sum == 0 || sum == m * n) {
             return new Node(sum > 0, true);
         }
-        auto topLeft = dfs(x1, y1, x1 + m / 2 - 1, y1 + n / 2 - 1, prefix);
-        auto topRight = dfs(x1, y1 + n / 2, x1 + m / 2 - 1, y2, prefix);
-        auto bottomLeft = dfs(x1 + m / 2, y1, x2, y1 + n / 2 - 1, prefix);
-        auto bottomRight = dfs(x1 + m / 2, y1 + n / 2, x2, y2, prefix);
-        return new Node(false, false, topLeft, topRight, bottomLeft, bottomRight);
+        auto top_left = dfs(x1, y1, x1 + m / 2 - 1, y1 + n / 2 - 1, prefix);
+        auto top_right = dfs(x1, y1 + n / 2, x1 + m / 2 - 1, y2, prefix);
+        auto bottom_left = dfs(x1 + m / 2, y1, x2, y1 + n / 2 - 1, prefix);
+        auto bottom_right = dfs(x1 + m / 2, y1 + n / 2, x2, y2, prefix);
+        return new Node(false, false, top_left, top_right, bottom_left, bottom_right);
     }
 
     vector<vector<int>> getPrefix(const vector<vector<int>> &grid) {
