@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <cstring>
+#include <numeric>
 
 using namespace std;
 
@@ -14,11 +15,7 @@ class Solution {
     // 转化为背包问题：是否能装满容量为m / 2的背包
 public:
     bool canPartition(const vector<int> &nums) {
-        const auto n = (int) nums.size();
-        int m = 0;
-        for (const auto &x: nums) {
-            m += x;
-        }
+        auto m = accumulate(nums.begin(), nums.end(), 0);
         if (m % 2) {
             return false;
         }
