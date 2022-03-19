@@ -12,24 +12,26 @@ using namespace std;
 
 class Solution {
     // 尽可能减少对哈希表的查询操作，避免超时
-    // 理解动态规划的思路，积累经验
+    // 理解动态规划的思路，积累经验：f[i][d]表示以nums[i]结尾的、差值为d的子序列的个数（包括长度为2的）
+    // https://www.acwing.com/solution/content/4589/
 public:
     int numberOfArithmeticSlices(const vector<int> &nums) {
         auto n = (int) nums.size();
         vector<unordered_map<long long, int>> f(n);
         int res = 0;
-        for (int i = 0; i < n; ++i) {
-            for (int k = 0; k < i; ++k) {
-                auto d = (long long) nums[i] - nums[k];
-                auto it = f[k].find(d);
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                auto d = (long long) nums[i] - nums[j];
+                auto it = f[j].find(d);
                 int t = 0;
-                if (it != f[k].end()) {
+                if (it != f[j].end()) {
                     t = it->second;
-                    res += t;
                 }
                 f[i][d] += t + 1;
+                res += t + 1;
             }
         }
+        res -= n * (n - 1) / 2;  // 减去长度为2的子序列
         return res;
     }
 };
