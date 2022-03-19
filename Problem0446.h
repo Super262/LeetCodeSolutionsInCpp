@@ -16,18 +16,18 @@ class Solution {
 public:
     int numberOfArithmeticSlices(const vector<int> &nums) {
         auto n = (int) nums.size();
-        vector<unordered_map<long long, int>> dp(n);
+        vector<unordered_map<long long, int>> f(n);
         int res = 0;
         for (int i = 0; i < n; ++i) {
             for (int k = 0; k < i; ++k) {
                 auto d = (long long) nums[i] - nums[k];
-                auto it = dp[k].find(d);
+                auto it = f[k].find(d);
                 int t = 0;
-                if (it != dp[k].end()) {
+                if (it != f[k].end()) {
                     t = it->second;
                     res += t;
                 }
-                dp[i][d] += t + 1;
+                f[i][d] += t + 1;
             }
         }
         return res;
