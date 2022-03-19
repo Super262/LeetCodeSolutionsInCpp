@@ -5,6 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0433_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0433_H
 
+#include <string>
 #include <unordered_map>
 #include <unordered_set>
 #include <queue>
@@ -14,10 +15,7 @@ using namespace std;
 class Solution {
 public:
     int minMutation(const string &start, const string &end, const vector<string> &bank) {
-        unordered_set<string> dict;
-        for (const auto &s: bank) {
-            dict.insert(s);
-        }
+        unordered_set<string> dict(bank.begin(), bank.end());
         if (dict.count(end) == 0) {
             return -1;
         }
