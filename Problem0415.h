@@ -10,23 +10,25 @@
 
 using namespace std;
 
-class Problem0415 {
+class Solution {
 public:
-    string addStrings(string num1, string num2) {
+    string addStrings(const string &num1, const string &num2) {
         vector<int> temp;
-        reverse(num1.begin(), num1.end());
-        reverse(num2.begin(), num2.end());
-        for (int i = 0; i < num1.size() || i < num2.size(); ++i) {
+        temp.reserve(max(num1.size(), num2.size()));
+        for (auto i = num1.rbegin(), j = num2.rbegin(); i != num1.rend() || j != num2.rend();) {
             int t = 0;
-            if (i < num1.size()) {
-                t += (num1[i] - '0');
+            if (i != num1.rend()) {
+                t += (*i - '0');
+                ++i;
             }
-            if (i < num2.size()) {
-                t += (num2[i] - '0');
+            if (j != num2.rend()) {
+                t += (*j - '0');
+                ++j;
             }
             temp.emplace_back(t);
         }
         string result;
+        result.reserve(temp.size());
         int t = 0;
         for (auto d: temp) {
             d += t;
