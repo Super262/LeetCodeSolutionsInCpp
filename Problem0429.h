@@ -30,10 +30,10 @@ public:
 class Solution {
 public:
     vector<vector<int>> levelOrder(Node *root) {
-        vector<vector<int>> res;
         if (!root) {
-            return res;
+            return {};
         }
+        vector<vector<int>> res;
         queue<Node *> q;
         q.emplace(root);
         while (!q.empty()) {
