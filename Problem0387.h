@@ -9,6 +9,8 @@
 #include <vector>
 #include <unordered_map>
 
+using namespace std;
+
 class Solution {
 public:
     int firstUniqChar(const string &s) {
