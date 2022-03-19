@@ -2,8 +2,8 @@
 // Created by Fengwei Zhang on 11/27/21.
 //
 
-#ifndef LEETCODESOLUTIONSINCPP_PROBLEM0418_H
-#define LEETCODESOLUTIONSINCPP_PROBLEM0418_H
+#ifndef LEETCODESOLUTIONSINCPP_PROBLEM0419_H
+#define LEETCODESOLUTIONSINCPP_PROBLEM0419_H
 
 #include <vector>
 
@@ -13,7 +13,7 @@ class Solution {
     // 要求O(1)额外空间：只统计左上角位置
     // 背诵代码！
 public:
-    int countBattleships(cosnt vector<vector<char>> &board) {
+    int countBattleships(const vector<vector<char>> &board) {
         int res = 0;
         for (int i = 0; i < board.size(); ++i) {
             for (int j = 0; j < board[0].size(); ++j) {
@@ -32,4 +32,4 @@ public:
     }
 };
 
-#endif //LEETCODESOLUTIONSINCPP_PROBLEM0418_H
+#endif //LEETCODESOLUTIONSINCPP_PROBLEM0419_H
