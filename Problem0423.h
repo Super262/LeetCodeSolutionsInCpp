@@ -41,7 +41,7 @@ public:
     }
 
 private:
-    bool digitExists(int freq[], const string &d) {
+    bool digitExists(const int freq[], const string &d) {
         for (const auto &ch: d) {
             if (freq[ch - 'a'] == 0) {
                 return false;
