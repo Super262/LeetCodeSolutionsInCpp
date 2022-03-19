@@ -14,7 +14,7 @@ public:
     int findNthDigit(long long n) {
         long long k = 1;  // n是k位数
         long long t = 9;  // k位数共t个
-        long long s = 1;  // 最小的k位数是t
+        long long s = 1;  // 最小的k位数是s
         while (n > k * t) {
             n -= k * t;
             ++k;
