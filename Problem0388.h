@@ -16,23 +16,23 @@ class Solution {
 public:
     int lengthLongestPath(const string &input) {
         int result = 0;
-        int currentLength = 0;  // 当前所有目录名、文件名长度之和
-        stack<int> levelStk;  // 保存所有层级的单调上升栈
-        stack<int> lengthStk; // 保存每个层级对应的文件名或目录名的长度
+        int cur_len = 0;  // 当前所有目录名、文件名长度之和
+        stack<int> level_stk;  // 保存所有层级的单调上升栈
+        stack<int> length_stk; // 保存每个层级对应的文件名或目录名的长度
         int i = 0;
         while (i < (int) input.size()) {
             auto level = getNextLevel(input, i);  // 根据开头的"\t"数量确定层级
             auto name = getNextName(input, i);  // 获取文件名
-            while (!levelStk.empty() && levelStk.top() >= level) {
-                currentLength -= lengthStk.top();
-                levelStk.pop();
-                lengthStk.pop();
+            while (!level_stk.empty() && level_stk.top() >= level) {
+                cur_len -= length_stk.top();
+                level_stk.pop();
+                length_stk.pop();
             }
-            levelStk.push(level);
-            lengthStk.push((int) name.size());
-            currentLength += (int) name.size();
+            level_stk.push(level);
+            length_stk.push((int) name.size());
+            cur_len += (int) name.size();
             if (isFile(name)) {
-                result = max(result, currentLength + level);
+                result = max(result, cur_len + level);
             }
         }
         return result;
