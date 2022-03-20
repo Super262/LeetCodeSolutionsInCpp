@@ -19,18 +19,18 @@ public:
     // 3. 贪心：奇数位置放大于median的数，剩余位置依次摆放等于median的数、小于median的数
     void wiggleSort(vector<int> &nums) {
         const auto n = (int) nums.size();
-        auto midPtr = nums.begin() + n / 2;
-        nth_element(nums.begin(), midPtr, nums.end());
-        auto mid = *midPtr;
+        auto mid_ptr = nums.begin() + n / 2;
+        nth_element(nums.begin(), mid_ptr, nums.end());
+        auto median = *mid_ptr;
         int i = 0;
         int j = 0;
         int k = n - 1;
         while (j <= k) {
-            if (nums[func(j, n)] > mid) {
+            if (nums[func(j, n)] > median) {
                 swap(nums[func(i, n)], nums[func(j, n)]);
                 ++i;
                 ++j;
-            } else if (nums[func(j, n)] < mid) {
+            } else if (nums[func(j, n)] < median) {
                 swap(nums[func(j, n)], nums[func(k, n)]);
                 --k;
             } else {
