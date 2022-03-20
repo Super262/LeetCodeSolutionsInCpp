@@ -18,13 +18,13 @@ class Solution {
     //   如果nums1不能被读入内存，则将num1、nums2外部排序（External Sorting），采用双指针算法。
 public:
     vector<int> intersect(const vector<int> &nums1, const vector<int> &nums2) {
-        unordered_multiset<int> allNums(nums1.begin(), nums1.end());
+        unordered_multiset<int> all_nums(nums1.begin(), nums1.end());
         vector<int> res;
         for (const auto &x: nums2) {
-            if (!allNums.count(x)) {
+            if (!all_nums.count(x)) {
                 continue;
             }
-            allNums.erase(allNums.find(x));
+            all_nums.erase(all_nums.find(x));
             res.push_back(x);
         }
         return res;
