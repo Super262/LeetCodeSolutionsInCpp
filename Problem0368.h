@@ -11,14 +11,13 @@
 using namespace std;
 
 class Solution {
-    // 转化成LIS问题
+    // 转化成LIS问题：先排序
 public:
     vector<int> largestDivisibleSubset(vector<int> &nums) {
-        const int n = (int) nums.size();
         sort(nums.begin(), nums.end());
+        const auto n = (int) nums.size();
         int dp[n];
-        dp[0] = 0;
-        int k = 0;
+        int ans = 0;
         for (int i = 0; i < n; ++i) {
             dp[i] = 1;
             for (int j = 0; j < i; ++j) {
@@ -27,18 +26,18 @@ public:
                 }
                 dp[i] = max(dp[j] + 1, dp[i]);
             }
-            if (dp[k] < dp[i]) {
-                k = i;
+            if (dp[ans] < dp[i]) {
+                ans = i;
             }
         }
-        vector<int> result(1, nums[k]);
-        while (dp[k] > 1) {
-            for (int i = 0; i < k; ++i) {
-                if (dp[i] + 1 != dp[k] || nums[k] % nums[i] != 0) {
+        vector<int> result(1, nums[ans]);
+        while (dp[ans] > 1) {
+            for (int i = 0; i < ans; ++i) {
+                if (dp[i] + 1 != dp[ans] || nums[ans] % nums[i] != 0) {
                     continue;
                 }
                 result.push_back(nums[i]);
-                k = i;
+                ans = i;
                 break;
             }
         }
