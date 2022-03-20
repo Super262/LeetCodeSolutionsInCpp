@@ -16,7 +16,7 @@ class Solution {
     // 使用离散化和树状数组来替代平衡树
 public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
-        const int n = (int) nums.size();
+        const auto n = (int) nums.size();
         vector<long long> numbers(1, 0);  // 保存离散化数据的数组0号位为0，真正的数据从1号开始
         long long s[n + 1];
         s[0] = 0;
@@ -31,7 +31,7 @@ public:
         sort(numbers.begin(), numbers.end());
         numbers.erase(unique(numbers.begin(), numbers.end()), numbers.end());
 
-        const int m = (int) numbers.size();
+        const auto m = (int) numbers.size();
         int ft[m + 1];
         memset(ft, 0, sizeof ft);  // 必须初始化为0
         updateItem(getNumIdx(s[0], numbers), 1, m, ft);  // 树状数组初始包含S0
