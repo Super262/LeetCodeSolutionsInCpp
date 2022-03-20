@@ -14,8 +14,8 @@ class Solution {
     // 多路归并
 public:
     vector<vector<int>> kSmallestPairs(const vector<int> &a, const vector<int> &b, const int &k) {
-        const int &n = (int) a.size();
-        const int &m = (int) b.size();
+        const auto &n = (int) a.size();
+        const auto &m = (int) b.size();
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> heap;
         for (int i = 0; i < m; ++i) {
             heap.push({a[0] + b[i], 0, i});
