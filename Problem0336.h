@@ -75,7 +75,7 @@ private:
         }
     }
 
-    static unsigned long long getHashValue(vector<unsigned long long> &h,
+    static unsigned long long getHashValue(const vector<unsigned long long> &h,
                                            const unsigned long long power[],
                                            int l,
                                            int r) {
