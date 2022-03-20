@@ -11,10 +11,11 @@
 using namespace std;
 
 class Solution {
+    // 贪心算法：https://www.acwing.com/solution/content/347/
 public:
     vector<int> maxNumber(const vector<int> &nums1, const vector<int> &nums2, const int &k) {
-        const int n = (int) nums1.size();
-        const int m = (int) nums2.size();
+        const auto n = (int) nums1.size();
+        const auto m = (int) nums2.size();
         vector<int> res(k, INT_MIN);
         vector<int> temp(k, INT_MIN);
         for (int i = max(0, k - m); i <= min(k, n); ++i) {  // 枚举从nums1中选取的数字个数
