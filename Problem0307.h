@@ -10,32 +10,10 @@
 using namespace std;
 
 class NumArray {
-private:
-    vector<int> ft;
-    int n;
-
-    int lowBit(const int x) {
-        return x & -x;
-    }
-
-    void updateItem(const int idx, const int val) {
-        for (int i = idx; i <= n; i += lowBit(i)) {
-            ft[i] += val;
-        }
-    }
-
-    int prefixSum(const int idx) {
-        int result = 0;
-        for (int i = idx; i > 0; i -= lowBit(i)) {
-            result += ft[i];
-        }
-        return result;
-    }
-
 public:
     NumArray(const vector<int> &nums) {
         n = (int) nums.size();
-        ft = vector<int>(n + 1, 0);
+        ft.resize(n + 1, 0);
         for (int i = 1; i <= n; ++i) { // O(n)时间初始化树状数组
             ft[i] = nums[i - 1];
             for (int j = i - 1; j > i - lowBit(i); j -= lowBit(j)) {
@@ -51,6 +29,28 @@ public:
 
     int sumRange(const int left, const int right) {
         return prefixSum(right + 1) - prefixSum(left);
+    }
+
+private:
+    vector<int> ft;
+    int n;
+
+    int lowBit(const int x) {
+        return x & -x;
+    }
+
+    void updateItem(const int idx, const int val) {
+        for (auto i = idx; i <= n; i += lowBit(i)) {
+            ft[i] += val;
+        }
+    }
+
+    int prefixSum(const int idx) {
+        int result = 0;
+        for (auto i = idx; i > 0; i -= lowBit(i)) {
+            result += ft[i];
+        }
+        return result;
     }
 };
 
