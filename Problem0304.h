@@ -17,7 +17,7 @@ public:
     NumMatrix(const vector<vector<int>> &matrix) {
         const int m = (int) matrix.size();
         const int n = (int) matrix[0].size();
-        prefix = vector<vector<int>>(m + 1, vector<int>(n + 1, 0));
+        prefix.resize(m + 1, vector<int>(n + 1, 0));
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
                 prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + matrix[i - 1][j - 1];
