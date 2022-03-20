@@ -23,28 +23,29 @@ public:
     // Encodes a tree to a single string.
     string serialize(TreeNode *root) {
         string result;
-        dfsSer(root, result);
+        dfs_ser(root, result);
         return result;
     }
 
     // Decodes your encoded data to tree.
     TreeNode *deserialize(const string &data) {
         int idx = 0;
-        return dfsDes(data, idx);
+        return dfs_des(data, idx);
     }
 
 private:
-    void dfsSer(TreeNode *root, string &result) {
+    void dfs_ser(TreeNode *root, string &result) {
         if (!root) {
             result += "#,";
             return;
         }
-        result += to_string(root->val) + ",";
-        dfsSer(root->left, result);
-        dfsSer(root->right, result);
+        result += to_string(root->val);
+        result += ",";
+        dfs_ser(root->left, result);
+        dfs_ser(root->right, result);
     }
 
-    TreeNode *dfsDes(const string &data, int &idx) {
+    TreeNode *dfs_des(const string &data, int &idx) {
         if (idx >= data.size()) {
             return NULL;
         }
@@ -58,8 +59,8 @@ private:
         }
         auto root = new TreeNode(stoi(data.substr(idx, k - idx)));
         idx = k + 1;
-        root->left = dfsDes(data, idx);
-        root->right = dfsDes(data, idx);
+        root->left = dfs_des(data, idx);
+        root->right = dfs_des(data, idx);
         return root;
     }
 };
