@@ -37,9 +37,9 @@ private:
              unordered_map<string, priority_queue<string, vector<string>, greater<string>>> &graph,
              vector<string> &answer) {
         while (!graph[st].empty()) {
-            auto nextSt = graph[st].top();
+            auto next_st = graph[st].top();
             graph[st].pop();
-            dfs(nextSt, graph, answer);
+            dfs(next_st, graph, answer);
         }
         answer.emplace_back(st);
     }
