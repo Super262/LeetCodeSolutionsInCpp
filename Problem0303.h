@@ -15,7 +15,7 @@ private:
 
 public:
     NumArray(const vector<int> &nums) {
-        prefix = vector<int>(nums.size() + 1, 0);
+        prefix.resize(nums.size() + 1, 0);
         for (int i = 1; i <= nums.size(); ++i) {
             prefix[i] = prefix[i - 1] + nums[i - 1];
         }
