@@ -13,71 +13,71 @@ using namespace std;
 class Solution {
 public:
     vector<string> removeInvalidParentheses(const string &s) {
-        int extraLeftCnt = 0;  // 待删掉的左括号的数量
-        int extraRightCnt = 0;  // 待删掉的右括号的数量
+        int extra_left_cnt = 0;  // 待删掉的左括号的数量
+        int extra_right_cnt = 0;  // 待删掉的右括号的数量
         for (const auto &ch: s) {
             if (ch == '(') {
-                ++extraLeftCnt;
+                ++extra_left_cnt;
             } else if (ch == ')') {
-                if (extraLeftCnt == 0) {
-                    ++extraRightCnt;
+                if (extra_left_cnt == 0) {
+                    ++extra_right_cnt;
                 } else {
-                    --extraLeftCnt;
+                    --extra_left_cnt;
                 }
             }
         }
         vector<string> answer;
-        dfs(s, 0, "", 0, extraLeftCnt, extraRightCnt, answer);
+        dfs(s, 0, "", 0, extra_left_cnt, extra_right_cnt, answer);
         return answer;
     }
 
 private:
     void dfs(const string &s,  // 原序列
-             int chIdx,  // 当前字符索引
+             int ch_idx,  // 当前字符索引
              string current,  // 被操作后的序列
-             int curDiff,  // current的(左括号数量 - 右括号数量)
-             int extraLeftCnt,
-             int extraRightCnt,
+             int cur_diff,  // current的(左括号数量 - 右括号数量)
+             int extra_left_cnt,
+             int extra_right_cnt,
              vector<string> &answer) {
-        if (chIdx == (int) s.size()) {
-            if (curDiff == 0) {
+        if (ch_idx == (int) s.size()) {
+            if (cur_diff == 0) {
                 answer.push_back(current);
             }
             return;
         }
-        if (s[chIdx] != '(' && s[chIdx] != ')') {
-            dfs(s, chIdx + 1, current + s[chIdx], curDiff, extraLeftCnt, extraRightCnt, answer);
+        if (s[ch_idx] != '(' && s[ch_idx] != ')') {
+            dfs(s, ch_idx + 1, current + s[ch_idx], cur_diff, extra_left_cnt, extra_right_cnt, answer);
             return;
         }
-        if (s[chIdx] == '(') {
-            int k = chIdx;
+        if (s[ch_idx] == '(') {
+            int k = ch_idx;
             while (k < (int) s.size() && s[k] == '(') {
                 ++k;
             }
-            extraLeftCnt -= k - chIdx;
-            for (int i = k - chIdx; i >= 0; --i) {
-                if (extraLeftCnt >= 0) {
-                    dfs(s, k, current, curDiff, extraLeftCnt, extraRightCnt, answer);
+            extra_left_cnt -= k - ch_idx;
+            for (int i = k - ch_idx; i >= 0; --i) {
+                if (extra_left_cnt >= 0) {
+                    dfs(s, k, current, cur_diff, extra_left_cnt, extra_right_cnt, answer);
                 }
                 current += '(';
-                ++curDiff;
-                ++extraLeftCnt;
+                ++cur_diff;
+                ++extra_left_cnt;
             }
             return;
         }
-        if (s[chIdx] == ')') {
-            int k = chIdx;
+        if (s[ch_idx] == ')') {
+            int k = ch_idx;
             while (k < (int) s.size() && s[k] == ')') {
                 ++k;
             }
-            extraRightCnt -= k - chIdx;
-            for (int i = k - chIdx; i >= 0; --i) {
-                if (extraRightCnt >= 0 && curDiff >= 0) {
-                    dfs(s, k, current, curDiff, extraLeftCnt, extraRightCnt, answer);
+            extra_right_cnt -= k - ch_idx;
+            for (int i = k - ch_idx; i >= 0; --i) {
+                if (extra_right_cnt >= 0 && cur_diff >= 0) {
+                    dfs(s, k, current, cur_diff, extra_left_cnt, extra_right_cnt, answer);
                 }
                 current += ')';
-                --curDiff;
-                ++extraRightCnt;
+                --cur_diff;
+                ++extra_right_cnt;
             }
             return;
         }
