@@ -16,15 +16,16 @@ public:
     int kthSmallest(const vector<vector<int>> &matrix, const int &k) {
         int l = -1e9;
         int r = 1e9;
+        const auto n = (int) matrix[0].size();
         while (l < r) {
             auto mid = l + (r - l) / 2;
-            int prevSt = (int) matrix[0].size() - 1;  // 利用性质：每行的搜索起点随行数不增
+            auto prev_st = n - 1;  // 利用性质：每行的搜索起点随行数不增
             int cnt = 0;
             for (const auto &row: matrix) {
-                while (prevSt >= 0 && row[prevSt] > mid) {
-                    --prevSt;
+                while (prev_st >= 0 && row[prev_st] > mid) {
+                    --prev_st;
                 }
-                cnt += prevSt + 1;
+                cnt += prev_st + 1;
             }
             if (cnt >= k) {
                 r = mid;
