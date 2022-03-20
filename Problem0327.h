@@ -20,6 +20,7 @@ public:
         vector<long long> numbers(1, 0);  // 保存离散化数据的数组0号位为0，真正的数据从1号开始
         long long s[n + 1];
         s[0] = 0;
+        numbers.reserve(n * 3);
         for (int i = 1; i <= n; ++i) {
             s[i] = s[i - 1] + nums[i - 1];
             numbers.emplace_back(s[i]);
