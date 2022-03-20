@@ -18,23 +18,23 @@ class Solution {
 public:
     int maxEnvelopes(vector<vector<int>> &envelopes) {
         sort(envelopes.begin(), envelopes.end(), cmp);
-        const int n = (int) envelopes.size();
-        vector<vector<int>> lisTail(n + 1, {INT_MAX, INT_MAX});
+        const auto n = (int) envelopes.size();
+        vector<vector<int>> lis_tail(n + 1, {INT_MAX, INT_MAX});
         int res = 0;
         for (int i = 0; i < n; i++) {
-            int left = 0;
-            int right = res;
-            while (left < right) {
-                auto mid = left + (right - left + 1) / 2;
-                if (lisTail[mid][1] < envelopes[i][1]) {
-                    left = mid;
+            int l = 0;
+            auto r = res;
+            while (l < r) {
+                auto mid = l + (r - l + 1) / 2;
+                if (lis_tail[mid][1] < envelopes[i][1]) {
+                    l = mid;
                 } else {
-                    right = mid - 1;
+                    r = mid - 1;
                 }
             }
-            res = max(res, left + 1);
-            if (lisTail[left + 1][1] > envelopes[i][1]) {
-                lisTail[left + 1] = envelopes[i];
+            res = max(res, l + 1);
+            if (lis_tail[l + 1][1] > envelopes[i][1]) {
+                lis_tail[l + 1] = envelopes[i];
             }
         }
         return res;
