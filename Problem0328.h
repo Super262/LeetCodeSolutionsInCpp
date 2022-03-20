@@ -22,22 +22,22 @@ public:
         if (!head || !head->next) {
             return head;
         }
-        auto oddHead = head;
-        auto evenHead = head->next;
-        auto oddTail = oddHead;
-        auto evenTail = evenHead;
+        auto odd_head = head;
+        auto even_head = head->next;
+        auto odd_tail = odd_head;
+        auto even_tail = even_head;
         for (auto p = head->next->next; p; p = p->next) {
-            oddTail->next = p;
-            oddTail = p;
+            odd_tail->next = p;
+            odd_tail = p;
             if (p->next) {
                 p = p->next;
-                evenTail->next = p;
-                evenTail = p;
+                even_tail->next = p;
+                even_tail = p;
             }
         }
-        oddTail->next = evenHead;
-        evenTail->next = nullptr;
-        return oddHead;
+        odd_tail->next = even_head;
+        even_tail->next = nullptr;
+        return odd_head;
     }
 };
 
