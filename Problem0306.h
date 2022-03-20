@@ -41,16 +41,14 @@ public:
     }
 
 private:
-    string addNums(string a, string b) {
+    string addNums(const string &a, const string &b) {
         string c;
-        reverse(a.begin(), a.end());
-        reverse(b.begin(), b.end());
-        for (int i = 0, t = 0; i < a.size() || i < b.size() || t; ++i) {
-            if (i < a.size()) {
-                t += a[i] - '0';
+        for (int i = 1, t = 0; i <= a.size() || i <= b.size() || t; ++i) {
+            if (i <= a.size()) {
+                t += a[a.size() - i] - '0';
             }
-            if (i < b.size()) {
-                t += b[i] - '0';
+            if (i <= b.size()) {
+                t += b[b.size() - i] - '0';
             }
             c.push_back((char) ('0' + t % 10));
             t /= 10;
