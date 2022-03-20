@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
+    // 贪心算法：https://www.acwing.com/solution/content/4966/
 public:
-    // https://www.acwing.com/solution/content/4966/
     int minPatches(const vector<int> &nums, const int &n) {
         long long miss = 1;  // 初始缺失的数字是1
         int res = 0;
