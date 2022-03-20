@@ -24,13 +24,13 @@ public:
         vector<int> up(n, 0);
         dfs1(0, -1, graph, d1, next1, d2, next2);
         dfs2(0, -1, graph, up, d1, next1, d2, next2);
-        int minH = n + 1;
+        int min_h = n + 1;
         for (int i = 0; i < n; ++i) {
-            minH = min(minH, max(d1[i], up[i]));
+            min_h = min(min_h, max(d1[i], up[i]));
         }
         vector<int> result;
         for (int i = 0; i < n; ++i) {
-            if (minH == max(d1[i], up[i])) {
+            if (min_h == max(d1[i], up[i])) {
                 result.emplace_back(i);
             }
         }
