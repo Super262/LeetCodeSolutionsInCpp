@@ -15,7 +15,7 @@ public:
     string reverseVowels(string s) {
         unordered_set<char> towels{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
         int l = 0;
-        int r = (int) s.size() - 1;
+        auto r = (int) s.size() - 1;
         while (l < r) {
             if (towels.count(s[l]) && towels.count(s[r])) {
                 swap(s[l], s[r]);
