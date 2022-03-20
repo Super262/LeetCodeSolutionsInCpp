@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0357_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0357_H
 
+#include <iostream>
+
+using namespace std;
+
 class Solution {
 public:
     int countNumbersWithUniqueDigits(int n) {
@@ -15,7 +19,7 @@ public:
         int dp[2];
         dp[0] = 1;
         dp[1] = 9;
-        int result = dp[0] + dp[1];
+        auto result = dp[0] + dp[1];
         for (int i = 2; i <= n; ++i) {
             dp[i % 2] = dp[(i - 1) % 2] * (11 - i);
             result += dp[i % 2];
