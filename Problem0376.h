@@ -13,7 +13,7 @@ class Solution {
     // 贪心算法，直接背诵！
 public:
     int wiggleMaxLength(vector<int> &nums) {
-        nums.erase(unique(nums.begin(), nums.end()), nums.end());
+        nums.erase(unique(nums.begin(), nums.end()), nums.end());  // 清除连续的重复元素
         if (nums.size() < 2) {
             return (int) nums.size();
         }
