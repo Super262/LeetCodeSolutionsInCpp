@@ -12,33 +12,29 @@
 using namespace std;
 
 class RandomizedSet {
-private:
-    unordered_map<int, int> num2Idx;
-    vector<int> storage;
-
 public:
     RandomizedSet() {
 
     }
 
     bool insert(const int &val) {
-        if (num2Idx.count(val)) {
+        if (num_idx.count(val)) {
             return false;
         }
         storage.push_back(val);
-        num2Idx[val] = (int) storage.size() - 1;
+        num_idx[val] = (int) storage.size() - 1;
         return true;
     }
 
     bool remove(const int &val) {
-        if (!num2Idx.count(val)) {
+        if (!num_idx.count(val)) {
             return false;
         }
-        auto idx = num2Idx[val];
+        auto idx = num_idx[val];
         auto temp = storage[storage.size() - 1];
         swap(storage[idx], storage[storage.size() - 1]);  // 把带删除的元素放到最后
-        num2Idx[temp] = idx;
-        num2Idx.erase(val);
+        num_idx[temp] = idx;
+        num_idx.erase(val);
         storage.pop_back();
         return true;
     }
@@ -46,6 +42,10 @@ public:
     int getRandom() {
         return storage[(random() % storage.size())];
     }
+
+private:
+    unordered_map<int, int> num_idx;
+    vector<int> storage;
 };
 
 /**
