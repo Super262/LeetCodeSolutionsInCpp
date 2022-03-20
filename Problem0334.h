@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0334_H
 
 #include <vector>
+#include <cstring>
 
 using namespace std;
 
@@ -16,17 +17,17 @@ public:
         if (nums.size() < 3) {
             return false;
         }
-        int result = 0;
-        vector<int> lisTail(4, INT_MAX);
-        lisTail[0] = INT_MIN;
-        for (int num : nums) {
+        int cur_max = 0;
+        int lis_tail[4] = {INT_MAX, INT_MAX, INT_MAX, INT_MAX};
+        lis_tail[0] = INT_MIN;
+        for (const auto &x: nums) {
             int k = 0;
-            while (k <= result && lisTail[k] < num) {
+            while (k <= cur_max && lis_tail[k] < x) {
                 ++k;
             }
-            result = max(result, k);
-            lisTail[k] = min(num, lisTail[k]);
-            if (result >= 3) {
+            cur_max = max(cur_max, k);
+            lis_tail[k] = min(x, lis_tail[k]);
+            if (cur_max >= 3) {
                 return true;
             }
         }
