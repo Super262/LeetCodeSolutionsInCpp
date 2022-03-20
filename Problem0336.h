@@ -61,16 +61,15 @@ private:
             power[i] = P * power[i - 1];
         }
         for (int i = 0; i < (int) words.size(); ++i) {
-            auto rw = string(words[i].rbegin(), words[i].rend());
             raw_hash_seq[i].resize(words[i].size() + 1);
-            reversed_hash_seq[i].resize(rw.size() + 1);
+            reversed_hash_seq[i].resize(words[i].size() + 1);
             raw_hash_seq[i][0] = 0;
             reversed_hash_seq[i][0] = 0;
             for (int j = 1; j <= (int) words[i].size(); ++j) {
                 raw_hash_seq[i][j] = raw_hash_seq[i][j - 1] * P + words[i][j - 1];
             }
-            for (int j = 1; j <= (int) rw.size(); ++j) {
-                reversed_hash_seq[i][j] = reversed_hash_seq[i][j - 1] * P + rw[j - 1];
+            for (int j = 1; j <= (int) words[i].size(); ++j) {
+                reversed_hash_seq[i][j] = reversed_hash_seq[i][j - 1] * P + words[i][words[i].size() - j];
             }
             hash_to_idx[raw_hash_seq[i][words[i].size()]] = i;
         }
