@@ -8,7 +8,7 @@
 class Solution {
     // 目标：ax + by = c（a、b可以小于0）
     // https://www.acwing.com/solution/content/22328/
-    //求出 a 与 b 的最大公约数 g，如果 c 能被 g 整除，返回 true。
+    // 求出 a 与 b 的最大公约数 g，如果 c 能被 g 整除，返回 true。
 public:
     bool canMeasureWater(const int &a, const int &b, const int &c) {
         if (c > a + b) {
@@ -22,10 +22,12 @@ public:
 
 private:
     int gcd(int x, int y) {
-        if (y == 0) {
-            return x;
+        while (y) {
+            auto t = y;
+            y = x % y;
+            x = t;
         }
-        return gcd(y, x % y);
+        return x;
     }
 };
 
