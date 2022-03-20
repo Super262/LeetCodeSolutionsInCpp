@@ -13,27 +13,27 @@ using namespace std;
 class Solution {
 public:
     int nthSuperUglyNumber(const int &n, const vector<int> &primes) {
-        const int m = (int) primes.size();
-        vector<int> pointers(m, 0);  // 保存每个质数因子对应result中底数的索引
-        vector<int> result(n);
-        priority_queue<pair<long long, int>, vector<pair<long long, int >>, greater<pair<
-                long long, int>>> heap;  // 小根堆，保存{prime * factor, prime_index}
-        int resTop = 0;
-        result[resTop++] = 1;
+        const auto m = (int) primes.size();
+        vector<int> pointers(m, 0);  // primes[i] * res[pointers[i]] 是未来的"丑数"
+        vector<int> res;
+        // 小根堆，保存{prime * factor, prime_index}
+        priority_queue<pair<long long, int>, vector<pair<long long, int >>, greater<pair<long long, int>>> heap;
+        res.reserve(n);
+        res.emplace_back(1);
         for (int i = 0; i < m; ++i) {  // 初始化
-            heap.emplace(pair<long long, int>((long long) result[pointers[i]] * primes[i], i));
+            heap.push({(long long) res[pointers[i]] * primes[i], i});
         }
-        while (resTop < n) {
+        while (res.size() < n) {
             auto t = heap.top();  // 当前最小值
             heap.pop();
-            auto pIdx = t.second;
-            if (t.first != result[resTop - 1]) {  // 注意：别忘记判重，result中不能包括重复元素
-                result[resTop++] = (int) t.first;
+            auto p_idx = t.second;
+            if (t.first != res.back()) {  // 注意：别忘记判重，result中不能包括重复元素
+                res.emplace_back((int) t.first);
             }
-            ++pointers[pIdx];  // 下一个底数
-            heap.emplace(pair<long long, int>((long long) result[pointers[pIdx]] * primes[pIdx], pIdx));  // 插入下一个运算结果
+            ++pointers[p_idx];  // 下一个底数
+            heap.push({(long long) res[pointers[p_idx]] * primes[p_idx], p_idx});  // 插入下一个运算结果
         }
-        return result[n - 1];
+        return res[n - 1];
     }
 };
 
