@@ -14,24 +14,25 @@ using namespace std;
 class Solution {
 public:
     string removeDuplicateLetters(const string &s) {
-        string answer;
-        bool isInAns[26];
-        int lastIdx[26];
-        memset(isInAns, 0, sizeof isInAns);
-        memset(lastIdx, -1, sizeof lastIdx);
+        bool is_in_ans[26];
+        int last_idx[26];
+        memset(is_in_ans, 0, sizeof is_in_ans);
+        memset(last_idx, -1, sizeof last_idx);
         for (int i = 0; i < (int) s.size(); ++i) {
-            lastIdx[s[i] - 'a'] = i;
+            last_idx[s[i] - 'a'] = i;
         }
+        string answer;
         for (int i = 0; i < (int) s.size(); ++i) {
-            if (isInAns[s[i] - 'a']) {
+            if (is_in_ans[s[i] - 'a']) {
                 continue;
             }
-            while (!answer.empty() && answer.back() > s[i] && lastIdx[answer.back() - 'a'] > i) {
-                isInAns[answer.back() - 'a'] = false;
+            // 设ch是answer最后的字符，若ch还会在后面出现且当前字符比ch小，删除ch
+            while (!answer.empty() && answer.back() > s[i] && last_idx[answer.back() - 'a'] > i) {
+                is_in_ans[answer.back() - 'a'] = false;
                 answer.pop_back();
             }
             answer.push_back(s[i]);
-            isInAns[s[i] - 'a'] = true;
+            is_in_ans[s[i] - 'a'] = true;
         }
         return answer;
     }
