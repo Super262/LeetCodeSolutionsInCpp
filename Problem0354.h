@@ -21,7 +21,7 @@ public:
         const auto n = (int) envelopes.size();
         vector<vector<int>> lis_tail(n + 1, {INT_MAX, INT_MAX});
         int res = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; ++i) {
             int l = 0;
             auto r = res;
             while (l < r) {
