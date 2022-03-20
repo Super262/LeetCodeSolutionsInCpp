@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // dp[i][0]：冷冻期，dp[i][1]：已买入，dp[i][2]：已卖出
+    // dp[i][0]：已卖出，dp[i][1]：已买入，dp[i][2]：冷冻期
 public:
     int maxProfit(const vector<int> &prices) {
         const int n = (int) prices.size();
