@@ -13,26 +13,21 @@
 using namespace std;
 
 class Twitter {
-private:
-    unordered_map<int, vector<pair<int, int>>> tweets;
-    unordered_map<int, unordered_set<int>> followee;
-    int ts;
-
 public:
     Twitter() {
         ts = 0; // Current Time
     }
 
-    void postTweet(const int &userId, const int &tweetId) {
-        tweets[userId].push_back({ts, tweetId});
+    void postTweet(const int &user_id, const int &tweet_id) {
+        tweets[user_id].push_back({ts, tweet_id});
         ++ts;
     }
 
-    vector<int> getNewsFeed(const int &userId) {
+    vector<int> getNewsFeed(const int &user_id) {
         // 多路归并的重要参数：当前数据项的来源，当前数据项的索引
-        followee[userId].insert(userId);
+        followee[user_id].insert(user_id);
         priority_queue<vector<int>> heap;
-        for (const auto &fid: followee[userId]) {
+        for (const auto &fid: followee[user_id]) {
             auto &messages = tweets[fid];
             if (messages.empty()) {
                 continue;
@@ -56,13 +51,18 @@ public:
         return res;
     }
 
-    void follow(const int &followerId, const int &followeeId) {
-        followee[followerId].insert(followeeId);
+    void follow(const int &follower_id, const int &followee_id) {
+        followee[follower_id].insert(followee_id);
     }
 
-    void unfollow(const int &followerId, const int &followeeId) {
-        followee[followerId].erase(followeeId);
+    void unfollow(const int &follower_id, const int &followee_id) {
+        followee[follower_id].erase(followee_id);
     }
+
+private:
+    unordered_map<int, vector<pair<int, int>>> tweets;
+    unordered_map<int, unordered_set<int>> followee;
+    int ts;
 };
 
 /**
