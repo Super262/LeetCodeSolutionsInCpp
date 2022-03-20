@@ -15,7 +15,7 @@ class Solution {
 public:
     int maxProduct(const vector<string> &words) {
         // 二进制统计每个字符
-        const int n = (int) words.size();
+        const auto n = (int) words.size();
         int state[n];
         memset(state, 0, sizeof state);
         for (int i = 0; i < n; ++i) {
