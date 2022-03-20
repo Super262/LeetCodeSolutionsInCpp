@@ -14,18 +14,18 @@ class Solution {
 public:
     string getHint(const string &s, const string &g) {
         // 若g中有t个字符在s中出现、x个位置相同，则y = s - x
-        int sFreq[10];
-        memset(sFreq, 0, sizeof sFreq);
+        int s_freq[10];
+        memset(s_freq, 0, sizeof s_freq);
         for (auto ch: s) {
-            ++sFreq[ch - '0'];
+            ++s_freq[ch - '0'];
         }
         int t = 0;
         int x = 0;
         // 注意：以下2次统计一定要分开进行
         for (const auto &ch: g) {
-            if (sFreq[ch - '0'] > 0) {
+            if (s_freq[ch - '0'] > 0) {
                 ++t;
-                --sFreq[ch - '0'];
+                --s_freq[ch - '0'];
             }
         }
         for (int i = 0; i < (int) g.size(); ++i) {
