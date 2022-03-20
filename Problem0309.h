@@ -11,13 +11,14 @@
 using namespace std;
 
 class Solution {
+    // dp[i][0]：冷冻期，dp[i][1]：已买入，dp[i][2]：已卖出
 public:
     int maxProfit(const vector<int> &prices) {
         const int n = (int) prices.size();
         if (n == 0) {
             return 0;
         }
-        int dp[3][3];  // dp[i][0]：冷冻期，dp[i][1]：已买入，dp[i][2]：已卖出
+        int dp[3][3];
         memset(dp, -0x3f, sizeof dp);
         dp[0][0] = 0;
         dp[0][1] = -prices[0];
