@@ -10,36 +10,34 @@
 using namespace std;
 
 class MedianFinder { // 对顶堆：两个堆分别维护序列左半部和右半部
-private:
-    priority_queue<int, vector<int>, greater<int>> rightPart;
-    priority_queue<int, vector<int>, less<int>> leftPart;
-
 public:
-    MedianFinder() {
-
-    }
+    MedianFinder() = default;
 
     void addNum(const int num) {
-        leftPart.emplace(num);
-        while (leftPart.size() > rightPart.size()) {
-            rightPart.emplace(leftPart.top());
-            leftPart.pop();
+        left_part.emplace(num);
+        while (left_part.size() > right_part.size()) {
+            right_part.emplace(left_part.top());
+            left_part.pop();
         }
-        while (leftPart.size() < rightPart.size()) {
-            leftPart.emplace(rightPart.top());
-            rightPart.pop();
+        while (left_part.size() < right_part.size()) {
+            left_part.emplace(right_part.top());
+            right_part.pop();
         }
     }
 
     double findMedian() {
-        if (rightPart.size() > leftPart.size()) {
-            return rightPart.top();
+        if (right_part.size() > left_part.size()) {
+            return right_part.top();
         }
-        if (leftPart.size() > rightPart.size()) {
-            return leftPart.top();
+        if (left_part.size() > right_part.size()) {
+            return left_part.top();
         }
-        return ((double) leftPart.top() + rightPart.top()) / 2;
+        return ((double) left_part.top() + right_part.top()) / 2;
     }
+
+private:
+    priority_queue<int, vector<int>, greater<int>> right_part;
+    priority_queue<int, vector<int>, less<int>> left_part;
 };
 
 /**
