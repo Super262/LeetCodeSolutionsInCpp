@@ -13,27 +13,27 @@ using namespace std;
 class Solution {
 public:
     vector<int> topKFrequent(const vector<int> &nums, const int &k) {
-        unordered_map<int, int> numCounter;
+        unordered_map<int, int> num_counter;
         for (const auto &x: nums) {  // 统计每个数字的出现次数
-            ++numCounter[x];
+            ++num_counter[x];
         }
         const auto n = (int) nums.size();
-        vector<int> freqCounter(n + 1, 0);
-        for (auto &item: numCounter) {  // 统计每个频次的出现次数
-            ++freqCounter[item.second];
+        vector<int> freq_counter(n + 1, 0);
+        for (auto &item: num_counter) {  // 统计每个频次的出现次数
+            ++freq_counter[item.second];
         }
-        int currentFreq = n;
+        int cur_freq = n;
         int temp = 0;
         while (temp < k) {
-            temp += freqCounter[currentFreq];  // 从高到低，计数
-            --currentFreq;
+            temp += freq_counter[cur_freq];  // 从高到低，计数
+            --cur_freq;
         }
         vector<int> res;
-        for (auto &item: numCounter) {
-            if (item.second <= currentFreq) {
+        for (auto &item: num_counter) {
+            if (item.second <= cur_freq) {
                 continue;
             }
-            res.push_back(item.first);
+            res.emplace_back(item.first);
         }
         return res;
     }
