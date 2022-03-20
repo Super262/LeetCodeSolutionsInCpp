@@ -12,8 +12,8 @@ using namespace std;
 class Solution {
     // https://www.acwing.com/solution/content/362/
 public:
-    bool isSelfCrossing(const vector<int> &distance) {
-        const int n = (int) distance.size();
+    bool isSelfCrossing(const vector<int> &x) {
+        const int n = (int) x.size();
         if (n < 4) {
             return false;
         }
