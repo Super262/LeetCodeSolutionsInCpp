@@ -23,33 +23,33 @@ public:
 private:
     void dfs(const string &num,
              const int &target,
-             const int &cur_idx,
+             const int &u,
              const long long &a,
              const long long &b,
              string &path,
              const int &len,
              vector<string> &result) {
-        if (cur_idx == num.size()) {
+        if (u == num.size()) {
             if (target == a) {
                 result.emplace_back(path.substr(0, len - 1));  // 需要排除最后的“+”
             }
             return;
         }
         long long c = 0;
-        for (auto i = cur_idx; i < (int) num.size(); ++i) {
+        for (auto i = u; i < (int) num.size(); ++i) {
             c = c * 10 + (num[i] - '0');
-            path[len + i - cur_idx] = num[i];
-            path[len + i - cur_idx + 1] = '+';
-            dfs(num, target, i + 1, a + b * c, 1, path, len + i - cur_idx + 2, result);
+            path[len + i - u] = num[i];
+            path[len + i - u + 1] = '+';
+            dfs(num, target, i + 1, a + b * c, 1, path, len + i - u + 2, result);
             if (i + 1 < num.size()) {
-                path[len + i - cur_idx + 1] = '-';
-                dfs(num, target, i + 1, a + b * c, -1, path, len + i - cur_idx + 2, result);
+                path[len + i - u + 1] = '-';
+                dfs(num, target, i + 1, a + b * c, -1, path, len + i - u + 2, result);
             }
             if (i + 1 < num.size()) {
-                path[len + i - cur_idx + 1] = '*';
-                dfs(num, target, i + 1, a, b * c, path, len + i - cur_idx + 2, result);
+                path[len + i - u + 1] = '*';
+                dfs(num, target, i + 1, a, b * c, path, len + i - u + 2, result);
             }
-            if (num[cur_idx] == '0') {
+            if (num[u] == '0') {
                 break;
             }
         }
