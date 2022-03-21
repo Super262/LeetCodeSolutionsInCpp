@@ -14,12 +14,12 @@ class Solution {
 public:
     bool containsNearbyDuplicate(const vector<int> &nums, int k) {
         // 利用哈希表保存数字最近出现位置
-        unordered_map<int, int> recent_idx;
+        unordered_map<int, int> last_idx;
         for (int i = 0; i < (int) nums.size(); ++i) {
-            if (recent_idx.count(nums[i]) && i - recent_idx[nums[i]] <= k) {
+            if (last_idx.count(nums[i]) && i - last_idx[nums[i]] <= k) {
                 return true;
             }
-            recent_idx[nums[i]] = i;
+            last_idx[nums[i]] = i;
         }
         return false;
     }
