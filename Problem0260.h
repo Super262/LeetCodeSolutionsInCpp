@@ -10,16 +10,17 @@
 using namespace std;
 
 class Solution {
+    // https://www.acwing.com/solution/content/237/
 public:
     vector<int> singleNumber(const vector<int> &nums) {
-        // 时间：O(n)，空间O(1)
-        int allXOR = 0;
+        // 时间O(n)，空间O(1)
+        int all_xor = 0;
         for (const auto &x: nums) {
-            allXOR ^= x;
+            all_xor ^= x;
         }
         int k = 0;
-        while ((allXOR & 1) == 0) {
-            allXOR >>= 1;
+        while ((all_xor & 1) == 0) {
+            all_xor >>= 1;
             ++k;
         }
         return {findKthEquals(nums, k, 0), findKthEquals(nums, k, 1)};

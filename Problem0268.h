@@ -6,18 +6,16 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0268_H
 
 #include <vector>
+#include <numeric>
 
 using namespace std;
 
 class Solution {
 public:
     int missingNumber(const vector<int> &nums) {
-        const int n = (int) nums.size();
-        int allSum = 0;
-        for (const auto &x: nums) {
-            allSum += x;
-        }
-        return (n + 1) * n / 2 - allSum;
+        const auto n = (int) nums.size();
+        auto all_sum = accumulate(nums.begin(), nums.end(), 0);
+        return (n + 1) * n / 2 - all_sum;
     }
 };
 
