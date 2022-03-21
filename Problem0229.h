@@ -5,26 +5,36 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0229_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0229_H
 
-class Problem0229 {
+#include <vector>
+
+using namespace std;
+
+class Solution {
     // 摩尔投票法
-private:
-    vector<int> majorityElement(vector<int> &nums) {
+public:
+    vector<int> majorityElement(const vector<int> &nums) {
         int r1, r2, c1 = 0, c2 = 0;
         for (int x: nums) {
             if (c1 && r1 == x) {
                 ++c1;
-            } else if (c2 && r2 == x) {
+                continue;
+            }
+            if (c2 && r2 == x) {
                 ++c2;
-            } else if (c1 == 0) {
+                continue;
+            }
+            if (c1 == 0) {
                 r1 = x;
                 ++c1;
-            } else if (c2 == 0) {
+                continue;
+            }
+            if (c2 == 0) {
                 r2 = x;
                 ++c2;
-            } else {
-                --c1;
-                --c2;
+                continue;
             }
+            --c1;
+            --c2;
         }
         c1 = 0, c2 = 0;
         for (int x: nums) {
