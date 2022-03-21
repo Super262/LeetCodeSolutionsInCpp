@@ -6,26 +6,26 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0239_H
 
 #include <vector>
+#include <queue>
 
 using namespace std;
 
 class Solution {
 public:
     vector<int> maxSlidingWindow(const vector<int> &nums, const int &k) {
-        int q[nums.size() + 1];
-        int hh = 0, tt = -1;
-        vector<int> result(nums.size() - (k - 1), 0);
-        int resTop = 0;
+        deque<int> q;
+        vector<int> result;
+        result.reserve(nums.size() - (k - 1));
         for (int i = 0; i < (int) nums.size(); ++i) {
-            if (hh <= tt && q[tt] - q[hh] + 1 == k) {
-                ++hh;
+            if (!q.empty() && q.back() - q.front() + 1 == k) {
+                q.pop_front();
             }
-            while (hh <= tt && nums[q[tt]] <= nums[i]) {
-                --tt;
+            while (!q.empty() && nums[q.back()] <= nums[i]) {
+                q.pop_back();
             }
-            q[++tt] = i;
+            q.emplace_back(i);
             if (i >= k - 1) {
-                result[resTop++] = nums[q[hh]];
+                result.emplace_back(nums[q.front()]);
             }
         }
         return result;
