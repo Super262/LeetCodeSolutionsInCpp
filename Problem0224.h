@@ -36,7 +36,7 @@ public:
                 continue;
             }
             if (s[i] == '(') {
-                ops.push(sign);
+                ops.emplace(sign);
                 ++i;
                 continue;
             }
