@@ -39,6 +39,7 @@ private:
         for (auto i = u; i < (int) num.size(); ++i) {
             c = c * 10 + (num[i] - '0');
             path[len + i - u] = num[i];
+            // 我们默认尝试添加"+"；这条递归路径是指向可行解的路径，因为a的值会被更新、u会变为num.size()
             path[len + i - u + 1] = '+';
             dfs(num, target, i + 1, a + b * c, 1, path, len + i - u + 2, result);
             if (i + 1 < num.size()) {
