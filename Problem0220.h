@@ -16,12 +16,12 @@ public:
         multiset<long> s;
         s.insert(2e10);
         s.insert(-2e10 - 1);  // 插入两个永不可达的边界值，简化查询操作
-        for (int i = 0, j = 0; i < (int) nums.size(); ++i) {
-            if (i - j > k) {
-                s.erase(s.find(nums[j]));
-                ++j;
+        for (int r = 0, l = 0; r < (int) nums.size(); ++r) {
+            if (r - l > k) {
+                s.erase(s.find(nums[l]));
+                ++l;
             }
-            auto x = nums[i];
+            auto x = nums[r];
             auto lt = s.lower_bound(x);  // element greater or equal
             if (*lt - x <= t) {  // 最接近x的较大元素
                 return true;
