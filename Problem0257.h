@@ -32,6 +32,7 @@ public:
         return result;
     }
 
+private:
     void dfs(TreeNode *root, vector<int> &path, vector<string> &result) {
         if (!root) {
             return;
