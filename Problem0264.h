@@ -5,10 +5,14 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0264_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0264_H
 
+#include <vector>
+
+using namespace std;
+
 class Solution {
+    // 多路归并：https://www.acwing.com/solution/content/20166/
 public:
     int nthUglyNumber(int n) {
-        // 多路归并：https://www.acwing.com/solution/content/20166/
         vector<int> result(1, 1);  // 初始时只包括1
         int p1 = 0;
         int p2 = 0;
