@@ -5,19 +5,19 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0234_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0234_H
 
-class Problem0234 {
-private:
-    struct ListNode {
-        int val;
-        ListNode *next;
+struct ListNode {
+    int val;
+    ListNode *next;
 
-        ListNode() : val(0), next(nullptr) {}
+    ListNode() : val(0), next(nullptr) {}
 
-        ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 
-        ListNode(int x, ListNode *next) : val(x), next(next) {}
-    };
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
+class Solution {
+public:
     bool isPalindrome(ListNode *head) {
         if (!head) {
             return true;
