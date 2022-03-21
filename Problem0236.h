@@ -5,16 +5,18 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0236_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0236_H
 
-class Problem0236 {  // 牢记LCA算法
-private:
-    struct TreeNode {
-        int val;
-        TreeNode *left;
-        TreeNode *right;
+#include <iostream>
 
-        TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-    };
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
 
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+class Solution {
+    // 简化版LCA算法
 public:
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
         if (!root || !p || !q) {
@@ -23,15 +25,15 @@ public:
         if (p == root || q == root) {
             return root;
         }
-        auto leftResult = lowestCommonAncestor(root->left, p, q);  // 向左查找包含p或q的子树
-        auto rightResult = lowestCommonAncestor(root->right, p, q);  // 向右查找包含p或q的子树
-        if (leftResult && rightResult) {
+        auto left_res = lowestCommonAncestor(root->left, p, q);  // 向左查找包含p或q的子树
+        auto right_res = lowestCommonAncestor(root->right, p, q);  // 向右查找包含p或q的子树
+        if (left_res && right_res) {
             return root;
         }
-        if (leftResult) {
-            return leftResult;
+        if (left_res) {
+            return left_res;
         }
-        return rightResult;
+        return right_res;
     }
 };
 
