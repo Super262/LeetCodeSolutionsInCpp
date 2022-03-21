@@ -5,6 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0235_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0235_H
 
+#include <algorithm>
+
+using namespace std;
+
 struct TreeNode {
     int val;
     TreeNode *left;
