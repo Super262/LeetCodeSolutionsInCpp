@@ -5,37 +5,42 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0225_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0225_H
 
+#include <queue>
+
+using namespace std;
+
 class MyStack {
 public:
     /** Push element x onto stack. */
     void push(int x) {
-        data2.emplace(x);
-        while (!data1.empty()) {
-            data2.emplace(data1.front());
-            data1.pop();
+        queue<int> temp;
+        temp.emplace(x);
+        while (!data.empty()) {
+            temp.emplace(data.front());
+            data.pop();
         }
-        swap(data2, data1);
+        data = temp;
     }
 
     /** Removes the element on top of the stack and returns that element. */
     int pop() {
-        int res = data1.front();
-        data1.pop();
+        auto res = data.front();
+        data.pop();
         return res;
     }
 
     /** Get the top element. */
     int top() {
-        return data1.front();
+        return data.front();
     }
 
     /** Returns whether the stack is empty. */
     bool empty() {
-        return data1.empty() && data2.empty();
+        return data.empty();
     }
 
 private:
-    queue<int> data1, data2;
+    queue<int> data;
 };
 
 /**
