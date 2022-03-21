@@ -5,21 +5,21 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0222_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0222_H
 
-class Problem0222 {
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+class Solution {
     // 时间复杂度：O((logN)^2)
-private:
-    struct TreeNode {
-        int val;
-        TreeNode *left;
-        TreeNode *right;
-
-        TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-        TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-        TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-    };
-
+public:
     int countNodes(TreeNode *root) {
         if (!root) {
             return 0;
