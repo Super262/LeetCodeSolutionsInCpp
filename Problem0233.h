@@ -5,42 +5,39 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0233_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0233_H
 
+#include <cmath>
 #include <vector>
 #include <algorithm>
 
 using namespace std;
 
-class Problem0233 {
-private:
-    int countDigitOne(int n) {
+class Solution {
+public:
+    int countDigitOne(const int &n) {
         if (n <= 0) {
             return 0;
         }
         vector<int> digits;
-        while (n > 0) {
-            digits.emplace_back(n % 10);
-            n /= 10;
+        auto t = n;
+        while (t > 0) {
+            digits.emplace_back(t % 10);
+            t /= 10;
         }
         reverse(digits.begin(), digits.end());
         int result = 0;
-        for (int i = 0; i < digits.size(); ++i) {
-            int leftNum = 0;
-            int rightNum = 0;
-            for (int j = 0; j < i; ++j) {
-                leftNum = leftNum * 10 + digits[j];
-            }
-            int rightBase = 1;
-            for (int j = i + 1; j < digits.size(); ++j) {
-                rightNum = rightNum * 10 + digits[j];
-                rightBase *= 10;
-            }
-            if (digits[i] == 1) {
-                result += leftNum * rightBase + rightNum + 1;
-            } else if (digits[i] == 0) {
-                result += leftNum * rightBase;
+        int left_num = 0;
+        auto right_base = (int) pow(10, digits.size() - 1);
+        for (const auto &x: digits) {
+            auto right_num = n % right_base;
+            if (x == 1) {
+                result += left_num * right_base + right_num + 1;
+            } else if (x == 0) {
+                result += left_num * right_base;
             } else {
-                result += (leftNum + 1) * rightBase;
+                result += (left_num + 1) * right_base;
             }
+            left_num = left_num * 10 + x;
+            right_base /= 10;
         }
         return result;
     }
