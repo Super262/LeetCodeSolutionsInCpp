@@ -7,18 +7,19 @@
 
 #include <vector>
 #include <stack>
+#include <string>
 
 using namespace std;
 
-class Problem0224 {
-private:
-    int calculate(string s) {
+class Solution {
+public:
+    int calculate(const string &s) {
         stack<int> ops;
         ops.push(1);
-        int sign = 1;
 
-        int ret = 0;
-        int n = s.length();
+        int sign = 1;
+        int ans = 0;
+        auto n = (int) s.length();
         int i = 0;
         while (i < n) {
             if (s[i] == ' ') {
@@ -41,10 +42,10 @@ private:
                     num = num * 10 + s[i] - '0';
                     i++;
                 }
-                ret += sign * num;
+                ans += (int) (sign * num);
             }
         }
-        return ret;
+        return ans;
     }
 };
 
