@@ -5,7 +5,26 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0230_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0230_H
 
-class Problem0230 {
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+class Solution {
+public:
+    int kthSmallest(TreeNode *root, int k) {
+        int answer = -1;
+        dfs(root, k, answer);
+        return answer;
+    }
+
 private:
     bool dfs(TreeNode *root, int &k, int &answer) {
         if (!root) {
@@ -20,12 +39,6 @@ private:
             return true;
         }
         return dfs(root->right, k, answer);
-    }
-
-    int kthSmallest(TreeNode *root, int k) {
-        int answer = -1;
-        dfs(root, k, answer);
-        return answer;
     }
 };
 
