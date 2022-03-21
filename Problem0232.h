@@ -10,14 +10,8 @@
 using namespace std;
 
 class MyQueue {
-private:
-    stack<int> storage;
-    stack<int> temp;
-
 public:
-    MyQueue() {
-
-    }
+    MyQueue() = default;
 
     void push(int x) {
         storage.emplace(x);
@@ -53,6 +47,10 @@ public:
     bool empty() {
         return storage.empty();
     }
+
+private:
+    stack<int> storage;
+    stack<int> temp;
 };
 
 /**
