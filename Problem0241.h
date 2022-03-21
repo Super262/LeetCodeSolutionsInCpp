@@ -14,7 +14,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> diffWaysToCompute(const string &s) {
-        vector<string> parts; // 预处理：切分字符串
+        vector<string> parts; // 预处理，切分字符串为数字和运算符
         for (int i = 0; i < (int) s.size(); ++i) {
             if (isdigit(s[i])) {
                 int j = i;
@@ -32,10 +32,10 @@ public:
 
 private:
     vector<int> dfs(const vector<string> &parts, const int &st, const int &ed) {
-        vector<int> res;
         if (st > ed) {
-            return res;
+            return {};
         }
+        vector<int> res;
         if (st == ed) {
             res.emplace_back(stoi(parts[st]));
             return res;
@@ -44,10 +44,10 @@ private:
             if (parts[i] != "+" && parts[i] != "-" && parts[i] != "*") {
                 continue;
             }
-            auto leftRes = dfs(parts, st, i - 1);
-            auto rightRes = dfs(parts, i + 1, ed);
-            for (const auto &x: leftRes) {
-                for (const auto &y: rightRes) {
+            auto left_res = dfs(parts, st, i - 1);
+            auto right_res = dfs(parts, i + 1, ed);
+            for (const auto &x: left_res) {
+                for (const auto &y: right_res) {
                     if (parts[i] == "+") {
                         res.emplace_back(x + y);
                     } else if (parts[i] == "-") {
