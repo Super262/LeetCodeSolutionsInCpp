@@ -10,12 +10,12 @@
 
 using namespace std;
 
-class Problem0228 {
-private:
-    vector<string> summaryRanges(vector<int> &nums) {
+class Solution {
+public:
+    vector<string> summaryRanges(const vector<int> &nums) {
         vector<string> result;
-        for (int i = 0; i < nums.size(); ++i) {
-            int j = i + 1;
+        for (int i = 0; i < (int) nums.size(); ++i) {
+            auto j = i + 1;
             while (j < nums.size() && nums[j] == nums[j - 1] + 1) {
                 ++j;
             }
