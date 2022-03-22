@@ -1,3 +1,4 @@
+105, 106
 332 (Euler Path/Cycle)
 335 (Math)
 382 (Reservoir Sampling)
