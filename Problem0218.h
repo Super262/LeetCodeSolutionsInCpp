@@ -22,8 +22,8 @@ public:
         }
         sort(points.begin(), points.end());
         multiset<int> heights;  // 红黑树：有序，支持插入和删除
-        heights.insert(0);  // 题目要求结果包括x轴上的终点
         vector<vector<int>> result;
+        heights.insert(0);  // 题目要求结果包括x轴上的终点
         for (const auto &p: points) {
             int x = p.first;
             int h = abs(p.second);
