@@ -13,7 +13,7 @@ class Solution {
 public:
     bool isPalindrome(const string &s) {
         int l = 0;
-        int r = (int) s.size() - 1;
+        auto r = (int) s.size() - 1;
         while (l < r) {
             while (l < r && !checkCh(s[l])) {
                 ++l;
