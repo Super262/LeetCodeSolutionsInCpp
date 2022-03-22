@@ -12,7 +12,7 @@ public:
         int result = 0;
         for (int i = 30; i >= 0; --i) {
             if (((m >> i) & 1) != ((n >> i) & 1)) {  // 高位不同，说明已达到某个数字的尽头
-                break;
+                return result;
             }
             if (((n >> i) & 1) == 1) {
                 result += 1 << i;
