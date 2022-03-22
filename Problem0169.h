@@ -19,11 +19,13 @@ public:
             if (r == 0) {
                 x = num;
                 r = 1;
-            } else if (x == num) {
-                ++r;
-            } else {
-                --r;
+                continue;
             }
+            if (x == num) {
+                ++r;
+                continue;
+            }
+            --r;
         }
         return x;
     }
