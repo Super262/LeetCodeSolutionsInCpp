@@ -23,14 +23,10 @@ public:
             return false;
         }
         auto slow = head;
-        auto fast = head->next;
-        while (fast) {
+        auto fast = head;
+        while (fast && fast->next) {
             slow = slow->next;
-            fast = fast->next;
-            if (!fast) {
-                return false;
-            }
-            fast = fast->next;
+            fast = fast->next->next;
             if (slow == fast) {
                 return true;
             }
