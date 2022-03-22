@@ -24,7 +24,7 @@ private:
             result.emplace_back(temp);
             return;
         }
-        for (int num = start; num <= n; ++num) {
+        for (auto num = start; num <= n; ++num) {
             temp.emplace_back(num);
             dfs(n, num + 1, k - 1, temp, result);
             temp.pop_back();
