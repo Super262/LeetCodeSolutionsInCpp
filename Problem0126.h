@@ -68,10 +68,10 @@ private:
             res.emplace_back(path);
             return;
         }
-        string temp = st;
+        auto temp = st;
         auto rd = dist.find(st)->second;
         for (int i = 0; i < (int) temp.size(); ++i) {
-            char t = temp[i];
+            auto t = temp[i];
             for (char ch = 'a'; ch <= 'z'; ++ch) {
                 temp[i] = ch;
                 // 剪枝：下一个点未出现、下一个点的距离不合法
