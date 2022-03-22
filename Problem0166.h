@@ -35,7 +35,7 @@ public:
             x *= 10;
             result.push_back((char) ('0' + x / y));
             x %= y;
-            if (remainder_idx.count(x)) {
+            if (remainder_idx.count((int) x)) {
                 result = result.substr(0, remainder_idx[(int) x]) + '(' + result.substr(remainder_idx[(int) x]) + ')';
                 break;
             }
