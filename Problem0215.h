@@ -17,24 +17,24 @@ public:
     }
 
 private:
-    void helper(vector<int> &nums, const int start, const int end, const int k) {
-        if (start >= end) {
+    void helper(vector<int> &nums, const int st, const int ed, const int k) {
+        if (st >= ed) {
             return;
         }
-        auto pivot = nums[start + (end - start) / 2];
-        auto left = start - 1;
-        auto right = end + 1;
-        while (left < right) {
-            while (nums[++left] > pivot);
-            while (nums[--right] < pivot);
-            if (left < right) {
-                swap(nums[left], nums[right]);
+        auto pivot = nums[st + (ed - st) / 2];
+        auto l = st - 1;
+        auto r = ed + 1;
+        while (l < r) {
+            while (nums[++l] > pivot);
+            while (nums[--r] < pivot);
+            if (l < r) {
+                swap(nums[l], nums[r]);
             }
         }
-        if (right - start + 1 >= k) {
-            helper(nums, start, right, k);
+        if (r - st + 1 >= k) {
+            helper(nums, st, r, k);
         } else {
-            helper(nums, right + 1, end, k - (right - start + 1));
+            helper(nums, r + 1, ed, k - (r - st + 1));
         }
     }
 };
