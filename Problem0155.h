@@ -15,9 +15,7 @@ private:
     stack<int> minimal;
 
 public:
-    MinStack() {
-
-    }
+    MinStack() = default;
 
     void push(const int &val) {
         storage.emplace(val);
