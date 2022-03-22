@@ -12,26 +12,26 @@ using namespace std;
 
 class Solution {
     // 经典DP，直接背诵
-    // dp[i][j]表示s[1,i]的子序列生成t[1,j]的方式数
+    // f[i][j]表示s[1,i]的子序列生成t[1,j]的方式数
 public:
     int numDistinct(const string &s, const string &t) {
         // 最终答案不超过INT_MAX，但中间结果可能超过INT_MAX
-        const int n = (int) s.size();
-        const int m = (int) t.size();
-        unsigned long long dp[2][m + 1]; // 滚动数组优化
-        memset(dp, 0, sizeof dp);
+        const auto n = (int) s.size();
+        const auto m = (int) t.size();
+        unsigned long long f[2][m + 1]; // 滚动数组优化
+        memset(f, 0, sizeof f);
         for (int i = 0; i <= n; ++i) {
-            dp[i % 2][0] = 1;
+            f[i % 2][0] = 1;
         }
         for (int i = 1; i <= n; ++i) {
             for (int j = 1; j <= m; ++j) {
-                dp[i % 2][j] = dp[(i - 1) % 2][j];
+                f[i % 2][j] = f[(i - 1) % 2][j];
                 if (s[i - 1] == t[j - 1]) {
-                    dp[i % 2][j] += dp[(i - 1) % 2][j - 1];
+                    f[i % 2][j] += f[(i - 1) % 2][j - 1];
                 }
             }
         }
-        return (int) dp[n % 2][m];
+        return (int) f[n % 2][m];
     }
 };
 
