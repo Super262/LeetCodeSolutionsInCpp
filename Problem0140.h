@@ -15,34 +15,33 @@ using namespace std;
 class Solution {
 public:
     vector<string> wordBreak(const string &s, const vector<string> &words) {
-        // 优化查找速度：Trie替代哈希表（O(n) -> O (1)）
         unordered_set<string> dict(words.begin(), words.end());
         const int n = (int) s.size();
-        bool dp[n + 1];  // dp[i]：前i个字符是否可被分割（1 <= i<= n）
-        memset(dp, 0, sizeof dp);
-        dp[0] = true;
+        bool f[n + 1];  // f[i]：前i个字符是否可被分割（1 <= i <= n）
+        memset(f, 0, sizeof f);
+        f[0] = true;
         for (int r = 1; r <= n; ++r) {
             for (int l = 1; l <= r; ++l) {
-                dp[r] = dp[r] || (dp[l - 1] && dict.count(s.substr(l - 1, r - l + 1)));
-                if (dp[r]) {
+                f[r] = f[r] || (f[l - 1] && dict.count(s.substr(l - 1, r - l + 1)));
+                if (f[r]) {
                     break;
                 }
             }
         }
         vector<string> temp_segs;
         vector<string> result;
-        dfs(n - 1, s, dict, dp, temp_segs, result);
+        dfs(n - 1, s, dict, f, temp_segs, result);
         return result;
     }
 
 private:
-    void dfs(const int idx,
+    void dfs(const int ed,
              const string &s,
              const unordered_set<string> &dict,
-             bool dp[],
+             bool f[],
              vector<string> &temp_segs,
-             vector<string> &result) {  // 搜索s[0:idx]的所有分割方案
-        if (idx < 0) {
+             vector<string> &result) {  // 搜索s[0:ed]的所有分割方案
+        if (ed < 0) {
             string path;
             reverse(temp_segs.begin(), temp_segs.end());
             for (const auto &seg: temp_segs) {
@@ -54,13 +53,13 @@ private:
             reverse(temp_segs.begin(), temp_segs.end());
             return;
         }
-        for (int ed = idx; ed >= 0; --ed) {
-            string current = s.substr(ed, idx - ed + 1);
-            if (!dict.count(current) || !dp[ed]) {
+        for (auto st = ed; st >= 0; --st) {
+            auto seg = s.substr(st, ed - st + 1);
+            if (!dict.count(seg) || !f[st]) {
                 continue;
             }
-            temp_segs.emplace_back(current);
-            dfs(ed - 1, s, dict, dp, temp_segs, result);
+            temp_segs.emplace_back(seg);
+            dfs(st - 1, s, dict, f, temp_segs, result);
             temp_segs.pop_back();
         }
     }
