@@ -28,7 +28,8 @@ public:
             int y = b > j ? stoi(ver2.substr(j, b - j)) : 0;
             if (x < y) {
                 return -1;
-            } else if (x > y) {
+            }
+            if (x > y) {
                 return 1;
             }
             i = a + 1;
