@@ -7,6 +7,7 @@
 
 #include <cstring>
 #include <string>
+#include <unordered_map>
 
 using namespace std;
 
@@ -17,21 +18,19 @@ public:
         if (s.size() != t.size()) {
             return false;
         }
-        int s2t[256];
-        int t2s[256];
-        memset(s2t, -1, sizeof s2t);
-        memset(t2s, -1, sizeof t2s);
+        unordered_map<char, char> s2t;
+        unordered_map<char, char> t2s;
         for (int i = 0; i < (int) s.size(); ++i) {
             auto a = s[i];
             auto b = t[i];
-            if (s2t[a] != -1 && s2t[a] != b) {  // 第1次判断
+            if (s2t.count(a) && s2t[a] != b) {  // 第1次判断
                 return false;
             }
-            s2t[a] = (int) (unsigned char) b;
-            if (t2s[b] != -1 && t2s[b] != a) {  // 第2次判断
+            s2t[a] = b;
+            if (t2s.count(b) && t2s[b] != a) {  // 第2次判断
                 return false;
             }
-            t2s[b] = (int) (unsigned char) a;
+            t2s[b] = a;
         }
         return true;
     }
