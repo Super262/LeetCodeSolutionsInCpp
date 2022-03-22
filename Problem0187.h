@@ -19,12 +19,7 @@ public:
         const auto n = (int) s.size();
         unsigned long long hash[n + 1];
         unsigned long long factor[n + 1];
-        hash[0] = 0;
-        factor[0] = 1;
-        for (int i = 1; i <= n; ++i) {  // 牢记这个运算过程
-            hash[i] = hash[i - 1] * P + s[i - 1];
-            factor[i] = factor[i - 1] * P;
-        }
+        initHash(s, n, hash, factor);
         unordered_map<unsigned long long, int> counter;
         vector<string> res;
         for (int i = 1; i + 10 - 1 <= n; ++i) {
@@ -40,6 +35,15 @@ public:
 
 private:
     static const unsigned int P = 13131;
+
+    static void initHash(const string &s, int n, unsigned long long hash[], unsigned long long factor[]) {
+        hash[0] = 0;
+        factor[0] = 1;
+        for (int i = 1; i <= n; ++i) {  // 牢记这个运算过程
+            hash[i] = hash[i - 1] * P + s[i - 1];
+            factor[i] = factor[i - 1] * P;
+        }
+    }
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0187_H
