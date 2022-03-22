@@ -38,6 +38,7 @@ public:
             auto val = t.second;
             if (!node->left && !node->right) {
                 res += val;
+                continue;
             }
             if (node->left) {
                 q.emplace(node->left, val * 10 + node->left->val);
