@@ -22,27 +22,33 @@ public:
                 auto a = stk.top();
                 stk.pop();
                 stk.emplace(a + b);
-            } else if (s == "-") {
+                continue;
+            }
+            if (s == "-") {
                 auto b = stk.top();
                 stk.pop();
                 auto a = stk.top();
                 stk.pop();
                 stk.emplace(a - b);
-            } else if (s == "*") {
+                continue;
+            }
+            if (s == "*") {
                 auto b = stk.top();
                 stk.pop();
                 auto a = stk.top();
                 stk.pop();
                 stk.emplace(a * b);
-            } else if (s == "/") {
+                continue;
+            }
+            if (s == "/") {
                 auto b = stk.top();
                 stk.pop();
                 auto a = stk.top();
                 stk.pop();
                 stk.emplace(a / b);
-            } else {
-                stk.emplace(stoi(s));
+                continue;
             }
+            stk.emplace(stoi(s));
         }
         return stk.top();
     }
