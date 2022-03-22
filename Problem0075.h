@@ -17,13 +17,13 @@ public:
         while (j <= k) {
             if (nums[j] == 0) {
                 swap(nums[i], nums[j]);
-                i++;
-                j++;
+                ++i;
+                ++j;
             } else if (nums[j] == 1) {
-                j++;
+                ++j;
             } else {
                 swap(nums[j], nums[k]);
-                k--;
+                --k;
             }
         }
     }
