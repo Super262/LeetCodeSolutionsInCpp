@@ -25,7 +25,7 @@ public:
             if (len == 1) {
                 continue;
             }
-            int num = (int) (s[len - 2] - '0') * 10 + (int) (s[len - 1] - '0');
+            auto num = (int) (s[len - 2] - '0') * 10 + (int) (s[len - 1] - '0');
             if (num < 10 || num > 26) {
                 continue;
             }
