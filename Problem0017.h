@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0017_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0017_H
 
-#include<vector>
+#include <vector>
 #include <string>
 
 using namespace std;
@@ -24,11 +24,11 @@ public:
     }
 
 private:
-    void dfs(const string d_to_s[],
-             const string &digits,
-             const int &d_idx,
-             string &temp,
-             vector<string> &result) {
+    static void dfs(const string d_to_s[],
+                    const string &digits,
+                    const int &d_idx,
+                    string &temp,
+                    vector<string> &result) {
         if (d_idx == (int) digits.size()) {
             result.emplace_back(temp);
             return;
