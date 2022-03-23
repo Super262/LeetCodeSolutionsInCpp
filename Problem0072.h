@@ -20,8 +20,8 @@ public:
         if (b.empty()) {
             return (int) a.size();
         }
-        const int m = (int) a.size();
-        const int n = (int) b.size();
+        const auto m = (int) a.size();
+        const auto n = (int) b.size();
         int dp[m + 1][n + 1];
         memset(dp, 0x3f, sizeof dp);
         for (int i = 0; i <= n; ++i) {
