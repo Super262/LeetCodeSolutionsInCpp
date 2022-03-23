@@ -15,10 +15,11 @@ class Solution {
 public:
     vector<vector<int>> permuteUnique(vector<int> &nums) {
         vector<vector<int>> result;
-        vector<int> temp(nums.size(), 0);
+        vector<int> temp;
         bool visited[nums.size()];
         memset(visited, 0, sizeof visited);
         sort(nums.begin(), nums.end());
+        temp.reserve(nums.size());
         dfs(nums, 0, temp, visited, result);
         return result;
     }
@@ -36,10 +37,11 @@ private:
             if (i > 0 && nums[i] == nums[i - 1] && !visited[i - 1]) {
                 continue;
             }
-            temp[idx] = nums[i];
+            temp.emplace_back(nums[i]);
             visited[i] = true;
             dfs(nums, idx + 1, temp, visited, res);
             visited[i] = false;
+            temp.pop_back();
         }
     }
 };
