@@ -23,22 +23,22 @@ public:
         if (!head) {
             return head;
         }
-        auto left = head; // the slow pointer
-        auto right = head; // the fast pointer
-        ++n;  // Increase n to make "left" can get the prev of nth node
-        while (n > 0 && right) {  // The fast pointer moves
-            right = right->next;
+        auto l = head; // the slow pointer
+        auto r = head; // the fast pointer
+        ++n;  // Increase n to make "l" can get the prev of nth node
+        while (n > 0 && r) {  // The fast pointer moves
+            r = r->next;
             --n;
         }
         if (n > 0) {  // n == sz, remove the head
             head = head->next;
             return head;
         }
-        while (right) {  // Two pointers move together
-            right = right->next;
-            left = left->next;
+        while (r) {  // Two pointers move together
+            r = r->next;
+            l = l->next;
         }
-        left->next = left->next->next;
+        l->next = l->next->next;
         return head;
     }
 };
