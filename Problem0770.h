@@ -75,7 +75,7 @@ private:
             }
             if (isalpha(str[i]) || isdigit(str[i])) {
                 vector<Item> expr;
-                if (str[i] >= 'a' && str[i] <= 'z') {
+                if (isalpha(str[i])) {
                     string var;
                     auto j = i;
                     while (j < str.size() && isalpha(str[j])) {
