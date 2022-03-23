@@ -10,25 +10,25 @@
 
 using namespace std;
 
-class Problem0064 {
+class Solution {
 public:
     int minPathSum(const vector<vector<int>> &grid) {
-        const int n = (int) grid.size();
-        const int m = (int) grid[0].size();
-        int dp[n][m];
-        memset(dp, 0x3f, sizeof dp);
-        dp[0][0] = grid[0][0];
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
+        const int m = (int) grid.size();
+        const int n = (int) grid[0].size();
+        int f[m][n];
+        memset(f, 0x3f, sizeof f);
+        f[0][0] = grid[0][0];
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
                 if (i) {
-                    dp[i][j] = min(dp[i][j], dp[i - 1][j] + grid[i][j]);
+                    f[i][j] = min(f[i][j], f[i - 1][j] + grid[i][j]);
                 }
                 if (j) {
-                    dp[i][j] = min(dp[i][j], dp[i][j - 1] + grid[i][j]);
+                    f[i][j] = min(f[i][j], f[i][j - 1] + grid[i][j]);
                 }
             }
         }
-        return dp[n - 1][m - 1];
+        return f[m - 1][n - 1];
     }
 };
 
