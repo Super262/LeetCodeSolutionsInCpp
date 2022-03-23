@@ -12,7 +12,7 @@ using namespace std;
 class Solution {
 public:
     int lengthOfLastWord(const string &s) {
-        for (int i = (int) s.size() - 1; i >= 0; --i) {
+        for (auto i = (int) s.size() - 1; i >= 0; --i) {
             if (s[i] == ' ') {
                 continue;
             }
