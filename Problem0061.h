@@ -29,7 +29,7 @@ public:
 
         int n = 0;  // 链表长度
         ListNode *tail;
-        for (auto p = head; p != NULL; p = p->next) {
+        for (auto p = head; p; p = p->next) {
             tail = p;
             ++n;
         }
