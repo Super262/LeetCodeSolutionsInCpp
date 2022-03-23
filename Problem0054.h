@@ -13,22 +13,20 @@ using namespace std;
 class Solution {
 public:
     vector<int> spiralOrder(const vector<vector<int>> &matrix) {
-        vector<int> result;
-        const int n = (int) matrix.size();
-        if (n == 0) {
-            return result;
-        }
-        const int m = (int) matrix[0].size();
-        bool visited[n][m];
+        const int m = (int) matrix.size();
+        const int n = (int) matrix[0].size();
+        bool visited[m][n];
         const int dx[] = {0, 1, 0, -1};
         const int dy[] = {1, 0, -1, 0};
+        vector<int> result;
         memset(visited, 0, sizeof visited);
-        for (int x = 0, y = 0, d = 0, i = 0; i < n * m; ++i) {
+        result.reserve(n * m);
+        for (int x = 0, y = 0, d = 0, i = 0; i < m * n; ++i) {
             result.emplace_back(matrix[x][y]);
             visited[x][y] = true;
             auto nx = x + dx[d];
             auto ny = y + dy[d];
-            if (nx < 0 || nx >= n || ny < 0 || ny >= m || visited[nx][ny]) {
+            if (nx < 0 || nx >= m || ny < 0 || ny >= n || visited[nx][ny]) {
                 d = (d + 1) % 4;
                 nx = x + dx[d];
                 ny = y + dy[d];
