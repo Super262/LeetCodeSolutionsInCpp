@@ -12,10 +12,11 @@ using namespace std;
 
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int> &nums) {
+    vector<vector<int>> permute(const vector<int> &nums) {
         vector<vector<int>> result;
         vector<int> path;
         bool visited[nums.size()];
+        path.reserve(nums.size());
         memset(visited, 0, sizeof visited);
         dfs(nums, visited, path, result);
         return result;
