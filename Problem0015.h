@@ -11,11 +11,9 @@
 using namespace std;
 
 class Solution {
-    // "双指针"的前提：序列有序
-    // "双指针"最多能把O(n^2)的运算优化为O(n)
+    // "双指针"的前提：序列有序；"双指针"最多能把O(n^2)的运算优化为O(n)
+    // 思路：固定i，移动j和k（i < j < k）；注意去重！
 public:
-    // 思路：固定i，移动j和k（i < j < k）
-    // 注意去重！
     vector<vector<int>> threeSum(vector<int> &nums) {
         vector<vector<int>> result;
         sort(nums.begin(), nums.end());
