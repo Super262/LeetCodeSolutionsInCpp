@@ -73,12 +73,12 @@ private:
             if (str[i] == ' ') {
                 continue;
             }
-            if (str[i] >= 'a' && str[i] <= 'z' || isdigit(str[i])) {
+            if (isalpha(str[i]) || isdigit(str[i])) {
                 vector<Item> expr;
                 if (str[i] >= 'a' && str[i] <= 'z') {
                     string var;
                     auto j = i;
-                    while (j < str.size() && str[j] >= 'a' && str[j] <= 'z') {
+                    while (j < str.size() && isalpha(str[j])) {
                         var += str[j];
                         ++j;
                     }
