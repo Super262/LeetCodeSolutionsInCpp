@@ -36,15 +36,15 @@ public:
 
 
         k %= n;  // 关键一步，不要忘记！
-        ListNode *prev = head;
-        for (int i = 0; i < n - k - 1; ++i) {  // 找到第k个结点的前驱
+        auto *prev = head;
+        for (int i = 0; i < n - k - 1; ++i) {  // 找到第n-k个结点的前驱
             prev = prev->next;
         }
 
         // Rotate.
         tail->next = head;
         head = prev->next;
-        prev->next = NULL;
+        prev->next = nullptr;
 
         return head;
     }
