@@ -15,7 +15,7 @@ class Solution {
     // 只包含一个单词：左对齐
     // 其他：左右对齐
 public:
-    vector<string> fullJustify(const vector<string> &words, int max_width) {
+    vector<string> fullJustify(const vector<string> &words, const int max_width) {
         vector<string> res;
         for (int i = 0; i < (int) words.size(); ++i) {
             auto j = i + 1;  // words[j - 1]指示当前行的终点单词
