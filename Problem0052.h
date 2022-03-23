@@ -22,22 +22,22 @@ public:
     }
 
 private:
-    int dfs(const int r_idx,
+    int dfs(const int row,
             const int n,
             bool col_used[],
             bool dg_used[],
             bool udg_used[]) {
-        if (r_idx == n) {
+        if (row == n) {
             return 1;
         }
         int result = 0;
-        for (int c_idx = 0; c_idx < n; ++c_idx) {
-            if (col_used[c_idx] || dg_used[r_idx + c_idx] || udg_used[n + r_idx - c_idx]) {
+        for (int col = 0; col < n; ++col) {
+            if (col_used[col] || dg_used[row + col] || udg_used[n + row - col]) {
                 continue;
             }
-            col_used[c_idx] = dg_used[r_idx + c_idx] = udg_used[n + r_idx - c_idx] = true;
-            result += dfs(r_idx + 1, n, col_used, dg_used, udg_used);
-            col_used[c_idx] = dg_used[r_idx + c_idx] = udg_used[n + r_idx - c_idx] = false;
+            col_used[col] = dg_used[row + col] = udg_used[n + row - col] = true;
+            result += dfs(row + 1, n, col_used, dg_used, udg_used);
+            col_used[col] = dg_used[row + col] = udg_used[n + row - col] = false;
         }
         return result;
     }
