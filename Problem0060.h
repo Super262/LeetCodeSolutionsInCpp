@@ -20,22 +20,21 @@ public:
         for (int i = 1; i <= n; ++i) {
             factorial[i] = factorial[i - 1] * i;
         }
-
-        bool used[n + 1];
-        string result(n, '\0');
+        bool used[n + 1];  // 标识当前数字是否已经被使用过
+        string result;
         memset(used, 0, sizeof used);
         for (int i = 0; i < n; ++i) {
             for (int digit = 1; digit <= n; ++digit) {
-                if (used[digit]) {  // 检测当前数字是否已经被使用过
+                if (used[digit]) {
                     continue;
                 }
                 if (k > factorial[n - i - 1]) {  // 检测k是否大于以当前数字开头的(n-i)位数的个数
                     k -= factorial[n - i - 1];
-                } else {
-                    result[i] = (char) ('0' + digit);
-                    used[digit] = true;
-                    break;
+                    continue;
                 }
+                result += (char) ('0' + digit);
+                used[digit] = true;
+                break;
             }
         }
         return result;
