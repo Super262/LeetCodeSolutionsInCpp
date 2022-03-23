@@ -18,7 +18,8 @@ public:
             if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            nums[k++] = nums[i];
+            nums[k] = nums[i];
+            ++k;
         }
         return k;
     }
