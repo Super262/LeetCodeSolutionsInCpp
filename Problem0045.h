@@ -12,15 +12,15 @@ using namespace std;
 class Solution {
 public:
     int jump(const vector<int> &nums) {
-        int dp[nums.size()];
-        dp[0] = 0;
+        int f[nums.size()];
+        f[0] = 0;
         for (int r = 1, l = 0; r < (int) nums.size(); ++r) {
             while (l < r && l + nums[l] < r) {
                 ++l;
             }
-            dp[r] = dp[l] + 1;
+            f[r] = f[l] + 1;
         }
-        return dp[nums.size() - 1];
+        return f[nums.size() - 1];
     }
 };
 
