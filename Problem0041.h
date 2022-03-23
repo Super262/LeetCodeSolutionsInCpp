@@ -11,12 +11,12 @@ using namespace std;
 
 class Solution {
     // 经典算法，直接背诵
-public:
     // https://leetcode-cn.com/problems/first-missing-positive/solution/que-shi-de-di-yi-ge-zheng-shu-by-leetcode-solution/
     // 对于一个长度为 N 的数组，其中没有出现的最小正整数只能在[1,N+1]中。这是因为如果 [1,N]都出现了，那么答案是N+1，否则答案是[1,N]中没有出现的最小正整数。
     // 巧妙的映射方式！
+public:
     int firstMissingPositive(vector<int> &nums) {
-        const int n = (int) nums.size();
+        const auto n = (int) nums.size();
 
         // 调整所有非正数为(n + 1)
         for (int i = 0; i < n; ++i) {
