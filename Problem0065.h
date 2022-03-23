@@ -18,7 +18,8 @@ class Solution {
     // 5. e和'.'最多出现1次
 public:
     bool isNumber(const string &s) {
-        int st = 0, ed = (int) s.size() - 1;  // s[st:ed]表示有效的字符串部分
+        int st = 0;
+        auto ed = (int) s.size() - 1;  // s[st:ed]表示有效的字符串部分
 
         // 首部、尾部去空格
         while (st <= ed && s[st] == ' ') {
@@ -52,7 +53,9 @@ public:
                     return false;
                 }
                 has_dot = true;
-            } else if (s[i] == 'e' || s[i] == 'E') {
+                continue;
+            }
+            if (s[i] == 'e' || s[i] == 'E') {
                 if (has_exp || i == st || i == ed) {  // e在首位出现或e后无数字，不合法
                     return false;
                 }
@@ -63,7 +66,9 @@ public:
                     }
                     ++i;
                 }
-            } else if (!isdigit(s[i])) {  // 非数字出现，不合法
+                continue;
+            }
+            if (!isdigit(s[i])) {  // 非数字出现，不合法
                 return false;
             }
         }
