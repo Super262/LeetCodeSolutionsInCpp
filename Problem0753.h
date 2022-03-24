@@ -7,44 +7,36 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0753_H
 
 #include <string>
-#include <vector>
-#include <stack>
+#include <unordered_set>
 
 using namespace std;
 
 class Solution {
-    // 欧拉回路，必须掌握：https://www.acwing.com/solution/content/50358/
+    // 欧拉回路，必须掌握：https://www.jianshu.com/p/8394b8e5b878
 public:
     string crackSafe(int n, int k) {
-        m = 1;
-        for (int i = 1; i <= n; ++i) {
-            m *= k;
+        if (n == 1 && k == 1) {
+            return "0";
         }
-        seen.resize(m, false);
-        solve(0, k);
-        auto ans = res + string(n - 1, '0');
-        reverse(ans.begin(), ans.end());  // 这里不翻转其实也可以通过，但翻转才是刚才遍历得到的欧拉回路。
-        return ans;
+        unordered_set<string> visited;
+        auto st = string(n - 1, '0');
+        string res;
+        findEuler(st, k, visited, res);
+        res.append(st);
+        reverse(res.begin(), res.end());
+        return res;
     }
 
 private:
-    vector<bool> seen;
-    stack<int> st;
-    string res;
-    int m;
-
-    void solve(int u, int k) {
-        for (int c = 0; c < k; c++) {
-            int e = u + c;
-            if (seen[e]) {
+    void findEuler(const string &cur, const int k, unordered_set<string> &visited, string &res) {
+        for (int i = 0; i < k; ++i) {
+            auto next = cur + to_string(i);
+            if (visited.count(next)) {
                 continue;
             }
-            seen[e] = true;
-            st.emplace(c);
-            auto v = e * k % m;
-            solve(v, k);
-            res.push_back((char) (st.top() + '0'));
-            st.pop();
+            visited.insert(next);
+            findEuler(next.substr(1), k, visited, res);
+            res.append(to_string(i));
         }
     }
 };
