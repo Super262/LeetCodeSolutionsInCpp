@@ -21,19 +21,16 @@ public:
             }
             return a[0] > b[0];  // 短区间在前
         });
-        vector<int> q(1, -1);  // 加入-1作为"哨兵"
-        int counter = 0;
+        vector<int> q;
         for (const auto &r: intervals) {
-            if (r[0] > q[counter]) {
+            if (q.empty() || r[0] > q.back()) {
                 q.emplace_back(r[1] - 1);
                 q.emplace_back(r[1]);
-                counter += 2;
-            } else if (counter > 0 && r[0] > q[counter - 1]) {
+            } else if (q.size() > 1 && r[0] > q[q.size() - 2]) {
                 q.emplace_back(r[1]);
-                ++counter;
             }
         }
-        return counter;
+        return (int) q.size();
     }
 };
 
