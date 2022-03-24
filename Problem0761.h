@@ -15,28 +15,28 @@ class Solution {
     // 贪心算法 + 递归处理：https://www.acwing.com/solution/content/3594/
 public:
     string makeLargestSpecial(const string &s) {
-        if (s.size() <= 2) {
-            return s;
+        if (s.empty()) {
+            return "";
         }
+        const auto &n = (int) s.size();
         vector<string> parts;
-        string temp;
-        int counter = 0;
-        for (const auto &ch: s) {
-            temp += ch;
-            counter += ch == '1' ? 1 : -1;
-            if (!counter) {
-                parts.emplace_back("1" + makeLargestSpecial(temp.substr(1, temp.size() - 2)) + "0");
-                temp.clear();
+        for (int l = 0, r = 0, cnt = 0; r < n; ++r) {
+            if (s[r] == '1') {
+                ++cnt;
+            } else {
+                --cnt;
+            }
+            if (!cnt) {
+                parts.emplace_back("1" + makeLargestSpecial(s.substr(l + 1, r - l - 1)) + "0");
+                l = r + 1;
             }
         }
-        sort(parts.begin(), parts.end(), [](const string &a, const string &b) {
-            return a + b > b + a;
-        });
-        string res;
-        for (const auto &t: parts) {
-            res += t;
+        sort(parts.rbegin(), parts.rend());
+        string ans;
+        for (const auto &p: parts) {
+            ans += p;
         }
-        return res;
+        return ans;
     }
 };
 
