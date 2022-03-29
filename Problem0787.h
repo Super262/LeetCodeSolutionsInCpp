@@ -11,24 +11,22 @@
 
 using namespace std;
 
-class Problem0787 {
+class Solution {
 public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
-        int dist[n + 1];
-        int temp[n + 1];
-        memset(dist, 0x3f, sizeof dist);
-        dist[src] = 0;
-        ++k;
-        while (k--) {
-            memcpy(temp, dist, sizeof dist);
+        int dist[2][n + 1];
+        memset(dist[0], 0x3f, sizeof dist[0]);
+        dist[0][src] = 0;
+        for (int i = 1; i <= k + 1; ++i) {
+            memcpy(dist[i % 2], dist[(i - 1) % 2], sizeof dist[(i - 1) % 2]);
             for (auto &e: flights) {
-                dist[e[1]] = min(dist[e[1]], temp[e[0]] + e[2]);
+                dist[i % 2][e[1]] = min(dist[i % 2][e[1]], dist[(i - 1) % 2][e[0]] + e[2]);
             }
         }
-        if (dist[dst] == 0x3f3f3f3f) {
+        if (dist[(k + 1) % 2][dst] == 0x3f3f3f3f) {
             return -1;
         }
-        return dist[dst];
+        return dist[(k + 1) % 2][dst];
     }
 };
 
