@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0788_H
 
 class Solution {
+    // 也要掌握动态规划解法！
 public:
     int rotatedDigits(int n) {
         int ans = 0;
