@@ -24,23 +24,22 @@ struct TreeNode {
 class Solution {
 public:
     int getMinimumDifference(TreeNode *root) {
-        int answer = INF;
-        dfs(root, answer);
+        int prev = 0x3f3f3f3f;
+        int answer = 0x3f3f3f3f;
+        dfs(root, prev, answer);
         return answer;
     }
 
 private:
-    pair<int, int> dfs(TreeNode *root, int &answer) {
+    void dfs(TreeNode *root, int &prev, int &answer) {
         if (!root) {
-            return {INF, -INF};
+            return;
         }
-        auto l_p = dfs(root->left, answer);
-        auto r_p = dfs(root->right, answer);
-        answer = min(answer, min(abs(root->val - l_p.second), abs(r_p.first - root->val)));
-        return {min(l_p.first, root->val), max(r_p.second, root->val)};
+        dfs(root->left, prev, answer);
+        answer = min(abs(root->val - prev), answer);
+        prev = root->val;
+        dfs(root->right, prev, answer);
     }
-
-    const int INF = 0x3f3f3f3f;
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0530_H
