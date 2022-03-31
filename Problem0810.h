@@ -20,7 +20,7 @@ public:
             s ^= x;
         }
         if (!s) {
-            return false;
+            return true;
         }
         return nums.size() % 2 == 0;
     }
