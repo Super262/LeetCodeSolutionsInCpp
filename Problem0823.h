@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // f[i]：以有序数组第i个元素为根的树的个数
 public:
     int numFactoredBinaryTrees(vector<int> &arr) {
         sort(arr.begin(), arr.end());
