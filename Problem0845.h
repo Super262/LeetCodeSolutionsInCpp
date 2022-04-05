@@ -11,6 +11,8 @@
 using namespace std;
 
 class Solution {
+    // l_inc[i]：以arr[i]为终点的递增子数组的长度；r_dec[i]：以arr[i]为起点的递减子数组的长度
+    // 注意区分"子数组"和"子序列"
 public:
     int longestMountain(vector<int> &arr) {
         const auto n = (int) arr.size();

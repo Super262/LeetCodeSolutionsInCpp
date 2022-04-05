@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 将各个房间看成图中的点，钥匙是边
 public:
     bool canVisitAllRooms(const vector<vector<int>> &graph) {
         const auto n = (int) graph.size();
