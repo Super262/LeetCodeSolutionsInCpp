@@ -19,7 +19,7 @@ public:
 
 private:
     bool checkProjection(int s1, int e1, int s2, int e2) {  // 投影为[s:e]
-        if (s1 >= e1 || s2 >= e2) {  // 矩形的投影长度应大于1
+        if (s1 >= e1 || s2 >= e2) {  // 矩形的投影长度应大于0
             return false;
         }
         return e1 > s2 && e2 > s1;
