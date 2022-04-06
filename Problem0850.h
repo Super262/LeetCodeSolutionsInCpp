@@ -12,7 +12,35 @@
 
 using namespace std;
 
-class Problem0850 {
+class Solution {
+public:
+    int rectangleArea(const vector<vector<int>> &rectangles) {
+        const int n = (int) rectangles.size();
+        Segment segs[2 * n];
+        Node nodes[4 * 2 * n + 10];
+        vector<int> ys;
+        for (int i = 0, j = 0; i < n; ++i) {
+            const auto &rec = rectangles[i];
+            segs[j++] = {rec[0], rec[1], rec[3], 1};
+            segs[j++] = {rec[2], rec[1], rec[3], -1};
+            ys.emplace_back(rec[1]);
+            ys.emplace_back(rec[3]);
+        }
+        sort(segs, segs + 2 * n);
+        sort(ys.begin(), ys.end());
+        ys.erase(unique(ys.begin(), ys.end()), ys.end());
+        buildTree(nodes, 1, 0, (int) ys.size() - 2);
+        int result = 0;
+        for (int i = 0; i < 2 * n; ++i) {
+            if (i > 0) {
+                result += (int) ((long long) nodes[1].length * (segs[i].x - segs[i - 1].x) % 1000000007);
+                result %= 1000000007;
+            }
+            modifyNode(nodes, ys, 1, getIdx(ys, segs[i].y1), getIdx(ys, segs[i].y2) - 1, segs[i].k);
+        }
+        return result;
+    }
+
 private:
     struct Segment {
         int x, y1, y2;
@@ -69,34 +97,6 @@ private:
             modifyNode(nodes, ys, idx << 1 | 1, l, r, val);
         }
         pushUp(nodes, ys, idx);
-    }
-
-public:
-    int rectangleArea(const vector<vector<int>> &rectangles) {
-        const int n = (int) rectangles.size();
-        Segment segs[2 * n];
-        Node nodes[4 * 2 * n + 10];
-        vector<int> ys;
-        for (int i = 0, j = 0; i < n; ++i) {
-            const auto &rec = rectangles[i];
-            segs[j++] = {rec[0], rec[1], rec[3], 1};
-            segs[j++] = {rec[2], rec[1], rec[3], -1};
-            ys.emplace_back(rec[1]);
-            ys.emplace_back(rec[3]);
-        }
-        sort(segs, segs + 2 * n);
-        sort(ys.begin(), ys.end());
-        ys.erase(unique(ys.begin(), ys.end()), ys.end());
-        buildTree(nodes, 1, 0, (int) ys.size() - 2);
-        int result = 0;
-        for (int i = 0; i < 2 * n; ++i) {
-            if (i > 0) {
-                result += (int) ((long long) nodes[1].length * (segs[i].x - segs[i - 1].x) % 1000000007);
-                result %= 1000000007;
-            }
-            modifyNode(nodes, ys, 1, getIdx(ys, segs[i].y1), getIdx(ys, segs[i].y2) - 1, segs[i].k);
-        }
-        return result;
     }
 };
 
