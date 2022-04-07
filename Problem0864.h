@@ -12,7 +12,7 @@
 using namespace std;
 
 class Solution {
-    // https://www.acwing.com/solution/content/703/
+    // BFS + 拆点：https://www.acwing.com/solution/content/703/
 public:
     int shortestPathAllKeys(const vector<string> &grid) {
         int count = 0;  // grid中钥匙的数量
