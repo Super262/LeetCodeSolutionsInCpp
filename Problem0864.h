@@ -5,6 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0864_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0864_H
 
+#include <cstring>
 #include <vector>
 #include <string>
 #include <queue>
@@ -19,7 +20,8 @@ public:
         queue<Node> q;
         const auto m = (int) grid.size();
         const auto n = (int) grid[0].size();
-        vector<vector<vector<int>>> dist(m, vector<vector<int>>(n, vector<int>(1 << 6, 0x3f3f3f3f)));
+        int dist[m][n][1 << 6];
+        memset(dist, 0x3f, sizeof dist);
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == '@') {
