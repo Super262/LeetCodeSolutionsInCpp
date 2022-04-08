@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 二分查找最小的速度
 public:
     int minEatingSpeed(const vector<int> &piles, int h) {
         int l = 1;
