@@ -25,6 +25,7 @@ struct TreeNode {
 };
 
 class Solution {
+    // 遍历所有叶节点，直接比较
 public:
     bool leafSimilar(TreeNode *root1, TreeNode *root2) {
         vector<int> a;
