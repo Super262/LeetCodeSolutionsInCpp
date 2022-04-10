@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 依次验证每个字符，哈希表保存两组映射关系
 public:
     vector<string> findAndReplacePattern(const vector<string> &words, const string &pattern) {
         vector<string> ans;
