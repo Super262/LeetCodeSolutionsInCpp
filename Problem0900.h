@@ -10,6 +10,7 @@
 using namespace std;
 
 class RLEIterator {
+    // 直接模拟
 public:
     RLEIterator(vector<int> &encoding) {
         s = encoding;
