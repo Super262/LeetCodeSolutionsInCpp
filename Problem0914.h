@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 统计每种纸牌i的个数counter[i]，再求出它们的最大公约数x，判断x是否大于等于2
 public:
     bool hasGroupsSizeX(const vector<int> &deck) {
         unordered_map<int, int> counter;
