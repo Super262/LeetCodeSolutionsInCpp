@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 分段统计
 public:
     bool isLongPressedName(const string &name, const string &typed) {
         int i = 0;
