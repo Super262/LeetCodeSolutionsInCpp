@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 直接交换不符合题意的数字
 public:
     vector<int> sortArrayByParityII(vector<int> &nums) {
         for (int i = 0, j = 1; i < nums.size(); i += 2, j += 2) {
