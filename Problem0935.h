@@ -11,27 +11,38 @@
 using namespace std;
 
 class Solution {
+    // dp[n][i]：以i结尾、长度为n的路径数量
+    // prev[i]：数字i可以从哪些数字转移
 public:
     int knightDialer(int n) {
-        // prev[i]：数字i可以从哪些数字转移
-        vector<int> prev[] = {{4, 6}, {6, 8}, {7, 9}, {4, 8}, {0, 3, 9}, {}, {0, 1, 7}, {2, 6}, {1, 3}, {2, 4}};
-        int dp[n][10];  // dp[n - 1][i]：以i结尾、长度为n的路径数量
+        vector<int> prev[] = {{4, 6},
+                              {6, 8},
+                              {7, 9},
+                              {4, 8},
+                              {0, 3, 9},
+                              {},
+                              {0, 1, 7},
+                              {2, 6},
+                              {1, 3},
+                              {2, 4}};
+        int dp[n + 1][10];
         memset(dp, 0, sizeof dp);
         for (int i = 0; i <= 9; ++i) {
-            dp[0][i] = 1;
+            dp[1][i] = 1;
         }
-        for (int i = 1; i < n; ++i) {
+        const int M = 1e9 + 7;
+        for (int i = 2; i <= n; ++i) {
             for (int j = 0; j <= 9; ++j) {
                 for (auto p: prev[j]) {
-                    dp[i][j] = (int) (((long long) dp[i][j] + dp[i - 1][p]) % 1000000007);
+                    dp[i][j] = (dp[i][j] + dp[i - 1][p]) % M;
                 }
             }
         }
-        int result = 0;
+        int ans = 0;
         for (int i = 0; i < 10; ++i) {
-            result = (int) (((long long) result + dp[n - 1][i]) % 1000000007);
+            ans = (ans + dp[n][i]) % M;
         }
-        return result;
+        return ans;
     }
 };
 
