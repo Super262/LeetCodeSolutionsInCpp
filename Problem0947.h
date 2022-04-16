@@ -24,8 +24,8 @@ public:
             parent[i] = i;
             set_size[i] = 1;
         }
-        unordered_map<int, vector<int>> row_s;
-        unordered_map<int, vector<int>> col_s;
+        unordered_map<int, vector<int>> row_s;  // 记录在同一行的石子
+        unordered_map<int, vector<int>> col_s;  // 记录在同一列的石子
         for (int i = 0; i < n; ++i) {
             row_s[stones[i][0]].emplace_back(i);
             col_s[stones[i][1]].emplace_back(i);
@@ -43,7 +43,7 @@ public:
             }
         }
         bool existed[n];
-        int cnt = 0;
+        int cnt = 0;  // 统计连通块的个数
         memset(existed, 0, sizeof existed);
         for (int i = 0; i < n; ++i) {
             auto pi = findRoot(i, parent);
@@ -78,14 +78,6 @@ private:
             parent[pb] = pa;
             set_size[pa] += set_size[pb];
         }
-    }
-
-    static bool cmp_x(const vector<int> &a, const vector<int> &b) {
-        return a[0] < b[0];
-    }
-
-    static bool cmp_y(const vector<int> &a, const vector<int> &b) {
-        return a[1] < b[1];
     }
 };
 
