@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0959_H
 
 #include <vector>
+#include <unordered_set>
 #include <string>
 
 using namespace std;
@@ -62,18 +63,11 @@ public:
                 }
             }
         }
-        bool existed[m * n * 4];
-        int set_cnt = 0;  // 统计连通块的个数
-        memset(existed, 0, sizeof existed);
+        unordered_set<int> set_idx;  // 统计连通块的个数
         for (int i = 0; i < m * n * 4; ++i) {
-            auto pi = findRoot(i, parent);
-            if (existed[pi]) {
-                continue;
-            }
-            existed[pi] = true;
-            ++set_cnt;
+            set_idx.insert(findRoot(i, parent));
         }
-        return set_cnt;
+        return (int) set_idx.size();
     }
 
 private:
