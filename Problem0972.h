@@ -11,6 +11,8 @@ using namespace std;
 
 class Solution {
     // 数学知识："0.(52)"（循环节）等于52/99
+    // 直接遍历：对于输入s，将整数部分转换为分数a、将小数部分（循环节前）转换为分数b、将循环节转换为分数c（别忘记偏移问题）
+    // 最终，s的分数表示为a+b+c；注意：分母部分在运算过程中可能超过10^9，使用long long避免溢出
 public:
     bool isRationalEqual(const string &s, const string &t) {
         return getFraction(s) == getFraction(t);
