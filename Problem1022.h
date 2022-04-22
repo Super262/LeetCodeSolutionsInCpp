@@ -21,6 +21,7 @@ struct TreeNode {
 };
 
 class Solution {
+    // 直接遍历
 public:
     int sumRootToLeaf(TreeNode *root) {
         if (!root) {
