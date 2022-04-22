@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
     // 子序列模版题，跳过q中不和p中大写字母匹配的小写字母
+    // 设q被大写字母分成的段落为q1，q2，……qn，设p被大写字母分成的段落是p1，p2，……，pn，我们要检查pi是否为qi的子序列
 public:
     vector<bool> camelMatch(const vector<string> &queries, const string &pattern) {
         vector<bool> ans(queries.size());
