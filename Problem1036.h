@@ -64,7 +64,7 @@ public:
             }
             row_idx[rows[i]] = r_id;
         }
-        if (rows.back() != BOUNDARY - 1) {  // 不要忘了这步：我们要扩展离散后的空间，使它和真实空间（10^6）相等
+        if (rows.back() < BOUNDARY - 1) {  // 不要忘了这步：我们要扩展离散后的空间，使它和真实空间（10^6）相等
             ++r_id;
         }
 
@@ -80,7 +80,7 @@ public:
             }
             column_idx[columns[i]] = c_id;
         }
-        if (columns.back() != BOUNDARY - 1) {
+        if (columns.back() < BOUNDARY - 1) {
             ++c_id;
         }
 
