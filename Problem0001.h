@@ -12,14 +12,14 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> twoSum(vector<int> &nums, int target) {
-        unordered_map<int, int> num_to_idx;
+    vector<int> twoSum(const vector<int>& nums, int target) {
+        unordered_map<int, int> num_idx;
         for (int i = 0; i < (int) nums.size(); ++i) {
             auto y = target - nums[i];
-            if (num_to_idx.count(y)) {
-                return {num_to_idx[y], i};
+            if (num_idx.count(y)) {
+                return {num_idx[y], i};
             }
-            num_to_idx[nums[i]] = i;
+            num_idx[nums[i]] = i;
         }
         return {};
     }
