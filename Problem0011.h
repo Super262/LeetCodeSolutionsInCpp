@@ -13,18 +13,19 @@ class Solution {
     // 直接背诵，双指针算法经典题目
 public:
     int maxArea(const vector<int> &height) {
-        int result = 0;
+        int ans = 0;
         int l = 0;
-        int r = (int) height.size() - 1;
+        auto r = (int) height.size() - 1;
         while (l < r) {
-            result = max(result, (r - l) * min(height[l], height[r]));
-            if (height[l] < height[r]) {
+            auto y = min(height[l], height[r]);
+            ans = max(ans, (r - l) * y);
+            if (height[l] == y) {  // 左边的是目标高度，跳过左边
                 ++l;
-            } else {
+            } else {  // 右边的是目标高度，跳过右边
                 --r;
             }
         }
-        return result;
+        return ans;
     }
 };
 
