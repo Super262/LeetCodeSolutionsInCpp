@@ -11,13 +11,13 @@ public:
         if (x < 0) {
             return false;
         }
-        long long res = 0;  // To avoid overflow!
+        unsigned long long reversed = 0;  // 避免溢出
         auto temp = x;
         while (temp) {
-            res = res * 10 + temp % 10;
+            reversed = reversed * 10 + temp % 10;
             temp /= 10;
         }
-        return res == x;
+        return reversed == x;
     }
 };
 
