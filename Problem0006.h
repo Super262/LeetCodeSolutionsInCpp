@@ -15,14 +15,16 @@ public:
         if (n == 1) {
             return s;
         }
+        const int m = 2 * n - 2;
         string res;
+        res.reserve(s.size());
         for (int i = 0; i < n; ++i) {
             if (i == 0 || i == n - 1) {
-                for (int j = i; j < s.size(); j += 2 * n - 2) {
+                for (int j = i; j < s.size(); j += m) {
                     res.push_back(s[j]);
                 }
             } else {
-                for (int j = i, k = 2 * n - 2 - i; j < s.size() || k < s.size(); j += 2 * n - 2, k += 2 * n - 2) {
+                for (int j = i, k = m - i; j < s.size() || k < s.size(); j += m, k += m) {
                     if (j < s.size()) {
                         res.push_back(s[j]);
                     }
