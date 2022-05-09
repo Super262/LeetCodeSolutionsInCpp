@@ -10,52 +10,54 @@
 using namespace std;
 
 class Solution {
+    // 判断溢出：类似第7题，注意细节！不要使用 long long 类型数据
 public:
     int myAtoi(const string &s) {
-        int k = 0;
+        int i = 0;
 
-        // Skip whitespaces.
-        while (k < s.size() && s[k] == ' ') {
-            ++k;
+        // 跳过空格
+        while (i < (int) s.size() && s[i] == ' ') {
+            ++i;
         }
-        if (k == s.size()) {
+        if (i == (int) s.size()) {
             return 0;
         }
 
-        // Check '-'
+        // 搜索符号位
         bool is_neg = false;
-        if (s[k] == '-') {
-            ++k;
+        if (s[i] == '-') {
+            ++i;
             is_neg = true;
-        } else if (s[k] == '+') {
-            ++k;
+        } else if (s[i] == '+') {
+            ++i;
         }
 
-        long long res = 0;
-        while (k < s.size() && isdigit(s[k])) {
-            int x = s[k] - '0';
-            // Detect overflow smartly.
-            if (!is_neg && res > (INT_MAX - x) / 10) {
-                return INT_MAX;
-            }
-            if (is_neg && -res < (INT_MIN + x) / 10) {
+        const auto max_tail = INT_MAX % 10;  // 记录极值的个位数字（无符号）
+        const auto min_tail = INT_MIN % 10;
+        const auto max_prefix = INT_MAX / 10;  // 记录极值的前缀（无符号，除去个位数字）
+        const auto min_prefix = INT_MIN / 10;
+        int ans = 0;
+        while (i < (int) s.size() && isdigit(s[i])) {
+            if (is_neg && ans < min_prefix) {
                 return INT_MIN;
             }
-            res = res * 10 + x;
-            ++k;
+            if (!is_neg && ans > max_prefix) {
+                return INT_MAX;
+            }
+            auto x = s[i] - '0';
+            if (is_neg) {  // 不要忘记这步：我们要保证ans的符号（正或负）和输入一致
+                x = -x;
+            }
+            if (is_neg && ans == min_prefix && x < min_tail) {
+                return INT_MIN;
+            }
+            if (!is_neg && ans == max_prefix && x > max_tail) {
+                return INT_MAX;
+            }
+            ans = ans * 10 + x;
+            ++i;
         }
-
-        if (is_neg) {
-            res = -res;
-        }
-        if (res < INT_MIN) {
-            return INT_MIN;
-        }
-        if (res > INT_MAX) {
-            return INT_MAX;
-        }
-
-        return (int) res;
+        return ans;
     }
 };
 
