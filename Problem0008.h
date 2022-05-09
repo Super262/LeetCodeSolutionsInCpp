@@ -32,9 +32,9 @@ public:
             ++i;
         }
 
-        const auto max_tail = INT_MAX % 10;  // 记录极值的个位数字（无符号）
+        const auto max_tail = INT_MAX % 10;  // 记录极值的个位数字
         const auto min_tail = INT_MIN % 10;
-        const auto max_prefix = INT_MAX / 10;  // 记录极值的前缀（无符号，除去个位数字）
+        const auto max_prefix = INT_MAX / 10;  // 记录极值的前缀（除去个位数字）
         const auto min_prefix = INT_MIN / 10;
         int ans = 0;
         while (i < (int) s.size() && isdigit(s[i])) {
