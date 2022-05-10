@@ -5,16 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0021_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0021_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
     // 经典算法，直接背诵；常用技巧：建立伪头（dummy）
@@ -27,24 +18,38 @@ public:
             return l1;
         }
         auto dummy = new ListNode(-1);
-        dummy->next = l1;
-        auto res_cur = dummy;
-        auto l2_cur = l2;
-        ListNode *l2_next;
-        while (l2_cur && res_cur->next) {
-            if (res_cur->next->val >= l2_cur->val) {
-                l2_next = l2_cur->next;
-                l2_cur->next = res_cur->next;
-                res_cur->next = l2_cur;
-                l2_cur = l2_next;
+        auto cur = dummy;
+        while (l1 && l2) {
+            if (l1->val < l2->val) {
+                auto t = l1;
+                l1 = l1->next;
+                t->next = nullptr;
+                cur->next = t;
             } else {
-                res_cur = res_cur->next;
+                auto t = l2;
+                l2 = l2->next;
+                t->next = nullptr;
+                cur->next = t;
             }
+            cur = cur->next;
         }
-        if (l2_cur) {
-            res_cur->next = l2_cur;
+        while (l1) {
+            auto t = l1;
+            l1 = l1->next;
+            t->next = nullptr;
+            cur->next = t;
+            cur = cur->next;
         }
-        return dummy->next;
+        while (l2) {
+            auto t = l2;
+            l2 = l2->next;
+            t->next = nullptr;
+            cur->next = t;
+            cur = cur->next;
+        }
+        auto res = dummy->next;
+        delete dummy;
+        return res;
     }
 };
 
