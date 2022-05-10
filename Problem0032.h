@@ -16,25 +16,25 @@ class Solution {
     // 假设i是第一个不满足以上性质的位置，则合法的括号序列一定在i左侧
 public:
     int longestValidParentheses(const string &s) {
-        stack<int> left_idx;
-        int result = 0;
-        for (int i = 0, st = 0; i < (int) s.size(); ++i) {  // st 指示合法序列的起点
+        stack<int> left_idx;  // 左侧最近左括号的索引
+        int ans = 0;
+        for (int i = 0, st = 0; i < (int) s.size(); ++i) {  // st 指示闭合序列的起点
             if (s[i] == '(') {
                 left_idx.emplace(i);
                 continue;
             }
-            if (left_idx.empty()) {
+            if (left_idx.empty()) {  // 序列非法，更新闭合序列的起点
                 st = i + 1;
                 continue;
             }
-            left_idx.pop();
+            left_idx.pop();  // 匹配一个左括号
             if (left_idx.empty()) {
-                result = max(result, i - st + 1);
+                ans = max(ans, i - st + 1);
             } else {
-                result = max(result, i - left_idx.top());
+                ans = max(ans, i - left_idx.top());
             }
         }
-        return result;
+        return ans;
     }
 };
 
