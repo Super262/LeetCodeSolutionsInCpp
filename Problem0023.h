@@ -25,13 +25,14 @@ public:
         auto dummy = new ListNode(-1);
         auto cur = dummy;
         while (!heap.empty()) {
-            auto lh = heap.top();
+            auto node = heap.top();
             heap.pop();
-            cur->next = lh;
-            cur = cur->next;
-            if (lh->next) {
-                heap.emplace(lh->next);
+            if (node->next) {
+                heap.emplace(node->next);
+                node->next = nullptr;
             }
+            cur->next = node;
+            cur = cur->next;
         }
         auto ans = dummy->next;
         delete dummy;
