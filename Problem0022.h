@@ -12,10 +12,12 @@ using namespace std;
 
 class Solution {
     // 合法的括号序列：left_cnt <= n, right_cnt <= n && left_cnt >= right_cnt
+    // 直接DFS
 public:
     vector<string> generateParenthesis(const int n) {
         vector<string> result;
         string temp;
+        temp.reserve(2 * n);
         dfs(n, 0, 0, temp, result);
         return result;
     }
