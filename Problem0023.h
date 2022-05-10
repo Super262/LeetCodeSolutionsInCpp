@@ -7,43 +7,35 @@
 
 #include <vector>
 #include <queue>
+#include "listnode.h"
 
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
 class Solution {
-    // 直接背诵，堆的经典应用
+    // 直接背诵，堆的经典应用：掌握比较器（结构体类型）的实现
 public:
-    ListNode *mergeKLists(vector<ListNode *> &lists) {
+    ListNode *mergeKLists(const vector<ListNode *> &lists) {
         priority_queue<ListNode *, vector<ListNode *>, NodeGreater> heap;
-        for (auto lh: lists) {
-            if (!lh) {
+        for (const auto &l: lists) {
+            if (!l) {
                 continue;
             }
-            heap.emplace(lh);
+            heap.emplace(l);
         }
-        ListNode dummy(-1);
-        auto current = &dummy;
+        auto dummy = new ListNode(-1);
+        auto cur = dummy;
         while (!heap.empty()) {
             auto lh = heap.top();
             heap.pop();
-            current->next = lh;
-            current = current->next;
+            cur->next = lh;
+            cur = cur->next;
             if (lh->next) {
                 heap.emplace(lh->next);
             }
         }
-        return dummy.next;
+        auto ans = dummy->next;
+        delete dummy;
+        return ans;
     }
 
 private:
