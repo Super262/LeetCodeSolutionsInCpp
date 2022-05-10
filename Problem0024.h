@@ -20,7 +20,9 @@ public:
             p->next = b;
             p = a;
         }
-        return dummy->next;
+        auto ans = dummy->next;
+        delete dummy;
+        return ans;
     }
 };
 
