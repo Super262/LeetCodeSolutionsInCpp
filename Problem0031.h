@@ -17,21 +17,19 @@ public:
             return;
         }
         auto k = (int) nums.size() - 2;
-        while (k >= 0 && nums[k] >= nums[k + 1]) {  // 找到递减序列前的元素
+        while (k >= 0 && nums[k] >= nums[k + 1]) {  // 找到不递增序列前的元素（注意：这里使用">="）
             --k;
         }
-        if (k < 0) {  // 整个序列为递减序列
+        if (k < 0) {  // 整个序列为不递增序列
             reverse(nums.begin(), nums.end());
             return;
         }
-        auto next_gre_idx = k + 1;
-        while (next_gre_idx < nums.size() && nums[next_gre_idx] > nums[k]) {
-            // 在递减序列中搜索比nums[k]大的最小元素
-            ++next_gre_idx;
+        auto min_gre_idx = k + 1;
+        while (min_gre_idx + 1 < nums.size() && nums[min_gre_idx + 1] > nums[k]) {  // 不递增序列中搜索比nums[k]大的最小数
+            ++min_gre_idx;
         }
-        --next_gre_idx;
-        swap(nums[next_gre_idx], nums[k]);  // 交换
-        reverse(nums.begin() + k + 1, nums.end()); // 反序原降序序列
+        swap(nums[min_gre_idx], nums[k]);  // 交换
+        reverse(nums.begin() + k + 1, nums.end()); // 反序原不递增序列
     }
 };
 
