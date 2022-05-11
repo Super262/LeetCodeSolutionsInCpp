@@ -15,13 +15,13 @@ class Solution {
     // 经典解法，直接背诵：转化二维搜索为一维
 public:
     bool searchMatrix(const vector<vector<int>> &matrix, int target) {
-        const int m = (int) matrix.size();
-        const int n = (int) matrix[0].size();
+        const auto m = (int) matrix.size();
+        const auto n = (int) matrix[0].size();
         if (target < matrix[0][0] || target > matrix[m - 1][n - 1]) {
             return false;
         }
         int l = 0;
-        int r = m * n - 1;
+        auto r = m * n - 1;
         while (l < r) {
             auto mid = l + (r - l + 1) / 2;
             if (matrix[mid / n][mid % n] <= target) {

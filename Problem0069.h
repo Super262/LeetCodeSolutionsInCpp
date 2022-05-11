@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 二分查找
 public:
     int mySqrt(int x) {
         long long left = 0;

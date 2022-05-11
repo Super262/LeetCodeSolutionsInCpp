@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典解法，直接背诵：使用第一行和第一列暂存信息
+    // 经典解法，直接背诵：使用第1行和第1列暂存其它行、列的信息，节约空间
 public:
     void setZeroes(vector<vector<int>> &matrix) {
         if (matrix.empty() || matrix[0].empty()) {
@@ -18,6 +18,7 @@ public:
         }
         const auto m = (int) matrix.size();
         const auto n = (int) matrix[0].size();
+
         // 使用2个变量记录第1行和第1列有无0
         bool first_row_has_zero = false;
         bool first_col_has_zero = false;
@@ -33,6 +34,7 @@ public:
                 break;
             }
         }
+
         // 使用第1行和第1列记录其他所有列和行有无0
         for (int j = 1; j < n; ++j) {
             for (int i = 0; i < m; ++i) {
@@ -50,6 +52,7 @@ public:
                 }
             }
         }
+
         // 根据记录操作
         for (int i = 1; i < m; ++i) {
             if (matrix[i][0]) {

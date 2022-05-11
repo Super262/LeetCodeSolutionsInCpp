@@ -10,10 +10,12 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
+    // 经典算法，直接背诵：交换目标元素到特定位置
 public:
     void sortColors(vector<int> &nums) {
-        int i = 0, j = 0, k = (int) nums.size() - 1;
+        int i = 0;
+        int j = 0;
+        auto k = (int) nums.size() - 1;
         while (j <= k) {
             if (nums[j] == 0) {
                 swap(nums[i], nums[j]);

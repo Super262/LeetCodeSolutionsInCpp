@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0070_H
 
 class Solution {
+    // f[i]：到达位置i的方案数
 public:
     int climbStairs(int n) {  // 滑动窗口优化
         int dp[3];
