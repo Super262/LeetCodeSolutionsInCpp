@@ -13,18 +13,18 @@
 using namespace std;
 
 class Solution {
-    // 技巧：对字符串按字典序排序
+    // 若s1、s2同属一组anagram，分别对s1、s2排序，排序后s1==s2成立
 public:
     vector<vector<string>> groupAnagrams(vector<string> &strs) {
         unordered_map<string, vector<string>> dict;
         vector<vector<string>> result;
         for (const auto &s: strs) {
-            string key = s;
+            auto key = s;
             sort(key.begin(), key.end());
             dict[key].emplace_back(s);
         }
-        result.reserve(dict.size());  // 提高效率
-        for (auto &item: dict) {
+        result.reserve(dict.size());
+        for (const auto &item: dict) {
             result.emplace_back(item.second);
         }
         return result;
