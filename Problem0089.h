@@ -10,18 +10,19 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
+    // 特殊规律，要牢记：移出一位，再补上一位
 public:
     vector<int> grayCode(int n) {
-        // 特殊规律，要牢记
-        vector<int> res(1, 0);
-        while (n--) {
-            for (int i = (int) res.size() - 1; i >= 0; --i) {
-                res[i] *= 2;
-                res.emplace_back(res[i] + 1);
+        vector<int> ans(1, 0);
+        ans.reserve(n);
+        while (n) {
+            for (int i = (int) ans.size() - 1; i >= 0; --i) {
+                ans[i] <<= 1;
+                ans.emplace_back(ans[i] + 1);
             }
+            --n;
         }
-        return res;
+        return ans;
     }
 };
 
