@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 单调栈经典应用
 public:
     int maximalRectangle(const vector<vector<char>> &matrix) {
         if (matrix.empty() || matrix[0].empty()) {
