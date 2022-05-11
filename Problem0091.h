@@ -13,14 +13,16 @@
 using namespace std;
 
 class Solution {
+    // f[i]：s[0:i-1]部分的解码方式
 public:
     int numDecodings(const string &s) {
-        int dp[s.size() + 1];
-        dp[0] = 1;
+        const auto n = (int) s.size();
+        int f[n + 1];
+        f[0] = 1;
         for (int len = 1; len <= (int) s.size(); ++len) {
-            dp[len] = 0;
+            f[len] = 0;
             if (s[len - 1] >= '1' && s[len - 1] <= '9') {
-                dp[len] += dp[len - 1];
+                f[len] += f[len - 1];
             }
             if (len == 1) {
                 continue;
@@ -29,9 +31,9 @@ public:
             if (num < 10 || num > 26) {
                 continue;
             }
-            dp[len] += dp[len - 2];
+            f[len] += f[len - 2];
         }
-        return dp[s.size()];
+        return f[s.size()];
     }
 };
 
