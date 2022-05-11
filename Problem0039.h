@@ -14,6 +14,7 @@ public:
     vector<vector<int>> combinationSum(const vector<int> &candidates, int target) {
         vector<vector<int>> result;
         vector<int> temp;
+        temp.reserve(candidates.size());
         dfs(candidates, target, 0, temp, result);
         return result;
     }
