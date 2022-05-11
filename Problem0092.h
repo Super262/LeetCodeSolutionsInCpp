@@ -9,19 +9,9 @@
 #include <stack>
 #include <string>
 #include <cstring>
+#include "listnode.h"
 
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
 
 class Solution {
 public:
@@ -32,7 +22,7 @@ public:
         auto dummy = new ListNode(-1);
         dummy->next = head;
         auto a = dummy;
-        for (int i = 0; i < left - 1; ++i) {  // 将a移动到left左边的点
+        for (int i = 0; i < left - 1; ++i) {  // 将a移动到第(left-1)个节点
             a = a->next;
         }
         auto b = a->next;
@@ -45,7 +35,9 @@ public:
         }
         a->next->next = c;
         a->next = b;
-        return dummy->next;
+        auto ans = dummy->next;
+        delete dummy;
+        return ans;
     }
 };
 
