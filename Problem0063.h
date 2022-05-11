@@ -12,23 +12,24 @@
 using namespace std;
 
 class Solution {
+    // 注意边界情况（输入数据为[[1]]）
 public:
     int uniquePathsWithObstacles(const vector<vector<int>> &obstacle_grid) {
         const int m = (int) obstacle_grid.size();
         const int n = (int) obstacle_grid[0].size();
-        if (obstacle_grid[0][0] || obstacle_grid[m - 1][n - 1]) { // 注意边界情况（输入数据为[[1]]）
+        if (obstacle_grid[0][0] || obstacle_grid[m - 1][n - 1]) {  // 起点或终点为障碍，直接终止
             return 0;
         }
         int f[m][n];
         f[0][0] = 1;
-        for (int i = 1; i < m; ++i) {
+        for (int i = 1; i < m; ++i) {  // 初始化左边界
             if (obstacle_grid[i][0]) {
                 f[i][0] = 0;
             } else {
                 f[i][0] = f[i - 1][0];
             }
         }
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i) {  // 初始化上边界
             if (obstacle_grid[0][i]) {
                 f[0][i] = 0;
             } else {
