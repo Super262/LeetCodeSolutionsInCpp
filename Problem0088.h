@@ -13,7 +13,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
+    // 经典算法，直接背诵：二路归并，注意细节
 public:
     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n) {
         if (n == 0) {
