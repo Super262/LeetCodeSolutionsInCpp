@@ -13,6 +13,7 @@
 using namespace std;
 
 class Solution {
+    // 排序 + DFS，注意细节
 public:
     vector<vector<int>> subsetsWithDup(vector<int> &nums) {
         sort(nums.begin(), nums.end());
@@ -29,15 +30,15 @@ private:
             result.emplace_back(temp);
             return;
         }
-        int k = idx + 1;
-        while (k < nums.size() && nums[k] == nums[idx]) {
+        auto k = idx + 1;
+        while (k < (int) nums.size() && nums[k] == nums[idx]) {
             ++k;
         }
-        for (int i = 0; i <= k - idx; ++i) {  // 从当前数字中选择0～k - i个
+        for (int i = 0; i <= k - idx; ++i) {  // 选择[0:k-i]个nums[i]
             dfs(k, nums, temp, result);
             temp.emplace_back(nums[idx]);
         }
-        for (int i = 0; i <= k - idx; ++i) { // 弹出k-i个数字
+        for (int i = 0; i <= k - idx; ++i) { // 弹出k-i+1个数字
             temp.pop_back();
         }
     }
