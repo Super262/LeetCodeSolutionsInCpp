@@ -19,7 +19,7 @@ public:
         const auto n = (int) s.size();
         int f[n + 1];
         f[0] = 1;
-        for (int len = 1; len <= (int) s.size(); ++len) {
+        for (int len = 1; len <= n; ++len) {
             f[len] = 0;
             if (s[len - 1] >= '1' && s[len - 1] <= '9') {
                 f[len] += f[len - 1];
@@ -33,7 +33,7 @@ public:
             }
             f[len] += f[len - 2];
         }
-        return f[s.size()];
+        return f[n];
     }
 };
 
