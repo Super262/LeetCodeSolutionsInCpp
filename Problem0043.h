@@ -46,18 +46,18 @@ public:
         }
 
         // 找到第1个非0的最高位
-        auto num_end = m + n - 1;
-        while (num_end > 0 && c[num_end] == 0) {// 注意细节：设置"num_end > 0"而不是"num_end >= 0"，因为结果的最小长度应大于0
-            --num_end;
+        auto ans_end = m + n - 1;
+        while (ans_end > 0 && c[ans_end] == 0) {// 注意细节：设置"ans_end > 0"而不是"ans_end >= 0"，因为结果的最小长度应大于0
+            --ans_end;
         }
 
         // 从高位开始保存结果
-        string result(num_end + 1, '0');
-        for (int i = 0; i <= num_end; ++i) {
-            result[result.size() - 1 - i] = (char) (c[i] + '0');
+        string ans(ans_end + 1, '0');
+        for (int i = 0; i <= ans_end; ++i) {
+            ans[ans.size() - 1 - i] = (char) (c[i] + '0');
         }
 
-        return result;
+        return ans;
     }
 };
 
