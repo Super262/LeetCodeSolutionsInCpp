@@ -16,7 +16,7 @@ public:
         int i = 0;
         int j = 0;
         auto k = (int) nums.size() - 1;
-        while (j <= k) {
+        while (j <= k) {  // 继续条件是j<=k，不是j<k
             if (nums[j] == 0) {
                 swap(nums[i], nums[j]);
                 ++i;

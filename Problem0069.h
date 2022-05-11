@@ -15,17 +15,17 @@ class Solution {
     // 二分查找
 public:
     int mySqrt(int x) {
-        long long left = 0;
-        long long right = x;
-        while (left < right) {
-            auto mid = left + (right - left + 1) / 2;
+        long long l = 0;
+        long long r = x;
+        while (l < r) {
+            auto mid = l + (r - l + 1) / 2;
             if (mid * mid <= x) {
-                left = mid;
+                l = mid;
             } else {
-                right = mid - 1;
+                r = mid - 1;
             }
         }
-        return (int) left;
+        return (int) l;
     }
 };
 

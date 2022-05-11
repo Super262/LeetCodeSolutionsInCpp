@@ -9,12 +9,12 @@ class Solution {
     // f[i]：到达位置i的方案数
 public:
     int climbStairs(int n) {  // 滑动窗口优化
-        int dp[3];
-        dp[1] = dp[0] = 1;
+        int f[3];
+        f[1] = f[0] = 1;
         for (int i = 2; i <= n; ++i) {
-            dp[i % 3] = dp[(i - 1) % 3] + dp[(i - 2) % 3];
+            f[i % 3] = f[(i - 1) % 3] + f[(i - 2) % 3];
         }
-        return dp[n % 3];
+        return f[n % 3];
     }
 };
 

@@ -12,7 +12,8 @@
 using namespace std;
 
 class Solution {
-    // 经典解法，直接背诵：转化二维搜索为一维
+    // 因为每行有序、当前行尾小于下一行首，所以我们可以从第一行开始自左向右搜索，直到最后一行
+    // 经典解法，直接背诵：我们可以转化二维搜索为一维搜索
 public:
     bool searchMatrix(const vector<vector<int>> &matrix, int target) {
         const auto m = (int) matrix.size();
