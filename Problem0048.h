@@ -11,8 +11,9 @@ using namespace std;
 
 class Solution {
     // 经典算法，直接背诵
+    // 顺指针旋转90度：先沿对角线翻转，再沿中轴翻转
 public:
-    void rotate(vector<vector<int>> &matrix) {  // 先沿对角线翻转，再沿中轴翻转
+    void rotate(vector<vector<int>> &matrix) {
         const int n = (int) matrix.size();
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < i; ++j) {
