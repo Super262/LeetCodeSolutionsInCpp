@@ -20,18 +20,18 @@ public:
         const auto n = (int) num2.size();
         int a[m];
         int b[n];
+        int c[m + n];
+        memset(c, 0, sizeof c);
 
         // 提取每位数字，从低位开始保存
-        for (auto i = m - 1, j = 0; i >= 0; --i, ++j) {
+        for (int i = m - 1, j = 0; i >= 0; --i, ++j) {
             a[j] = num1[i] - '0';
         }
-        for (auto i = n - 1, j = 0; i >= 0; --i, ++j) {
+        for (int i = n - 1, j = 0; i >= 0; --i, ++j) {
             b[j] = num2[i] - '0';
         }
 
         // 计算乘积，暂缓进位：C[i + j] = sum(A[i] * B[j])
-        int c[m + n];
-        memset(c, 0, sizeof c);
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 c[i + j] += a[i] * b[j];
@@ -47,14 +47,14 @@ public:
 
         // 找到第1个非0的最高位
         auto ans_end = m + n - 1;
-        while (ans_end > 0 && c[ans_end] == 0) {// 注意细节：设置"ans_end > 0"而不是"ans_end >= 0"，因为结果的最小长度应大于0
+        while (ans_end > 0 && !c[ans_end]) {
             --ans_end;
         }
 
         // 从高位开始保存结果
         string ans(ans_end + 1, '0');
-        for (int i = 0; i <= ans_end; ++i) {
-            ans[ans.size() - 1 - i] = (char) (c[i] + '0');
+        for (int i = ans_end, j = 0; i >= 0; --i, ++j) {
+            ans[j] = (char) (c[i] + '0');
         }
 
         return ans;
