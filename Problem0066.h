@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 类似大整数加法：从低位到高位依次进位
 public:
     vector<int> plusOne(vector<int> &digits) {
         reverse(digits.begin(), digits.end());
@@ -19,6 +20,9 @@ public:
             t += d;
             d = t % 10;
             t /= 10;
+            if (!t) {  // 没有新的进位，终止
+                break;
+            }
         }
         if (t) {
             digits.emplace_back(1);
