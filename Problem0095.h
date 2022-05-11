@@ -6,22 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0095_H
 
 #include <vector>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
+    // DFS：设根结点的值为idx，那么左子树的节点值为[l:idx-1]、右子树[idx+1:r]
 public:
     vector<TreeNode *> generateTrees(const int n) {
         return dfs(1, n);
