@@ -15,19 +15,18 @@ using namespace std;
 class Solution {
     // 若s1、s2同属一组anagram，分别对s1、s2排序，排序后s1==s2成立
 public:
-    vector<vector<string>> groupAnagrams(vector<string> &strs) {
-        unordered_map<string, vector<string>> dict;
-        vector<vector<string>> result;
+    vector<vector<string>> groupAnagrams(const vector<string> &strs) {
+        unordered_map<string, vector<string>> anagram;
         for (const auto &s: strs) {
             auto key = s;
             sort(key.begin(), key.end());
-            dict[key].emplace_back(s);
+            anagram[key].emplace_back(s);
         }
-        result.reserve(dict.size());
-        for (const auto &item: dict) {
-            result.emplace_back(item.second);
+        vector<vector<string>> ans;
+        for (const auto &item: anagram) {
+            ans.emplace_back(item.second);
         }
-        return result;
+        return ans;
     }
 };
 
