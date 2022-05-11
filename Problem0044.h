@@ -20,7 +20,7 @@ public:
         bool f[n + 1][m + 1];
         memset(f, 0, sizeof f);
         f[0][0] = true;  // 初始化：两个空串，匹配成功
-        for (int i = 1; i <= m; ++i) {  // 初始化："*"可以匹配任意字符串
+        for (int i = 1; i <= m; ++i) {  // 初始化："*"可以匹配任意空字符串
             if (p[i - 1] != '*') {
                 break;
             }
