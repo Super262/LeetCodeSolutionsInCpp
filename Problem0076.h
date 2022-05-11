@@ -13,15 +13,17 @@ using namespace std;
 
 class Solution {
     // 经典思路，直接背诵：https://www.acwing.com/solution/content/160/
+    // 哈希表记录滑动窗口内的字符频率，找到所有字符时更新最小窗口长度
 public:
     string minWindow(const string &s, const string &t) {
-        int hs[256], ht[256];
-        memset(hs, 0, sizeof hs);  // 窗口的字符频率
-        memset(ht, 0, sizeof ht);  // t的字符频率
+        int hs[256];  // 窗口内的字符频率
+        int ht[256];  // t的字符频率
+        memset(hs, 0, sizeof hs);
+        memset(ht, 0, sizeof ht);
         for (auto ch: t) {  // 统计t的字符频率
             ++ht[ch];
         }
-        int valid_length = 0;  // 当前窗口中的“有效长度”（包含所有类型的字符且相应字符频率不低于t的窗口长度）
+        int valid_length = 0;  // 当前窗口的“有效长度”（包含所有类型的字符且相应字符频率不低于t的窗口长度）
         int res_st = 0;  // 结果的起点
         int res_len = 0;  // 结果的长度（注意，初始值必须为0，存在一种边界情况使结果为空）
         for (int l = 0, r = 0; r < (int) s.size(); ++r) {
