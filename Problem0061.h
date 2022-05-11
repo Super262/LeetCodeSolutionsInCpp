@@ -24,7 +24,7 @@ public:
             tail = tail->next;
             ++n;
         }
-        
+
         k %= n;  // 关键一步，不要忘记！
         auto prev = head;
         for (int i = 0; i < n - k - 1; ++i) {  // 找到第n-k个结点的前驱
