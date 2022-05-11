@@ -13,25 +13,24 @@ using namespace std;
 class Solution {
     // 注意细节：k%n
 public:
-    ListNode *rotateRight(ListNode *head, int k) {
+    ListNode* rotateRight(ListNode* head, int k) {
         if (!head) {
             return head;
         }
 
-        int n = 0;  // 求链表长度
-        ListNode *tail;  // 记录尾节点
-        for (auto p = head; p; p = p->next) {
-            tail = p;
+        int n = 1;  // 求链表长度
+        auto tail = head;  // 记录尾节点
+        while (tail->next) {
+            tail = tail->next;
             ++n;
         }
-
+        
         k %= n;  // 关键一步，不要忘记！
-        auto *prev = head;
+        auto prev = head;
         for (int i = 0; i < n - k - 1; ++i) {  // 找到第n-k个结点的前驱
             prev = prev->next;
         }
 
-        // Rotate.
         tail->next = head;
         head = prev->next;
         prev->next = nullptr;
