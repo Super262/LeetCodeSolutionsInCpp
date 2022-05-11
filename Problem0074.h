@@ -12,7 +12,7 @@
 using namespace std;
 
 class Solution {
-    // 经典解法，直接背诵
+    // 经典解法，直接背诵：转化二维搜索为一维
 public:
     bool searchMatrix(const vector<vector<int>> &matrix, int target) {
         const int m = (int) matrix.size();
