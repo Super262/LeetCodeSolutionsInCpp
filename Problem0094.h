@@ -12,9 +12,10 @@
 using namespace std;
 
 class Solution {
+    // 直接背诵，注意细节；面试前背诵Morris遍历
 public:
     vector<int> inorderTraversal(TreeNode *root) {
-        vector<int> res;
+        vector<int> ans;
         stack<TreeNode *> stk;
         while (root || !stk.empty()) {
             while (root) {
@@ -23,12 +24,12 @@ public:
             }
             if (!stk.empty()) {
                 root = stk.top();
-                res.emplace_back(root->val);
                 stk.pop();
+                ans.emplace_back(root->val);
                 root = root->right;
             }
         }
-        return res;
+        return ans;
     }
 };
 
