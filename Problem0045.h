@@ -10,17 +10,20 @@
 using namespace std;
 
 class Solution {
+    // DP + 贪心：f[i]表示到达i所需要的最少步数；last为第一次到达i时，上一步所在的索引；f[i] = f[last] + 1
+    // https://www.acwing.com/solution/content/107/
 public:
     int jump(const vector<int> &nums) {
-        int f[nums.size()];
+        const auto n = (int) nums.size();
+        int f[n];
         f[0] = 0;
-        for (int r = 1, l = 0; r < (int) nums.size(); ++r) {
-            while (l < r && l + nums[l] < r) {
-                ++l;
+        for (int i = 1, last = 0; i < n; ++i) {
+            while (last < i && last + nums[last] < i) {  // 找到最近的last
+                ++last;
             }
-            f[r] = f[l] + 1;
+            f[i] = f[last] + 1;
         }
-        return f[nums.size() - 1];
+        return f[n - 1];
     }
 };
 
