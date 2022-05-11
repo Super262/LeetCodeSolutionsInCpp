@@ -10,12 +10,13 @@
 using namespace std;
 
 class Solution {
+    // 类似大整数加法：从低位到高位依次进位
 public:
     string addBinary(const string &a, const string &b) {
         string res;
         res.reserve(max(a.size(), b.size()));
         int t = 0;
-        for (int i = 1; i <= a.size() || i <= b.size(); ++i) {
+        for (int i = 1; i <= a.size() || i <= b.size() || t; ++i) {
             if (i <= a.size()) {
                 t += (int) (a[a.size() - i] - '0');
             }
@@ -24,9 +25,6 @@ public:
             }
             res += (char) (t % 2 + '0');
             t /= 2;
-        }
-        if (t) {
-            res += (char) (t % 2 + '0');
         }
         reverse(res.begin(), res.end());
         return res;
