@@ -18,10 +18,14 @@ public:
         int f[n];
         f[0] = 0;
         for (int i = 1, last = 0; i < n; ++i) {
-            while (last < i && last + nums[last] < i) {  // 找到最近的last
+            while (last < i && last + nums[last] < i) {
                 ++last;
             }
-            f[i] = f[last] + 1;
+            if (last == i) {
+                f[i] = 0x3f3f3f3f;
+            } else {
+                f[i] = f[last] + 1;
+            }
         }
         return f[n - 1];
     }
