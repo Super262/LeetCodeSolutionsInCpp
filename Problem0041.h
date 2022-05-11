@@ -13,7 +13,7 @@ class Solution {
     // 经典算法，直接背诵
     // https://leetcode-cn.com/problems/first-missing-positive/solution/que-shi-de-di-yi-ge-zheng-shu-by-leetcode-solution/
     // 对于一个长度为 N 的数组，其中没有出现的最小正整数只能在[1,N+1]中。这是因为如果 [1,N]都出现了，那么答案是N+1，否则答案是[1,N]中没有出现的最小正整数。
-    // 巧妙的映射方式！
+    // 巧妙的映射方式：一一映射nums[i]到i，使一端为负数，检查另一端的符号
 public:
     int firstMissingPositive(vector<int> &nums) {
         const auto n = (int) nums.size();
