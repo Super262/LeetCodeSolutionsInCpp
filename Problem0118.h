@@ -10,21 +10,22 @@
 using namespace std;
 
 class Solution {
+    // 经典DP
 public:
     vector<vector<int>> generate(const int num_rows) {
-        vector<vector<int>> dp;
-        dp.reserve(num_rows);
+        vector<vector<int>> ans;
+        ans.reserve(num_rows);
         for (int i = 0; i < num_rows; ++i) {
-            dp.emplace_back(vector<int>(i + 1, 0));
-            dp[i][0] = 1;
-            dp[i][dp[i].size() - 1] = 1;
+            ans.emplace_back(vector<int>(i + 1, 0));
+            ans[i][0] = 1;
+            ans[i][ans[i].size() - 1] = 1;
         }
         for (int i = 2; i < num_rows; ++i) {
-            for (int j = 1; j < (int) dp[i].size() - 1; ++j) {
-                dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j];
+            for (int j = 1; j < (int) ans[i].size() - 1; ++j) {
+                ans[i][j] = ans[i - 1][j - 1] + ans[i - 1][j];
             }
         }
-        return dp;
+        return ans;
     }
 };
 
