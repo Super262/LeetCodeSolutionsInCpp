@@ -5,26 +5,13 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0116_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0116_H
 
-#include <algorithm>
-
-class Node {
-public:
-    int val;
-    Node *left;
-    Node *right;
-    Node *next;
-
-    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val, Node *_left, Node *_right, Node *_next)
-            : val(_val), left(_left), right(_right), next(_next) {}
-};
+#include "node.h"
 
 class Solution {
+    // 经典算法，直接背诵
+    // 注意：输入是满二叉树
 public:
-    Node *connect(Node *root) { // 注意：输入是满二叉树
+    Node *connect(Node *root) {
         if (!root) {
             return root;
         }
