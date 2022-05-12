@@ -11,11 +11,10 @@
 using namespace std;
 
 class Solution {
-    // 经典DP，直接背诵
     // f[i][j]表示s[1,i]的子序列生成t[1,j]的方式数
+    // 防溢出：最终答案不超过INT_MAX，但中间结果可能超过INT_MAX
 public:
     int numDistinct(const string &s, const string &t) {
-        // 最终答案不超过INT_MAX，但中间结果可能超过INT_MAX
         const auto n = (int) s.size();
         const auto m = (int) t.size();
         unsigned long long f[2][m + 1]; // 滚动数组优化
