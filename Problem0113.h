@@ -46,12 +46,12 @@ public:
     }
 
 private:
-    vector<int> getPath(TreeNode *root, const unordered_map<TreeNode *, TreeNode *> &parent) {
+    vector<int> getPath(TreeNode *tail, const unordered_map<TreeNode *, TreeNode *> &parent) {
         vector<int> res;
-        res.emplace_back(root->val);
-        while (parent.count(root)) {
-            root = parent.find(root)->second;
-            res.emplace_back(root->val);
+        res.emplace_back(tail->val);
+        while (parent.count(tail)) {
+            tail = parent.find(tail)->second;
+            res.emplace_back(tail->val);
         }
         reverse(res.begin(), res.end());
         return res;
