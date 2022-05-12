@@ -14,10 +14,10 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode *root) {
-        vector<vector<int>> res;
         if (!root) {
-            return res;
+            return {};
         }
+        vector<vector<int>> res;
         queue<TreeNode *> q;
         q.emplace(root);
         while (!q.empty()) {
