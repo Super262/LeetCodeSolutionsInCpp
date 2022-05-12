@@ -7,23 +7,12 @@
 
 #include <algorithm>
 #include <queue>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 非递归解法
+    // 非递归解法：从根开始BFS，发现叶节点时停止搜索
 public:
     int minDepth(TreeNode *root) {
         if (!root) {
