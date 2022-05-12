@@ -9,55 +9,48 @@
 #include <stack>
 #include <string>
 #include <cstring>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
+    // DFS：记录子树的最值、合法性
 public:
     bool isValidBST(const TreeNode *root) {
         if (!root) {
             return true;
         }
-        return dfs(root)[0] == 1;
+        return dfs(root).is_bst;
     }
 
 private:
-    vector<int> dfs(const TreeNode *root) {
-        // result[0]：是否为BST
-        // result[1]：当前树最大值
-        // result[2]：当前树最小值
-        vector<int> result = {1, root->val, root->val};
+    struct Triad {
+        bool is_bst;  // 是否为BST
+        int maximal;  // 当前树最大值
+        int minimal;  // 当前树最小值
+    };
+
+    Triad dfs(const TreeNode *root) {
+        Triad ans = {true, root->val, root->val};
 
         if (root->left) {
             auto lt = dfs(root->left);
-            if (lt[0] == 0 || lt[1] >= root->val) {
-                result[0] = 0;
+            if (!lt.is_bst || lt.maximal >= root->val) {  // 右子树最大值大于根，非法
+                ans.is_bst = false;
+                return ans;
             }
-            result[1] = max(result[1], lt[1]);
-            result[2] = min(result[2], lt[2]);
+            ans.minimal = min(ans.minimal, lt.minimal);
         }
         if (root->right) {
             auto rt = dfs(root->right);
-            if (rt[0] == 0 || rt[2] <= root->val) {
-                result[0] = 0;
+            if (!rt.is_bst || rt.minimal <= root->val) {  // 右子树最小值小于根，非法
+                ans.is_bst = false;
+                return ans;
             }
-            result[1] = max(result[1], rt[1]);
-            result[2] = min(result[2], rt[2]);
+            ans.maximal = max(ans.maximal, rt.maximal);
         }
 
-        return result;
+        return ans;
     }
 };
 
