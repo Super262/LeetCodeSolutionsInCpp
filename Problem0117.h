@@ -5,25 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0117_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0117_H
 
-#include <algorithm>
-
-class Node {
-public:
-    int val;
-    Node *left;
-    Node *right;
-    Node *next;
-
-    Node() : val(0), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val) : val(_val), left(NULL), right(NULL), next(NULL) {}
-
-    Node(int _val, Node *_left, Node *_right, Node *_next)
-            : val(_val), left(_left), right(_right), next(_next) {}
-};
+#include "node.h"
 
 class Solution {
-    // 经典算法，必须掌握
+    // 相比满二叉树（116题），这里的非叶节点可能只有1个孩子，因此我们需要一个tail指针来保存上个邻居的位置
+    // 为统一操作，我们引入dummy为伪头节点
 public:
     Node *connect(Node *root) {
         auto current = root;
@@ -43,6 +29,7 @@ public:
             }
             current = dummy->next;
         }
+        delete dummy;
         return root;
     }
 };
