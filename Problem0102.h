@@ -21,9 +21,9 @@ public:
         queue<TreeNode *> q;
         q.emplace(root);
         while (!q.empty()) {
-            auto curSize = (int) q.size();
+            auto cur_size = (int) q.size();
             vector<int> values;
-            while (curSize--) {
+            while (cur_size--) {
                 auto rt = q.front();
                 q.pop();
                 values.emplace_back(rt->val);
