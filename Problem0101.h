@@ -6,23 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0101_H
 
 #include <queue>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 迭代法，直接背诵
+    // 迭代法，直接背诵：以2个相同的根结点为搜索起点
 public:
     bool isSymmetric(TreeNode *root) {
         if (!root) {
