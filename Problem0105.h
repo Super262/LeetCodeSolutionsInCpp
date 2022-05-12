@@ -8,20 +8,9 @@
 #include <stack>
 #include <unordered_map>
 #include <vector>
+#include "treenode.h"
 
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
 
 class Solution {
     // 非递归方法，必须掌握
@@ -41,15 +30,15 @@ public:
             if (node->val != inorder[inorder_idx]) {
                 node->left = new TreeNode(value);
                 stk.emplace(node->left);
-            } else {
-                while (!stk.empty() && stk.top()->val == inorder[inorder_idx]) {
-                    node = stk.top();
-                    stk.pop();
-                    ++inorder_idx;
-                }
-                node->right = new TreeNode(value);
-                stk.emplace(node->right);
+                continue;
             }
+            while (!stk.empty() && stk.top()->val == inorder[inorder_idx]) {
+                node = stk.top();
+                stk.pop();
+                ++inorder_idx;
+            }
+            node->right = new TreeNode(value);
+            stk.emplace(node->right);
         }
         return root;
     }
