@@ -5,32 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0109_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0109_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+#include "listnode.h"
+#include "treenode.h"
 
 class Solution {
-    // 经典算法，必须掌握
+    // 经典算法，必须掌握：遍历链表，找到中间节点m，然后分别递归处理[0:m-1]、[m+1:n]
 public:
     TreeNode *sortedListToBST(ListNode *head) {
         if (!head) {
@@ -38,7 +17,7 @@ public:
         }
         int n = 0;
         auto current = head;
-        while (current) {
+        while (current) {  // 获得链表长度n
             ++n;
             current = current->next;
         }
