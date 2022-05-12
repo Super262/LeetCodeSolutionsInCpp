@@ -24,7 +24,7 @@ public:
         stack<TreeNode *> stk;
         stk.emplace(root);
         auto ino_idx = (int) inorder.size() - 1;
-        for (auto i = (int) postorder.size() - 2; i >= 0; i--) {
+        for (auto i = (int) postorder.size() - 2; i >= 0; --i) {
             auto val = postorder[i];
             auto node = stk.top();
             if (node->val != inorder[ino_idx]) {
