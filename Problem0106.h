@@ -8,20 +8,9 @@
 #include <stack>
 #include <unordered_map>
 #include <vector>
+#include "treenode.h"
 
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
 
 class Solution {
     // 非递归方法，必须掌握
@@ -31,25 +20,25 @@ public:
         if (postorder.empty()) {
             return nullptr;
         }
-        auto root = new TreeNode(postorder[postorder.size() - 1]);
+        auto root = new TreeNode(postorder.back());
         stack<TreeNode *> stk;
         stk.emplace(root);
-        auto inorder_idx = (int) inorder.size() - 1;
+        auto ino_idx = (int) inorder.size() - 1;
         for (auto i = (int) postorder.size() - 2; i >= 0; i--) {
             auto val = postorder[i];
             auto node = stk.top();
-            if (node->val != inorder[inorder_idx]) {
+            if (node->val != inorder[ino_idx]) {
                 node->right = new TreeNode(val);
                 stk.emplace(node->right);
-            } else {
-                while (!stk.empty() && stk.top()->val == inorder[inorder_idx]) {
-                    node = stk.top();
-                    stk.pop();
-                    --inorder_idx;
-                }
-                node->left = new TreeNode(val);
-                stk.emplace(node->left);
+                continue;
             }
+            while (!stk.empty() && stk.top()->val == inorder[ino_idx]) {
+                node = stk.top();
+                stk.pop();
+                --ino_idx;
+            }
+            node->left = new TreeNode(val);
+            stk.emplace(node->left);
         }
         return root;
     }
