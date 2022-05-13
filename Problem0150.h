@@ -18,9 +18,9 @@ public:
         for (const auto &s: tokens) {
             if (s == "+" || s == "-" || s == "*" || s == "/") {
                 doOperation(s, stk);
-                continue;
+            } else {
+                stk.emplace(stoi(s));
             }
-            stk.emplace(stoi(s));
         }
         return stk.top();
     }
