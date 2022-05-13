@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 巧妙的做法，要牢记！
+    // 巧妙的做法，要牢记：利用哈希表保存前缀，快速查找a的前驱a-1是否存在
 public:
     int longestConsecutive(const vector<int> &nums) {
         unordered_set<int> nums_set(nums.begin(), nums.end());
