@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
+    // 版本号形如"a.b"，对于2个版本号v1、v2，我们分别比较它们的a部分，然后再比较b部分
 public:
     int compareVersion(const string &ver1, const string &ver2) {
         int i = 0;
