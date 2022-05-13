@@ -16,41 +16,30 @@ public:
     int evalRPN(const vector<string> &tokens) {
         stack<int> stk;
         for (const auto &s: tokens) {
-            if (s == "+") {
-                auto b = stk.top();
-                stk.pop();
-                auto a = stk.top();
-                stk.pop();
-                stk.emplace(a + b);
-                continue;
-            }
-            if (s == "-") {
-                auto b = stk.top();
-                stk.pop();
-                auto a = stk.top();
-                stk.pop();
-                stk.emplace(a - b);
-                continue;
-            }
-            if (s == "*") {
-                auto b = stk.top();
-                stk.pop();
-                auto a = stk.top();
-                stk.pop();
-                stk.emplace(a * b);
-                continue;
-            }
-            if (s == "/") {
-                auto b = stk.top();
-                stk.pop();
-                auto a = stk.top();
-                stk.pop();
-                stk.emplace(a / b);
+            if (s == "+" || s == "-" || s == "*" || s == "/") {
+                doOperation(s, stk);
                 continue;
             }
             stk.emplace(stoi(s));
         }
         return stk.top();
+    }
+
+private:
+    void doOperation(const string &op, stack<int> &stk) {
+        auto b = stk.top();
+        stk.pop();
+        auto a = stk.top();
+        stk.pop();
+        if (op == "+") {
+            stk.emplace(a + b);
+        } else if (op == "-") {
+            stk.emplace(a - b);
+        } else if (op == "*") {
+            stk.emplace(a * b);
+        } else {
+            stk.emplace(a / b);
+        }
     }
 };
 
