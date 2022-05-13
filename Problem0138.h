@@ -14,27 +14,24 @@ public:
         if (!head) {
             return head;
         }
-        // O(1)空间做法：将新节点保存为老节点的后继
-        for (auto p = head; p; p = p->next->next) {
-            auto q = new Node(p->val);
-            q->next = p->next;
-            p->next = q;
+        for (auto cur = head; cur; cur = cur->next->next) {  // 将新节点保存为老节点的后继
+            auto t = new Node(cur->val);
+            t->next = cur->next;
+            cur->next = t;
         }
-        // 构建新链表的random指针
-        for (auto p = head; p; p = p->next->next) {
-            if (!p->random) {
+        for (auto cur = head; cur; cur = cur->next->next) {  // 构建新链表的random指针
+            if (!cur->random) {
                 continue;
             }
-            p->next->random = p->random->next;
+            cur->next->random = cur->random->next;
         }
-        // 分离新链表
         auto dummy = new Node(-1);
-        auto current = dummy;
-        for (auto p = head; p; p = p->next) {
-            auto q = p->next;
-            current->next = q;
-            current = current->next;
-            p->next = q->next;  // 重要步骤：拆链
+        auto cur = dummy;
+        for (auto p = head; p; p = p->next) {  // 分离新链表
+            cur->next = p->next;
+            cur = cur->next;
+            p->next = cur->next;  // 重要步骤：拆链
+            cur->next = nullptr;
         }
         auto ans = dummy->next;
         delete dummy;
