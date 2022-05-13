@@ -5,32 +5,26 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0147_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0147_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
+    // 引入伪头节点，降低代码复杂度
 public:
     ListNode *insertionSortList(ListNode *head) {
-        auto *dummy = new ListNode(-1);  // dummy后没有结点，插入排序从头部开始
+        auto *dummy = new ListNode(-1);
         while (head) {
             auto *t = head->next;
             auto *p = dummy;
-            while (p->next && p->next->val <= head->val) {
+            while (p->next && p->next->val <= head->val) {  // 寻找插入位置p，p->val <= head->val
                 p = p->next;
             }
-            head->next = p->next;
+            head->next = p->next;  // 插入节点
             p->next = head;
             head = t;
         }
-        return dummy->next;
+        auto ans = dummy->next;
+        delete dummy;
+        return ans;
     }
 };
 
