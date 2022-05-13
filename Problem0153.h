@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 旋转后的数组的最小值在"分界点"处
 public:
     int findMin(const vector<int> &nums) {
         auto r = (int) nums.size() - 1;
