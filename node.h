@@ -13,7 +13,8 @@ public:
     Node *left;
     Node *right;
     Node *next;
-    std::vector<Node*> neighbors;
+    Node *random;
+    std::vector<Node *> neighbors;
 
     Node() : val(0), left(nullptr), right(nullptr), next(nullptr) {}
 

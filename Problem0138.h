@@ -5,22 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0138_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0138_H
 
-#include <algorithm>
-
-class Node {
-public:
-    int val;
-    Node *next;
-    Node *random;
-
-    Node(int _val) {
-        val = _val;
-        next = NULL;
-        random = NULL;
-    }
-};
+#include "node.h"
 
 class Solution {
+    // 巧妙方法（空间O(1)），直接背诵：将复制a后生成的新节点a'暂存为a的后继（a->next=a'），最后分离新链和旧链
 public:
     Node *copyRandomList(Node *head) {
         if (!head) {
