@@ -5,12 +5,15 @@
 #ifndef LEETCODESOLUTIONSINCPP_NODE_H
 #define LEETCODESOLUTIONSINCPP_NODE_H
 
+#include <vector>
+
 class Node {
 public:
     int val;
     Node *left;
     Node *right;
     Node *next;
+    std::vector<Node*> neighbors;
 
     Node() : val(0), left(nullptr), right(nullptr), next(nullptr) {}
 
