@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Problem0161 {
+class Solution {
+    // 注意细节和特殊情况
 public:
     bool isOneEditDistance(const string &s, const string &t) {
         if (s.empty()) {  // 特殊情况：s或t为空
@@ -27,9 +28,9 @@ public:
                 ++i;
                 ++j;
             } else { // 分3种情况
-                return s.substr(i) == t.substr(j + 1) ||
-                       s.substr(i + 1) == t.substr(j) ||
-                       s.substr(i + 1) == t.substr(j + 1);
+                return s.substr(i) == t.substr(j + 1) ||  // 删掉t[j]
+                       s.substr(i + 1) == t.substr(j) ||  // 删掉s[i]
+                       s.substr(i + 1) == t.substr(j + 1);  // 替换s[i]/t[j]
             }
         }
         return j == m - 1 || i == n - 1;  // 特殊情况：s是t的前缀或t是s的前缀，则 size(s - t) == 1 或 size(t - s) == 1
