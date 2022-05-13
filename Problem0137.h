@@ -11,6 +11,7 @@ using namespace std;
 
 class Solution {
     // https://www.acwing.com/solution/content/232/
+    // 考虑二进制每位上出现0和1的次数，如果出现1的次数为3k+1，则证明答案中这位是1。
 public:
     int singleNumber(const vector<int> &nums) {
         int answer = 0;
