@@ -5,29 +5,23 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0160_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0160_H
 
-#include <algorithm>
-
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode(int x) : val(x), next(NULL) {}
-};
+#include "listnode.h"
 
 class Solution {
+    // 直接背诵：p1、p2同时移动，当某个指针移动到末尾后，让它在另一条链上继续移动，直到两者相遇
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        if (!headA || !headB) {
-            return NULL;
+    ListNode *getIntersectionNode(ListNode *head_a, ListNode *head_b) {
+        if (!head_a || !head_b) {
+            return nullptr;
         }
-        auto p1 = headA;
-        auto p2 = headB;
+        auto p1 = head_a;
+        auto p2 = head_b;
         while (p1 || p2) {
             if (!p1) {
-                p1 = headB;
+                p1 = head_b;
             }
             if (!p2) {
-                p2 = headA;
+                p2 = head_a;
             }
             if (p1 == p2) {
                 return p1;
@@ -35,7 +29,7 @@ public:
             p1 = p1->next;
             p2 = p2->next;
         }
-        return NULL;
+        return nullptr;
     }
 };
 
