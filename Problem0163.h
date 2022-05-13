@@ -10,22 +10,23 @@
 
 using namespace std;
 
-class Problem0163 {
+class Solution {
+    // 遍历nums，同步更新lower，补齐缺失
 public:
     vector<string> findMissingRanges(const vector<int> &nums, int lower, int upper) {
-        vector<string> result;
+        vector<string> ans;
         for (const int &x: nums) {
             if (x == lower) {
                 ++lower;
             } else {
-                result.emplace_back(createRange(lower, x - 1));
+                ans.emplace_back(createRange(lower, x - 1));
                 lower = x + 1;
             }
         }
         if (lower <= upper) {
-            result.emplace_back(createRange(lower, upper));
+            ans.emplace_back(createRange(lower, upper));
         }
-        return result;
+        return ans;
     }
 
 private:
