@@ -11,17 +11,17 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
+    // 经典算法，直接背诵：映射1~26到A~Z
 public:
-    string convertToTitle(int n) {  // 直接背诵
-        string res;
+    string convertToTitle(int n) {
+        string ans;
         while (n) {
             n--;
-            res += (char) (n % 26 + 'A');
+            ans += (char) (n % 26 + 'A');
             n /= 26;
         }
-        reverse(res.begin(), res.end());
-        return res;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 
