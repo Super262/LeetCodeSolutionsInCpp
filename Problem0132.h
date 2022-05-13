@@ -12,32 +12,34 @@
 using namespace std;
 
 class Solution {
+    // f[i]：前i个字符最少分为dp[i]个回文串（i >= 1）
+    // 预处理is_pa[i][j]：s[i][j]是否为回文串
 public:
     int minCut(const string &s) {
         const int n = (int) s.size();
-        bool st[n][n];  // st[i][j]：s[i][j]是否为回文串
-        memset(st, 0, sizeof st);
+        bool is_pa[n][n];
+        memset(is_pa, 0, sizeof is_pa);
         for (int r = 0; r < n; ++r) {
             for (int l = r; l >= 0; --l) {
                 if (l == r) {
-                    st[l][r] = true;
+                    is_pa[l][r] = true;
                 } else {
-                    st[l][r] = s[l] == s[r] && (l + 1 > r - 1 || st[l + 1][r - 1]);
+                    is_pa[l][r] = s[l] == s[r] && (l + 1 > r - 1 || is_pa[l + 1][r - 1]);
                 }
             }
         }
-        int dp[n + 1];  // dp[i]：前i个字符最少分为dp[i]个回文串（i >= 1）
-        memset(dp, 0x3f, sizeof dp);
-        dp[0] = 0;
+        int f[n + 1];
+        memset(f, 0x3f, sizeof f);
+        f[0] = 0;
         for (int r = 1; r <= n; ++r) {
             for (int l = 1; l <= r; ++l) {
-                if (!st[l - 1][r - 1]) {
+                if (!is_pa[l - 1][r - 1]) {
                     continue;
                 }
-                dp[r] = min(dp[l - 1] + 1, dp[r]);
+                f[r] = min(f[l - 1] + 1, f[r]);
             }
         }
-        return dp[n] - 1;
+        return f[n] - 1;
     }
 };
 

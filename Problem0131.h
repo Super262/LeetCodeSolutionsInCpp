@@ -11,11 +11,12 @@
 using namespace std;
 
 class Solution {
+    // 直接DFS：枚举分界点
+    // 预处理：is_pa[l][r]指示s[l][r]是否为回文串
 public:
     vector<vector<string>> partition(const string &s) {
         const int n = (int) s.size();
         vector<vector<bool>> is_pa(n, vector<bool>(n, false));
-        // 预处理：is_pa[l][r]指示s[l][r]是否为回文串
         for (int r = 0; r < n; ++r) {
             for (int l = r; l >= 0; --l) {
                 if (l == r) {
