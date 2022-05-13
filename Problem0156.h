@@ -5,20 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0156_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0156_H
 
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+#include "treenode.h"
 
 class Solution {
+    // 自下而上翻转，类似后序遍历
+    // 注意细节，切忌混淆指针
 public:
     TreeNode *upsideDownBinaryTree(TreeNode *root) {
         if (!root || !root->left) {
@@ -27,18 +18,19 @@ public:
         return dfs(root->left, root, root->right);
     }
 
+private:
     TreeNode *dfs(TreeNode *left, TreeNode *parent, TreeNode *right) {
-        TreeNode *result = nullptr;
+        TreeNode *root = nullptr;
         if (left->left) {
-            result = dfs(left->left, left, left->right);
+            root = dfs(left->left, left, left->right);  // 处理子节点
         } else {
-            result = left;
+            root = left;
         }
-        left->right = parent;
+        left->right = parent;  // 处理当前层
         left->left = right;
         parent->left = nullptr;
         parent->right = nullptr;
-        return result;
+        return root;
     }
 };
 
