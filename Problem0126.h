@@ -14,22 +14,24 @@
 using namespace std;
 
 class Solution {
+    // BFS：根据各个单词间的关系，建立有向图（只保存dist，不保存边a->b）
+    // DFS：搜索从st到ed的所有路径，注意剪枝
 public:
-    vector<vector<string>> findLadders(const string &beginWord,
-                                       const string &endWord,
-                                       const vector<string> &wordList) {
-        unordered_set<string> words_set(wordList.begin(), wordList.end()); // 单词集合
-        words_set.insert(beginWord);
-        if (!words_set.count(endWord)) {  // 终点未出现
+    vector<vector<string>> findLadders(const string &begin_word,
+                                       const string &end_word,
+                                       const vector<string> &word_list) {
+        unordered_set<string> words_set(word_list.begin(), word_list.end()); // 单词集合
+        words_set.insert(begin_word);
+        if (!words_set.count(end_word)) {  // 终点未出现
             return {};
         }
         queue<string> q;
         unordered_map<string, int> dist; // 其它单词距起点的距离
-        dist[beginWord] = 0;
-        q.emplace(beginWord);
+        dist[begin_word] = 0;
+        q.emplace(begin_word);
         while (!q.empty()) {  // BFS建图
             auto root = q.front();
-            if (root == endWord) {
+            if (root == end_word) {
                 break;
             }
             q.pop();
@@ -47,13 +49,13 @@ public:
                 root[i] = t;
             }
         }
-        if (!dist.count(endWord)) {  // 终点不可达
+        if (!dist.count(end_word)) {  // 终点不可达
             return {};
         }
         vector<vector<string>> result;
         vector<string> path;
-        path.emplace_back(beginWord);
-        dfs(beginWord, endWord, path, result, words_set, dist);
+        path.emplace_back(begin_word);
+        dfs(begin_word, end_word, path, result, words_set, dist);
         return result;
     }
 
