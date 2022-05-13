@@ -5,24 +5,15 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0148_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0148_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
-    // 经典算法，直接背诵
+    // 经典算法，直接背诵：链表的归并排序
     // https://www.acwing.com/solution/content/408/
 public:
-    ListNode *sortList(ListNode *head) {  // 归并排序思想
+    ListNode *sortList(ListNode *head) {
         int n = 0;
-        for (auto p = head; p; p = p->next) {
+        for (auto p = head; p; p = p->next) {  // 求得链表的长度
             ++n;
         }
         auto dummy = new ListNode(-1);
@@ -30,8 +21,8 @@ public:
         for (int seg = 1; seg < n; seg *= 2) {  // 枚举分治段的长度
             head = dummy;
             for (int i = 1; i + seg <= n; i += 2 * seg) {
-                auto p = head->next;  // 左分治段指针
-                auto q = head->next;  // 右分治段指针
+                auto p = head->next;  // 左分治段的起点
+                auto q = head->next;  // 右分治段的起点
                 for (int k = 1; k <= seg; ++k) {
                     q = q->next;
                 }
