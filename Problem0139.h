@@ -13,25 +13,24 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
-    // dp[i]：前i个字符是否可被分割（1 <= i<= n）
+    // f[i]：前i个字符是否可被分割（1<=i<=n）
+    // 优化查找速度：Trie替代哈希表
 public:
     bool wordBreak(const string &s, const vector<string> &words) {
-        // 优化查找速度：Trie替代哈希表（O(n) -> O (1)）
         unordered_set<string> dict(words.begin(), words.end());
         const int n = (int) s.size();
-        bool dp[n + 1];
-        memset(dp, 0, sizeof dp);
-        dp[0] = true;
+        bool f[n + 1];
+        memset(f, 0, sizeof f);
+        f[0] = true;
         for (int r = 1; r <= n; ++r) {
             for (int l = 1; l <= r; ++l) {
-                dp[r] = dp[r] || (dp[l - 1] && dict.count(s.substr(l - 1, r - l + 1)));
-                if (dp[r]) {
+                f[r] = f[r] || (f[l - 1] && dict.count(s.substr(l - 1, r - l + 1)));
+                if (f[r]) {
                     break;
                 }
             }
         }
-        return dp[n];
+        return f[n];
     }
 };
 
