@@ -6,17 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0141_H
 
 #include <iostream>
+#include "listnode.h"
 
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode(int x) : val(x), next(NULL) {}
-};
-
 class Solution {
+    // 快慢指针：slow每次前进1步，fast每次前进2步；若两者相遇，说明有环
 public:
     bool hasCycle(ListNode *head) {
         if (!head || !head->next) {
