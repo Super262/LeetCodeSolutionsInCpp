@@ -14,23 +14,24 @@
 using namespace std;
 
 class Solution {
+    // BFS：根据各个单词间的关系，建立有向图（只保存dist，不保存边a->b）
 public:
-    int ladderLength(const string &beginWord,
-                     const string &endWord,
-                     const vector<string> &wordList) {
-        unordered_set<string> words_set(wordList.begin(), wordList.end());
-        words_set.insert(beginWord);
-        if (!words_set.count(endWord)) {
+    int ladderLength(const string &begin_word,
+                     const string &end_word,
+                     const vector<string> &word_list) {
+        unordered_set<string> words_set(word_list.begin(), word_list.end());
+        words_set.insert(begin_word);
+        if (!words_set.count(end_word)) {
             return 0;
         }
         unordered_map<string, int> dist;
         queue<string> q;
-        dist[beginWord] = 1;
-        q.emplace(beginWord);
+        dist[begin_word] = 1;
+        q.emplace(begin_word);
         while (!q.empty()) {
             string root = q.front();
             q.pop();
-            if (root == endWord) {
+            if (root == end_word) {
                 break;
             }
             auto rd = dist[root];
@@ -47,10 +48,10 @@ public:
                 root[i] = t;
             }
         }
-        if (!dist.count(endWord)) {
+        if (!dist.count(end_word)) {
             return 0;
         }
-        return dist[endWord];
+        return dist[end_word];
     }
 };
 
