@@ -10,28 +10,27 @@
 using namespace std;
 
 class Solution {
-    // 经典DP，直接背诵
-    // dp[i][0]：所有以nums[i]结尾的子数组的乘积的最大值
-    // dp[i][1]：所有以nums[i]结尾的子数组的乘积的最小值
+    // 由于输入可能有负数，我们既要保存最小值，也要保存最大值
+    // f[i][0]：所有以nums[i]结尾的子数组的乘积的最大值
+    // f[i][1]：所有以nums[i]结尾的子数组的乘积的最小值
 public:
     int maxProduct(const vector<int> &nums) {
-        const int n = (int) nums.size();
-        // 滚动数组优化
-        int dp[2][2];
-        dp[0][0] = nums[0];
-        dp[0][1] = nums[0];
-        auto res = dp[0][0];
+        const auto n = (int) nums.size();
+        int f[2][2];  // 滚动数组优化
+        f[0][0] = nums[0]; // 初始化
+        f[0][1] = nums[0];
+        auto ans = f[0][0];
         for (int i = 1; i < n; ++i) {
             if (nums[i] >= 0) {
-                dp[i % 2][0] = max(nums[i], dp[(i - 1) % 2][0] * nums[i]);
-                dp[i % 2][1] = min(nums[i], dp[(i - 1) % 2][1] * nums[i]);
-            } else {
-                dp[i % 2][0] = max(nums[i], dp[(i - 1) % 2][1] * nums[i]);
-                dp[i % 2][1] = min(nums[i], dp[(i - 1) % 2][0] * nums[i]);
+                f[i % 2][0] = max(nums[i], f[(i - 1) % 2][0] * nums[i]);
+                f[i % 2][1] = min(nums[i], f[(i - 1) % 2][1] * nums[i]);
+            } else {  // 负负得正
+                f[i % 2][0] = max(nums[i], f[(i - 1) % 2][1] * nums[i]);
+                f[i % 2][1] = min(nums[i], f[(i - 1) % 2][0] * nums[i]);
             }
-            res = max(res, dp[i % 2][0]);
+            ans = max(ans, f[i % 2][0]);
         }
-        return res;
+        return ans;
     }
 };
 
