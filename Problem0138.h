@@ -36,7 +36,9 @@ public:
             current = current->next;
             p->next = q->next;  // 重要步骤：拆链
         }
-        return dummy->next;
+        auto ans = dummy->next;
+        delete dummy;
+        return ans;
     }
 };
 
