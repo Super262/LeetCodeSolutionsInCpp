@@ -11,7 +11,7 @@ using namespace std;
 
 int read4(char *buf4);
 
-class Problem0157 {
+class Solution {
 public:
     /**
      * @param buf Destination buffer
