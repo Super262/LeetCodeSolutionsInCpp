@@ -26,10 +26,10 @@ private:
         } else {
             root = left;
         }
-        left->right = parent;  // 处理当前层
-        left->left = right;
-        parent->left = nullptr;
+        parent->left = nullptr;  // 处理当前层
         parent->right = nullptr;
+        left->right = parent;
+        left->left = right;
         return root;
     }
 };
