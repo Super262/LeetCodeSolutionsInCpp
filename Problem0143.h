@@ -5,48 +5,35 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0143_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0143_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
     // 经典算法，必须掌握
-    // https://www.acwing.com/solution/content/240/
+    // 将链表分成两部分：[0:(n+1)/2-1]和[(n+1)/2:n]；翻转后半部分；将后半部分的节点插入到前半部分
 public:
     void reorderList(ListNode *head) {
         int n = 0;
-        for (auto p = head; p; p = p->next) {
+        for (auto p = head; p; p = p->next) {  // 获得链表长度
             ++n;
         }
         if (n <= 2) {
             return;
         }
-        // 找到索引为(n + 1) / 2 的点的前驱
         auto later = head;
-        for (int i = 0; i < (n + 1) / 2 - 1; ++i) {
+        for (int i = 0; i < (n + 1) / 2 - 1; ++i) {  // 找到索引为(n + 1) / 2 的点的前驱
             later = later->next;
         }
-        // 翻转子序列[(n + 1) / 2, n - 1]
         auto a = later;
         auto b = later->next;
-        while (b) {
+        while (b) {  // 翻转子序列[(n + 1) / 2, n - 1]
             auto c = b->next;
             b->next = a;
             a = b;
             b = c;
         }
-        // 断开两个序列
-        later->next->next = nullptr;
+        later->next->next = nullptr;  // 断开两个序列
         later->next = nullptr;
-        // 将第2个序列的结点插入第1个序列
-        while (head && a) {
+        while (head && a) {  // 将第2个序列的结点插入第1个序列
             auto temp = a->next;
             a->next = head->next;
             head->next = a;
