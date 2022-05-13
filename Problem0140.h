@@ -13,11 +13,13 @@
 using namespace std;
 
 class Solution {
+    // 预处理出f[i]：前i个字符是否可被分割（1 <= i <= n）
+    // DFS：从后向前枚举分界点，记录所有可行方案
 public:
     vector<string> wordBreak(const string &s, const vector<string> &words) {
         unordered_set<string> dict(words.begin(), words.end());
         const int n = (int) s.size();
-        bool f[n + 1];  // f[i]：前i个字符是否可被分割（1 <= i <= n）
+        bool f[n + 1];
         memset(f, 0, sizeof f);
         f[0] = true;
         for (int r = 1; r <= n; ++r) {
