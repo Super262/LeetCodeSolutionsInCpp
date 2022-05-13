@@ -5,7 +5,6 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0142_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0142_H
 
-#include <algorithm>
 #include "listnode.h"
 
 using namespace std;
