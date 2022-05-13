@@ -11,9 +11,9 @@
 using namespace std;
 
 class Solution {
+    // 逆向思维：从边界寻找没有被X包围的O
 public:
     void solve(vector<vector<char>> &board) {
-        // 逆向思维：从边界寻找没有被X包围的O；将剩余的O转为X
         const int n = (int) board.size();
         const int m = (int) board[0].size();
         for (int i = 0; i < m; ++i) {  // 上下边界
@@ -54,8 +54,6 @@ private:
     void bfs(vector<vector<char>> &board, const int x, const int y) {
         const int n = (int) board.size();
         const int m = (int) board[0].size();
-        const int dx[4] = {0, 0, 1, -1};
-        const int dy[4] = {1, -1, 0, 0};
         queue<pair<int, int>> q;
         q.emplace(pair<int, int>(x, y));
         board[x][y] = 'Y';  // 使用新标记
@@ -78,6 +76,9 @@ private:
             }
         }
     }
+
+    const int dx[4] = {0, 0, 1, -1};
+    const int dy[4] = {1, -1, 0, 0};
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0130_H
