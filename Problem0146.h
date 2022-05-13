@@ -53,6 +53,15 @@ public:
         index[key] = node;
     }
 
+    /*~LRUCache() {  // 会导致超时
+        auto cur = head;
+        while (cur) {
+            auto t = cur->next;
+            delete cur;
+            cur = t;
+        }
+    }*/
+
 private:
     struct Node {
         int key;
