@@ -6,19 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0142_H
 
 #include <algorithm>
+#include "listnode.h"
 
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode(int x) : val(x), next(nullptr) {}
-};
-
 class Solution {
-    // 经典算法，直接背诵
-    // https://www.acwing.com/solution/content/2946/
+    // 经典算法，记忆推导过程：https://www.acwing.com/solution/content/2946/
 public:
     ListNode *detectCycle(ListNode *head) {
         auto slow = head;
