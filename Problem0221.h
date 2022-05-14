@@ -11,8 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，必须掌握
-    // 动态规划问题：f[i][j]是(i, j)区域内矩形的最大边长
+    // f[i][j]是以(i, j)为右下角的、全1矩形的最小边长
 public:
     int maximalSquare(const vector<vector<char>> &matrix) {
         const auto m = (int) matrix.size();
@@ -26,7 +25,7 @@ public:
                     continue;
                 }
                 f[i][j] = min(min(f[i - 1][j], f[i][j - 1]), f[i - 1][j - 1]) + 1;
-                ans = max(ans, f[i][j] * f[i][j]);
+                ans = max(ans, f[i][j] * f[i][j]);  // 计算面积
             }
         }
         return ans;
