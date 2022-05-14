@@ -12,11 +12,12 @@ using namespace std;
 
 class Solution {
     // 经典DP，必须掌握：已知最终状态（能量大于0），反推初始值
+    // f[i][j]：想到达终点，从(i, j)出发时应保有的能量最小值
 public:
     int calculateMinimumHP(const vector<vector<int>> &dun) {
         const auto m = (int) dun.size();
         const auto n = (int) dun[0].size();
-        int f[2][n];  // f[i][j]：在抵达(i, j)前应保有的能量最小值
+        int f[2][n];
         for (int i = m - 1; i >= 0; --i) {
             for (int j = n - 1; j >= 0; --j) {
                 f[i % 2][j] = 0x3f3f3f3f;
