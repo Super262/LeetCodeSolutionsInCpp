@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 从每个"1"开始BFS，标记被发现的岛屿为"0"；统计岛屿数量
 public:
     int numIslands(vector<vector<char>> &grid) {
         int result = 0;
