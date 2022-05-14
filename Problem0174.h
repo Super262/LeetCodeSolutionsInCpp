@@ -20,7 +20,7 @@ public:
         int f[2][n];
         for (int i = m - 1; i >= 0; --i) {
             for (int j = n - 1; j >= 0; --j) {
-                f[i % 2][j] = 0x3f3f3f3f;
+                f[i % 2][j] = 0x3f3f3f3f;  // 不要忘记这个初始化，因为这里有空间优化
                 if (i == m - 1 && j == n - 1) {
                     f[i % 2][j] = max(1, 1 - dun[i][j]);  // 终点，能量最少为1
                 } else {
@@ -30,7 +30,7 @@ public:
                     if (j + 1 < n) {  // 能向右走
                         f[i % 2][j] = min(f[i % 2][j], f[i % 2][j + 1] - dun[i][j]);
                     }
-                    f[i % 2][j] = max(1, f[i % 2][j]);
+                    f[i % 2][j] = max(1, f[i % 2][j]);  // 最后必须保证起点的能量大于0
                 }
             }
         }
