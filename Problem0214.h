@@ -10,11 +10,12 @@
 using namespace std;
 
 class Solution {
-    // 加强对KMP算法的理解，背诵代码！
-    // https://www.acwing.com/solution/content/19819/
+    // 加强对KMP算法的理解，背诵代码：https://www.acwing.com/solution/content/19819/
+    // 设输入为s，我们在头部添加的字符串为a，最终结果为ans=a+s；进一步分析，我们发现ans=a+c+a'，设c是某个回文串，a'是a的反序
+    // 因此，我们需要在s中找到最长的前缀，该前缀是回文串（c），这样会使得a最短；我们可以利用KMP算法的性质解决问题
 public:
     string shortestPalindrome(const string &s) {
-        const string temp = s + "#" + string(s.rbegin(), s.rend());
+        const string temp = s + "#" + string(s.rbegin(), s.rend());  // 关键操作
         const auto m = (int) temp.size();
         int fail[m];
         buildFail(temp, fail);
