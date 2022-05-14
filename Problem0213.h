@@ -10,8 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典DP，必须掌握
-    // https://www.acwing.com/solution/content/19758/
+    // 经典DP，必须掌握：https://www.acwing.com/solution/content/19758/
     // f[i % 2][1]：盗取第i个时的最大获利；f[i % 2][0]：不盗取第i个时的最大获利
 public:
     int rob(const vector<int> &nums) {
@@ -27,7 +26,7 @@ public:
         // 滚动数组优化
         int f[2][2];
 
-        // Choose the first one: [0, n - 2]
+        // 盗取0号房，不盗取n-1号房
         f[0][0] = 0;
         f[0][1] = nums[0];
         const auto n = (int) nums.size();
@@ -37,7 +36,7 @@ public:
         }
         auto result = max(f[(n - 2) % 2][0], f[(n - 2) % 2][1]);
 
-        // Do not choose the first one: [1, n - 1]
+        // 不盗取0号房，盗取n-1号房
         f[1][0] = 0;
         f[1][1] = nums[1];
         for (int i = 2; i < n; ++i) {
