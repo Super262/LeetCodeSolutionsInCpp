@@ -5,18 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0234_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0234_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include"listnode.h"
 
 class Solution {
+    // 将链表前半段反序，再和后半段比较
+    // 细节：链表长度可能为奇数，也可能为偶数
 public:
     bool isPalindrome(ListNode *head) {
         if (!head) {
