@@ -10,6 +10,7 @@
 using namespace std;
 
 class MyStack {
+    // 执行push操作时，引入临时队列，改变数据顺序
 public:
     /** Push element x onto stack. */
     void push(int x) {
