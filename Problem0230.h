@@ -5,19 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0230_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0230_H
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+#include "treenode.h"
 
 class Solution {
+    // 类似中序遍历，有序访问BST
 public:
     int kthSmallest(TreeNode *root, int k) {
         int answer = -1;
@@ -26,7 +17,7 @@ public:
     }
 
 private:
-    bool dfs(TreeNode *root, int &k, int &answer) {
+    bool dfs(TreeNode *root, int &k, int &answer) {  // 细节：k是引用
         if (!root) {
             return false;
         }
