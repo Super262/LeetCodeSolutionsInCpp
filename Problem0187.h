@@ -34,7 +34,7 @@ public:
     }
 
 private:
-    static const unsigned int P = 13131;
+    static const unsigned int P = 131;
 
     static void initHash(const string &s, int n, unsigned long long hash[], unsigned long long factor[]) {
         hash[0] = 0;
