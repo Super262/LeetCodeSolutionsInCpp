@@ -48,22 +48,25 @@ private:
 
     Node *root;
 
-    bool dfs(Node *start, const string &word, const int idx) {
-        if (!start) {
-            return false;
-        }
+    bool dfs(Node *root, const string &word, const int idx) {
         if (idx == (int) word.size()) {
-            return start->is_word;
+            return root->is_word;
         }
         if (word[idx] == '.') {
-            for (const auto &kid: start->kids) {
+            for (const auto &kid: root->kids) {
+                if (!kid) {
+                    continue;
+                }
                 if (dfs(kid, word, idx + 1)) {
                     return true;
                 }
             }
             return false;
         }
-        return dfs(start->kids[word[idx] - 'a'], word, idx + 1);
+        if (!root->kids[word[idx] - 'a']) {
+            return false;
+        }
+        return dfs(root->kids[word[idx] - 'a'], word, idx + 1);
     }
 };
 
