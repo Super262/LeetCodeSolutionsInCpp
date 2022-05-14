@@ -10,6 +10,7 @@
 using namespace std;
 
 class TwoSum {
+    // 输入可能有重复数字，要注意细节
 public:
     TwoSum() = default;
 
@@ -20,10 +21,10 @@ public:
     bool find(const int &value) {
         for (const auto &item: counter) {
             auto target = value - item.first;
-            if (target == item.first && item.second >= 2) {
+            if (target == item.first && item.second >= 2) {  // a == b
                 return true;
             }
-            if (target != item.first && counter.count(target)) {
+            if (target != item.first && counter.count(target)) {  // a != b
                 return true;
             }
         }
