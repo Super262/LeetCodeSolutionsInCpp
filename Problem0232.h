@@ -10,47 +10,39 @@
 using namespace std;
 
 class MyQueue {
+    // 引入临时栈，实现反序操作
 public:
     MyQueue() = default;
 
     void push(int x) {
-        storage.emplace(x);
+        stack<int> temp;
+        while (!data.empty()) {
+            temp.emplace(data.top());
+            data.pop();
+        }
+        data.emplace(x);
+        while (!temp.empty()) {
+            data.emplace(temp.top());
+            temp.pop();
+        }
     }
 
     int pop() {
-        while (!storage.empty()) {
-            temp.emplace(storage.top());
-            storage.pop();
-        }
-        auto t = temp.top();
-        temp.pop();
-        while (!temp.empty()) {
-            storage.emplace(temp.top());
-            temp.pop();
-        }
-        return t;
+        auto ans = data.top();
+        data.pop();
+        return ans;
     }
 
     int peek() {
-        while (!storage.empty()) {
-            temp.emplace(storage.top());
-            storage.pop();
-        }
-        auto t = temp.top();
-        while (!temp.empty()) {
-            storage.emplace(temp.top());
-            temp.pop();
-        }
-        return t;
+        return data.top();
     }
 
     bool empty() {
-        return storage.empty();
+        return data.empty();
     }
 
 private:
-    stack<int> storage;
-    stack<int> temp;
+    stack<int> data;
 };
 
 /**
