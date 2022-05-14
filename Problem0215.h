@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 快速选择算法，平均O(n)，最坏O(n^2)
 public:
     int findKthLargest(vector<int> &nums, int k) {
         helper(nums, 0, (int) nums.size() - 1, k);
