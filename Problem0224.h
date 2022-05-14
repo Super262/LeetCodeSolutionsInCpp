@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 运算符只有"+"和"-"
 public:
     int calculate(const string &s) {
         stack<int> ops;
@@ -19,9 +20,9 @@ public:
         auto n = (int) s.size();
         int i = 0;
         int ans = 0;
-        ops.emplace(sign);
+        ops.emplace(sign);  // 预先压入一个"+"
         while (i < n) {
-            if (s[i] == ' ') {
+            if (s[i] == ' ') {  // 跳过空格
                 ++i;
                 continue;
             }
