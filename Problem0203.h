@@ -5,37 +5,25 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0203_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0203_H
 
-
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
-    // 引入dummy结点，统一操作
+    // 引入dummy伪头节点，简化操作
 public:
     ListNode *removeElements(ListNode *head, const int &val) {
         auto dummy = new ListNode(-1);
         dummy->next = head;
-        auto left = dummy;
-        auto right = dummy->next;
-        while (right) {
-            if (right->val == val) {
-                right = right->next;
+        auto p = dummy;
+        while (p->next) {
+            if (p->next->val == val) {
+                p->next = p->next->next;
             } else {
-                left->next = right;
-                left = right;
-                right = right->next;
+                p = p->next;
             }
         }
-        left->next = right;
-        return dummy->next;
+        auto ans = dummy->next;
+        delete dummy;
+        return ans;
     }
 };
 
