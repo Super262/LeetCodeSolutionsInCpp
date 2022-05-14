@@ -5,30 +5,33 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0170_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0170_H
 
+#include <unordered_map>
+
+using namespace std;
+
 class TwoSum {
-private:
-    unordered_map<long, int> numsCount;
-
 public:
-    TwoSum() {
-
-    }
+    TwoSum() = default;
 
     void add(const int &number) {
-        ++numsCount[number];
+        ++counter[number];
     }
 
     bool find(const int &value) {
-        for (const auto &item: numsCount) {
+        for (const auto &item: counter) {
             auto target = value - item.first;
             if (target == item.first && item.second >= 2) {
                 return true;
-            } else if (target != item.first && numsCount.count(target)) {
+            }
+            if (target != item.first && counter.count(target)) {
                 return true;
             }
         }
         return false;
     }
+
+private:
+    unordered_map<long, int> counter;
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0170_H
