@@ -29,11 +29,11 @@ public:
             }
             q.emplace(v);
         }
-        vector<int> result;
+        vector<int> ans;
         while (!q.empty()) {
             auto root = q.front();
             q.pop();
-            result.emplace_back(root);
+            ans.emplace_back(root);
             for (const auto &v: graph[root]) {
                 --in_degree[v];
                 if (!in_degree[v]) {
@@ -41,10 +41,10 @@ public:
                 }
             }
         }
-        if (result.size() < n) {
+        if (ans.size() < n) {
             return {};
         }
-        return result;
+        return ans;
     }
 };
 
