@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 先翻转字符串内的单词，再翻转整个字符串
 public:
     void reverseWords(vector<char> &s) {
         int l = 0;
