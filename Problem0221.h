@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
     // f[i][j]是以(i, j)为右下角的、全1矩形的最小边长
+    // 细节：f[i][j]既转移自f[i-1][j]、f[i][j-1]，也转移自f[i-1][j-1]，不要忽略这点
 public:
     int maximalSquare(const vector<vector<char>> &matrix) {
         const auto m = (int) matrix.size();
