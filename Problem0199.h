@@ -7,48 +7,38 @@
 
 #include <vector>
 #include <queue>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
+    // 层序遍历，保存每层最后一个点
 public:
     vector<int> rightSideView(TreeNode *root) {
-        // 层序遍历，保存最右侧的点
-        vector<int> result;
         if (!root) {
-            return result;
+            return {};
         }
+        vector<int> ans;
         queue<TreeNode *> q;
         q.emplace(root);
         while (!q.empty()) {
             auto length = (int) q.size();
-            while (length--) {
-                auto rn = q.front();
+            while (length) {
+                auto node = q.front();
                 q.pop();
-                if (rn->left) {
-                    q.emplace(rn->left);
+                if (node->left) {
+                    q.emplace(node->left);
                 }
-                if (rn->right) {
-                    q.emplace(rn->right);
+                if (node->right) {
+                    q.emplace(node->right);
                 }
-                if (length == 0) {
-                    result.emplace_back(rn->val);
+                if (length == 1) {
+                    ans.emplace_back(node->val);
                 }
+                --length;
             }
         }
-        return result;
+        return ans;
     }
 };
 
