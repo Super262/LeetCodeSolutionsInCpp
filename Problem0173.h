@@ -6,26 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0173_H
 
 #include <stack>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class BSTIterator {  // 类似第94题
-private:
-    TreeNode *root;
-    stack<TreeNode *> stk;
-
+class BSTIterator {
+    // 使用栈存储后继节点，用指针保存未来入栈的起点
 public:
     BSTIterator(TreeNode *r) {
         root = r;
@@ -47,6 +33,10 @@ public:
     bool hasNext() {
         return !stk.empty() || root;
     }
+
+private:
+    TreeNode *root;
+    stack<TreeNode *> stk;
 };
 
 /**
