@@ -8,7 +8,7 @@
 #include <cstring>
 
 class Solution {
-    // 同AcWing0868，直接背诵！
+    // 线性筛法，同AcWing 868，直接背诵！
 public:
     int countPrimes(const int n) {
         if (n == 0) {
