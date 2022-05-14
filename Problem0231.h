@@ -6,7 +6,8 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0231_H
 
 class Solution {
-private:
+    // a>0，若a=2^x，则lowBit(a)=a
+public:
     bool isPowerOfTwo(int n) {
         return n > 0 && (n & -n) == n;
     }
