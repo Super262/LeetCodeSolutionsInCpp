@@ -10,31 +10,31 @@
 using namespace std;
 
 class Solution {
+    // DFS，注意细节
 public:
     vector<vector<int>> combinationSum3(int k, int n) {
         vector<vector<int>> result;
         vector<int> temp;
-        dfs(result, temp, 1, n, 0, k);
+        dfs(1, n, k, result, temp);
         return result;
     }
 
 private:
-    void dfs(vector<vector<int>> &result,
-             vector<int> &temp,
-             const int num,
-             const int n,
-             const int sum,
-             const int k) {
-        if (sum == n && temp.size() == k) {  // 序列和为n，包含的个数为k，满足要求
+    void dfs(const int num,
+             const int target,
+             const int k,
+             vector<vector<int>> &result,
+             vector<int> &temp) {
+        if (!target && (int) temp.size() == k) {  // 序列和为n，包含的个数为k，满足要求
             result.emplace_back(temp);
             return;
         }
-        if (num == 10 || temp.size() == k) {  // 已搜索到最后一个数字或序列长度达到上限
+        if (num == 10 || (int) temp.size() == k) {  // 已搜索完最后一个数字或序列长度达到上限
             return;
         }
-        for (int i = num; i <= 9; ++i) {
-            temp.emplace_back(i);
-            dfs(result, temp, i + 1, n, sum + i, k);
+        for (auto x = num; x <= 9 && x <= target; ++x) {
+            temp.emplace_back(x);
+            dfs(x + 1, target - x, k, result, temp);
             temp.pop_back();
         }
     }
