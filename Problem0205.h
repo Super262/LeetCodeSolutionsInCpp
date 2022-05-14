@@ -12,14 +12,14 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
+    // 经典算法，直接背诵：验证双射（bijection）是否成立，包含2次验证操作
 public:
     bool isIsomorphic(const string &s, const string &t) {
         if (s.size() != t.size()) {
             return false;
         }
-        unordered_map<char, char> s2t;
-        unordered_map<char, char> t2s;
+        unordered_map<char, char> s2t;  // s->t
+        unordered_map<char, char> t2s;  // t->s
         for (int i = 0; i < (int) s.size(); ++i) {
             auto a = s[i];
             auto b = t[i];
