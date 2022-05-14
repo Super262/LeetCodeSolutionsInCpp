@@ -12,11 +12,12 @@
 using namespace std;
 
 class Solution {
+    // 用Trie指引在矩阵上的搜索
 public:
     vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
         auto root = new Node();
         for (int i = 0; i < (int) words.size(); ++i) {
-            insertWord(root, words[i], i);
+            addWord(root, words[i], i);
         }
         bool existed[words.size()];
         memset(existed, 0, sizeof existed);
@@ -29,14 +30,14 @@ public:
                 dfs(board, i, j, root->kids[u], existed);
             }
         }
-        vector<string> result;
+        vector<string> ans;
         for (int i = 0; i < (int) words.size(); ++i) {
             if (!existed[i]) {
                 continue;
             }
-            result.emplace_back(words[i]);
+            ans.emplace_back(words[i]);
         }
-        return result;
+        return ans;
     }
 
 private:
@@ -55,7 +56,7 @@ private:
     const int dx[4] = {0, 1, 0, -1};
     const int dy[4] = {1, 0, -1, 0};
 
-    void insertWord(Node *root, const string &word, const int idx) {
+    void addWord(Node *root, const string &word, const int idx) {
         auto p = root;
         for (auto ch: word) {
             int u = ch - 'a';
