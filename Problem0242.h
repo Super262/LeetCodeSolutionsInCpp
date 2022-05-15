@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 直接比较2个哈希表
 public:
     bool isAnagram(const string &s, const string &t) {
         unordered_map<char, int> sh;
