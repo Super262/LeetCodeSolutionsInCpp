@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 从右上角开始遍历
+    // 技巧：从右上角开始遍历
 public:
     bool searchMatrix(const vector<vector<int>> &matrix, const int &target) {
         if (matrix.empty() || matrix[0].empty()) {
