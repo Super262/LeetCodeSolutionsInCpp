@@ -12,53 +12,50 @@
 using namespace std;
 
 class Solution {
+    // 切分字符串，然后直接DFS
 public:
     vector<int> diffWaysToCompute(const string &s) {
-        vector<string> parts; // 预处理，切分字符串为数字和运算符
+        vector<string> parts;
         for (int i = 0; i < (int) s.size(); ++i) {
-            if (isdigit(s[i])) {
-                int j = i;
-                while (j < (int) s.size() && isdigit(s[j])) {
-                    ++j;
-                }
-                parts.emplace_back(s.substr(i, j));
-                i = j - 1;
-            } else {
+            if (!isdigit(s[i])) {
                 parts.emplace_back(s.substr(i, 1));
+                continue;
             }
+            auto j = i;
+            while (j < (int) s.size() && isdigit(s[j])) {
+                ++j;
+            }
+            parts.emplace_back(s.substr(i, j - i));
+            i = j - 1;
         }
         return dfs(parts, 0, (int) parts.size() - 1);
     }
 
 private:
-    vector<int> dfs(const vector<string> &parts, const int &st, const int &ed) {
-        if (st > ed) {
-            return {};
-        }
-        vector<int> res;
+    vector<int> dfs(const vector<string> &s, int st, int ed) {
         if (st == ed) {
-            res.emplace_back(stoi(parts[st]));
-            return res;
+            return {stoi(s[st])};
         }
-        for (int i = st; i <= ed; ++i) {
-            if (parts[i] != "+" && parts[i] != "-" && parts[i] != "*") {
+        vector<int> ans;
+        for (auto i = st + 1; i <= ed - 1; ++i) {  // 保证s[st:i-1]、s[i+1：ed]均至少为1
+            if (s[i] != "*" && s[i] != "+" && s[i] != "-") {
                 continue;
             }
-            auto left_res = dfs(parts, st, i - 1);
-            auto right_res = dfs(parts, i + 1, ed);
+            auto left_res = dfs(s, st, i - 1);
+            auto right_res = dfs(s, i + 1, ed);
             for (const auto &x: left_res) {
                 for (const auto &y: right_res) {
-                    if (parts[i] == "+") {
-                        res.emplace_back(x + y);
-                    } else if (parts[i] == "-") {
-                        res.emplace_back(x - y);
+                    if (s[i] == "*") {
+                        ans.emplace_back(x * y);
+                    } else if (s[i] == "+") {
+                        ans.emplace_back(x + y);
                     } else {
-                        res.emplace_back(x * y);
+                        ans.emplace_back(x - y);
                     }
                 }
             }
         }
-        return res;
+        return ans;
     }
 };
 
