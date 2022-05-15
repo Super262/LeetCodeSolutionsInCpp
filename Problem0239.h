@@ -13,12 +13,12 @@ using namespace std;
 class Solution {
     // 滑动窗口模版题
 public:
-    vector<int> maxSlidingWindow(const vector<int> &nums, const int &k) {
+    vector<int> maxSlidingWindow(const vector<int> &nums, int k) {
         deque<int> q;
         vector<int> ans;
-        ans.reserve(nums.size() - (k - 1));
+        ans.reserve(nums.size() - k + 1);
         for (int i = 0; i < (int) nums.size(); ++i) {
-            if (!q.empty() && q.back() - q.front() + 1 == k) {
+            while (!q.empty() && i - q.front() + 1 > k) {
                 q.pop_front();
             }
             while (!q.empty() && nums[q.back()] <= nums[i]) {
