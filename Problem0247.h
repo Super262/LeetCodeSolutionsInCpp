@@ -11,22 +11,25 @@
 using namespace std;
 
 class Solution {
+    // 中心线枚举 + 记忆化搜索；细节：结果不包含无效数字（含前导0）
+    // n为奇数：搜索长度为n-1的数字s，结果为s[0:(n-1)/2-1]+("0"/"1"/"8")+s[(n-1)/2:n-2]
+    // n为偶数：搜索长度为n-2的数字s，结果为s[0:(n-2)/2-1]+("00"/"11"/"88"/"69"/"96")+s[(n-2)/2:n-3]
 public:
     vector<string> findStrobogrammatic(const int &n) {
-        vector<vector<string>> dicts(max(n + 1, 3), vector<string>());  // 创建最小为3的字典
-        dicts[1] = {"0", "1", "8"};  // 长度为1的对称数
-        dicts[2] = {"00", "11", "69", "88", "96"};  // 长度为2的对称数（暂不考虑前导0）
-        auto result = dfs(n, dicts);  // 临时存储结果
-        int resTop = 0;
-        for (int i = 0; i < (int) result.size(); ++i) {
+        vector<vector<string>> memo(max(n + 1, 3), vector<string>());  // 创建最小为3的字典
+        memo[1] = {"0", "1", "8"};  // 长度为1的对称数
+        memo[2] = {"00", "11", "69", "88", "96"};  // 长度为2的对称数（暂不考虑前导0）
+        auto ans = dfs(n, memo);  // 临时存储结果
+        int res_top = 0;
+        for (int i = 0; i < (int) ans.size(); ++i) {
             // 去除包含前导0的非法数字
-            if (result[i][0] == '0' && result[i].size() > 1) {
+            if (ans[i][0] == '0' && ans[i].size() > 1) {
                 continue;
             }
-            result[resTop++] = result[i];
+            ans[res_top++] = ans[i];
         }
-        result.erase(result.begin() + resTop, result.end());
-        return result;
+        ans.erase(ans.begin() + res_top, ans.end());
+        return ans;
     }
 
 private:
@@ -36,29 +39,20 @@ private:
         }
         vector<string> mid;
         vector<string> sides;
-        if (n % 2) { // 奇数长度：s[n / 2]和(s[0, n / 2 - 1] + s[n / 2 + 1, n - 1])是对称串
+        if (n % 2) {
             sides = dfs(n - 1, dicts);
             mid = dfs(1, dicts);
-        } else { // 奇数长度：s[n / 2 - 1, n / 2]和(s[0, n / 2 - 2] + s[n / 2 + 1, n - 1])是对称串
+        } else {
             sides = dfs(n - 2, dicts);
             mid = dfs(2, dicts);
         }
         // 拼接
+        dicts[n].reserve(mid.size() * sides.size());
         for (const auto &y: sides) {
-            string temp;
-            if (mid[0].size() == 1) {
-                temp = y.substr(0, y.size() / 2) + "0" + y.substr(y.size() / 2);
-            } else {
-                temp = y.substr(0, y.size() / 2) + "00" + y.substr(y.size() / 2);
-            }
+            auto a = y.substr(0, y.size() / 2);
+            auto b = y.substr(y.size() / 2);
             for (const auto &x: mid) {
-                if (x.size() == 1) {
-                    temp[y.size() / 2] = x[0];
-                } else {
-                    temp[y.size() / 2] = x[0];
-                    temp[y.size() / 2 + 1] = x[1];
-                }
-                dicts[n].emplace_back(temp);
+                dicts[n].emplace_back(a + x + b);
             }
         }
         return dicts[n];
