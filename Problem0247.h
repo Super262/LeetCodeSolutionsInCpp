@@ -33,29 +33,29 @@ public:
     }
 
 private:
-    vector<string> dfs(const int &n, vector<vector<string>> &dicts) {
-        if (!dicts[n].empty()) {
-            return dicts[n];
+    vector<string> dfs(const int &n, vector<vector<string>> &memo) {
+        if (!memo[n].empty()) {
+            return memo[n];
         }
         vector<string> mid;
         vector<string> sides;
         if (n % 2) {
-            sides = dfs(n - 1, dicts);
-            mid = dfs(1, dicts);
+            sides = dfs(n - 1, memo);
+            mid = dfs(1, memo);
         } else {
-            sides = dfs(n - 2, dicts);
-            mid = dfs(2, dicts);
+            sides = dfs(n - 2, memo);
+            mid = dfs(2, memo);
         }
         // 拼接
-        dicts[n].reserve(mid.size() * sides.size());
+        memo[n].reserve(mid.size() * sides.size());
         for (const auto &y: sides) {
             auto a = y.substr(0, y.size() / 2);
             auto b = y.substr(y.size() / 2);
             for (const auto &x: mid) {
-                dicts[n].emplace_back(a + x + b);
+                memo[n].emplace_back(a + x + b);
             }
         }
-        return dicts[n];
+        return memo[n];
     }
 };
 
