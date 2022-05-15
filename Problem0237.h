@@ -5,12 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0237_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0237_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode(int x) : val(x), next(nullptr) {}
-};
+#include "listnode.h"
 
 class Solution {
 public:
