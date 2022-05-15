@@ -12,32 +12,28 @@ class Solution {
     // 细节：链表长度可能为奇数，也可能为偶数
 public:
     bool isPalindrome(ListNode *head) {
-        if (!head) {
+        int n = 0;
+        for (auto p = head; p; p = p->next) {  // Get the length
+            ++n;
+        }
+        if (n < 2) {
             return true;
         }
-        // Get the length.
-        int n = 0;
-        auto current = head;
-        while (current) {
-            ++n;
-            current = current->next;
+        ListNode *a = nullptr;
+        ListNode *b = head;
+        ListNode *c = head->next;
+        for (int i = 0; i < n / 2; ++i) {  // Reverse
+            b->next = a;
+            a = b;
+            b = c;
+            c = c->next;
         }
-
-        // Reverse
-        auto left = head;
-        auto right = head->next;
-        ListNode *prev = nullptr;
-        for (int i = 1; i <= n / 2; ++i) {
-            left->next = prev;
-            prev = left;
-            left = right;
-            right = right->next;
-        }
-
-        // Iterate.
-        auto p1 = prev;
-        auto p2 = n % 2 == 0 ? left : right;
-        while (p1 && p2) {
+        auto p1 = a;
+        auto p2 = n % 2 ? c : b;
+        while (p1 || p2) {  // Iterate
+            if (!p1 || !p2) {
+                return false;
+            }
             if (p1->val != p2->val) {
                 return false;
             }
