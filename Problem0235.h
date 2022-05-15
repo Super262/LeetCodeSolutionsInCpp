@@ -6,21 +6,15 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0235_H
 
 #include <algorithm>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
 class Solution {
+    // 类似前序遍历，注意细节：p->val可能大于q->val
 public:
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
-        if (p->val > q->val) {  // 特殊的输入情况
+        if (p->val > q->val) {
             swap(p, q);
         }
         if (p->val <= root->val && q->val >= root->val) {
