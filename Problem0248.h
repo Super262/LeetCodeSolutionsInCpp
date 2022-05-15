@@ -10,6 +10,8 @@
 using namespace std;
 
 class Solution {
+    // 我们从较小的数字构造较大的数字：起点是""/"0"/"1"/"8"，在结尾和开头尝试加入数字，生成新数字s
+    // 我们要验证s是否满足low<=s<=high，并更新答案
 public:
     int strobogrammaticInRange(const string &low, const string &high) {
         int result = 0;
@@ -21,23 +23,19 @@ public:
     }
 
 private:
-    void dfs(const string &s, const string &low, const string &high, int &result) {
-        if (s.size() > high.size()) {
+    const char head[5] = {'0', '1', '6', '8', '9'};
+    const char tail[5] = {'0', '1', '9', '8', '6'};
+
+    void dfs(const string &s, const string &low, const string &high, int &ans) {
+        if (isInRange(s, low, high)) {
+            ++ans;
+        }
+        if (s.size() + 2 > high.size()) {  // 终止条件
             return;
         }
-        if (s.size() >= low.size()) {
-            if (isInRange(s, low, high)) {
-                ++result;
-            }
-        }
-        if (s.size() + 2 > high.size()) {  // 这个剪枝必须有
-            return;
-        }
-        const string head[] = {"0", "1", "6", "8", "9"};
-        const string tail[] = {"0", "1", "9", "8", "6"};
         for (int i = 0; i < 5; ++i) {
             auto temp = head[i] + s + tail[i];
-            dfs(temp, low, high, result);
+            dfs(temp, low, high, ans);
         }
     }
 
