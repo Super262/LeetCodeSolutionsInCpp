@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 贪心算法：只记录最近的出现位置
 public:
     int shortestDistance(const vector<string> &dict, const string &w1, const string &w2) {
         int s1 = -1;
