@@ -12,6 +12,8 @@
 using namespace std;
 
 class Solution {
+    // 效仿244，用序列保存单词w的出现位置；若 w1 = w2，直接遍历，答案为最小的间距
+    // 若 w1 != w2，贪心算法，双指针实现
 public:
     int shortestWordDistance(const vector<string> &dict, const string &w1, const string &w2) {
         vector<int> locations1;
@@ -23,26 +25,24 @@ public:
                 locations2.emplace_back(i);
             }
         }
-        int result = INT_MAX;
+        int ans = INT_MAX;
         if (w1 == w2) {
-            if (locations1.size() > 1) {
-                for (int i = 1; i < (int) locations1.size(); ++i) {
-                    result = min(result, abs(locations1[i] - locations1[i - 1]));
-                }
+            for (int i = 1; i < (int) locations1.size(); ++i) {
+                ans = min(ans, abs(locations1[i] - locations1[i - 1]));
             }
-        } else {
-            int p1 = 0;
-            int p2 = 0;
-            while (p1 < (int) locations1.size() && p2 < (int) locations2.size()) {
-                result = min(result, abs(locations1[p1] - locations2[p2]));
-                if (locations1[p1] > locations2[p2]) {
-                    ++p2;
-                } else {
-                    ++p1;
-                }
+            return ans;
+        }
+        int p1 = 0;
+        int p2 = 0;
+        while (p1 < (int) locations1.size() && p2 < (int) locations2.size()) {
+            ans = min(ans, abs(locations1[p1] - locations2[p2]));
+            if (locations1[p1] > locations2[p2]) {
+                ++p2;
+            } else {
+                ++p1;
             }
         }
-        return result;
+        return ans;
     }
 };
 
