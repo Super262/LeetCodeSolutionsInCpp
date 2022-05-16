@@ -31,8 +31,10 @@ public:
     int next() {
         auto ans = *col_it;
         col_it++;
-        while (row_it != grid_end && col_it == row_it->end()) {  // 寻找下一个有效元素
-            row_it++;
+        if (col_it == row_it->end()) {
+            do {
+                ++row_it;
+            } while (row_it != grid_end && row_it->empty());  // 跳过空行，寻找第一个有效元素
             if (row_it != grid_end) {
                 col_it = row_it->begin();
             }
