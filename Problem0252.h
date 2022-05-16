@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 贪心算法，区间相交问题
 public:
     bool canAttendMeetings(vector<vector<int>> &intervals) {
         if (intervals.size() < 2) {
