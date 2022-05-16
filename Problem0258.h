@@ -6,11 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0258_H
 
 class Solution {
+    // 模9运算等价性：https://www.acwing.com/solution/content/20137/
+    // 若x="abc..."，x=a*(10^n)+b*(10^(n-1))+c*(10^(n-2))+...，x%9=a+b+c+...，；因此，题目要求的运算等价于"模9"
 public:
     int addDigits(int num) {
-        // 模9运算等价性：https://www.acwing.com/solution/content/20137/
         if (num == 0) {
-            return num;
+            return 0;
         }
         if (num % 9 != 0) {
             return num % 9;
