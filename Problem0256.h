@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
     // f[i][j]：将0～i号房子粉刷好、第i号房子颜色为j的总花费
+    // 巧妙优化：LeetCode 265
 public:
     int minCost(const vector<vector<int>> &costs) {
         const auto n = (int) costs.size();
