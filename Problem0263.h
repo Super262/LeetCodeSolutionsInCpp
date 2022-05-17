@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0263_H
 
 class Solution {
+    // 持续用2/3/5除n，直到n为零
 public:
     bool isUgly(int n) {
         if (n == 0) {
