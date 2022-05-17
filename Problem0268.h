@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 用sum{0...n}减去nums的和会得到未出现的数字
 public:
     int missingNumber(const vector<int> &nums) {
         const auto n = (int) nums.size();
