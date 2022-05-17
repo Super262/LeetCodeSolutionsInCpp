@@ -11,6 +11,8 @@
 using namespace std;
 
 class Solution {
+    // 并查集：对于任意的边(a,b)，若a、b属于同一集合，说明有环
+    // 细节：边的数量必须为n-1，否则不可能形成生成树
 public:
     bool validTree(int n, const vector<vector<int>> &edges) {
         if ((int) edges.size() != (n - 1)) {
