@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 将所有非零数字移到数组头部，在数组尾部填充零
 public:
     void moveZeroes(vector<int> &nums) {
         int k = 0;
