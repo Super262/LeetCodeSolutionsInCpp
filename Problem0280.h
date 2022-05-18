@@ -9,7 +9,9 @@
 
 using namespace std;
 
-class Problem0280 {
+class Solution {
+    // 交换元素到满足题意的位置
+    // 细节：注意区分奇数位置和偶数位置
 public:
     void wiggleSort(vector<int> &nums) {
         for (int i = 1; i < (int) nums.size(); ++i) {
