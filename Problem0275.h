@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 二分查找，寻找最大的i，满足citations[n-i:n-1]都不小于i，i即是H指数
 public:
     int hIndex(const vector<int> &citations) {
         const int n = (int) citations.size();
