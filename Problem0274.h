@@ -11,6 +11,8 @@
 using namespace std;
 
 class Solution {
+    // 记录被引用h次的论文数量，返回最大的、可能的H索引的值
+    // 细节：我们将大于n次的引用映射到n次引用
 public:
     int hIndex(const vector<int> &citations) {
         const int n = (int) citations.size();
