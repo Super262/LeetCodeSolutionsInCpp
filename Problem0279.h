@@ -10,8 +10,9 @@
 using namespace std;
 
 class Solution {
+    // 四平方和定理，背诵并讲通推导过程
+    // https://www.acwing.com/solution/content/300/
 public:
-    // 四平方和定理：https://www.acwing.com/solution/content/300/
     int numSquares(int n) {
         if (checkNum(n)) {
             return 1;
