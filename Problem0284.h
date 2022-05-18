@@ -26,6 +26,7 @@ public:
 
 
 class PeekingIterator : public Iterator {
+    // 利用全局变量保存当前值和下个状态
 private:
     int current;
     bool has_next;
