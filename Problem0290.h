@@ -13,6 +13,7 @@
 using namespace std;
 
 class Solution {
+    // 检验满射
 public:
     bool wordPattern(const string &pattern, const string &s) {
         stringstream ssin(s);
