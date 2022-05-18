@@ -10,23 +10,24 @@
 using namespace std;
 
 class Solution {
+    // 转化数组为图，图中的边(u, v)：nums[u] = v（数组长度为n+1，数据范围为[1:n]，不会越界）
+    // 快慢指针：先找到环，再寻找环的入口（LeetCode 142）
 public:
     int findDuplicate(const vector<int> &nums) {
-        // 图中的边(u, v)：nums[u] = v
-        // 快慢指针：因为只有1个数字重复，因此目标就是找到环的入口
         int a = 0;
         int b = 0;
         while (true) {
             a = nums[a];
             b = nums[nums[b]];
-            if (a == b) {
-                a = 0;
-                while (a != b) {
-                    a = nums[a];
-                    b = nums[b];
-                }
-                return a;
+            if (a != b) {
+                continue;
             }
+            a = 0;
+            while (a != b) {
+                a = nums[a];
+                b = nums[b];
+            }
+            return a;
         }
         return -1;
     }
