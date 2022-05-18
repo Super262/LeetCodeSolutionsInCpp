@@ -9,35 +9,37 @@
 
 using namespace std;
 
-class MedianFinder { // 对顶堆：两个堆分别维护序列左半部和右半部
+class MedianFinder {
+    // 巧妙方法：两个堆分别维护现有升序序列的左半部和右半部，输入数据先进左堆，两堆长度的差值最大为1
+    // 细节：序列长度的奇偶性会影响中位数的计算
 public:
     MedianFinder() = default;
 
     void addNum(const int num) {
-        left_part.emplace(num);
-        while (left_part.size() > right_part.size()) {
-            right_part.emplace(left_part.top());
-            left_part.pop();
+        left_heap.emplace(num);
+        while (left_heap.size() > right_heap.size()) {
+            right_heap.emplace(left_heap.top());
+            left_heap.pop();
         }
-        while (left_part.size() < right_part.size()) {
-            left_part.emplace(right_part.top());
-            right_part.pop();
+        while (left_heap.size() < right_heap.size()) {
+            left_heap.emplace(right_heap.top());
+            right_heap.pop();
         }
     }
 
     double findMedian() {
-        if (right_part.size() > left_part.size()) {
-            return right_part.top();
+        if (right_heap.size() > left_heap.size()) {
+            return right_heap.top();
         }
-        if (left_part.size() > right_part.size()) {
-            return left_part.top();
+        if (left_heap.size() > right_heap.size()) {
+            return left_heap.top();
         }
-        return ((double) left_part.top() + right_part.top()) / 2;
+        return ((double) left_heap.top() + right_heap.top()) / 2;
     }
 
 private:
-    priority_queue<int, vector<int>, greater<int>> right_part;
-    priority_queue<int, vector<int>, less<int>> left_part;
+    priority_queue<int, vector<int>, greater<int>> right_heap;
+    priority_queue<int, vector<int>, less<int>> left_heap;
 };
 
 /**
