@@ -40,7 +40,7 @@ private:
         dfs_encode(root->right, result);
     }
 
-    TreeNode *dfs_decode(const string &data, int &idx) {
+    TreeNode *dfs_decode(const string &data, int &idx) {  // 细节：idx为引用
         if (idx >= (int) data.size()) {
             return nullptr;
         }
