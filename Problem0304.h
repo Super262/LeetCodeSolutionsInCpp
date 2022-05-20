@@ -10,9 +10,7 @@
 using namespace std;
 
 class NumMatrix {
-private:
-    vector<vector<int>> prefix;
-
+    // 二维前缀和
 public:
     NumMatrix(const vector<vector<int>> &matrix) {
         const int m = (int) matrix.size();
@@ -28,6 +26,9 @@ public:
     int sumRegion(const int &row1, const int &col1, const int &row2, const int &col2) {
         return prefix[row2 + 1][col2 + 1] - prefix[row2 + 1][col1] - prefix[row1][col2 + 1] + prefix[row1][col1];
     }
+
+private:
+    vector<vector<int>> prefix;
 };
 
 /**
