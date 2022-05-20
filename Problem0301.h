@@ -13,11 +13,11 @@ using namespace std;
 class Solution {
     // 合法的括号序列：左右括号数量相同、任意一个前缀中左括号的数量大于或等于右括号的数量
     // https://www.acwing.com/solution/content/337/
-    // 重要剪枝：对于一段连续的括号[l:r]，我们只枚举删去的数量，避免重复方案
+    // 重要剪枝：对于一段连续的括号[l:r]，我们只枚举删去的数量，忽略顺序，避免重复方案
 public:
     vector<string> removeInvalidParentheses(const string &s) {
-        int left_cnt = 0;  // 待删掉的左括号的数量
-        int right_cnt = 0;  // 待删掉的右括号的数量
+        int left_cnt = 0;  // 最多可删掉的左括号的数量
+        int right_cnt = 0;  // 最多可删掉的右括号的数量
         for (const auto &ch: s) {
             if (ch == '(') {
                 ++left_cnt;
