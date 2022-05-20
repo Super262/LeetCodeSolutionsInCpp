@@ -10,9 +10,7 @@
 using namespace std;
 
 class NumArray {
-private:
-    vector<int> prefix;
-
+    // 前缀和
 public:
     NumArray(const vector<int> &nums) {
         prefix.resize(nums.size() + 1, 0);
@@ -24,6 +22,9 @@ public:
     int sumRange(const int &left, const int &right) {
         return prefix[right + 1] - prefix[left];
     }
+
+private:
+    vector<int> prefix;
 };
 
 /**
