@@ -6,22 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0298_H
 
 #include <algorithm>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
+    // 采用类似后序遍历的思路：先处理子节点，再根据根结点和子节点的关系，更新答案
 public:
     int longestConsecutive(TreeNode *root) {
         int answer = 0;
