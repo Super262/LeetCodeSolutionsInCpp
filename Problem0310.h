@@ -10,6 +10,10 @@
 using namespace std;
 
 class Solution {
+    // 经典算法，直接背诵
+    // 假设我们从任意节点x开始深度优先搜索，希望得到d1、d2、next1、next2、up信息
+    // 设v是搜索路径上的某个节点，u是v的前驱节点：d1[v]是以v为根的子树的高度最大值，d2[v]是以v为根的子树的高度次大值
+    // up[v]是节点v向上的最大距离，next1[v]是v达到最大距离的路径上的后继，next2[v]是v达到次大距离的路径上的后继
 public:
     vector<int> findMinHeightTrees(const int &n, const vector<vector<int>> &edges) {
         vector<vector<int>> graph(n, vector<int>());
