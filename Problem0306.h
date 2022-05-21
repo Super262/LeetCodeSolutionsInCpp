@@ -11,13 +11,14 @@
 using namespace std;
 
 class Solution {
+    // 不断尝试枚举所有数字可能的起点和终点位置，直到发现可行解
 public:
     bool isAdditiveNumber(const string &num) {
         for (int i = 0; i < (int) num.size(); ++i) {
             for (int j = i + 1; j + 1 < (int) num.size(); ++j) {
                 int a = 0; // 第1个数：num[a, b]
                 int b = i; // 第2个数：num[b + 1, c]
-                int c = j; // 第3个数：num[c + 1, m]（m取决于a + b）
+                int c = j; // 第3个数：num[c + 1, m]（m取决于(a+b)的位数）
                 while (true) {
                     if ((b - a + 1 > 1 && num[a] == '0') || (c - b > 1 && num[b + 1] == '0')) {  // 跳过包含前导0的情况
                         break;
@@ -41,7 +42,7 @@ public:
     }
 
 private:
-    string addNums(const string &a, const string &b) {
+    string addNums(const string &a, const string &b) {  // 逆序遍历a、b，从个位开始处理
         string c;
         for (int i = 1, t = 0; i <= a.size() || i <= b.size() || t; ++i) {
             if (i <= a.size()) {
