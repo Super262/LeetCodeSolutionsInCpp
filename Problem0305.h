@@ -11,6 +11,8 @@ using namespace std;
 
 class Solution {
     // 并查集，参考AcWing 836
+    // 设(x,y)为positions中的某个坐标，首先标记(x,y)为岛屿，岛屿数量加1；搜索(x,y)的4个"邻居"，若发生集合的合并，岛屿数量减1
+    // 细节：positions中可能包含重复元素
 public:
     vector<int> numIslands2(int m, int n, const vector<vector<int>> &positions) {
         int parent[m * n];
@@ -28,7 +30,7 @@ public:
         ans.reserve(positions.size());
         for (const auto &p: positions) {
             auto a = p[0] * n + p[1];
-            if (existed[a]) {
+            if (existed[a]) {  // 重复，跳过
                 ans.emplace_back(islands);
                 continue;
             }
@@ -46,7 +48,7 @@ public:
                 if (pa == pb) {
                     continue;
                 }
-                --islands;
+                --islands;  // 发生合并
                 mergeSets(pa, pb, parent, set_size);
             }
             ans.emplace_back(islands);
