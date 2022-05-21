@@ -16,11 +16,12 @@ public:
         n = (int) nums.size();
         ft.resize(n + 1, 0);
         for (int i = 1; i <= n; ++i) { // O(n)时间初始化树状数组
-            ft[i] = nums[i - 1];
-            auto p = i - lowBit(i);
-            for (int j = i - 1; j > p; j -= lowBit(j)) {
-                ft[i] += ft[j];
+            ft[i] += nums[i - 1];
+            auto parent = i + lowBit(i);
+            if (parent > n) {
+                continue;
             }
+            ft[parent] += ft[i];
         }
     }
 
@@ -55,13 +56,6 @@ private:
         return result;
     }
 };
-
-/**
- * Your NumArray object will be instantiated and called as such:
- * NumArray* obj = new NumArray(nums);
- * obj->update(index,val);
- * int param_2 = obj->sumRange(left,right);
- */
 
 /**
  * Your NumArray object will be instantiated and called as such:
