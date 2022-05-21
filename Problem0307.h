@@ -10,13 +10,15 @@
 using namespace std;
 
 class NumArray {
+    // 树状数组，要背诵O(n)时间初始化的代码
 public:
     NumArray(const vector<int> &nums) {
         n = (int) nums.size();
         ft.resize(n + 1, 0);
         for (int i = 1; i <= n; ++i) { // O(n)时间初始化树状数组
             ft[i] = nums[i - 1];
-            for (int j = i - 1; j > i - lowBit(i); j -= lowBit(j)) {
+            auto p = i - lowBit(i);
+            for (int j = i - 1; j > p; j -= lowBit(j)) {
                 ft[i] += ft[j];
             }
         }
