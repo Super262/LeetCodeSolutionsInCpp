@@ -38,7 +38,7 @@ private:
     vector<int> ft;
     int n;
 
-    int lowBit(const int x) {
+    static int lowBit(const int x) {
         return x & -x;
     }
 

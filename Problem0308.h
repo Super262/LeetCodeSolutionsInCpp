@@ -10,60 +10,64 @@
 using namespace std;
 
 class NumMatrix {
-private:
-    int n, m;
-    vector<vector<int>> fts;
-
-    int lowBit(const int x) {
-        return x & -x;
-    }
-
-    int prefixSum(const int rIdx, const int cIdx) {
-        int result = 0;
-        for (int i = cIdx + 1; i > 0; i -= lowBit(i)) {
-            result += fts[rIdx][i];
-        }
-        return result;
-    }
-
-    void updateItem(const int rIdx, const int cIdx, const int val) {
-        for (int i = cIdx + 1; i <= m; i += lowBit(i)) {
-            fts[rIdx][i] += val;
-        }
-    }
-
+    // 为矩阵的每行分别开辟树状数组
 public:
     NumMatrix(const vector<vector<int>> &matrix) {
-        n = (int) matrix.size();
-        m = (int) matrix[0].size();
-        fts = vector<vector<int>>(n, vector<int>(m + 1, 0));
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
-                updateItem(i, j, matrix[i][j]);
+        m = (int) matrix.size();
+        n = (int) matrix[0].size();
+        fts = vector<vector<int>>(m, vector<int>(n + 1, 0));
+        for (int i = 0; i < m; ++i) {
+            auto &ft = fts[i];
+            const auto &row = matrix[i];
+            for (int j = 1; j <= n; ++j) {  // O(n)时间构建每行的树状数组
+                ft[j] += row[j - 1];
+                auto p = j + lowBit(j);
+                if (p > n) {
+                    continue;
+                }
+                ft[p] += ft[j];
             }
         }
     }
 
     void update(int row, int col, int val) {
-        auto dist = val - (prefixSum(row, col) - prefixSum(row, col - 1));
-        updateItem(row, col, dist);
+        auto dist = val - (prefixSum(row, col + 1) - prefixSum(row, col));
+        updateItem(row, col + 1, dist);
     }
 
     int sumRegion(int row1, int col1, int row2, int col2) {
-        int result = 0;
-        for (int i = row1; i <= row2; ++i) {
-            result += prefixSum(i, col2) - prefixSum(i, col1 - 1);
+        int ans = 0;
+        for (auto i = row1; i <= row2; ++i) {
+            ans += prefixSum(i, col2 + 1) - prefixSum(i, col1);
         }
-        return result;
+        return ans;
+    }
+
+private:
+    int m;
+    int n;
+    vector<vector<int>> fts;
+
+    static int lowBit(const int x) {
+        return x & -x;
+    }
+
+    int prefixSum(const int ri, const int ci) {
+        int ans = 0;
+        const auto &ft = fts[ri];
+        for (auto i = ci; i > 0; i -= lowBit(i)) {
+            ans += ft[i];
+        }
+        return ans;
+    }
+
+    void updateItem(const int ri, const int ci, const int val) {
+        auto &ft = fts[ri];
+        for (auto i = ci; i <= n; i += lowBit(i)) {
+            ft[i] += val;
+        }
     }
 };
-
-/**
- * Your NumMatrix object will be instantiated and called as such:
- * NumMatrix* obj = new NumMatrix(matrix);
- * obj->update(row,col,val);
- * int param_2 = obj->sumRegion(row1,col1,row2,col2);
- */
 
 /**
  * Your NumMatrix object will be instantiated and called as such:
