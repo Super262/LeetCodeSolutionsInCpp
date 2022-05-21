@@ -11,23 +11,23 @@
 using namespace std;
 
 class Solution {
-    // dp[i][0]：已卖出，dp[i][1]：已买入，dp[i][2]：冷冻期
+    // 状态机DP，f[i][0]：已卖出，f[i][1]：已买入，f[i][2]：冷冻期
 public:
     int maxProfit(const vector<int> &prices) {
-        const int n = (int) prices.size();
+        const auto n = (int) prices.size();
         if (n == 0) {
             return 0;
         }
-        int dp[3][3];
-        memset(dp, -0x3f, sizeof dp);
-        dp[0][0] = 0;
-        dp[0][1] = -prices[0];
+        int f[3][3];
+        memset(f, -0x3f, sizeof f);
+        f[0][0] = 0;
+        f[0][1] = -prices[0];
         for (int i = 1; i < n; ++i) {
-            dp[i % 3][0] = max(dp[(i - 1) % 3][0], dp[(i - 1) % 3][2]);
-            dp[i % 3][1] = max(dp[(i - 1) % 3][1], dp[(i - 1) % 3][0] - prices[i]);
-            dp[i % 3][2] = dp[(i - 1) % 3][1] + prices[i];
+            f[i % 3][0] = max(f[(i - 1) % 3][0], f[(i - 1) % 3][2]);
+            f[i % 3][1] = max(f[(i - 1) % 3][1], f[(i - 1) % 3][0] - prices[i]);
+            f[i % 3][2] = f[(i - 1) % 3][1] + prices[i];
         }
-        return max(dp[(n - 1) % 3][2], dp[(n - 1) % 3][0]);
+        return max(f[(n - 1) % 3][2], f[(n - 1) % 3][0]);
     }
 };
 
