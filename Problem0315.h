@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 树状数组
 public:
     vector<int> countSmaller(const vector<int> &nums) {
         auto maximal = nums[0];
@@ -29,12 +30,12 @@ public:
         }
         int ft[maximal + offset + 1];
         memset(ft, 0, sizeof ft);
-        vector<int> result(nums.size(), 0);
+        vector<int> ans(nums.size(), 0);
         for (auto i = (int) nums.size() - 1; i >= 0; --i) {
-            result[i] = prefixSum(nums[i] + offset - 1, ft);
+            ans[i] = prefixSum(nums[i] + offset - 1, ft);
             updateItem(nums[i] + offset, maximal + offset, ft, 1);
         }
-        return result;
+        return ans;
     }
 
 private:
