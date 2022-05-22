@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
     // 贪心算法：https://www.acwing.com/solution/content/347/
+    // 枚举从每个数组中选取的数字的个数；合并2个子数组，优先从字典序较大的数组中选取元素
 public:
     vector<int> maxNumber(const vector<int> &nums1, const vector<int> &nums2, const int &k) {
         const auto n = (int) nums1.size();
@@ -33,7 +34,7 @@ private:
         const int n = (int) nums.size();
         for (int i = 0, j = 0; i < n; ++i) {
             auto x = nums[i];
-            while (j > 0 && res[j - 1] < x && j + n - i > k) {  //后继数字更大且候选者的数量充足
+            while (j > 0 && res[j - 1] < x && n - i > k - j) {  // 后继数字更大且候选者的数量充足
                 --j;
             }
             if (j < k) {
