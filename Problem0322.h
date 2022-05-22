@@ -9,21 +9,22 @@
 
 using namespace std;
 
-class Problem0322 {
+class Solution {
+    // 背包问题，f[i]表示构成价值为i的总额时的方案数
 public:
-    int coinChange(vector<int> &coins, int amount) {
-        int dp[amount + 1];
-        memset(dp, 0x3f, sizeof dp);
-        dp[0] = 0;
-        for (int num: coins) {
+    int coinChange(const vector<int> &coins, int amount) {
+        int f[amount + 1];
+        memset(f, 0x3f, sizeof f);
+        f[0] = 0;
+        for (const auto &num: coins) {
             for (int i = num; i <= amount; ++i) {
-                dp[i] = min(dp[i], dp[i - num] + 1);
+                f[i] = min(f[i], f[i - num] + 1);
             }
         }
-        if (dp[amount] == 0x3f3f3f3f) {
+        if (f[amount] == 0x3f3f3f3f) {
             return -1;
         }
-        return dp[amount];
+        return f[amount];
     }
 };
 
