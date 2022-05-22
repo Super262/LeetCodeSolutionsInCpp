@@ -11,7 +11,8 @@
 using namespace std;
 
 class Solution {
-    // dp[st][ed]：打碎 balls[st + 1 : ed - 1] 后的最大价值
+    // f[st][ed]：打碎 balls[st+1:ed-1] 后的最大价值
+    // 区间DP，为简化对边界（0，n-1）的处理，我们拷贝输入、在开头和结尾添加"1"
 public:
     int maxCoins(const vector<int> &nums) {
         const auto n = (int) nums.size();
