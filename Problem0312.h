@@ -22,7 +22,7 @@ public:
         balls[n + 1] = 1;  // 开头和结尾补充1
         int f[n + 2][n + 2];
         memset(f, 0, sizeof f);
-        for (int len = 3; len <= n + 2; ++len) {
+        for (int len = 3; len <= n + 2; ++len) {  // 细节：区间最长为n+2
             for (int st = 0; st + len - 1 < n + 2; ++st) {
                 const auto ed = st + len - 1;
                 for (int mid = st + 1; mid < ed; ++mid) {
