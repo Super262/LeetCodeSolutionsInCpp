@@ -11,6 +11,8 @@
 using namespace std;
 
 class Solution {
+    // 类似多路归并：后面的丑数都是来自已有的丑数（已有丑数*给定的质因数），因此我们可以基于小根堆实现多路归并
+    // 初始化的时间复杂度为O(mlogm)，后续生成n个丑数的时间复杂度是O(nlogm)
 public:
     int nthSuperUglyNumber(const int &n, const vector<int> &primes) {
         const auto m = (int) primes.size();
