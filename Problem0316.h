@@ -12,6 +12,9 @@
 using namespace std;
 
 class Solution {
+    // 贪心算法：保持次序，尽量将较大的字符放在尾部；设ans是当前的结果字符串，a是我们当前在s遍历到的字符，b是ans最后的字符
+    // 若ans包含a，跳过a；若b>a，且b还会在a后面出现，我们删除b；重复此步骤，直到条件不满足
+    // 若b<a，将a加入ans尾部
 public:
     string removeDuplicateLetters(const string &s) {
         bool is_in_ans[26];
@@ -21,20 +24,19 @@ public:
         for (int i = 0; i < (int) s.size(); ++i) {
             last_idx[s[i] - 'a'] = i;
         }
-        string answer;
+        string ans;
         for (int i = 0; i < (int) s.size(); ++i) {
             if (is_in_ans[s[i] - 'a']) {
                 continue;
             }
-            // 设ch是answer最后的字符，若ch还会在后面出现且当前字符比ch小，删除ch
-            while (!answer.empty() && answer.back() > s[i] && last_idx[answer.back() - 'a'] > i) {
-                is_in_ans[answer.back() - 'a'] = false;
-                answer.pop_back();
+            while (!ans.empty() && ans.back() > s[i] && last_idx[ans.back() - 'a'] > i) {
+                is_in_ans[ans.back() - 'a'] = false;
+                ans.pop_back();
             }
-            answer.push_back(s[i]);
+            ans += s[i];
             is_in_ans[s[i] - 'a'] = true;
         }
-        return answer;
+        return ans;
     }
 };
 
