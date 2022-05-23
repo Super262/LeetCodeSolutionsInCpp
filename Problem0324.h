@@ -12,11 +12,12 @@
 using namespace std;
 
 class Solution {
+    // 快速选择 + 三数排序：https://www.acwing.com/solution/content/350/
+    // 我们先用快速选择算法求出中位数mid，C++中可以调用 nth_element()函数
+    // 将所有数分成三种：小于mid的数、等于mid的数和大于mid的数
+    // 然后对数组排序，使得大于mid的数在最前面，等于mid的数在中间，小于mid的数在最后面
+    // i => (1 + 2 * i) % (n | 1)，该映射可以将数组前一半映射到奇数位置上，数组后一半映射到偶数位置上
 public:
-    // 直接背诵！
-    // 1. 找中位数：快速选择算法，O(n)
-    // 2. "三数排序"：小于median的数，等于median的数，大于median的数
-    // 3. 贪心：奇数位置放大于median的数，剩余位置依次摆放等于median的数、小于median的数
     void wiggleSort(vector<int> &nums) {
         const auto n = (int) nums.size();
         auto mid_ptr = nums.begin() + n / 2;
