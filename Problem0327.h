@@ -14,6 +14,7 @@ class Solution {
     // 原题目转化：Si - upper <= Sj <= Si - lower（S是前缀和数组，0 <= j <= i - 1），寻找(i, j)的个数
     // 也就是F(Si - lower) - F(Si - upper - 1)的值（F是树状数组的前缀和函数）
     // 使用离散化和树状数组来替代平衡树
+    // 细节：使用树状数组前，要初始化
 public:
     int countRangeSum(const vector<int> &nums, const int lower, const int upper) {
         const auto n = (int) nums.size();
