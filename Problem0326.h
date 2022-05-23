@@ -10,9 +10,9 @@
 using namespace std;
 
 class Solution {
+    // 巧妙技巧：32位整数中最大的3^x是3^19，若n可以整除3^19，返回true
 public:
     bool isPowerOfThree(const int &n) {
-        // 32位整数中最大的3^x是3^19.
         return n > 0 && ((int) pow(3, 19)) % n == 0;
     }
 };
