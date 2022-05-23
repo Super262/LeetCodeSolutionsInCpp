@@ -5,18 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0328_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0328_H
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
+    // 分别保存奇数点和偶数点，最后将2条链相连
 public:
     ListNode *oddEvenList(ListNode *head) {
         if (!head || !head->next) {
