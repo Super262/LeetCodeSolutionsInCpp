@@ -13,12 +13,12 @@
 using namespace std;
 
 class Solution {
-    // 求解字典需最小的欧拉路径
     // 有向图欧拉路径存在条件：
     //      起点：出度 = 入度 + 1；
     //      终点：入度 = 出度 + 1；
     //      其余点：入度 == 出度
     // 求解欧拉路径：从起点开始DFS：https://www.acwing.com/solution/content/359/；回溯后反序
+    // 字典需最小：优先队列
 public:
     vector<string> findItinerary(const vector<vector<string>> &tickets) {
         vector<string> answer;
@@ -36,9 +36,10 @@ private:
     void dfs(const string &st,
              unordered_map<string, priority_queue<string, vector<string>, greater<string>>> &graph,
              vector<string> &answer) {
-        while (!graph[st].empty()) {
-            auto next_st = graph[st].top();
-            graph[st].pop();
+        auto &heap = graph[st];
+        while (!heap.empty()) {
+            auto next_st = heap.top();
+            heap.pop();
             dfs(next_st, graph, answer);
         }
         answer.emplace_back(st);
