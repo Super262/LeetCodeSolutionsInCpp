@@ -11,10 +11,11 @@
 using namespace std;
 
 class Solution {
+    // 遍历，头尾交换
 public:
     void reverseString(vector<char> &s) {
         int l = 0;
-        int r = (int) s.size() - 1;
+        auto r = (int) s.size() - 1;
         while (l < r) {
             swap(s[l], s[r]);
             ++l;
