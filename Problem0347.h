@@ -11,6 +11,8 @@
 using namespace std;
 
 class Solution {
+    // 首先统计每种数字的频率f；再统计所有频次的频率f'；为保持时间复杂度为O(n)，我们不会对所有f'排序
+    // 易知f'最大值为n（数组的长度），我们从n开始递减统计f'，找到第k个；再根据第k个f'，筛选出满足条件的元素
 public:
     vector<int> topKFrequent(const vector<int> &nums, const int &k) {
         unordered_map<int, int> num_counter;
@@ -19,23 +21,23 @@ public:
         }
         const auto n = (int) nums.size();
         vector<int> freq_counter(n + 1, 0);
-        for (auto &item: num_counter) {  // 统计每个频次的出现次数
+        for (const auto &item: num_counter) {  // 统计每个频次的出现次数
             ++freq_counter[item.second];
         }
         int cur_freq = n;
-        int temp = 0;
-        while (temp < k) {
-            temp += freq_counter[cur_freq];  // 从高到低，计数
+        int cnt = 0;
+        while (cnt < k) {
+            cnt += freq_counter[cur_freq];  // 从高到低，计数
             --cur_freq;
         }
-        vector<int> res;
-        for (auto &item: num_counter) {
+        vector<int> ans;
+        for (const auto &item: num_counter) {
             if (item.second <= cur_freq) {
                 continue;
             }
-            res.emplace_back(item.first);
+            ans.emplace_back(item.first);
         }
-        return res;
+        return ans;
     }
 };
 
