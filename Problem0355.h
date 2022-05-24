@@ -13,6 +13,7 @@
 using namespace std;
 
 class Twitter {
+    // 多路归并：大根堆，选择10个时间戳最大的元素
 public:
     Twitter() {
         ts = 0; // Current Time
@@ -26,7 +27,7 @@ public:
     vector<int> getNewsFeed(const int &user_id) {
         // 多路归并的重要参数：当前数据项的来源，当前数据项的索引
         followee[user_id].insert(user_id);
-        priority_queue<vector<int>> heap;
+        priority_queue<vector<int>, vector<vector<int>>, less<vector<int>>> heap;
         for (const auto &fid: followee[user_id]) {
             auto &messages = tweets[fid];
             if (messages.empty()) {
