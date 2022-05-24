@@ -14,6 +14,8 @@
 using namespace std;
 
 class SnakeGame {
+    // 双端队列，从后向前保存蛇的坐标（x*width+y）；集合也保存蛇的坐标，用于冲突检测
+    // 细节：蛇向前移动时，若头不超出边界，应先删除队尾，再检查头是否和身体相撞
 public:
     SnakeGame(int width, int height, vector<vector<int>> &food) {
         score = 0;
@@ -51,7 +53,7 @@ public:
         if (body_set.count(ni)) {
             return -1;
         }
-        body_seq.emplace_front(ni);
+        body_seq.emplace_front(ni);  // 最后，检测头是否和身体相撞
         body_set.insert(ni);
         return score;
     }
