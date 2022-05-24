@@ -11,9 +11,8 @@
 using namespace std;
 
 class SummaryRanges {
-private:
-    set<pair<int, int>> storage;
-
+    // 插入新元素x时，我们查找所有可以和x合并的区间；我们使用set维持区间的有序性；为了简化操作，我们预先插入2个"哨兵"
+    // 二分查找到left区间（左端点小于或等于x）和right区间（左端点大于x），分情况讨论
 public:
     SummaryRanges() {
         // 预先插入哨兵节点，使得addNum操作中的left和right总是有效值，不报错
@@ -25,7 +24,7 @@ public:
         // 查询满足 p.first > x 的p，舍弃所有满足 p.first == x 的p，所以p.second = INT_MAX
         auto it = storage.upper_bound({x, INT_MAX});
         auto right = *it;
-        --it;
+        it--;
         auto left = *it;
         if (left.second >= x) {  // 左边已经包括x，无需其他操作
             return;
@@ -60,6 +59,9 @@ public:
         }
         return res;
     }
+
+private:
+    set<pair<int, int>> storage;
 };
 
 /**
