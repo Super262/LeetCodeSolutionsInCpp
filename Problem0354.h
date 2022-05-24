@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0354_H
 
 #include <vector>
+#include <cstring>
 
 using namespace std;
 
@@ -19,11 +20,12 @@ public:
     int maxEnvelopes(vector<vector<int>> &envelopes) {
         sort(envelopes.begin(), envelopes.end(), cmp);
         const auto n = (int) envelopes.size();
-        vector<vector<int>> lis_tail(n + 1, {INT_MAX, INT_MAX});
-        int res = 0;
+        int lis_tail[n + 1][2];
+        memset(lis_tail, 0x3f, sizeof lis_tail);
+        int ans = 0;
         for (int i = 0; i < n; ++i) {
             int l = 0;
-            auto r = res;
+            auto r = ans;
             while (l < r) {
                 auto mid = l + (r - l + 1) / 2;
                 if (lis_tail[mid][1] < envelopes[i][1]) {
@@ -32,12 +34,13 @@ public:
                     r = mid - 1;
                 }
             }
-            res = max(res, l + 1);
+            ans = max(ans, l + 1);
             if (lis_tail[l + 1][1] > envelopes[i][1]) {
-                lis_tail[l + 1] = envelopes[i];
+                lis_tail[l + 1][0] = envelopes[i][0];
+                lis_tail[l + 1][1] = envelopes[i][1];
             }
         }
-        return res;
+        return ans;
     }
 
 private:
