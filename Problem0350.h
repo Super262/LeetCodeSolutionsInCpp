@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <unordered_set>
+#include <unordered_map>
 
 using namespace std;
 
@@ -18,6 +19,21 @@ class Solution {
     //   如果nums1不能被读入内存，则将num1、nums2外部排序（External Sorting），采用双指针算法。
 public:
     vector<int> intersect(const vector<int> &nums1, const vector<int> &nums2) {
+        unordered_map<int, int> counter;
+        for (const auto &x: nums1) {
+            counter[x]++;
+        }
+        vector<int> ans;
+        for (const auto &x: nums2) {
+            if (counter.count(x) && counter[x]) {
+                ans.emplace_back(x);
+                counter[x]--;
+            }
+        }
+        return ans;
+    }
+    // 利用unordered_multiset实现：
+    /*vector<int> intersect(const vector<int> &nums1, const vector<int> &nums2) {
         unordered_multiset<int> all_nums(nums1.begin(), nums1.end());
         vector<int> res;
         for (const auto &x: nums2) {
@@ -28,7 +44,7 @@ public:
             res.push_back(x);
         }
         return res;
-    }
+    }*/
 };
 
 
