@@ -13,6 +13,7 @@
 using namespace std;
 
 class Solution {
+    // 枚举分界点，利用字符串哈希建立映射
 public:
     vector<vector<int>> palindromePairs(const vector<string> &words) {
         unsigned long long power[N];

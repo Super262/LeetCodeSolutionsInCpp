@@ -10,14 +10,15 @@
 using namespace std;
 
 class Solution {
+    // 递推式解法，直接背诵
+    // f[i]：二进制数i中"1"个数；若i有n位，f[i]等于第2～n位中"1"的个数加上最后位"1"的个数
 public:
-    // 递推式解法，直接背诵！
     vector<int> countBits(const int &n) {
-        vector<int> dp(n + 1, 0);
+        vector<int> f(n + 1, 0);
         for (int i = 1; i <= n; ++i) {
-            dp[i] = dp[i >> 1] + (i & 1);
+            f[i] = f[i >> 1] + (i & 1);
         }
-        return dp;
+        return f;
     }
 };
 

@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // f[u][0]：以u为根的树，不盗窃u时的最大获利；f[u][1]：以u为根的树，盗窃u时的最大获利
 public:
     int rob(TreeNode *root) {
         if (!root) {
