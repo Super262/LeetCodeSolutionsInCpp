@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 若n=4^x，n=2^(2*x)，n是完全平方数且n是2的幂
 public:
     bool isPowerOfFour(const int &n) {
         if (n <= 0) {
