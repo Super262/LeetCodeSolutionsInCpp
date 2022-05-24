@@ -50,7 +50,7 @@ public:
 
     vector<vector<int>> getIntervals() {
         vector<vector<int>> res;
-        res.reserve(storage.size());
+        res.reserve(storage.size() - 2);
         for (auto &p: storage) {
             if (p.first == INT_MIN || p.first == INT_MAX) {
                 continue;
