@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 双指针遍历，若两指针都指向元音，交换字符
 public:
     string reverseVowels(string s) {
         unordered_set<char> towels{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
