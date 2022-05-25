@@ -21,7 +21,7 @@ public:
     }
 
 private:
-    int gcd(int x, int y) {
+    static int gcd(int x, int y) {
         while (y) {
             auto t = y;
             y = x % y;
