@@ -6,19 +6,9 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0382_H
 
 #include <cstdlib>
+#include "listnode.h"
 
 using namespace std;
-
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
 
 class Solution {
     // Reservoir Sampling: https://www.acwing.com/solution/content/14526/
