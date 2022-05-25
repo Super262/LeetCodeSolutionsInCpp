@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 多路归并
+    // 多路归并：初始时，压入所有a[0]+b[i]（0<=i<m）
 public:
     vector<vector<int>> kSmallestPairs(const vector<int> &a, const vector<int> &b, const int &k) {
         const auto &n = (int) a.size();
@@ -20,16 +20,16 @@ public:
         for (int i = 0; i < m; ++i) {
             heap.push({a[0] + b[i], 0, i});
         }
-        vector<vector<int>> res;
-        while (!heap.empty() && res.size() < k) {
+        vector<vector<int>> ans;
+        while (!heap.empty() && (int) ans.size() < k) {
             auto t = heap.top();
             heap.pop();
-            res.push_back({a[t[1]], b[t[2]]});
+            ans.push_back({a[t[1]], b[t[2]]});
             if (t[1] + 1 < n) {
                 heap.push({a[t[1] + 1] + b[t[2]], t[1] + 1, t[2]});
             }
         }
-        return res;
+        return ans;
     }
 };
 
