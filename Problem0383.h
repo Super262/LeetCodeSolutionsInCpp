@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 哈希表统计b的字符频率，再遍历a
 public:
     bool canConstruct(const string &a, const string &b) {
         unordered_map<char, int> counter;
