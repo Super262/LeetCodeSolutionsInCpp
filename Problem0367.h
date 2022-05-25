@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0367_H
 
 class Solution {
+    // 二分查找，找到最大的x，满足x*x<=num；检查x*x=num是否成立
 public:
     bool isPerfectSquare(const int &num) {
         int l = 0;
