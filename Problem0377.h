@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
     // 类似于完全背包问题：https://www.acwing.com/solution/content/5005/
+    // f[i]表示成组合成i的方案数；注意此题和完全背包的区别，背包问题的状态表示是f[i][j]，表示前i个物体，组成的重量为j
     // 如果此题用完全背包解答，则会将顺序不同的序列算作相同的组合
 public:
     int combinationSum4(const vector<int> &nums, const int &target) {
