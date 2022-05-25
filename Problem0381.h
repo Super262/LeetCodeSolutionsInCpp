@@ -12,17 +12,14 @@
 using namespace std;
 
 class RandomizedCollection {
-private:
-    unordered_map<int, unordered_set<int>> num_idx_set;
-    vector<int> storage;
-
+    // 数组 + 哈希表（数字-索引集合）：获取随机数时，生成随机索引i，返回数组中索引i对应的数字
+    // 插入新元素x时，将x追加到数组末尾，哈希表记录x的索引；
+    // 删除元素y时，将y和数组尾部元素x交换，更新x、y的索引集合，最后从哈希表上删除y、弹出数字尾部，并再次更新x的索引集合
 public:
-    RandomizedCollection() {
-
-    }
+    RandomizedCollection() = default;
 
     bool insert(const int &val) {
-        storage.push_back(val);
+        storage.emplace_back(val);
         num_idx_set[val].insert((int) storage.size() - 1);
         return num_idx_set[val].size() == 1;
     }
@@ -48,6 +45,10 @@ public:
     int getRandom() {
         return storage[random() % storage.size()];
     }
+
+private:
+    unordered_map<int, unordered_set<int>> num_idx_set;
+    vector<int> storage;
 };
 
 /**
