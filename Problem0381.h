@@ -25,7 +25,7 @@ public:
     }
 
     bool remove(const int &x) {
-        if (!num_idx_set.count(x) || num_idx_set[x].empty()) {
+        if (!num_idx_set.count(x)) {
             return false;
         }
         auto px = *(num_idx_set[x].begin());
@@ -39,6 +39,9 @@ public:
         num_idx_set[y].insert(px);
         storage.pop_back();
         num_idx_set[x].erase(py);
+        if (num_idx_set[x].empty()) {
+            num_idx_set.erase(x);
+        }
         return true;
     }
 
