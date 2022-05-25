@@ -11,7 +11,8 @@
 using namespace std;
 
 class Solution {
-    // 巧妙二分，采用寻找下界的模版：O(n * logV)
+    // 巧妙二分，采用寻找下界的模版：O(n * logV)，V是数值范围
+    // 性质：对于目标值x，若第i行中有k个元素大于x，第i+1行至少有k个元素大于x；我们可以利用这个性质减少搜索时间
 public:
     int kthSmallest(const vector<vector<int>> &matrix, const int &k) {
         int l = -1e9;
