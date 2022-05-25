@@ -16,18 +16,18 @@ class Solution {
     // 如果此题用完全背包解答，则会将顺序不同的序列算作相同的组合
 public:
     int combinationSum4(const vector<int> &nums, const int &target) {
-        unsigned long long dp[target + 1];  // 防止溢出！
-        memset(dp, 0, sizeof dp);
-        dp[0] = 1;
-        for (int j = 0; j <= target; ++j) {  //  dp[j]表示表示组成和为j的方案数，所以外层循环为j
+        unsigned long long f[target + 1];  // 防止溢出！
+        memset(f, 0, sizeof f);
+        f[0] = 1;
+        for (int j = 0; j <= target; ++j) {  //  f[j]表示表示组成和为j的方案数，所以外层循环为j
             for (const auto &x: nums) {
                 if (j < x) {
                     continue;
                 }
-                dp[j] += dp[j - x];
+                f[j] += f[j - x];
             }
         }
-        return (int) dp[target];
+        return (int) f[target];
     }
 };
 
