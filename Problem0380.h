@@ -12,16 +12,17 @@
 using namespace std;
 
 class RandomizedSet {
+    // 数组 + 哈希表：获取随机数时，生成随机索引i，返回索引i对应的数字
+    // 插入新元素x时，将x追加到数组末尾，哈希表记录x的索引；
+    // 删除元素y，将y和数组尾部元素x交换，更新x的索引，最后从哈希表上删除y、弹出数字尾部
 public:
-    RandomizedSet() {
-
-    }
+    RandomizedSet() = default;
 
     bool insert(const int &val) {
         if (num_idx.count(val)) {
             return false;
         }
-        storage.push_back(val);
+        storage.emplace_back(val);
         num_idx[val] = (int) storage.size() - 1;
         return true;
     }
@@ -55,4 +56,5 @@ private:
  * bool param_2 = obj->remove(val);
  * int param_3 = obj->getRandom();
  */
+
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0380_H
