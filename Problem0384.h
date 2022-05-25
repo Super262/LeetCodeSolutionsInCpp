@@ -11,10 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 直接背诵！
-private:
-    vector<int> nums;
-
+    // Fisher-Yates算法，直接背诵
 public:
     Solution(const vector<int> &s) {
         nums = vector<int>(s);
@@ -32,6 +29,9 @@ public:
         }
         return res;
     }
+
+private:
+    vector<int> nums;
 };
 
 /**
