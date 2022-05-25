@@ -9,6 +9,7 @@
 
 class Solution {
     // 翻转链表，给低位加1；类似大整数加法，依次进位；然后再翻转链表，使高位为首位
+    // 细节：引入伪头节点，简化操作
 public:
     ListNode *plusOne(ListNode *head) {
         if (!head) {
