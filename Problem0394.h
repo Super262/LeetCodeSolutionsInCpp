@@ -12,7 +12,7 @@
 using namespace std;
 
 class Solution {
-    // 背诵代码！
+    // DFS，维护全局指针
 public:
     string decodeString(const string &s) {
         int idx = 0;
@@ -32,9 +32,9 @@ private:
                     ++k;
                 }
                 auto factor = stoi(s.substr(idx, k - idx));
-                idx = k + 1;
+                idx = k + 1;  // 跳过"["
                 auto temp = dfs(s, idx);
-                ++idx;
+                ++idx;  // 跳过"]"
                 while (factor--) {
                     ans += temp;
                 }
