@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 哈希表（数字-索引集合）保存数组信息，随机数生成随机索引
 public:
     Solution(const vector<int> &nums) {
         for (int i = 0; i < nums.size(); ++i) {
@@ -20,7 +21,8 @@ public:
     }
 
     int pick(const int &target) {
-        return num2Idx[target][random() % num2Idx[target].size()];
+        const auto &pool = num2Idx[target];
+        return pool[random() % pool.size()];
     }
 
 private:
