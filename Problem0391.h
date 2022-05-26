@@ -11,9 +11,12 @@
 using namespace std;
 
 class Solution {
+    // 扫描线，根据输入构建线段(x,y1,y2)；把线段排序，按横坐标、y轴起点排序
+    // 对每个横坐标上的线段执行区间合并（贪心），比较left和right是否匹配
 public:
     bool isRectangleCover(const vector<vector<int>> &rectangles) {
         vector<Line> lines;
+        lines.reserve(rectangles.size() * 2);
         for (const auto &rect: rectangles) {
             auto x1 = rect[0];
             auto x2 = rect[2];
@@ -24,7 +27,7 @@ public:
         }
         sort(lines.begin(), lines.end());
         const auto n = (int) lines.size();
-        for (int st = 0; st < n; ++st) {  // 处理[st:ed)内的线段
+        for (int st = 0; st < n; ++st) {  // 处理横坐标为x的线段
             auto ed = st;
             while (ed < n && lines[ed].x == lines[st].x) {
                 ++ed;
@@ -42,21 +45,15 @@ public:
                     }
                 }
             }
-            if (st > 0 && ed < n) {  // 该区间不包含大矩形的边缘
-                if (right_segs.size() != left_segs.size()) {
+            if (st > 0 && ed < n) {  // 该区间不包含大矩形的边缘，左、右应完全相等
+                if (left_segs != right_segs) {
                     return false;
                 }
-                const auto m = (int) left_segs.size();
-                for (int i = 0; i < m; ++i) {
-                    if (left_segs[i] != right_segs[i]) {
-                        return false;
-                    }
-                }
-            } else if (st == 0) {  // 该区间包含大矩形左边界
+            } else if (st == 0) {  // 该区间包含大矩形左边界，左边只有1条，右侧为空
                 if (left_segs.size() != 1 || !right_segs.empty()) {
                     return false;
                 }
-            } else {  // 该区间包含大矩形右边界
+            } else {  // 该区间包含大矩形右边界，右边只有1条，左侧为空
                 if (!left_segs.empty() || right_segs.size() != 1) {
                     return false;
                 }
