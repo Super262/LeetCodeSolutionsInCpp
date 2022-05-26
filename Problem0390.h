@@ -6,7 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0390_H
 
 class Solution {
-    // https://www.acwing.com/solution/content/14240/
+    // 根据实例，找规律：https://www.acwing.com/solution/content/14240/
     // f(n) 代表将1-n先从左到右再从右到左遍历最后剩下来的数字
     // b(n) 代表将1-n先从右到左再从左到右遍历最后剩下来的数字
     // f(1) = 1, b(1) = 1; f(n) = 2 * b(n / 2); f(n) + b(n) = n + 1
