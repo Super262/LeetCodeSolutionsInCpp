@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 双指针
 public:
     bool isSubsequence(const string &s, const string &t) {
         int i = 0;
