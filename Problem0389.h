@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 异或操作，相同的字符被除去
 public:
     char findTheDifference(const string &s, const string &t) {
         int x = 0;
