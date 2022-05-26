@@ -5,20 +5,33 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0397_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0397_H
 
-#include <iostream>
+#include <unordered_map>
 
 using namespace std;
 
 class Solution {
+    // 记忆化搜索
 public:
-    int integerReplacement(const long long &n) {
+    int integerReplacement(int n) {
+        unordered_map<long long, int> memo;
+        return dfs(n, memo);
+    }
+
+private:
+    int dfs(const long long &n, unordered_map<long long, int> &memo) {
         if (n == 1) {
             return 0;
         }
-        if (n % 2 == 0) {
-            return 1 + integerReplacement(n / 2);
+        if (memo.count(n)) {
+            return memo[n];
         }
-        return 1 + min(integerReplacement(n + 1), integerReplacement(n - 1));
+        if (n % 2) {
+            auto t = 1 + min(dfs(n + 1, memo), dfs(n - 1, memo));
+            return memo[n] = t;
+        }
+        auto t = 1 + dfs(n / 2, memo);
+        memo[n] = t;
+        return t;
     }
 };
 
