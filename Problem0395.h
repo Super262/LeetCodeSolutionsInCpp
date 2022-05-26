@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 思想：枚举区间中最多包含的不同字符的数量（最多26），使序列具备单调性，可以采用双指针算法
+    // 思想：枚举区间内最多包含的字符种类数（最多26），使序列具备单调性，可以采用双指针算法
     // https://www.acwing.com/solution/content/8092/
 public:
     int longestSubstring(const string &s, const int &k) {
