@@ -11,20 +11,21 @@ using namespace std;
 
 class Solution {
     // 找规律：https://www.acwing.com/solution/content/22401/
+    // 先计算出f(0)，再根据f(i)=f(i-1)+sum-n*nums[i]递推
 public:
     int maxRotateFunction(const vector<int> &nums) {
         long long sum = 0;
-        long long res = 0;
+        long long ans = 0;
         for (int i = 0; i < nums.size(); ++i) {
             sum += nums[i];
-            res += i * nums[i];
+            ans += i * nums[i];
         }
-        auto temp = res;
+        auto temp = ans;
         for (int i = (int) nums.size() - 1; i >= 0; --i) {
             temp = temp + sum - (long long) nums.size() * nums[i];
-            res = max(res, temp);
+            ans = max(ans, temp);
         }
-        return (int) res;
+        return (int) ans;
     }
 };
 
