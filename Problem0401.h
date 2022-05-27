@@ -12,10 +12,12 @@
 using namespace std;
 
 class Solution {
+    // 我们枚举所有可能的亮灯状态（状态压缩，类似DFS），输出所有合法的时间
+    // 掌握sprintf的使用
 public:
     vector<string> readBinaryWatch(const int &num) {
         char str[6];
-        vector<string> res;
+        vector<string> ans;
         for (int s = 0; s < (1 << 10); ++s) {
             int cnt = 0;  // s中1的个数
             for (int i = 0; i < 10; ++i) {
@@ -32,9 +34,9 @@ public:
                 continue;
             }
             sprintf(str, "%d:%02d", hr, mi);
-            res.emplace_back(str);
+            ans.emplace_back(str);
         }
-        return res;
+        return ans;
     }
 };
 
