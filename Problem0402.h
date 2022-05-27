@@ -10,33 +10,34 @@
 using namespace std;
 
 class Solution {
-    // 贪心算法：背诵代码！
+    // 贪心算法：优先保存靠前的、较小的字符
 public:
     string removeKdigits(const string &num, int k) {
         k = min((int) num.size(), k);
-        string res;
+        string ans;
+        ans.reserve(num.size() - k);
         for (const auto &ch: num) {
-            while (!res.empty() && k > 0 && res.back() > ch) {
-                res.pop_back();
+            while (!ans.empty() && k > 0 && ans.back() > ch) {
+                ans.pop_back();
                 --k;
             }
-            res.push_back(ch);
+            ans += ch;
         }
         while (k > 0) {  // 还有待删除的字符
-            res.pop_back();
+            ans.pop_back();
             --k;
         }
         k = 0;  // 计算前导零个数
-        for (const auto &ch: res) {
+        for (const auto &ch: ans) {
             if (ch != '0') {
                 break;
             }
             ++k;
         }
-        if (k == res.size()) {  // 全是"0"，直接返回"0"
+        if (k == ans.size()) {  // 全是"0"，直接返回"0"
             return "0";
         }
-        return res.substr(k);
+        return ans.substr(k);
     }
 };
 
