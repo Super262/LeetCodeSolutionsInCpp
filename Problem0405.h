@@ -11,19 +11,20 @@
 using namespace std;
 
 class Solution {
+    // 将数字和"0xf"做"&"运算，获得最低位（16进制），再右移4位，继续操作
 public:
     string toHex(unsigned int num) {
         if (num == 0) {
             return "0";
         }
-        string res;
+        string ans;
         const string dict = "0123456789abcdef";
         while (num) {
-            res.push_back(dict[num & 0xf]);
+            ans += dict[num & 0xf];
             num >>= 4;
         }
-        reverse(res.begin(), res.end());
-        return res;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 
