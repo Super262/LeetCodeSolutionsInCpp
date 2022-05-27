@@ -13,8 +13,9 @@
 using namespace std;
 
 class Solution {
-    // BFS：https://www.acwing.com/solution/content/4597/
-    // 现在所处的石子编号为 i 时，上一次跳跃距离 k 必定满足 k ≤ i
+    // BFS，"拆点"问题，图中每个点有2个属性（坐标，步数）；我们需要找到到达目标的路
+    // 现在所处的石子编号为i时，上一次跳跃距离k必定满足k≤i，最大步数为n
+    // https://www.acwing.com/solution/content/4597/
 public:
     bool canCross(const vector<int> &stones) {
         unordered_map<int, int> pos2Idx;
@@ -23,8 +24,7 @@ public:
             pos2Idx[stones[i]] = i;
         }
         queue<pair<int, int>> q;  // q 存放当前节点索引和上一步的步数
-        // visited[i][k] = true 表示索引为i的石子在上次步数为时被访问
-        bool visited[n][n];
+        bool visited[n][n];  // visited[i][k] = true 表示索引为i的石子在步数为k时被访问
         memset(visited, 0, sizeof visited);
         q.emplace(0, 0);
         visited[0][0] = true;
