@@ -10,6 +10,8 @@
 using namespace std;
 
 class Solution {
+    // 规律：设k位数共有t个，最小的k位数是s，t=9*(10^(k-1))，s=10^(k-1)，k>=1
+    // 我们从小到大枚举k，直到1～k位数的个数和超过n；找到第n个数字在第i个k位数，再找到目标数字
 public:
     int findNthDigit(long long n) {
         long long k = 1;  // n是k位数
