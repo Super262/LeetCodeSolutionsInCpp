@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 理解思路，背诵代码！
+    // 贪心：哈希表统计所有成对出现的字符（频率为偶数）；回文串中至多有1种字符频率为奇数，可将这个字符加入结果
 public:
     int longestPalindrome(const string &s) {
         unordered_map<char, int> counter;
