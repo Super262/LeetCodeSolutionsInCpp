@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // Trie求解最大异或对，类似AcWing 143
 public:
     int findMaximumXOR(const vector<int> &nums) {
         auto root = new Node();
@@ -23,11 +24,11 @@ public:
 
 private:
     struct Node {
-        bool isNum;
+        bool is_num;
         Node *next[2]{};
 
         Node() {
-            isNum = false;
+            is_num = false;
             next[0] = nullptr;
             next[1] = nullptr;
         }
@@ -48,7 +49,7 @@ private:
                 p = p->next[0];
             }
         }
-        p->isNum = true;
+        p->is_num = true;
     }
 
     int searchMaxXOR(Node *root, const int &x) {
