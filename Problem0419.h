@@ -10,25 +10,24 @@
 using namespace std;
 
 class Solution {
-    // 要求O(1)额外空间：只统计左上角位置
-    // 背诵代码！
+    // 只统计战舰的起点位置，跳过其他部分，实现O(1)空间
 public:
     int countBattleships(const vector<vector<char>> &board) {
-        int res = 0;
-        for (int i = 0; i < board.size(); ++i) {
-            for (int j = 0; j < board[0].size(); ++j) {
-                if (i > 0 && board[i - 1][j] == 'X') {  // 是战舰部分，但不是左上角
+        int ans = 0;
+        for (int i = 0; i < (int) board.size(); ++i) {
+            for (int j = 0; j < (int) board[0].size(); ++j) {
+                if (i > 0 && board[i - 1][j] == 'X') {  // 是战舰部分，但不是起点
                     continue;
                 }
-                if (j > 0 && board[i][j - 1] == 'X') {  // 是战舰部分，但不是左上角
+                if (j > 0 && board[i][j - 1] == 'X') {  // 是战舰部分，但不是起点
                     continue;
                 }
                 if (board[i][j] == 'X') {
-                    ++res;
+                    ++ans;
                 }
             }
         }
-        return res;
+        return ans;
     }
 };
 
