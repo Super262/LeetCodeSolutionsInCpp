@@ -11,35 +11,28 @@
 using namespace std;
 
 class Solution {
+    // 大整数加法，从低位到高位，逐个求和、进位
 public:
     string addStrings(const string &num1, const string &num2) {
-        vector<int> temp;
-        temp.reserve(max(num1.size(), num2.size()));
-        for (auto i = num1.rbegin(), j = num2.rbegin(); i != num1.rend() || j != num2.rend();) {
-            int t = 0;
+        auto i = num1.rbegin();
+        auto j = num2.rbegin();
+        auto t = 0;
+        string ans;
+        ans.reserve(max(num1.size(), num2.size()) + 1);
+        while (i != num1.rend() || j != num2.rend() || t) {
             if (i != num1.rend()) {
-                t += (*i - '0');
-                ++i;
+                t += *i - '0';
+                i++;
             }
             if (j != num2.rend()) {
-                t += (*j - '0');
-                ++j;
+                t += *j - '0';
+                j++;
             }
-            temp.emplace_back(t);
+            ans += (char) (t % 10 + '0');
+            t /= 10;
         }
-        string result;
-        result.reserve(temp.size());
-        int t = 0;
-        for (auto d: temp) {
-            d += t;
-            result.push_back((char) ('0' + d % 10));
-            t = d / 10;
-        }
-        if (t) {
-            result.push_back((char) ('0' + t));
-        }
-        reverse(result.begin(), result.end());
-        return result;
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 
