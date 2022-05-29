@@ -12,22 +12,23 @@
 using namespace std;
 
 class Solution {
-    // 转化为背包问题：是否能装满容量为m / 2的背包
+    // 转化为0/1背包问题：是否能装满容量为(m/2)的背包
+    // f[i]：和为i的集合是否存在
 public:
     bool canPartition(const vector<int> &nums) {
-        auto m = accumulate(nums.begin(), nums.end(), 0);
-        if (m % 2) {
+        const auto m = accumulate(nums.begin(), nums.end(), 0);
+        if (m % 2) {  // 无法平分
             return false;
         }
-        bool dp[m + 1];
-        memset(dp, 0, sizeof dp);
-        dp[0] = true;
+        bool f[m + 1];
+        memset(f, 0, sizeof f);
+        f[0] = true;
         for (const auto &x: nums) {
             for (auto j = m; j >= x; --j) {
-                dp[j] |= dp[j - x];
+                f[j] |= f[j - x];
             }
         }
-        return dp[m / 2];
+        return f[m / 2];
     }
 };
 
