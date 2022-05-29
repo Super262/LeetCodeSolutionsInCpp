@@ -11,7 +11,8 @@
 using namespace std;
 
 class Solution {
-    // 找规律，观察每个单词中的特异字母和每个单词间的重叠字母，归纳出搜索顺序
+    // 找规律，观察每个单词中的"特异"字母和每个单词间的重叠字母，归纳出搜索顺序order
+    // 依照order，记录每个数字是否存在，并删去每个数字包含的字母；最后，根据记录输出结果
     // https://www.acwing.com/solution/content/22477/
 public:
     string originalDigits(const string &s) {
@@ -30,14 +31,14 @@ public:
                 removeDigit(freq, digits[idx]);
             }
         }
-        string res;
+        string ans;
         for (int i = 0; i < 10; ++i) {
             while (counter[i] > 0) {
-                res += to_string(i);
+                ans += to_string(i);
                 --counter[i];
             }
         }
-        return res;
+        return ans;
     }
 
 private:
