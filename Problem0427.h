@@ -6,49 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0427_H
 
 #include <vector>
+#include "quad_node.h"
 
 using namespace std;
 
-
-class Node {
-public:
-    bool val;
-    bool isLeaf;
-    Node *topLeft;
-    Node *topRight;
-    Node *bottomLeft;
-    Node *bottomRight;
-
-    Node() {
-        val = false;
-        isLeaf = false;
-        topLeft = NULL;
-        topRight = NULL;
-        bottomLeft = NULL;
-        bottomRight = NULL;
-    }
-
-    Node(bool _val, bool _isLeaf) {
-        val = _val;
-        isLeaf = _isLeaf;
-        topLeft = NULL;
-        topRight = NULL;
-        bottomLeft = NULL;
-        bottomRight = NULL;
-    }
-
-    Node(bool _val, bool _isLeaf, Node *_topLeft, Node *_topRight, Node *_bottomLeft, Node *_bottomRight) {
-        val = _val;
-        isLeaf = _isLeaf;
-        topLeft = _topLeft;
-        topRight = _topRight;
-        bottomLeft = _bottomLeft;
-        bottomRight = _bottomRight;
-    }
-};
-
-
 class Solution {
+    // 2维前缀和+先序遍历：先判断根结点是否能成为叶（sum为0或m*n）；若根不能为叶，生成4个子节点
 public:
     Node *construct(const vector<vector<int>> &grid) {
         vector<vector<int>> prefix = getPrefix(grid);
@@ -57,9 +20,9 @@ public:
 
 private:
     Node *dfs(int x1, int y1, int x2, int y2, const vector<vector<int>> &prefix) {
-        int m = x2 - x1 + 1;
-        int n = y2 - y1 + 1;
-        int sum = prefix[x2][y2] - prefix[x1 - 1][y2] - prefix[x2][y1 - 1] + prefix[x1 - 1][y1 - 1];
+        auto m = x2 - x1 + 1;
+        auto n = y2 - y1 + 1;
+        auto sum = prefix[x2][y2] - prefix[x1 - 1][y2] - prefix[x2][y1 - 1] + prefix[x1 - 1][y1 - 1];
         if (sum == 0 || sum == m * n) {
             return new Node(sum > 0, true);
         }
@@ -71,8 +34,8 @@ private:
     }
 
     vector<vector<int>> getPrefix(const vector<vector<int>> &grid) {
-        const int m = (int) grid.size();
-        const int n = (int) grid[0].size();
+        const auto m = (int) grid.size();
+        const auto n = (int) grid[0].size();
         vector<vector<int>> res(m + 1, vector<int>(n + 1, 0));
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
