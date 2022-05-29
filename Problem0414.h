@@ -10,6 +10,9 @@
 using namespace std;
 
 class Solution {
+    // 变量a、b、c分别保存当前的最大值、次大值、第三大值，unique_cnt统计当前参与到比较过程中的数字的个数
+    // 比较大小时，只使用">"或"<"，不使用">="或"=<"，避免记录重复数字；若无法避开重复数字，我们返回最大值a
+    // 根据数据范围，a、b、c的初始值是(INT_MAX-1)
 public:
     int thirdMax(const vector<int> &nums) {
         if (nums.size() == 1) {
