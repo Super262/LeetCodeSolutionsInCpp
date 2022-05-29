@@ -5,29 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0426_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0426_H
 
-
-class Node {
-public:
-    int val;
-    Node *left;
-    Node *right;
-
-    Node() {}
-
-    Node(int _val) {
-        val = _val;
-        left = nullptr;
-        right = nullptr;
-    }
-
-    Node(int _val, Node *_left, Node *_right) {
-        val = _val;
-        left = _left;
-        right = _right;
-    }
-};
+#include "node.h"
 
 class Solution {
+    // 类似中序遍历，有序遍历BST的每个节点，并连接双链表
+    // 细节：inOrder函数的参数是指针的引用；中序遍历结束后，要及时连接头、尾
 public:
     Node *treeToDoublyList(Node *root) {
         if (!root) {
@@ -35,18 +17,18 @@ public:
         }
         Node *head = nullptr;
         Node *tail = nullptr;
-        in_order(root, head, tail);
+        inOrder(root, head, tail);
         head->left = tail;
         tail->right = head;
         return head;
     }
 
 private:
-    void in_order(Node *root, Node *&head, Node *&tail) {
+    void inOrder(Node *root, Node *&head, Node *&tail) {
         if (!root) {
             return;
         }
-        in_order(root->left, head, tail);
+        inOrder(root->left, head, tail);
         if (tail) {
             tail->right = root;
         } else {
@@ -54,7 +36,7 @@ private:
         }
         root->left = tail;
         tail = root;
-        in_order(root->right, head, tail);
+        inOrder(root->right, head, tail);
     }
 };
 
