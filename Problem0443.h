@@ -11,13 +11,15 @@
 using namespace std;
 
 class Solution {
-    // 双指针经典应用
+    // 双指针：i指示当前的可写位置，chars[l:r]是一段重复字符，我们在chars[i]保存当前字符
+    // 当chars[l:r]长度大于1时，我们将数字(r-l+1)存储到i后面的可写位置，然后更新l=r-1，处理新字符
+    // 细节：由于这里要求我们使用O(1)空间，我们不能使用to_string函数
 public:
     int compress(vector<char> &chars) {
         int i = 0;
-        for (int l = 0; l < chars.size(); ++l) {
+        for (int l = 0; l < (int) chars.size(); ++l) {
             auto r = l;
-            while (r < chars.size() && chars[r] == chars[l]) {
+            while (r < (int) chars.size() && chars[r] == chars[l]) {
                 ++r;
             }
             if (r - l > 0) {
@@ -25,7 +27,6 @@ public:
                 ++i;
             }
             if (r - l > 1) {
-                // 这里不要使用to_string方法：不满足空间为O(1)
                 auto len = r - l;
                 auto t = i;
                 while (len) {
@@ -37,10 +38,8 @@ public:
             }
             l = r - 1;
         }
-        while (chars.size() > i) {
-            chars.pop_back();
-        }
-        return (int) chars.size();
+        chars.erase(chars.begin() + i, chars.end());
+        return i;
     }
 };
 
