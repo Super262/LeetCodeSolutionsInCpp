@@ -13,6 +13,7 @@ using namespace std;
 
 class Solution {
     // 双指针+哈希表：统计窗口[l:r]内字符种类数，若窗口长度等于p的长度、字符频率与p的字符频率相同，我们将l加入结果集
+    // 优化：只用1个哈希表
 public:
     vector<int> findAnagrams(const string &s, const string &p) {
         unordered_map<char, int> counter;
