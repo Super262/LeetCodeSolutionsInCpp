@@ -13,10 +13,11 @@
 using namespace std;
 
 class Solution {
+    // BFS，搜索出可行的转化路径（start-> ... ->end），类似AcWing 845
 public:
     int minMutation(const string &start, const string &end, const vector<string> &bank) {
         unordered_set<string> dict(bank.begin(), bank.end());
-        if (dict.count(end) == 0) {
+        if (!dict.count(end)) {
             return -1;
         }
         const char parts[] = {'A', 'G', 'C', 'T'};
@@ -32,7 +33,7 @@ public:
                 return rd;
             }
             for (auto &ch: root) {
-                char a = ch;
+                auto a = ch;
                 for (const auto &p: parts) {
                     ch = p;
                     if (!dict.count(root) || dist.count(root)) {
