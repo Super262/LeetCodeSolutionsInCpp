@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 等差数列的和：x*(x+1)/2=n，求解x
+    // 等差数列的和：x*(x+1)/2=n，求解x；利用二元一次方程的求根公式计算出解
 public:
     int arrangeCoins(int n) {
         return (int) ((sqrt(1ll + 8ll * n) - 1) / 2);
