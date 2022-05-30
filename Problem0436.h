@@ -11,7 +11,9 @@
 using namespace std;
 
 class Solution {
-    // 数值最接近，和位置无关，不用单调栈
+    // 对于任意i，我们要找到j，使得intervals[j]和intervals[i]最接近
+    // 题目对i、j的大小关系没有要求，因此我们直接排序intervals，再进行二分查找
+    // i、j是原intervals内元素的索引，排序前应记录下每个元素的索引
 public:
     vector<int> findRightInterval(vector<vector<int>> &intervals) {
         const auto n = (int) intervals.size();
