@@ -7,49 +7,34 @@
 
 #include <vector>
 #include <queue>
+#include "nary_node.h"
 
 using namespace std;
 
-class Node {
-public:
-    int val;
-    vector<Node *> children;
-
-    Node() {}
-
-    Node(int _val) {
-        val = _val;
-    }
-
-    Node(int _val, vector<Node *> _children) {
-        val = _val;
-        children = _children;
-    }
-};
-
 class Solution {
+    // 层序遍历，类似二叉树
 public:
     vector<vector<int>> levelOrder(Node *root) {
         if (!root) {
             return {};
         }
-        vector<vector<int>> res;
+        vector<vector<int>> ans;
         queue<Node *> q;
         q.emplace(root);
         while (!q.empty()) {
-            auto current = (int) q.size();
-            vector<int> level;
-            while (current--) {
+            vector<int> cur;
+            cur.reserve(q.size());
+            for (auto k = (int) q.size(); k > 0; --k) {
                 auto node = q.front();
                 q.pop();
-                level.emplace_back(node->val);
-                for (const auto child: node->children) {
-                    q.emplace(child);
+                cur.emplace_back(node->val);
+                for (const auto &kid: node->children) {
+                    q.emplace(kid);
                 }
             }
-            res.emplace_back(level);
+            ans.emplace_back(cur);
         }
-        return res;
+        return ans;
     }
 };
 
