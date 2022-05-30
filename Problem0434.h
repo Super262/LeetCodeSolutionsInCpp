@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 双指针，以空格为分隔符统计区间数量
 public:
     int countSegments(const string &s) {
         int res = 0;
