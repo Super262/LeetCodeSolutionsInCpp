@@ -16,9 +16,9 @@ class Solution {
     // https://www.acwing.com/solution/content/4589/
 public:
     int numberOfArithmeticSlices(const vector<int> &nums) {
-        auto n = (int) nums.size();
+        const auto n = (int) nums.size();
         vector<unordered_map<long long, int>> f(n);
-        int res = 0;
+        int ans = 0;
         for (int i = 1; i < n; ++i) {
             for (int j = 0; j < i; ++j) {
                 auto d = (long long) nums[i] - nums[j];
@@ -28,11 +28,11 @@ public:
                     t = it->second;
                 }
                 f[i][d] += t + 1;
-                res += t + 1;
+                ans += t + 1;
             }
         }
-        res -= n * (n - 1) / 2;  // 减去长度为2的子序列
-        return res;
+        ans -= n * (n - 1) / 2;  // 减去长度为2的子序列
+        return ans;
     }
 };
 
