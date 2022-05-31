@@ -5,52 +5,67 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0445_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0445_H
 
-
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
+#include "listnode.h"
 
 class Solution {
+    // 不翻转l1、l2，直接计算：统计l1、l2的长度为n1、n2；顺序遍历l1、l2，从高位开始求和，不进位，将新节点以"头插法"插入结果链表中
+    // 此时，结果链表是最终结果的倒序，且尚未进位；我从头遍历当前结果以进位；最后，翻转当前结果，得到最终答案
 public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-        l1 = reverseList(l1);
-        l2 = reverseList(l2);
-        auto head = new ListNode(-1);
-        int t = 0;
-        while (l1 || l2 || t) {
-            if (l1) {
-                t += l1->val;
-                l1 = l1->next;
-            }
-            if (l2) {
-                t += l2->val;
-                l2 = l2->next;
-            }
-            auto cur = new ListNode(t % 10);
-            t /= 10;
-            cur->next = head->next;
-            head->next = cur;
+        auto p1 = l1;
+        auto p2 = l2;
+        int n1 = 0;  // l1的长度
+        int n2 = 0;  // l2的长度
+        while (p1) {
+            ++n1;
+            p1 = p1->next;
         }
-        auto res = head->next;
-        delete head;
-        return res;
-    }
-
-private:
-    ListNode *reverseList(ListNode *l) {
-        if (!l->next) {
-            return l;
+        while (p2) {
+            ++n2;
+            p2 = p2->next;
+        }
+        p1 = l1;
+        p2 = l2;
+        ListNode *head = nullptr;
+        while (n1 || n2) {  // 从高位开始求对应位的和
+            int t = 0;
+            if (n1 > n2) {
+                t += p1->val;
+                p1 = p1->next;
+                --n1;
+            } else if (n2 > n1) {
+                t += p2->val;
+                p2 = p2->next;
+                --n2;
+            } else {
+                t += p1->val + p2->val;
+                p1 = p1->next;
+                p2 = p2->next;
+                --n2;
+                --n1;
+            }
+            auto node = new ListNode(t);
+            node->next = head;
+            head = node;
         }
         ListNode *a = nullptr;
-        auto b = l;
-        while (b) {
+        auto b = head;
+        int carry = 0;
+        while (b) {  // 进位
+            carry += b->val;
+            b->val = carry % 10;
+            carry /= 10;
+            a = b;
+            b = b->next;
+        }
+        while (carry) {  // 处理剩余进位
+            a->next = new ListNode(carry % 10);
+            carry /= 10;
+            a = a->next;
+        }
+        a = nullptr;
+        b = head;
+        while (b) {  // 翻转
             auto c = b->next;
             b->next = a;
             a = b;
