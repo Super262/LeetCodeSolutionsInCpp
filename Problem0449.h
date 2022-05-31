@@ -8,31 +8,29 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
-};
-
 class Codec {
-    // 本题测试用例不包含重复元素
-    // 利用BST性质，只需前序序列就可以还原：左子树段小于根结点，右子树段大于根结点
+    // 本题测试用例不包含重复元素；利用BST性质，只需前序序列就可以还原：左子树段小于根结点，右子树段大于根结点
+    // 细节：反序列化时，由于我们没有单独为空节点设置标记，因此我们无法渐进式读取s，只能预解析s所有内容
 public:
-
     // Encodes a tree to a single string.
     string serialize(TreeNode *root) {
-        string res;
-        preOrder(root, res);
-        return res;
+        if (!root) {
+            return "";
+        }
+        string s;
+        dfs_ser(root, s);
+        return s;
     }
 
     // Decodes your encoded data to tree.
     TreeNode *deserialize(const string &s) {
+        if (s.empty()) {
+            return nullptr;
+        }
         vector<int> data;
         stringstream ssin(s);
         int x;
@@ -40,27 +38,32 @@ public:
             data.emplace_back(x);
         }
         int u = 0;
-        return dfs(data, u, INT_MAX, INT_MIN);
+        return dfs_des(data, u, INT_MAX, INT_MIN);
     }
 
 private:
-    void preOrder(TreeNode *root, string &res) {
+    void dfs_ser(TreeNode *root, string &s) {
         if (!root) {
             return;
         }
-        res += to_string(root->val) + " ";
-        preOrder(root->left, res);
-        preOrder(root->right, res);
+        s += to_string(root->val) + " ";
+        if (root->left) {
+            dfs_ser(root->left, s);
+        }
+        if (root->right) {
+            dfs_ser(root->right, s);
+        }
     }
 
-    TreeNode *dfs(const vector<int> &data, int &u, int maxv, int minv) {
-        if (u >= data.size() || data[u] < minv || data[u] > maxv) {
-            return NULL;
-        }
+    TreeNode *dfs_des(const vector<int> &data, int &u, int maxv, int minv) {
         auto root = new TreeNode(data[u]);
         ++u;
-        root->left = dfs(data, u, root->val, minv);
-        root->right = dfs(data, u, maxv, root->val);
+        if (u < data.size() && data[u] < root->val && data[u] > minv) {
+            root->left = dfs_des(data, u, root->val, minv);
+        }
+        if (u < data.size() && data[u] < maxv && data[u] > root->val) {
+            root->right = dfs_des(data, u, maxv, root->val);
+        }
         return root;
     }
 };
