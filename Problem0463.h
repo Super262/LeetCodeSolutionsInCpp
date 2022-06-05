@@ -13,7 +13,7 @@ using namespace std;
 class Solution {
     // 最优解：无需BFS，搜索连通分量：枚举到方向i时，若i方向的可能值是无效的，说明i所在的边是边界，周长加1
 public:
-    int islandPerimeter(vector<vector<int>> &grid) {
+    int islandPerimeter(const vector<vector<int>> &grid) {
         int res = 0;
         const auto n = (int) grid.size();
         const auto m = (int) grid[0].size();
