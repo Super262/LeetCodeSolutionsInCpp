@@ -10,7 +10,8 @@
 using namespace std;
 
 class Solution {
-    // 先手获胜：当前状态必胜或下一个状态必败
+    // DFS，枚举所有可能被选择的数字，n位二进制数指示当前被选中的数
+    // 先手获胜：当前状态必胜或下个状态必败
 public:
     bool canIWin(int n, int target) {
         if (n * (n + 1) / 2 < target) {
