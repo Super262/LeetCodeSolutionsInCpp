@@ -12,7 +12,8 @@
 using namespace std;
 
 class Solution {
-    // 转化为货仓选址问题
+    // 转化为货仓选址问题，类似AcWing 104
+    // 贪心算法：找到序列的中位数x（快速选择），累计其它点到x的距离
 public:
     int minMoves2(vector<int> &nums) {
         // 利用快速选择找到中位数
