@@ -20,14 +20,15 @@ public:
         sort(points.begin(), points.end(), [&](const vector<int> &a, const vector<int> &b) {
             return a[1] < b[1];
         });
-        int res = 1, right = points[0][1];
+        int ans = 1;
+        auto end = points[0][1];
         for (int i = 1; i < (int) points.size(); ++i) {
-            if (points[i][0] > right) {
-                ++res;
-                right = points[i][1];  // 只有发生区间合并，才更新右边界
+            if (points[i][0] > end) {
+                ++ans;
+                end = points[i][1];  // 只有发生区间合并，才更新右边界
             }
         }
-        return res;
+        return ans;
     }
 };
 
