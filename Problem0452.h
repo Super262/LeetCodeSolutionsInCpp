@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 区间选点问题，背诵代码
+    // 区间选点问题，同AcWing 905：先按照右端点对区间排序，再从左向右扫描所有区间
 public:
     int findMinArrowShots(vector<vector<int>> &points) {
         if (points.empty()) {
@@ -21,7 +21,7 @@ public:
             return a[1] < b[1];
         });
         int res = 1, right = points[0][1];
-        for (int i = 1; i < points.size(); ++i) {
+        for (int i = 1; i < (int) points.size(); ++i) {
             if (points[i][0] > right) {
                 ++res;
                 right = points[i][1];  // 只有发生区间合并，才更新右边界
