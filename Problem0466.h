@@ -13,7 +13,6 @@ using namespace std;
 
 class Solution {
     // 找循环节，重复枚举s1，统计第i个s1顺次包含s2中字符的个数k，记录counter[i]=k；
-    // 
 public:
     int getMaxRepetitions(const string &s1, int n1, const string &s2, int n2) {
         vector<int> counter;
