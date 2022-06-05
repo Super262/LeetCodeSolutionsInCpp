@@ -10,6 +10,12 @@
 using namespace std;
 
 class LFUCache {
+    // 2层双链表，2个哈希表，所有操作时间复杂度均为O(1)
+    // 外层链表串联Block，每个Block存储频率为freq的关键字，从头到尾每个Block对应的频率递增
+    // 每个Block内包含1个双链表，每个双链表的Node存储频率为freq的关键字，按上次被访问的时间、从头到尾、由近到远排序
+    // 2个哈希表分别保存关键字对应的Block、关键字对应的Node
+    // 查询关键字key时，更新key到下个Block的头部；存储(key,value)时，若key已存在，则更新key到下个Block的头部
+    // 若key不存在，且此时Node个数达到上限，删除最后的Block的最后的Node，再将(key,value)存入freq为1的Block中
 public:
     LFUCache(int capacity) {
         cap = capacity;  // 注意，容量cap的合法值包含0，注意特殊处理
@@ -47,25 +53,25 @@ public:
         if (key_to_block.count(key)) {
             key_to_node[key]->val = value;
             get(key);  // 复用get函数，移动node到代表更高频率的Block的头部
-        } else {
-            if (key_to_node.size() == cap) {
-                auto p = head->right->tail->left;  // 删除freq最小的Block的最后的节点
-                head->right->detach(p);
-                if (head->right->empty()) {
-                    erase(head->right);
-                }
-                key_to_node.erase(p->key);
-                key_to_block.erase(p->key);
-                delete p;
-            }
-            auto p = new Node(key, value);
-            if (head->right->freq > 1) {  // 当前不存在freq为1的Block
-                createNext(head);
-            }
-            head->right->addFirst(p);
-            key_to_node[key] = p;
-            key_to_block[key] = head->right;
+            return;
         }
+        if (key_to_node.size() == cap) {
+            auto p = head->right->tail->left;  // 删除freq最小的Block的最后的节点
+            head->right->detach(p);
+            if (head->right->empty()) {
+                erase(head->right);
+            }
+            key_to_node.erase(p->key);
+            key_to_block.erase(p->key);
+            delete p;
+        }
+        auto p = new Node(key, value);
+        if (head->right->freq > 1) {  // 当前不存在freq为1的Block
+            createNext(head);
+        }
+        head->right->addFirst(p);
+        key_to_node[key] = p;
+        key_to_block[key] = head->right;
     }
 
 private:
