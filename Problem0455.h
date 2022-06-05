@@ -11,22 +11,20 @@
 using namespace std;
 
 class Solution {
-    // 匈牙利算法：当s[i] >= g[i]时，两者可以匹配，原问题转化为二分图最大匹配问题
-    // 贪心算法，直接背诵：https://www.acwing.com/solution/content/23803/
+    // 当s[i] >= g[i]时，两者可以匹配，原问题转化为二分图最大匹配问题
+    // 贪心算法：优先分配较小的饼干到当前孩子
 public:
     int findContentChildren(vector<int> &g, vector<int> &s) {
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
-        int i = 0, j = 0;
-        int result = 0;
-        while (i < g.size() && j < s.size()) {
+        int ans = 0;
+        for (int i = 0, j = 0; i < (int) g.size() && j < (int) s.size(); ++j) {
             if (g[i] <= s[j]) {
                 ++i;
-                ++result;
+                ++ans;
             }
-            ++j;
         }
-        return result;
+        return ans;
     }
 };
 
