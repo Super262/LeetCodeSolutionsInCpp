@@ -13,8 +13,9 @@
 using namespace std;
 
 class Solution {
-    // 动态规划，dp[i] = k：字符串的前i个字符最多由k个单词构成
-    // 字符串哈希，避免超时
+    // 任意单词s，若s能分割成多个更短单词，s是属于答案的；f[i]=k表示s[0:i-1]最多可被分割为k个其它更短单词
+    // f[i]=max{f[j]+1}，若s[j:i-1]是合法单词；因此，我们计算所有单词的哈希值，并逐一计算f，记录答案
+    // 细节：枚举j的顺序应和计算哈希值时的枚举顺序相同
 public:
     vector<string> findAllConcatenatedWordsInADict(const vector<string> &words) {
         unordered_set<unsigned long long> dict;
@@ -25,13 +26,13 @@ public:
             }
             dict.insert(hash);
         }
-        vector<string> res;
+        vector<string> ans;
         for (const auto &w: words) {
             if (isDividable(w, dict)) {
-                res.emplace_back(w);
+                ans.emplace_back(w);
             }
         }
-        return res;
+        return ans;
     }
 
 private:
@@ -39,11 +40,11 @@ private:
 
     bool isDividable(const string &s, const unordered_set<unsigned long long> &dict) {
         const auto n = (int) s.size();
-        int dp[n + 1];
-        memset(dp, -1, sizeof dp);
-        dp[0] = 0;
+        int f[n + 1];
+        memset(f, -1, sizeof f);
+        f[0] = 0;
         for (int i = 0; i <= n; ++i) {
-            if (dp[i] < 0) {
+            if (f[i] < 0) {
                 continue;
             }
             unsigned long long hash = 0;
@@ -52,9 +53,9 @@ private:
                 if (!dict.count(hash)) {
                     continue;
                 }
-                dp[j] = max(dp[i] + 1, dp[j]);
+                f[j] = max(f[i] + 1, f[j]);
             }
-            if (dp[n] > 1) {
+            if (f[n] > 1) {
                 return true;
             }
         }
