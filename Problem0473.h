@@ -8,26 +8,24 @@
 #include <vector>
 #include <cstring>
 #include <algorithm>
+#include <numeric>
 
 using namespace std;
 
 class Solution {
     // 模版题，扩展题目：AcWing 167
-    // 5个剪枝：从大到小枚举；每条边内部火柴编号递增；
+    // 5个剪枝：从短到长枚举火柴；每条边内部火柴编号递增；
     // 若当前放置某根火柴失败：跳过长度相同的火柴；若是第一根火柴，则剪掉当前分枝；若是最后一根，也剪掉当前分枝
 public:
-    bool makesquare(vector<int> &matchsticks) {
-        bool used[matchsticks.size()];
-        memset(used, 0, sizeof used);
-        int sum = 0;
-        for (const auto &x: matchsticks) {
-            sum += x;
-        }
+    bool makesquare(vector<int> &sticks) {
+        auto sum = accumulate(sticks.begin(), sticks.end(), 0);
         if (sum % 4) {
             return false;
         }
-        sort(matchsticks.begin(), matchsticks.end(), greater<int>());
-        return dfs(0, 0, sum / 4, 1, matchsticks, used);
+        bool used[sticks.size()];
+        memset(used, 0, sizeof used);
+        sort(sticks.begin(), sticks.end(), greater<int>());
+        return dfs(0, 0, sum / 4, 1, sticks, used);
     }
 
 private:
@@ -47,10 +45,10 @@ private:
                 return true;
             }
             used[i] = false;
-            if (length == 0 || length + nums[i] == target) {
+            if (length == 0 || length + nums[i] == target) {  // 第一根火柴或最后一根
                 return false;
             }
-            while (i + 1 < nums.size() && nums[i + 1] == nums[i]) {
+            while (i + 1 < (int) nums.size() && nums[i + 1] == nums[i]) {  // 跳过相同长度的火柴
                 ++i;
             }
         }
