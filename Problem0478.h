@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
-    // 保证等概率：围绕圆建立一个边长为2*r的正方形；映射圆心至(0,0)
-    // 生成随机数x、y（-1 <= x <= 1，-1 <= y <= 1），随机点位置为(x*r,y*r)
+    // 等概率：围绕半径为r的圆建立一个边长为2*r的正方形，映射随机点到这个正方形内部
+    // 映射圆心至(0,0)；若生成的随机数是x、y（-1<=x<=1，-1<=y<=1），那么随机点位置为(x*r,y*r)
 public:
     Solution(double radius, double x_center, double y_center) {
         r = radius;
@@ -39,4 +39,5 @@ private:
  * Solution* obj = new Solution(radius, x_center, y_center);
  * vector<double> param_1 = obj->randPoint();
  */
+
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0478_H
