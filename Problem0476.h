@@ -6,17 +6,15 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0476_H
 
 class Solution {
+    // 首先求出num的"有效位"数量bits_cnt，再获得num的反码~num
+    // ~num的二进制包含的高位全为1，因为num的高位全为0；因此，我们将(1<<bits_cnt)-1和~num异或，去掉前导1，获得答案
 public:
     int findComplement(int num) {
-        if (!num) {
-            return 1;
-        }
-        int ones_cnt = 0;
+        int bits_cnt = 0;
         for (auto x = num; x > 0; x >>= 1) {
-            ++ones_cnt;
+            ++bits_cnt;
         }
-        // ~num的二进制包含前导1，因为num有前导0：通过XOR去掉前导1
-        return (int) (~num & ((1ll << ones_cnt) - 1));  // 用long long避免溢出
+        return (int) (~num & ((1ll << bits_cnt) - 1));  // 用long long避免溢出
     }
 };
 
