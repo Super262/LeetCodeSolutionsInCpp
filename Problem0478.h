@@ -20,7 +20,8 @@ public:
     }
 
     vector<double> randPoint() {
-        double x, y;
+        double x;
+        double y;
         do {
             x = (double) random() / (double) RAND_MAX * 2 - 1;
             y = (double) random() / (double) RAND_MAX * 2 - 1;
@@ -31,7 +32,9 @@ public:
     }
 
 private:
-    double r, cx, cy;
+    double r;
+    double cx;
+    double cy;
 };
 
 /**
