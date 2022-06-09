@@ -11,17 +11,21 @@
 
 using namespace std;
 
-// 2种解法：对顶堆+延迟删除，红黑树（multiset）
+// 2种解法：对顶堆+延迟删除，或者采用红黑树（multiset）
 
 class DualHeap {
+    // 对顶堆："处在上部的"up为小顶堆，"处在下部的"down是大顶堆；up的元素个数至多和down的元素个数相差1，中位数在2个堆顶间产生
+    // 延迟删除：映射delayed[x]=k表示元素x应被删除k次；因此，若堆顶元素变化，我们执行prune操作，删除元素x
 private:
     priority_queue<int, vector<int>, greater<int>> up;
     priority_queue<int, vector<int>, less<int>> down;
     unordered_map<int, int> delayed;
-    int up_size, down_size, k;
+    int up_size;
+    int down_size;
+    int k;
 
     template<class T>
-    void Prune(T &heap) {
+    void prune(T &heap) {
         while (!heap.empty()) {
             auto num = heap.top();
             if (!delayed.count(num)) {
@@ -35,19 +39,19 @@ private:
         }
     }
 
-    void Balance() {
+    void balance() {
         if (down_size > up_size + 1) {
             up.emplace(down.top());
             down.pop();
             --down_size;
             ++up_size;
-            Prune(down);
+            prune(down);
         } else if (down_size < up_size) {
             down.emplace(up.top());
             up.pop();
             --up_size;
             ++down_size;
-            Prune(up);
+            prune(up);
         }
     }
 
@@ -58,7 +62,7 @@ public:
         this->k = k;
     }
 
-    void Insert(int x) {
+    void insert(int x) {
         if (down.empty() || x <= down.top()) {
             down.emplace(x);
             ++down_size;
@@ -66,22 +70,22 @@ public:
             up.emplace(x);
             ++up_size;
         }
-        Balance();
+        balance();
     }
 
-    void Erase(int x) {
+    void erase(int x) {
         ++delayed[x];
         if (x <= down.top()) {
             --down_size;
-            Prune(down);
+            prune(down);
         } else {
             --up_size;
-            Prune(up);
+            prune(up);
         }
-        Balance();
+        balance();
     }
 
-    double GetMedian() {
+    double getMedian() {
         if (k % 2) {
             return (double) down.top();
         }
@@ -95,13 +99,13 @@ public:
         DualHeap dh(k);
         vector<double> ans;
         for (int i = 0; i < k; ++i) {
-            dh.Insert(nums[i]);
+            dh.insert(nums[i]);
         }
-        ans.emplace_back(dh.GetMedian());
+        ans.emplace_back(dh.getMedian());
         for (int i = k; i < nums.size(); ++i) {
-            dh.Insert(nums[i]);
-            dh.Erase(nums[i - k]);
-            ans.emplace_back(dh.GetMedian());
+            dh.insert(nums[i]);
+            dh.erase(nums[i - k]);
+            ans.emplace_back(dh.getMedian());
         }
         return ans;
     }
