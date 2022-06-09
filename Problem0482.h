@@ -10,7 +10,8 @@
 using namespace std;
 
 class Solution {
-    // 若S%K!=0，则第1组长度为S%K
+    // 根据题意要求，我们要将s分组；除第1组外，其余组的长度为k；设输入的有效字符数是data_len
+    // 因此，第1组的长度为data_len%k或k；我们直接遍历s，保存有效字符，并添加分隔符
 public:
     string licenseKeyFormatting(const string &s, int k) {
         int data_len = 0;
@@ -20,32 +21,32 @@ public:
             }
             ++data_len;
         }
-        string res;
+        string ans;
         int i = 0;
-        for (int cnt = 0; i < s.size() && cnt < data_len % k; ++i) {  // 处理第1个分组
+        for (int cnt = 0; i < (int) s.size() && cnt < data_len % k; ++i) {  // 处理第1个分组
             if (s[i] == '-') {
                 continue;
             }
-            res.push_back((char) toupper(s[i]));
+            ans += (char) toupper(s[i]);
             ++cnt;
         }
-        while (i < s.size()) {  // 处理后续分组
+        while (i < (int) s.size()) {  // 处理后续分组
             if (s[i] == '-') {  // 遇到无效字符
                 ++i;
                 continue;
             }
-            if (!res.empty()) {  // 分离新分组
-                res.push_back('-');
+            if (!ans.empty()) {  // 分离新分组
+                ans += '-';
             }
-            for (int cnt = 0; cnt < k && i < s.size(); ++i) {
+            for (int cnt = 0; cnt < k && i < (int) s.size(); ++i) {
                 if (s[i] == '-') {
                     continue;
                 }
-                res.push_back((char) toupper(s[i]));
+                ans += (char) toupper(s[i]);
                 ++cnt;
             }
         }
-        return res;
+        return ans;
     }
 };
 
