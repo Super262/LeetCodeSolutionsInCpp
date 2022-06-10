@@ -10,21 +10,23 @@
 using namespace std;
 
 class Solution {
-    // 发现(111...11)(base=k)随k递增而递增：二分查找，注意溢出处理
+    // 题目要求我们找到最小的进制k，满足"n (base=10)"等于"111...11 (base=k)"
+    // 我们从大到小枚举"111...11"的长度m，二分查找最小的k值（2<=k<=n）
 public:
     string smallestGoodBase(const string &n) {
         const auto num = stoull(n);
-        for (int k = 63; k > 0; --k) {  // 要求最小的base，所以k递减
-            unsigned long long l = 2, r = num;  // 注意：l等于2，千万不要写成1
+        for (int m = 63; m > 0; --m) {
+            unsigned long long l = 2;  // k的下限不能为1，因为不能存在"一进制"
+            unsigned long long r = num;
             while (l < r) {
                 auto mid = l + (r - l) / 2;
-                if (checkBase(num, mid, k) >= 0) {
+                if (checkBase(num, mid, m) >= 0) {
                     r = mid;
                 } else {
                     l = mid + 1;
                 }
             }
-            if (checkBase(num, r, k) == 0) {
+            if (checkBase(num, r, m) == 0) {
                 return to_string(r);
             }
         }
@@ -32,15 +34,15 @@ public:
     }
 
 private:
-    int checkBase(unsigned long long n, unsigned long long base, int k) {  // 检查由k个1组成的base进制数字是否为n
-        unsigned long long res = 0;
-        for (int i = 0; i < k; ++i) {
-            if (res > (n - 1) / base) { // 测试 res * base + 1 > n，避免溢出
+    int checkBase(unsigned long long n, unsigned long long base, int m) {  // 检查由m个1组成的base进制数字是否为n
+        unsigned long long num = 0;
+        for (int i = 0; i < m; ++i) {
+            if (num > (n - 1) / base) { // 测试 num * base + 1 > n，避免溢出
                 return 1;
             }
-            res = res * base + 1;
+            num = num * base + 1;
         }
-        if (res == n) {
+        if (num == n) {
             return 0;
         }
         return -1;
