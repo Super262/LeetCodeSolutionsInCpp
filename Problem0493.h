@@ -10,6 +10,8 @@
 using namespace std;
 
 class Solution {
+    // 基于归并排序，统计逆序对个数
+    // 由于逆序对的定义和元素大于的定义不同（逆序：nums[i]>2*nums[j]，大于：nums[i]>nums[j]），我们拆分归并、计算逆序对这两步
 public:
     int reversePairs(vector<int> &nums) {
         const auto n = (int) nums.size();
@@ -18,35 +20,35 @@ public:
     }
 
 private:
-    int mergeSort(vector<int> &nums, const int left, const int right, int temp[]) {
-        if (left >= right) {
+    int mergeSort(vector<int> &nums, const int st, const int ed, int temp[]) {
+        if (st >= ed) {
             return 0;
         }
-        const auto mid = left + (right - left) / 2;
-        auto result = mergeSort(nums, left, mid, temp) + mergeSort(nums, mid + 1, right, temp);
-        auto l = left, r = mid + 1;
-        //   以下2种写法均可
-        // 左计数
-        while (r <= right) {
+        const auto mid = st + (ed - st) / 2;
+        auto ans = mergeSort(nums, st, mid, temp) + mergeSort(nums, mid + 1, ed, temp);
+        auto l = st, r = mid + 1;
+        // 统计逆序对：以下2种写法均可
+        // 左计数（固定r，移动l）
+        while (r <= ed) {
             while (l <= mid && (long long) nums[l] <= 2 * (long long) nums[r]) {
                 ++l;
             }
-            result += mid - l + 1;
+            ans += mid - l + 1;
             ++r;
         }
-        // 右计数
+        // 右计数（固定l，移动r）
         // while (l <= mid) {
-        //     while (r <= right && (long long) nums[l] > 2 * (long long) nums[r]) {
+        //     while (r <= ed && (long long) nums[l] > 2 * (long long) nums[r]) {
         //         ++r;
         //     }
-        //     result += r - (mid + 1);
+        //     ans += r - (mid + 1);
         //     ++l;
         // }
 
-        // 归并排序
-        l = left, r = mid + 1;
-        auto tt = left;
-        while (l <= mid && r <= right) {
+        // 归并
+        l = st, r = mid + 1;
+        auto tt = st;
+        while (l <= mid && r <= ed) {
             if (nums[l] <= nums[r]) {
                 temp[tt++] = nums[l++];
             } else {
@@ -56,13 +58,13 @@ private:
         while (l <= mid) {
             temp[tt++] = nums[l++];
         }
-        while (r <= right) {
+        while (r <= ed) {
             temp[tt++] = nums[r++];
         }
-        for (int i = left; i <= right; ++i) {  // 不要忘记最后的拷贝步骤
+        for (int i = st; i <= ed; ++i) {  // 不要忘记最后的拷贝步骤
             nums[i] = temp[i];
         }
-        return result;
+        return ans;
     }
 };
 
