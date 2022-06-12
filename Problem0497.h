@@ -27,10 +27,11 @@ public:
 
     vector<int> pick() {
         auto k = (int) (random() % prefix.back() + 1);  // k落在[1,prefix.back()]
-        int l = 1, r = n;  // 二分查找合适的前缀和
+        int l = 1;
+        auto r = n;  // 二分查找合适的前缀和
         while (l < r) {
             auto mid = l + (r - l) / 2;
-            if (prefix[mid] >= k) {  // 查找比k大的的最小点
+            if (prefix[mid] >= k) {  // 查找大于或等于k的的最小点
                 r = mid;
             } else {
                 l = mid + 1;
