@@ -22,15 +22,15 @@ public:
             return 0;
         }
         auto neg = (sum - target) / 2;
-        int dp[neg + 1];
-        memset(dp, 0, sizeof dp);
-        dp[0] = 1;
+        int f[neg + 1];
+        memset(f, 0, sizeof f);
+        f[0] = 1;
         for (const auto &x: nums) {
             for (int j = neg; j >= x; --j) {
-                dp[j] += dp[j - x];
+                f[j] += f[j - x];
             }
         }
-        return dp[neg];
+        return f[neg];
     }
 };
 
