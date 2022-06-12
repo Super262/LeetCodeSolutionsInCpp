@@ -17,19 +17,20 @@ public:
         }
         const auto n = (int) mat.size();
         const auto m = (int) mat[0].size();
-        vector<int> result;
+        vector<int> ans;
+        ans.reserve(m * n);
         for (int i = 0; i < n + m - 1; ++i) {
             if (i % 2) {
                 for (auto j = max(0, i - m + 1); j <= min(i, n - 1); ++j) {
-                    result.emplace_back(mat[j][i - j]);
+                    ans.emplace_back(mat[j][i - j]);
                 }
             } else {
                 for (auto j = min(i, n - 1); j >= max(0, i - m + 1); --j) {
-                    result.emplace_back(mat[j][i - j]);
+                    ans.emplace_back(mat[j][i - j]);
                 }
             }
         }
-        return result;
+        return ans;
     }
 };
 
