@@ -14,7 +14,7 @@
 using namespace std;
 
 class Solution {
-    // BFS+贪心：设当前位置（队头）是(x,y)，枚举移动方向d（上、下、左、右），并在方向d上走到最远点(nx,ny)（直到进洞或碰壁，贪心思想），
+    // BFS+贪心：设当前位置（队头）是(x,y)，枚举移动方向d（上、下、左、右），并在方向d上走到最远点(nx,ny)（直到进洞或碰壁，贪心思想，将整个滚动路径看作1个点），
     // 更新dist[nx][ny]和path[nx][ny]，将(nx,ny)压入队列
 public:
     string findShortestWay(const vector<vector<int>> &maze, const vector<int> &ball, const vector<int> &hole) {
