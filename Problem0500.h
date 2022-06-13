@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 对任意字符ch，记录它的行号ch_to_idx[ch]；遍历words中每个单词w的所有字符，检查它们的行号是否一致
 public:
     vector<string> findWords(const vector<string> &words) {
         string lines[3] = {"qwertyuiop", "asdfghjkl", "zxcvbnm"};
