@@ -6,22 +6,12 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0501_H
 
 #include <vector>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
+    // 类似中序遍历，递归过程中更新全局变量
 public:
     vector<int> findMode(TreeNode *root) {
         vector<int> modes;
@@ -45,14 +35,12 @@ private:
         } else {
             ++cur_freq;
         }
-        if (cur_freq) {
-            if (cur_freq > mode_freq) {
-                modes.clear();
-                mode_freq = cur_freq;
-                modes.emplace_back(cur_val);
-            } else if (cur_freq == mode_freq) {
-                modes.emplace_back(cur_val);
-            }
+        if (cur_freq > mode_freq) {
+            modes.clear();
+            mode_freq = cur_freq;
+            modes.emplace_back(cur_val);
+        } else if (cur_freq == mode_freq) {
+            modes.emplace_back(cur_val);
         }
         inOrder(root->right, cur_val, cur_freq, modes, mode_freq);
     }
