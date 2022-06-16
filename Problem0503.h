@@ -17,8 +17,8 @@ public:
         const auto n = (int) nums.size();
         vector<int> ans(n);
         stack<int> stk;
-        nums.insert(nums.end(), nums.begin(), nums.end());
-        for (int i = (int) nums.size() - 1; i >= 0; --i) {
+        nums.insert(nums.end(), nums.begin(), nums.begin() + (n - 1));  // 拷贝n-1个元素
+        for (auto i = (int) nums.size() - 1; i >= 0; --i) {
             auto x = nums[i];
             while (!stk.empty() && stk.top() <= x) {
                 stk.pop();
