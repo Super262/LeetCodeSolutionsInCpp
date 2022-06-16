@@ -11,6 +11,9 @@
 using namespace std;
 
 class Solution {
+    // 将10进制数num模7，得到x，再设置num=num/7
+    // 不断重复上述操作，将x加入答案，直到num为0
+    // 最后，添加正负号、翻转答案
 public:
     string convertToBase7(int num) {
         if (!num) {
@@ -20,11 +23,11 @@ public:
         num = abs(num);
         string res;
         while (num) {
-            res.push_back((char) ('0' + num % 7));
+            res += (char) ('0' + num % 7);
             num /= 7;
         }
         if (is_neg) {
-            res.push_back('-');
+            res += '-';
         }
         reverse(res.begin(), res.end());
         return res;
