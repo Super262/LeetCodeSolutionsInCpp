@@ -15,7 +15,7 @@ using namespace std;
 
 class Solution {
     // BFS+贪心：设当前位置（队头）是(x,y)，枚举移动方向d（上、下、左、右），并在方向d上走到最远点(nx,ny)（直到进洞或碰壁，贪心思想，将整个滚动路径看作1个点），
-    // 更新dist[nx][ny]和path[nx][ny]，将(nx,ny)压入队列
+    // dist[nx][ny]变小或path[nx][ny]变小，更新dist[nx][ny]和path[nx][ny]，将(nx,ny)压入队列
 public:
     string findShortestWay(const vector<vector<int>> &maze, const vector<int> &ball, const vector<int> &hole) {
         const auto m = (int) maze.size();
@@ -39,7 +39,7 @@ public:
             for (int i = 0; i < k; ++i) {
                 auto nx = x + dx[i];
                 auto ny = y + dy[i];
-                auto steps = dist[x][y] + 1;
+                auto steps = 1;
                 auto np = path[x][y] + dch[i];
                 while (nx >= 0 && nx < m && ny >= 0 && ny < n && !maze[nx][ny] &&
                        !(nx - dx[i] == hole[0] && ny - dy[i] == hole[1])) {  // 贪心
@@ -50,8 +50,11 @@ public:
                 nx -= dx[i];
                 ny -= dy[i];
                 --steps;
-                if (steps < dist[nx][ny] || (steps == dist[nx][ny] && np < path[nx][ny])) {
-                    dist[nx][ny] = steps;
+                if (!steps) {
+                    continue;
+                }
+                if (steps + dist[x][y] < dist[nx][ny] || (steps + dist[x][y] == dist[nx][ny] && np < path[nx][ny])) {
+                    dist[nx][ny] = steps + dist[x][y];
                     path[nx][ny] = np;
                     if (nx != hole[0] || ny != hole[1]) {
                         q.emplace(nx, ny);
