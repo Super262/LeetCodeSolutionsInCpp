@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0507_H
 
 class Solution {
+    // 特殊情况："1"不是完美数；其它情况：试除法求出num的所有质因子，若质因子的和sum等于num，num是完美数
 public:
     bool checkPerfectNumber(const int num) {
         if (num == 1) {
