@@ -12,7 +12,8 @@ public:
         if (!n) {
             return 0;
         }
-        int f0 = 0, f1 = 1;
+        int f0 = 0;
+        int f1 = 1;
         while (n > 1) {
             auto f2 = f0 + f1;
             f0 = f1;
