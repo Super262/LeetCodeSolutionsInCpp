@@ -13,6 +13,7 @@
 using namespace std;
 
 class Solution {
+    // 层序遍历，用哈希表记录每层的最大值
 public:
     vector<int> largestValues(TreeNode *root) {
         if (!root) {
