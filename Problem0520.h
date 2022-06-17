@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 遍历字符串，统计大写字母个数
 public:
     bool detectCapitalUse(const string &word) {
         int upper_cnt = 0;
