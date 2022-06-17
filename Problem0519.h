@@ -11,7 +11,11 @@
 using namespace std;
 
 class Solution {
-    // 映射二维到一维，利用Map保存1的位置和它的替换位置：https://www.acwing.com/solution/content/24184/
+    // 映射二维到一维，利用Map保存1的位置和它的替换位置；设k是当前可用的位置的个数，0<=k<=m*n
+    // 我们将二维坐标映射到一维坐标i，满足0<=i<=k-1；映射next_zero_idx[i]表示当位置i为1时，位置i对应的为0的位置
+    // 函数flip：生成随机数x，0<=x<=k-1；若位置x被占用，更新位置x为next_zero_idx[x]
+    // 此时位置x为1，我们需要设置位置x的后继；若位置k-1被占用，x的后继为next_zero_idx[k - 1]；若k-1未被占用，x的后继为k-1
+    // https://www.acwing.com/solution/content/24184/
 public:
     Solution(int m, int n) {
         this->m = m;
