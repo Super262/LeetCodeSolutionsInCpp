@@ -12,6 +12,7 @@ using namespace std;
 
 class Solution {
     // f[i][j]：拼写出key的前i个字符、ring指示在索引为j的位置时的最少操作步数
+    // 初始化时，f[0][j]=j；转移时，设第key的第i-1个字符对应ring[k]，设t=abs(j-k)，f[i][j]=min{f[i-1][k]+min(t,n-t)+1}
 public:
     int findRotateSteps(const string &ring, const string &key) {
         const auto m = (int) key.size();
