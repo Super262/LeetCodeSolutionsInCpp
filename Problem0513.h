@@ -5,19 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0513_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0513_H
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+#include "treenode.h"
 
 class Solution {
+    // 根据题意，我们采取先序遍历，找到第1个（最左侧）达到最大深度的节点
 public:
     int findBottomLeftValue(TreeNode *root) {
         int ans = -1;
