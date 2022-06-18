@@ -10,6 +10,9 @@
 using namespace std;
 
 class Solution {
+    // 设当前被点击的坐标是(x,y)；若board[x][y]='M'，更新board[x][y]为'X'，直接返回
+    // 若board[x][y]='E'，我们仍需确定(x,y)周围8个点是否含雷；若(x,y)周围8个点中，有k个为雷（1<=k<=8），设置board[x][y]='k'，停止搜索
+    // 若(x,y)周围8个点不含雷，设置board[x][y]='B'，继续DFS搜索每个邻点
 public:
     vector<vector<char>> updateBoard(vector<vector<char>> &board, const vector<int> &click) {
         auto x = click[0];
