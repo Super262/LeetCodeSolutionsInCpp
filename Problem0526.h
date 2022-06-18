@@ -8,19 +8,20 @@
 #include <cstring>
 
 class Solution {
+    // 暴力搜索（DFS）所有的排列perm，保证perm中每项都满足题意
 public:
     int countArrangement(int n) {
         bool used[n + 1];
         memset(used, 0, sizeof used);
-        int result = 0;
-        dfs(1, n, used, result);
-        return result;
+        int ans = 0;
+        dfs(1, n, used, ans);
+        return ans;
     }
 
 private:
-    void dfs(int idx, int n, bool used[], int &result) {
+    void dfs(int idx, int n, bool used[], int &ans) {
         if (idx >= n + 1) {
-            ++result;
+            ++ans;
             return;
         }
         for (int num = 1; num <= n; ++num) {
@@ -28,7 +29,7 @@ private:
                 continue;
             }
             used[num] = true;
-            dfs(idx + 1, n, used, result);
+            dfs(idx + 1, n, used, ans);
             used[num] = false;
         }
     }
