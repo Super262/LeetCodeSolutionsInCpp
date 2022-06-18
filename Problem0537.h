@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 复数乘法：设x=a+b*i，y=c+d*i，x*y=(a*c-b*d)+(a*d+b*c)*i
 public:
     string complexNumberMultiply(const string &x, const string &y) {
         int a, b, c, d;
