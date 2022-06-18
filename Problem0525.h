@@ -11,26 +11,27 @@
 using namespace std;
 
 class Solution {
-    // 类似于LeetCode 523题
+    // 类似于LeetCode 523题：设某子数组中"1"的个数是ones，"0"的个数是zeroes，t=ones-zeroes
+    // 若子数组nums[i:j]中"0"的个数和"1"的个数相等，nums[0:j]的t和nums[0:i-1]的t相等
 public:
     int findMaxLength(const vector<int> &nums) {
         unordered_map<int, int> prefix_idx;
-        int res = 0;
+        int ans = 0;
         prefix_idx[0] = 0;
-        for (int i = 1, zeros = 0, ones = 0; i <= nums.size(); ++i) {
+        for (int i = 1, zeroes = 0, ones = 0; i <= (int) nums.size(); ++i) {
             if (nums[i - 1]) {
                 ++ones;
             } else {
-                ++zeros;
+                ++zeroes;
             }
-            auto t = ones - zeros;
+            auto t = ones - zeroes;
             if (prefix_idx.count(t)) {
-                res = max(res, i - prefix_idx[t]);
+                ans = max(ans, i - prefix_idx[t]);
             } else {
                 prefix_idx[t] = i;
             }
         }
-        return res;
+        return ans;
     }
 };
 
