@@ -10,6 +10,8 @@
 using namespace std;
 
 class Solution {
+    // 对于索引i，我们希望i被选中的概率和w[i]成正比；前缀和可以实现：设prefix[i+1]=sum(w[0:i])
+    // 选择索引时，生成随机数k（0<=k<=prefix[n]），二分查找最小的i，满足prefix[i]>=k，被选中的索引是i-1
 public:
     Solution(const vector<int> &w) {
         n = (int) w.size();
@@ -21,8 +23,9 @@ public:
     }
 
     int pickIndex() {
-        auto k = (int) (random() % prefix.back() + 1);
-        int l = 1, r = n;
+        const auto k = (int) (random() % prefix.back() + 1);
+        int l = 1;
+        int r = n;
         while (l < r) {
             auto mid = l + (r - l) / 2;
             if (prefix[mid] >= k) {
