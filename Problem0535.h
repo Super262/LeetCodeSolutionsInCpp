@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 生成K位62进制数
+    // 映射short_to_long保存映射"(短URL,原始URL)"；对任意输入url，我们随机生成一个6位六十二进制数字s，若s是唯一的，我们保存映射"(s,url)"
 public:
     // Encodes a URL to a shortened URL.
     string encode(const string &long_url) {
