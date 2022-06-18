@@ -12,10 +12,10 @@ using namespace std;
 
 class Solution {
     // 核心思想：若s的一个子序列是特殊序列，则s也是特殊序列
-    // https://www.acwing.com/solution/content/25297/
+    // 对于每个strs[i]，若不存在j（i!=j）使得strs[i]是strs[j]的子序列，strs[i]是特殊序列
 public:
     int findLUSlength(const vector<string> &strs) {
-        int res = -1;
+        int ans = -1;
         const auto n = (int) strs.size();
         for (int i = 0; i < n; ++i) {
             bool selected = true;
@@ -31,21 +31,20 @@ public:
             if (!selected) {
                 continue;
             }
-            res = max(res, (int) strs[i].size());
+            ans = max(ans, (int) strs[i].size());
         }
-        return res;
+        return ans;
     }
 
 private:
     bool isSubSeq(const string &a, const string &b) {  // 判断b是否为a的子序列
-        int i = 0, j = 0;
-        while (i < a.size() && j < b.size()) {
+        int j = 0;
+        for (int i = 0; i < (int) a.size() && j < (int) b.size(); ++i) {
             if (a[i] == b[j]) {
                 ++j;
             }
-            ++i;
         }
-        return j >= b.size();
+        return j >= (int) b.size();
     }
 };
 
