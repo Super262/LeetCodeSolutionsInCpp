@@ -11,10 +11,11 @@
 using namespace std;
 
 class Solution {
+    // 对于字典中每个单词dict[i]，我们检查dict[i]是否为s的子序列；若dict[i]为s的子序列，且dict[i]比答案更优，则更新答案
 public:
     string findLongestWord(const string &s, const vector<string> &dict) {
         int ans_idx = -1;
-        for (int i = 0; i < dict.size(); ++i) {
+        for (int i = 0; i < (int) dict.size(); ++i) {
             if (!isSubSeq(s, dict[i])) {
                 continue;
             }
@@ -31,14 +32,13 @@ public:
 
 private:
     bool isSubSeq(const string &a, const string &b) {  // 判断b是否为a的子序列
-        int i = 0, j = 0;
-        while (i < a.size() && j < b.size()) {
+        int j = 0;
+        for (int i = 0; i < (int) a.size() && j < (int) b.size(); ++i) {
             if (a[i] == b[j]) {
                 ++j;
             }
-            ++i;
         }
-        return j >= b.size();
+        return j >= (int) b.size();
     }
 };
 
