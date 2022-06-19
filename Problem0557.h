@@ -13,8 +13,9 @@ using namespace std;
 class Solution {
 public:
     string reverseWords(string s) {
-        int l = 0, r = 0;
-        while (r < s.size()) {
+        int l = 0;
+        int r = 0;
+        while (r < (int) s.size()) {
             if (s[r] != ' ') {
                 ++r;
                 continue;
