@@ -11,19 +11,20 @@
 using namespace std;
 
 class Solution {
+    // BFS，将所有的"0"作为起点，从"0"出发，搜索它的所有邻点，直到无点可搜
 public:
     vector<vector<int>> updateMatrix(const vector<vector<int>> &mat) {
         if (mat.empty() || mat[0].empty()) {
             return mat;
         }
-        const auto n = (int) mat.size();
-        const auto m = (int) mat[0].size();
-        vector<vector<int>> dist(n, vector<int>(m, -1));
+        const auto m = (int) mat.size();
+        const auto n = (int) mat[0].size();
+        vector<vector<int>> dist(m, vector<int>(n, -1));
         queue<pair<int, int>> q;
         const int dx[] = {0, -1, 0, 1};
         const int dy[] = {1, 0, -1, 0};
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
+        for (int i = 0; i < m; ++i) {  // 将所有起点（"0"）压入队列
+            for (int j = 0; j < n; ++j) {
                 if (mat[i][j]) {
                     continue;
                 }
@@ -39,10 +40,10 @@ public:
             for (int i = 0; i < 4; ++i) {
                 auto nx = tx + dx[i];
                 auto ny = ty + dy[i];
-                if (nx < 0 || ny < 0 || nx >= n || ny >= m || dist[nx][ny] != -1) {
+                if (nx < 0 || ny < 0 || nx >= m || ny >= n || dist[nx][ny] != -1) {
                     continue;
                 }
-                dist[nx][ny] = dist[tx][ty] + 1;
+                dist[nx][ny] = dist[tx][ty] + 1;  // 更新邻接点的距离
                 q.emplace(nx, ny);
             }
         }
