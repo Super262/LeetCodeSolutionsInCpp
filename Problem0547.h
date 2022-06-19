@@ -10,13 +10,15 @@
 using namespace std;
 
 class Solution {
-    // 没有按秩合并，并查集时间复杂度为O(logN)
+    // 并查集的应用，若a、b相连且a、b不在同个集合，我们合并a、b，省份数减1
 public:
     int findCircleNum(const vector<vector<int>> &isConnected) {
         const auto n = (int) isConnected.size();
         int parent[n + 1];
+        int sets_size[n + 1];
         for (int v = 1; v <= n; ++v) {
             parent[v] = v;
+            sets_size[v] = 1;
         }
         auto cnt = n;
         for (int i = 1; i <= n; ++i) {
@@ -24,12 +26,12 @@ public:
                 if (!isConnected[i - 1][j - 1]) {
                     continue;
                 }
-                auto pi = FindRoot(i, parent);
-                auto pj = FindRoot(j, parent);
+                auto pi = findRoot(i, parent);
+                auto pj = findRoot(j, parent);
                 if (pi == pj) {
                     continue;
                 }
-                parent[pj] = parent[pi];
+                mergeSets(pi, pj, parent, sets_size);
                 --cnt;
             }
         }
@@ -37,11 +39,31 @@ public:
     }
 
 private:
-    int FindRoot(int x, int parent[]) {
-        if (x != parent[x]) {
-            parent[x] = FindRoot(parent[x], parent);
+    int findRoot(int x, int parent[]) {
+        auto u = x;
+        while (u != parent[u]) {
+            u = parent[u];
         }
-        return parent[x];
+        while (parent[x] != u) {
+            auto p = parent[x];
+            parent[x] = u;
+            x = p;
+        }
+        return u;
+    }
+
+    int mergeSets(int a, int b, int parent[], int sets_size[]) {
+        if (a == b) {
+            return -1;
+        }
+        if (sets_size[a] > sets_size[b]) {
+            parent[b] = a;
+            sets_size[a] += sets_size[b];
+            return a;
+        }
+        parent[a] = b;
+        sets_size[b] += sets_size[a];
+        return b;
     }
 };
 
