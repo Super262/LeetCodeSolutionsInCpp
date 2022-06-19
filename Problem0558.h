@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // 类似后序遍历，先处理4个子节点；若子节点都为叶，并且它们的值相等，设置根为叶
 public:
     Node *intersect(Node *t1, Node *t2) {
         if (!t1) {
