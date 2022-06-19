@@ -11,22 +11,24 @@
 using namespace std;
 
 class Solution {
-    // 记录每个缝隙的横坐标，选择频率最高的
+    // 根据题意，若垂直线穿过某块砖的边缘，我们认为垂直线未穿过这块砖
+    // 因此，若要使垂直线穿过最少的砖，它应穿过最多的边缘；我们用哈希表统计每个横坐标x处的边缘的个数pos_freq[x]，找出最大值
+    // 细节：为避免重复计数，我们只统计每块砖的左边缘，因为当前砖的右边缘和下块砖的左边缘相等
 public:
     int leastBricks(const vector<vector<int>> &wall) {
         unordered_map<int, int> pos_freq;
-        for (const auto &w: wall) {
-            int s = 0;
-            for (int i = 0; i < w.size() - 1; ++i) {  // 跳过最后砖的右侧缝隙
-                s += w[i];
-                ++pos_freq[s];
+        for (const auto &line: wall) {
+            int x = 0;
+            for (int i = 0; i < (int) line.size() - 1; ++i) {
+                x += line[i];
+                ++pos_freq[x];
             }
         }
-        int maximal = 0;
-        for (auto &x: pos_freq) {
-            maximal = max(maximal, x.second);
+        int max_edges = 0;
+        for (const auto &x: pos_freq) {
+            max_edges = max(max_edges, x.second);
         }
-        return (int) (wall.size() - maximal);
+        return (int) (wall.size() - max_edges);
     }
 };
 
