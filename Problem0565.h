@@ -10,11 +10,12 @@
 using namespace std;
 
 class Solution {
-    // 根据a[i]和a[j]的关系建图，O(n)时间找到最长的环
+    // 暴力枚举，枚举所有可行的起点num[i]，向后探索直到发现重复；这里我们做了非常多重复操作
+    // 如果路径p不是最长的，那么所有包含路径p的路径s也都不是最长的；因此，我们标记上次探索被发现的点为-1，避免重复搜索，优化时间为O(n)
 public:
     int arrayNesting(vector<int> &nums) {
-        int res = 0;
-        for (int i = 0; i < nums.size(); ++i) {
+        int ans = 0;
+        for (int i = 0; i < (int) nums.size(); ++i) {
             if (nums[i] == -1) {
                 continue;
             }
@@ -26,9 +27,9 @@ public:
                 nums[j] = -1;
                 j = next;
             }
-            res = max(res, cl);
+            ans = max(ans, cl);
         }
-        return res;
+        return ans;
     }
 };
 
