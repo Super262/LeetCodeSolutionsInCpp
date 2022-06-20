@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵：贪心思想
+    // 贪心思想：就近种植，若i可被种植，就在i种植
     // https://www.acwing.com/solution/content/469/
 public:
     bool canPlaceFlowers(vector<int> &flowerbed, int n) {
