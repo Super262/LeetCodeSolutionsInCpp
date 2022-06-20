@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0589_H
 
 #include <vector>
+#include <stack>
 #include "nary_node.h"
 
 using namespace std;
@@ -13,20 +14,21 @@ using namespace std;
 class Solution {
 public:
     vector<int> preorder(Node *root) {
-        vector<int> ans;
-        dfs(root, ans);
-        return ans;
-    }
-
-private:
-    void dfs(Node *root, vector<int> &ans) {
         if (!root) {
-            return;
+            return {};
         }
-        ans.emplace_back(root->val);
-        for (const auto &ch: root->children) {
-            dfs(ch, ans);
+        vector<int> ans;
+        stack<Node *> stk;
+        stk.emplace(root);
+        while (!stk.empty()) {
+            auto node = stk.top();
+            stk.pop();
+            ans.emplace_back(node->val);
+            for (auto it = node->children.rbegin(); it != node->children.rend(); it++) {
+                stk.emplace(*it);
+            }
         }
+        return ans;
     }
 };
 
