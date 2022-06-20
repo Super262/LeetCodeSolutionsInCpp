@@ -21,14 +21,14 @@ public:
         }
         // 注意：在修改f2[ch]前后，都要检查匹配情况！！
         for (int l = 0, r = 0, counter = 0; r < (int) s2.size(); ++r) {
-            if (checkFreq(s2[r], f1, f2)) {
+            if (checkFreq(s2[r], f1, f2)) {  // 修改前，字符频率相等
                 --counter;
             }
             ++f2[s2[r]];
-            if (checkFreq(s2[r], f1, f2)) {
+            if (checkFreq(s2[r], f1, f2)) {  // 修改后，字符频率相等
                 ++counter;
             }
-            if (r - l + 1 > s1.size()) {
+            if (r - l + 1 > (int) s1.size()) {  // 这里不必用while，因为l、r每次只会移动1步
                 if (checkFreq(s2[l], f1, f2)) {
                     --counter;
                 }
