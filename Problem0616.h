@@ -12,17 +12,18 @@
 using namespace std;
 
 class Solution {
+    // 遍历s，标记s中所有被发现的单词位置：再次遍历，添加tag
 public:
     string addBoldTag(const string &s, const vector<string> &words) {
         bool masked[s.size()];
         memset(masked, 0, sizeof masked);
-        for (int i = 0; i < s.size(); ++i) {
+        for (int i = 0; i < (int) s.size(); ++i) {
             for (const auto &w: words) {
-                if (i + w.size() > s.size()) {
+                if (i + (int) w.size() > (int) s.size()) {
                     continue;
                 }
                 bool valid = true;
-                for (int j = 0, k = i; j < w.size(); ++j, ++k) {
+                for (int j = 0, k = i; j < (int) w.size(); ++j, ++k) {
                     if (w[j] != s[k]) {
                         valid = false;
                         break;
@@ -31,27 +32,27 @@ public:
                 if (!valid) {
                     continue;
                 }
-                for (int j = i; j < i + w.size(); ++j) {
+                for (int j = i; j < (int) i + w.size(); ++j) {
                     masked[j] = true;
                 }
             }
         }
-        string result;
-        for (int i = 0; i < s.size(); ++i) {
+        string ans;
+        for (int i = 0; i < (int) s.size(); ++i) {
             if (!masked[i]) {
-                result.push_back(s[i]);
+                ans.push_back(s[i]);
                 continue;
             }
-            result += "<b>";
+            ans += "<b>";
             auto j = i;
             while (j < s.size() && masked[j]) {
                 ++j;
             }
-            result += s.substr(i, j - i);
-            result += "</b>";
+            ans += s.substr(i, j - i);
+            ans += "</b>";
             i = j - 1;
         }
-        return result;
+        return ans;
     }
 };
 
