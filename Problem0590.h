@@ -6,43 +6,32 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0590_H
 
 #include <vector>
+#include <stack>
+#include "nary_node.h"
 
 using namespace std;
-
-class Node {
-public:
-    int val;
-    vector<Node *> children;
-
-    Node() {}
-
-    Node(int _val) {
-        val = _val;
-    }
-
-    Node(int _val, vector<Node *> _children) {
-        val = _val;
-        children = _children;
-    }
-};
 
 class Solution {
 public:
     vector<int> postorder(Node *root) {
-        vector<int> ans;
-        dfs(root, ans);
-        return ans;
-    }
-
-private:
-    void dfs(Node *root, vector<int> &ans) {
         if (!root) {
-            return;
+            return {};
         }
-        for (const auto &ch: root->children) {
-            dfs(ch, ans);
+        vector<int> ans;
+        stack<Node *> stk;
+        stk.emplace(root);
+        while (!stk.empty()) {
+            auto node = stk.top();
+            stk.pop();
+            ans.emplace_back(node->val);
+            for (const auto &item: node->children) {
+                if (item) {
+                    stk.emplace(item);
+                }
+            }
         }
-        ans.emplace_back(root->val);
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
 
