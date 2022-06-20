@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 找到l1、l2的公共元素，再比较索引和
 public:
     vector<string> findRestaurant(const vector<string> &l1, const vector<string> &l2) {
         unordered_map<string, int> s1_to_idx;
@@ -19,7 +20,7 @@ public:
             s1_to_idx[l1[i]] = i;
         }
         auto idx_sum = INT_MAX;
-        vector<string> result;
+        vector<string> ans;
         for (int i = 0; i < l2.size(); ++i) {
             const auto &s2 = l2[i];
             if (!s1_to_idx.count(s2)) {
@@ -28,12 +29,12 @@ public:
             auto temp = i + s1_to_idx[s2];
             if (temp < idx_sum) {
                 idx_sum = temp;
-                result = {s2};
+                ans = {s2};
             } else if (temp == idx_sum) {
-                result.emplace_back(s2);
+                ans.emplace_back(s2);
             }
         }
-        return result;
+        return ans;
     }
 };
 
