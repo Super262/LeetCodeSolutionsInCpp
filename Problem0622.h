@@ -10,8 +10,7 @@
 using namespace std;
 
 class MyCircularQueue {
-    // 经典算法，必须掌握
-    // 为了区分队满和队空两种情况，我们要求h==t+1表示队满、h==t表示队空
+    // hh表示头部被占用的位置，tt表示尾部尚未被占用的位置；为了区分队满和队空两种情况，我们要求h==t+1表示队满、h==t表示队空
 private:
     vector<int> q;
     int hh = 0;
