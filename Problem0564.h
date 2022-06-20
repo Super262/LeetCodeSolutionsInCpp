@@ -6,18 +6,19 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0564_H
 
 #include <string>
-#include <set>
+#include <unordered_set>
 #include <cmath>
 
 using namespace std;
 
 class Solution {
     // 设n的长度为l，n的前半段为m，枚举时，我们只考虑前半段m即可。
-    // 脑筋急转弯，结果产生在5个数中：10^(l-1)-1，(m-1)(m-1)，mm，(m+1)(m+1)，10^l+1
+    // 脑筋急转弯，结果产生在5个数中：10^(l-1)-1，(m-1)(m-1)，mm，(m+1)(m+1)，10^l+1；我们枚举这5个数，找到答案
+    // https://www.acwing.com/solution/content/96053/
 public:
     string nearestPalindromic(const string &n) {
-        auto length = (int) n.size();
-        set<long long> candidates;
+        const auto length = (int) n.size();
+        unordered_set<long long> candidates;
         candidates.insert((long long) pow(10, length - 1) - 1);
         candidates.insert((long long) pow(10, length) + 1);
         auto m = stoll(n.substr(0, (length + 1) / 2));
@@ -32,14 +33,16 @@ public:
         }
         auto k = stoll(n);
         candidates.erase(k);
-        long long res = INT64_MAX;
+        long long ans = INT64_MAX;
         for (const auto &x: candidates) {
-            if (abs(res - k) <= abs(x - k)) {
+            auto a = abs(ans - k);
+            auto b = abs(x - k);
+            if (a < b || (a == b && x >= ans)) {
                 continue;
             }
-            res = x;
+            ans = x;
         }
-        return to_string(res);
+        return to_string(ans);
     }
 };
 
