@@ -8,24 +8,13 @@
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0606_H
 
 #include <string>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 经典算法，必须掌握：先序遍历
-    // 左子树为空，右子树不空，不能省略空括号
+    // 类似先序遍历
+    // 细节：左子树为空，右子树不空，不能省略空括号
 public:
     string tree2str(TreeNode *root) {
         string ans;
