@@ -12,6 +12,7 @@
 using namespace std;
 
 class Solution {
+    // 逐个读取分数（包括前置符号），累加得到结果
 public:
     string fractionAddition(string exp) {
         int counter = 0;  // 分数个数
@@ -37,7 +38,7 @@ public:
             auto x = a * d + b * c;  // 通分
             auto y = b * d;
             auto z = gcd(x, y);
-            a = x / z;
+            a = x / z;  // 约分
             b = y / z;
         }
         if (b < 0) {  // 若结果为负数，负号加在分子前
