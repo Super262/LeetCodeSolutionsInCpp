@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 直接背诵思路
+    // 哈希表统计每个元素的频率；元素x所在的HS的长度为counter[x]+counter[x-1]
     // https://leetcode-cn.com/problems/longest-harmonious-subsequence/solution/zui-chang-he-xie-zi-xu-lie-by-leetcode-s-8cyr/
 public:
     int findLHS(const vector<int> &nums) {
@@ -19,15 +19,15 @@ public:
         for (const auto &x: nums) {
             ++counter[x];
         }
-        int res = 0;
+        int ans = 0;
         for (const auto &item: counter) {
             auto x = item.first;
             if (!counter.count(x - 1)) {
                 continue;
             }
-            res = max(res, counter[x] + counter[x - 1]);
+            ans = max(ans, counter[x] + counter[x - 1]);
         }
-        return res;
+        return ans;
     }
 };
 
