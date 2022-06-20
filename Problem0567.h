@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 双指针经典题目，注意细节
+    // 双指针经典题目，注意细节：我们要在s2中找到1个区间s2[l:r]，s2[l:r]的长度和s1相等、字符频率相等
 public:
     bool checkInclusion(const string &s1, const string &s2) {
         unordered_map<char, int> f1;
@@ -20,7 +20,7 @@ public:
             ++f1[ch];
         }
         // 注意：在修改f2[ch]前后，都要检查匹配情况！！
-        for (int l = 0, r = 0, counter = 0; r < s2.size(); ++r) {
+        for (int l = 0, r = 0, counter = 0; r < (int) s2.size(); ++r) {
             if (checkFreq(s2[r], f1, f2)) {
                 --counter;
             }
@@ -38,7 +38,7 @@ public:
                 }
                 ++l;
             }
-            if (counter == f1.size()) {
+            if (counter == (int) f1.size()) {
                 return true;
             }
         }
