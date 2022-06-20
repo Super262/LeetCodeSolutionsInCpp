@@ -13,6 +13,7 @@
 using namespace std;
 
 class Solution {
+    // 根据文件内容给文件分类，输出内容相同的文件
 public:
     vector<vector<string>> findDuplicate(const vector<string> &paths) {
         stringstream ssin;
