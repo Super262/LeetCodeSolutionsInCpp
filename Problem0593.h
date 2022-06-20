@@ -12,7 +12,7 @@ using namespace std;
 
 class Solution {
     // 正方形条件：四条边相等，对角线相等
-    // 直接背诵思路：计算出任意两点间的距离，排序；若最小的6个距离相等，则为正方形
+    // 暴力法：计算出任意两点间的距离，排序；若最小的6个距离相等，则为正方形
 public:
     bool validSquare(vector<int> &p1, vector<int> &p2, vector<int> &p3, vector<int> &p4) {
         int dist[6];
