@@ -10,18 +10,19 @@
 using namespace std;
 
 class Solution {
+    // 映射变换，ans[i/c][i%c]=mat[i/n][i%n]，0<=i<=m*n-1
 public:
     vector<vector<int>> matrixReshape(const vector<vector<int>> &mat, int r, int c) {
-        auto n = (int) mat.size();
-        auto m = (int) mat[0].size();
-        if (n * m != r * c) {
+        const auto m = (int) mat.size();
+        const auto n = (int) mat[0].size();
+        if (m * n != r * c) {
             return mat;
         }
-        vector<vector<int>> res(r, vector<int>(c));
-        for (int i = 0; i < n * m; ++i) {
-            res[i / c][i % c] = mat[i / m][i % m];
+        vector<vector<int>> ans(r, vector<int>(c));
+        for (int i = 0; i < m * n; ++i) {
+            ans[i / c][i % c] = mat[i / n][i % n];
         }
-        return res;
+        return ans;
     }
 };
 
