@@ -6,23 +6,13 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0623_H
 
 #include <queue>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 经典算法，直接背诵：BFS找到depth-1行，修改队列中的点
+    // 题目要求将新节点添加到第depth层（depth>=1）；BFS层序遍历，搜索到第depth-1层，即保存depth-1层节点到队列
+    // 遍历队列中depth-1层的节点，添加新节点到下层
 public:
     TreeNode *addOneRow(TreeNode *root, const int val, const int depth) {
         if (depth == 1) {
