@@ -11,8 +11,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，必须掌握：根据结果集反推原数组
-    // https://www.acwing.com/solution/content/481/
+    // 3个数的最大乘积，必然是3个最大的数的乘积或者2个最小的（负）数与最大数的乘积
 public:
     int maximumProduct(vector<int> &nums) {
         sort(nums.begin(), nums.end());
