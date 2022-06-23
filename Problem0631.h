@@ -14,15 +14,19 @@
 using namespace std;
 
 class Excel {
+    // 拓扑排序，若A1=sum("A2:B4")，说明A1依赖于A2～B4间所有格子
+    // 我们引入Formula类型：value表示当前格子的数值，cells表示当前格子所依赖的其他格子，即当前格子的前驱
+    // 当格子(r,c)的值被改变（set函数）后，我们先清除(r,c)的旧前驱，保存新值，再通过拓扑排序搜索到所有依赖于(r,c)的格子，并依据拓扑顺序更新它们的值
+    // 当格子(r,c)的公式被改变（sum函数）后，我们先根据新公式计算出(r,c)的新值sum，更新所有依赖于(r,c)的格子，再保存(r,c)的新前驱
 public:
     Excel(int height, char width) {
         formulas.resize(height, vector<Formula>((width - 'A') + 1));
     }
 
     void set(int row, char column, int val) {
-        formulas[row - 1][column - 'A'] = Formula(val);
-        topoSort(row - 1, column - 'A');
-        applyTopo();
+        formulas[row - 1][column - 'A'] = Formula(val);  // 清除旧前驱，保存新值
+        topoSort(row - 1, column - 'A');  // 搜索以(row,column)为起点的拓扑序列
+        applyTopo();  // 依据拓扑顺序更新
     }
 
     int get(int row, char column) {
@@ -30,10 +34,10 @@ public:
     }
 
     int sum(int row, char column, const vector<string> &numbers) {
-        auto cells = getCells(numbers);
-        auto sum = updateSum(row - 1, column - 'A', cells);
-        set(row, column, sum);
-        formulas[row - 1][column - 'A'] = Formula(cells, sum);
+        auto cells = getCells(numbers);  // 解析出新前驱cells
+        auto sum = updateSum(row - 1, column - 'A', cells);  // 获取新值sum
+        set(row, column, sum);  // 应用新值
+        formulas[row - 1][column - 'A'] = Formula(cells, sum);  // 保存新前驱cells和新值sum
         return sum;
     }
 
@@ -59,7 +63,7 @@ private:
     vector<vector<Formula>> formulas;
     stack<pair<int, int>> stk;
 
-    void topoSort(int r, int c) {
+    void topoSort(int r, int c) {  // DFS实现拓扑排序，代码更少
         const auto key = string(1, (char) (c + 'A')) + to_string(r + 1);
         for (int i = 0; i < (int) formulas.size(); ++i) {
             for (int j = 0; j < (int) formulas[i].size(); ++j) {
@@ -83,7 +87,7 @@ private:
         }
     }
 
-    int updateSum(int r, int c, const unordered_map<string, int> &cells) {
+    int updateSum(int r, int c, const unordered_map<string, int> &cells) {  // 更新格子(r,c)的值为其前驱的值的和
         int sum = 0;
         for (const auto &it: cells) {
             const auto &key = it.first;
@@ -95,7 +99,7 @@ private:
         return sum;
     }
 
-    unordered_map<string, int> getCells(const vector<string> &numbers) {
+    unordered_map<string, int> getCells(const vector<string> &numbers) {  // 从公式解析出每个格子
         unordered_map<string, int> cells;
         for (const auto &s: numbers) {
             auto t = s.find(':');
