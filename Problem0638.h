@@ -13,8 +13,8 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，必须掌握：记忆化搜索 + 状态压缩
-    // https://leetcode-cn.com/problems/shopping-offers/solution/da-li-bao-by-leetcode-solution-p1ww/
+    // 记忆化搜索+状态压缩，枚举当前选择每个礼包的情况，DFS后续选择
+    // 剪枝：我们忽略价格比原价高的礼包；C++的Map支持以vector<int>为关键字
 public:
     int shoppingOffers(const vector<int> &price, const vector<vector<int>> &special, const vector<int> &needs) {
         const auto n = (int) price.size();
