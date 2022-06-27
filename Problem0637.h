@@ -7,25 +7,15 @@
 
 #include <vector>
 #include <queue>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
+    // BFS层序遍历，计算每层节点的平均值
 public:
     vector<double> averageOfLevels(TreeNode *root) {
-        vector<double> res;
+        vector<double> ans;
         queue<TreeNode *> q;
         q.emplace(root);
         while (!q.empty()) {
@@ -42,9 +32,9 @@ public:
                     q.emplace(t->right);
                 }
             }
-            res.emplace_back(sum / cnt);
+            ans.emplace_back(sum / cnt);
         }
-        return res;
+        return ans;
     }
 };
 
