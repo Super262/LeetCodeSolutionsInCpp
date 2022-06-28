@@ -10,20 +10,21 @@
 using namespace std;
 
 class Solution {
+    // 维护长度为k的滑动窗口，计算窗口内元素的平均值，更新答案
 public:
     double findMaxAverage(const vector<int> &nums, int k) {
-        int res = INT_MIN;
-        for (int l = 0, r = 0, temp = 0; r < (int) nums.size(); ++r) {
-            temp += nums[r];
+        int ans = INT_MIN;
+        for (int l = 0, r = 0, sum = 0; r < (int) nums.size(); ++r) {
+            sum += nums[r];
             if (r - l + 1 > k) {
-                temp -= nums[l];
+                sum -= nums[l];
                 ++l;
             }
             if (r - l + 1 == k) {
-                res = max(res, temp);
+                ans = max(ans, sum);
             }
         }
-        return (double) res / k;
+        return (double) ans / k;
     }
 };
 
