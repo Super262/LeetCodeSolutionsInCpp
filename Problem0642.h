@@ -12,6 +12,9 @@
 using namespace std;
 
 class AutocompleteSystem {
+    // 建立Trie，节点Node存储times和key；key存储句子，times记录key的频率
+    // 设当前的查询关键字为current，输入字符为c；若c为'#'，我们将current加入Trie（current对应的叶节点的频率加1）
+    // 若c为普通字符（包括' '），更新current为current+c，在Trie查找所有前缀为current的叶节点（BFS或DFS），再根据题意排序并返回
 public:
     AutocompleteSystem(const vector<string> &sentences, const vector<int> &times) {
         root = new Node();
