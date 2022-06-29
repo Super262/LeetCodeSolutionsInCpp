@@ -10,25 +10,25 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，必须掌握：数据范围小，暴力枚举
+    // 中心线枚举，检测回文串；我们从位置i向左、右同时扩展，检测长度为奇数的回文串或长度为偶数的回文串
 public:
     int countSubstrings(const string &s) {
-        int res = 0;
+        int ans = 0;
         for (int i = 0; i < (int) s.size(); ++i) {
-            for (int l = i, r = i; l >= 0 && r < (int) s.size(); --l, ++r) {  // 奇数长度
+            for (auto l = i, r = i; l >= 0 && r < (int) s.size(); --l, ++r) {  // 奇数长度
                 if (s[l] != s[r]) {
                     break;
                 }
-                ++res;
+                ++ans;
             }
-            for (int l = i, r = i + 1; l >= 0 && r < (int) s.size(); --l, ++r) {  // 偶数长度
+            for (auto l = i, r = i + 1; l >= 0 && r < (int) s.size(); --l, ++r) {  // 偶数长度
                 if (s[l] != s[r]) {
                     break;
                 }
-                ++res;
+                ++ans;
             }
         }
-        return res;
+        return ans;
     }
 };
 
