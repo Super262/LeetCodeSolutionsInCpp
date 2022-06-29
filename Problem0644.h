@@ -10,6 +10,11 @@
 using namespace std;
 
 class Solution {
+    // 若长度大于或等于k的数组nums的平均值是avg，那么对于任意元素(nums[i]-avg)，满足sum({nums[i]-avg | 0<=i<=n-1})>=0
+    // 因此，我们可以通过二分avg、验证avg和nums是否满足题意来找到最大的avg；易知minimal<=avg<=maximal，我们采用贪心的方式验证avg是否满足题意
+    // 若avg满足题意，那么nums中存在1个长度为j的子数组S，满足sum({nums[i]-avg | 0<=i<=j-1})>=0，j>=k；
+    // 遍历数组nums时，我们累加(nums[i]-avg)；若前k项的和是非负数，avg合法；否则，继续累加(nums[i]-avg)；设前i项的和为Pi
+    // 我们希望找到区间[i:j]，满足j-i>=k且Pj-Pi>=0；因此，我们在累加(nums[j]-avg)得到Pj时，用变量min_sum保存最小的Pi，min_sum初值为0
 public:
     double findMaxAverage(const vector<int> &nums, int k) {
         double l = INT_MAX;
