@@ -10,9 +10,10 @@
 using namespace std;
 
 class Solution {
+    // 对于任意img[i][j]，我们遍历(i,j)及周围的8个点、计算出元素和sum，保存ans[i][j]=sum/cnt（cnt是有效点的个数）
 public:
     vector<vector<int>> imageSmoother(const vector<vector<int>> &img) {
-        vector<vector<int>> res(img);
+        vector<vector<int>> ans(img);
         const auto m = (int) img.size();
         const auto n = (int) img[0].size();
         for (int i = 0; i < m; ++i) {
@@ -28,10 +29,10 @@ public:
                         ++counter;
                     }
                 }
-                res[i][j] = sum / counter;
+                ans[i][j] = sum / counter;
             }
         }
-        return res;
+        return ans;
     }
 };
 
