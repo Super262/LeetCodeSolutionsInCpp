@@ -11,7 +11,8 @@
 using namespace std;
 
 class Solution {
-    // 贪心思想，直接背诵：若x可接在某个链后，则将x加入此链，即{... x-1, x}；否则，以x为起点构建新链{x, x+1, x+2}
+    // 贪心思想，若x可接在某个链后，则将x加入此链，即{... x-1, x}；否则，以x为起点构建新链{x, x+1, x+2}
+    // 若当前没有以x-1结尾的链，也无法构造新链{x,x+1,x+2}，直接返回false
 public:
     bool isPossible(const vector<int> &nums) {
         unordered_map<int, int> num_cnt;  // 统计每个数x的频次
