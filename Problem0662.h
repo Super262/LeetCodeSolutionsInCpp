@@ -12,7 +12,7 @@ using namespace std;
 
 class Solution {
     // 给节点编号，节点i的孩子为2*i和2*i+1，计算每层左、右端点编号的差
-    // 细节：避免编号值溢出整数，每层从0开始对节点重新编号
+    // 细节：避免编号值溢出整数，下层编号的起点根据当前层编号范围的差值(ed-st)计算，因为0<=ed-st<=10^5
 public:
     int widthOfBinaryTree(TreeNode *root) {
         if (!root) {
