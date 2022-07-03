@@ -7,24 +7,13 @@
 
 #include <vector>
 #include <string>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 经典算法，必须掌握
-    // 递归求得宽度和深度
+    // 先通过后序遍历，求得树root的深度和宽度；再根据深度和宽度建立ans数组，为答案分配空间
+    // 再通过先序遍历，类似分治，将节点值输出到ans数组中；综合时间复杂度为O(h*2^h)
 public:
     vector<vector<string>> printTree(TreeNode *root) {
         auto rp = dfs(root);
