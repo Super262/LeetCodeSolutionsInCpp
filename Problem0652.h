@@ -8,55 +8,34 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 经典算法，直接背诵：对每棵子树通过递归的方式映射到一个字符串
+    // 先序遍历，反序列化当前树为字符串key，逗号分隔节点值，空节点值为"#"
+    // 若key第二次出现，我们将当前树加入答案
 public:
     vector<TreeNode *> findDuplicateSubtrees(TreeNode *root) {
-        vector<TreeNode *> res;
-        unordered_map<string, int> ids;  // 映射：(字符串, 整数)
-        unordered_map<int, int> counter;  // 记录每个id的频率
-        int idx = 1;  // 有效id从1开始
-        dfs(root, idx, ids, counter, res);
-        return res;
+        vector<TreeNode *> ans;
+        unordered_map<string, int> counter;
+        dfs(root, counter, ans);
+        return ans;
     }
 
 private:
-    int dfs(TreeNode *root,
-            int &idx,
-            unordered_map<string, int> &ids,
-            unordered_map<int, int> &counter,
-            vector<TreeNode *> &res) {
-        if (!root) {  // 无效id为0
-            return 0;
+    string dfs(TreeNode *root,
+               unordered_map<string, int> &counter,
+               vector<TreeNode *> &ans) {
+        if (!root) {
+            return "#";
         }
-        auto l = dfs(root->left, idx, ids, counter, res);
-        auto r = dfs(root->right, idx, ids, counter, res);
-        auto key = to_string(l) + ' ' + to_string(root->val) + ' ' + to_string(r);
-        if (!ids.count(key)) {
-            ids[key] = idx;
-            ++idx;
+        auto key = to_string(root->val) + "," + dfs(root->left, counter, ans) + "," + dfs(root->right, counter, ans);
+        if (counter.count(key) && counter[key] == 1) {
+            ans.emplace_back(root);
         }
-        auto k = ids[key];
-        ++counter[k];
-        if (counter[k] == 2) {  // 为避免重复，只有当频率恰好为2时添加根到结果集
-            res.emplace_back(root);
-        }
-        return k;
+        counter[key]++;
+        return key;
     }
 };
 
