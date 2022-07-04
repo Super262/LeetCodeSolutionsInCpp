@@ -12,7 +12,6 @@ using namespace std;
 
 class Solution {
     // f[i]表示以nums[i]结尾的LIS的最大长度；g[i]表示以nums[i]结尾的LIS的个数
-    // 
 public:
     int findNumberOfLIS(const vector<int> &nums) {
         const int n = (int) nums.size();
