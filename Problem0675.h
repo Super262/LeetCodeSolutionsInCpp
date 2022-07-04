@@ -12,7 +12,7 @@
 using namespace std;
 
 class Solution {
-    // 直接背诵，特殊的BFS：https://www.acwing.com/solution/content/534/
+    // 先全遍历找到所有"树"，再根据树高排序；从(0,0)开始BFS，先走到第1棵树，再走到第2棵树，直到最后一棵树，累计所有路径长度
 public:
     int cutOffTree(const vector<vector<int>> &forest) {
         const auto m = (int) forest.size();
@@ -44,7 +44,7 @@ private:
     struct Tree {
         int x, y, h;
 
-        bool operator<(Tree &b) const {
+        bool operator<(const Tree &b) const {
             return h < b.h;
         }
     };
