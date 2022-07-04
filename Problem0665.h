@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵：2种选择，2次检查
+    // 2种选择，2次检查；若nums[i-1]>nums[i]，我们将两者全部设置为nums[i]或nums[i-1]，再检查单调性
 public:
     bool checkPossibility(vector<int> &nums) {
         for (int i = 1; i < (int) nums.size(); ++i) {
