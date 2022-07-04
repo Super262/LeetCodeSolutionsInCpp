@@ -10,23 +10,24 @@
 using namespace std;
 
 class Solution {
-    // 直接背诵：https://www.acwing.com/solution/content/18507/
+    // 找规律，先构造出k+1个数字的序列让相邻的两个数字之间的差值不同（共k种差值，范围为1~k），再依次排列剩余的数字
+    // 构造规律如下：1,k+1,2,k,3,k-1,...,k+2,k+3,...,n，相邻数字的差值为k,k-1,...,2,1,1,...,1
 public:
     vector<int> constructArray(const int n, const int k) {
-        vector<int> res;
-        res.reserve(n);
-        res.emplace_back(1);
+        vector<int> ans;
+        ans.reserve(n);
+        ans.emplace_back(1);
         for (int i = 0; i < k; ++i) {
             if (i % 2) {
-                res.emplace_back(2 + i / 2);
+                ans.emplace_back(2 + i / 2);
             } else {
-                res.emplace_back(k + 1 - i / 2);
+                ans.emplace_back(k + 1 - i / 2);
             }
         }
         for (auto i = k + 2; i <= n; ++i) {
-            res.emplace_back(i);
+            ans.emplace_back(i);
         }
-        return res;
+        return ans;
     }
 };
 
