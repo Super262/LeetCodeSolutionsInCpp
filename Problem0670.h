@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵
-    // 找到逆序点t（num[t]>num[t-1]），更新t为右侧最大数字的索引；再从最高位开始找到第一个小于num[t]的数字num[j]，交换t、j
+    // 设输入为x，若x中所有位是降序排列的，x就是最大数，即无法通过交换某两位来生成更大的数字；若x的所有位不是严格降序，我们从最高位（0）开始查找第1个逆序点t
+    // 找到逆序点t（x[t]>x[t-1]），更新t为右侧最大数字的索引；再从最高位（0）开始找到第一个小于x[t]的数字x[j]，交换x[t]、x[j]
 public:
     int maximumSwap(int num) {
         auto str = to_string(num);
