@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，必须掌握：二分法，第i行有x/i个比x小的数（某行为{i, 2*i, 3*i, ... n*i}）
-    // https://www.acwing.com/solution/content/524/
+    // 经观察发现，对于任意数字x，乘法表第i行有(x/i)个比x小的数（某行为{i, 2*i, 3*i, ... n*i}）
+    // 因此我们使用二分查找，找到第k个数x，即比x小的数字有k个
 public:
     int findKthNumber(const int m, const int n, const int k) {
         int l = 1;  // 乘法表的最小数
