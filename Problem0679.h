@@ -11,6 +11,7 @@
 using namespace std;
 
 class Solution {
+    // DFS暴力搜索，每次从当前状态中任取2个数字，尝试4种运算，直到只有1个数字
 public:
     bool judgePoint24(const vector<int> &cards) {
         vector<double> nums(cards.begin(), cards.end());
