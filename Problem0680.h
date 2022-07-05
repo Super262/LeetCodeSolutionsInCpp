@@ -10,7 +10,7 @@
 using namespace std;
 
 class Solution {
-    // 经典贪心算法，直接背诵
+    // 双指针，l从左向右移动、r从右向左移动；若遇到s[l]!=s[r]，分别尝试跳过l、跳过r，检查剩余部分
 public:
     bool validPalindrome(const string &s) {
         int l = 0;
