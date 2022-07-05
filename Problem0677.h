@@ -11,7 +11,8 @@
 using namespace std;
 
 class MapSum {
-    // 经典算法，必须掌握：Trie + BFS
+    // 涉及前缀搜索，使用Trie保存每个前缀对应的值
+    // insert：插入单词到Trie；sum：找到prefix的后继p，从p开始BFS，累加所有value
 public:
     MapSum() {
         root = new Node();
