@@ -10,10 +10,11 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，必须掌握：DP + 优化
-    // f[i][j]：前i个字符，能否组成剩余的j个左括号（下表从1开始），最后结果为f[n][0]
-    // 假设满足 f[i][j] == true 的j的最小值为lower，最大值为upper，最后判断lower是否为0
-    // https://www.acwing.com/solution/content/6126/
+    // 经典算法，必须掌握：DP + 优化；f[i][j]：前i个字符，能否组成剩余的j个左括号（i>=1）
+    // 若s[i]='('，则f[i][j]=f[i-1][j-1]；若s[i]=')'，则f[i][j]=f[i-1][j+1]
+    // 若s[i]='*'，f[i][j]=min(f[i-1][j],f[i-1][j+1],f[i-1][j-1])；初始时，f[0][0]=true，最终答案为f[n][0]
+    // 我们发现这里有许多冗余计算，设满足f[i][j]=true的最小j为l、最大j为r，那么f[i][l:r]均为true；
+    // 因此，我们只需要根据DP过程记录上、下界；假设满足f[i][j]=true的j的最小值为lower，最大值为upper，最后判断lower是否为0
 public:
     bool checkValidString(const string &s) {
         int lower = 0;
