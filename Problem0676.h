@@ -12,8 +12,8 @@
 using namespace std;
 
 class MagicDictionary {
-    // 经典算法，必须掌握：Trie + BFS
-    // 技巧：使用内置的tuple
+    // buildDict：根据输入建立Trie；C++技巧：使用内置的tuple记录多个状态
+    // search：从Trie的根结点、word的第0号字符开始BFS，并记录当前查找路径上是否存在修改操作；若可以搜索到尾部、经历最多1次修改，返回true
 public:
     MagicDictionary() {
         root = new Node();
