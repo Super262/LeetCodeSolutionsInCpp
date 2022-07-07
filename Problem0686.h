@@ -10,21 +10,19 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵：KMP
-    // 设字符串s包含k+1个a，可推出b的匹配起点在第一段a，k是满足k*a.size()>b的最小值
+    // KMP算法，将a看作是1个"循环字符串"（长度无限）s，我们在s上寻找匹配位置i，s[0:i]是包含b的最短字符串，答案为ceil((i+1)/a.size())
+    // 对索引取余，实现循环遍历；若答案存在，那么a的某个后缀一定等于b的某个前缀；因此，i的上限为n=(k+1)*a.size()，k=ceil(b.size()/a.size())
 public:
     int repeatedStringMatch(const string &a, const string &b) {
-        string s = a;
-        while (s.size() < b.size()) {
-            s += a;
-        }
-        s += a;
+        // 计算n=(ceil(b.size()/a.size())+1)*a.size()
+        const auto n = (int) (((b.size() + a.size() - 1) / a.size() + 1) * a.size());
         const auto m = (int) b.size();
         int fail[m];
         buildFail(b, fail);
-        int i = 0, j = 0;
-        while (i < (int) s.size()) {
-            if (s[i] == b[j]) {
+        int i = 0;
+        int j = 0;
+        while (i < n) {
+            if (a[i % a.size()] == b[j]) {
                 ++i;
                 ++j;
             } else if (j) {
