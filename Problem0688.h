@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
-    // 经典动态规划：由内而外汇总结果
-    // f[x][i][j]：在(i,j)处，向外走x步后在棋盘上的概率
+    // 动态规划：由内而外汇总结果；f[x][i][j]：在(i,j)处，向外走x步后在棋盘上的概率
+    // 对于每个可能的x，枚举棋子移动的方向（8个），累加结果；由于f[x]只能由f[x-1]转移，可以用滑动窗口优化
 public:
     double knightProbability(int n, int k, int row, int column) {
         double f[2][n][n];
