@@ -14,7 +14,7 @@ class Solution {
     // 经典DP，必须掌握
     // f[i][j]：在前i个数中找出j个长度为k的、和最大的无重叠子数组（共j*k项）的方案（i>=0,j>=1）
     // f[i][j] = max(f[i + 1][j], s[i + k - 1] - s[i - 1] + f[i + k][j - 1])，s是前缀和
-    // 为保证字典序最小，我们需要从后向前枚举子数组起点i
+    // 为保证字典序（受前缀影响）最小，我们需要从后向前枚举子数组起点i
 public:
     vector<int> maxSumOfThreeSubarrays(const vector<int> &nums, const int k) {
         const auto n = (int) nums.size();
@@ -30,18 +30,18 @@ public:
                 f[i][j] = max(f[i + 1][j], f[i + k][j - 1] + prefix[i + k] - prefix[i]);
             }
         }
-        vector<int> res;
+        vector<int> ans;
         int counter = 3;
         int current = 0;
         while (counter) {
             while (f[current][counter] != prefix[current + k] - prefix[current] + f[current + k][counter - 1]) {
                 ++current;
             }
-            res.emplace_back(current);
+            ans.emplace_back(current);
             --counter;
             current += k;
         }
-        return res;
+        return ans;
     }
 };
 
