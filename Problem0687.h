@@ -6,25 +6,19 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0687_H
 
 #include <algorithm>
+#include "treenode.h"
 
 using namespace std;
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
 class Solution {
-    // 经典DFS，注意细节
+    // 后序遍历，设左子树中由根向下延伸的单值路径最长为l、右子树中由根向下延伸的单值路径最长为r
+    // 若root->val不等于等于root->left->val，更新l=0；右子树同理；最终答案ans=max({l+r})
+    // 细节：本题的路径长度是边的长度，不是节点个数
 public:
     int longestUnivaluePath(TreeNode *root) {
+        if (!root) {
+            return 0;
+        }
         int ans = 0;
         dfs(root, ans);
         return ans;
@@ -32,16 +26,19 @@ public:
 
 private:
     int dfs(TreeNode *root, int &ans) {
-        if (!root) {
-            return 0;
+        int l = 0;
+        int r = 0;
+        if (root->left) {
+            l = dfs(root->left, ans);
+            if (root->left->val != root->val) {
+                l = 0;
+            }
         }
-        auto l = dfs(root->left, ans);
-        auto r = dfs(root->right, ans);
-        if (!root->left || root->left->val != root->val) {
-            l = 0;
-        }
-        if (!root->right || root->right->val != root->val) {
-            r = 0;
+        if (root->right) {
+            r = dfs(root->right, ans);
+            if (root->right->val != root->val) {
+                r = 0;
+            }
         }
         ans = max(ans, l + r);
         return max(l, r) + 1;
