@@ -11,18 +11,18 @@
 using namespace std;
 
 class Solution {
+    // 我们暴力枚举所有字符串的组合情况s（二进制数表示状态），返回最小的、使s=(1<<n)-1的字符串个数
     // 记忆化搜索：f[s]表示状态s时需要的贴纸数量，g[s][ch]表示状态s结合字符ch后的后继状态
-    // 注意有效剪枝
 public:
     int minStickers(const vector<string> &strs, const string &target) {
         const auto n = (int) target.size();
         vector<int> f(1 << n, -1);
         vector<vector<int>> g(1 << n, vector<int>(26, -1));
-        auto res = dfs(0, strs, target, f, g);
-        if (res == INF) {
+        auto ans = dfs(0, strs, target, f, g);
+        if (ans == INF) {
             return -1;
         }
-        return res;
+        return ans;
     }
 
 private:
