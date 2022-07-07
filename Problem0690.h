@@ -20,13 +20,14 @@ public:
 };
 
 class Solution {
+    // BFS，搜索整棵树，累计属性值
 public:
     int getImportance(const vector<Employee *> &employees, const int id) {
         unordered_map<int, Employee *> graph;
         for (const auto &e: employees) {
             graph[e->id] = e;
         }
-        int res = 0;
+        int ans = 0;
         unordered_set<int> visited;
         queue<int> q;
         q.emplace(id);
@@ -34,7 +35,7 @@ public:
         while (!q.empty()) {
             auto t = q.front();
             q.pop();
-            res += graph[t]->importance;
+            ans += graph[t]->importance;
             for (const auto &e: graph[t]->subordinates) {
                 if (visited.count(e)) {
                     continue;
@@ -43,7 +44,7 @@ public:
                 visited.insert(e);
             }
         }
-        return res;
+        return ans;
     }
 };
 
