@@ -13,7 +13,8 @@
 using namespace std;
 
 class Solution {
-    // 网格散列：横、纵坐标从左到右依次排列
+    // 首先，我们通过BFS搜索出每个岛屿，返回散列值s（字符串）；利用哈希表统计不同散列值的个数
+    // 岛屿的散列值s是从搜索起点到终点的坐标序列（字符串），分隔符为"#"，如"0,0#0,1#1,1#"
 public:
     int numDistinctIslands(const vector<vector<int>> &grid) {
         unordered_set<string> islands;
@@ -30,18 +31,19 @@ public:
     }
 
 private:
+    const int dx[4] = {-1, 0, 1, 0};
+    const int dy[4] = {0, 1, 0, -1};
+
     // 返回连通块的散列值
-    string bfs(int x, int y, const vector<vector<int>> &grid, vector<vector<bool>> &visited) {
-        const int dx[] = {0, 0, -1, 1};
-        const int dy[] = {1, -1, 0, 0};
+    string bfs(int sx, int sy, const vector<vector<int>> &grid, vector<vector<bool>> &visited) {
         queue<pair<int, int>> q;
-        string result;
-        visited[x][y] = true;
-        result += to_string(0);
-        result += ',';
-        result += to_string(0);
-        result += '#';
-        q.emplace(x, y);
+        string ans;
+        visited[sx][sy] = true;
+        ans += to_string(0);
+        ans += ',';
+        ans += to_string(0);
+        ans += '#';
+        q.emplace(sx, sy);
         while (!q.empty()) {
             auto st = q.front();
             q.pop();
@@ -55,14 +57,14 @@ private:
                     continue;
                 }
                 visited[nx][ny] = true;
-                result += to_string(nx - x);
-                result += ',';
-                result += to_string(ny - y);
-                result += '#';
+                ans += to_string(nx - sx);
+                ans += ',';
+                ans += to_string(ny - sy);
+                ans += '#';
                 q.emplace(nx, ny);
             }
         }
-        return result;
+        return ans;
     }
 };
 
