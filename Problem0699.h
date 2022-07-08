@@ -11,7 +11,10 @@
 using namespace std;
 
 class Solution {
-    // 带懒标记的线段树，结点保存当前区间高度的最大值
+    // 首先，我们要准确描述正方形的底边，这里我们用3个点描述底边：左端点、中点、右端点；我们将左、右端点放大1倍，保证中点为整数
+    // 然后，我们将上述坐标保序离散化（排序、去重），并根据这些点初始化线段树（4*n个节点）；初始时，高度h=0
+    // 遍历positions，记录当前底边对应的高度、更新新高度；若底边坐标为(a,b)，查询范围为(a+1,b-1)
+    // 带懒标记的线段树，结点保存当前区间高度的最大值h
 public:
     vector<int> fallingSquares(const vector<vector<int>> &positions) {
         vector<int> xs;  // 离散化的横坐标
@@ -27,8 +30,8 @@ public:
         xs.erase(unique(xs.begin(), xs.end()), xs.end());
         Node tree[(xs.size() + 1) * 4];
         buildTree(1, 1, (int) xs.size(), tree);
-        vector<int> res;
-        res.reserve(positions.size());
+        vector<int> ans;
+        ans.reserve(positions.size());
         for (const auto &x: positions) {
             auto a = x[0];
             auto b = x[0] + x[1];
@@ -36,9 +39,9 @@ public:
             b = getIdx(b * 2, xs);
             auto h = query(1, a + 1, b - 1, tree);
             modify(1, a, b, h + x[1], tree);
-            res.emplace_back(tree[1].h);
+            ans.emplace_back(tree[1].h);
         }
-        return res;
+        return ans;
     }
 
 private:
