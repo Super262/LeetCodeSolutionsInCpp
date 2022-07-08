@@ -11,6 +11,8 @@
 using namespace std;
 
 class Solution {
+    // 设first_idx[i]是i首次出现的位置、last_idx[i]是i最后出现的位置；若数字x是频率最高的数字，那么答案就是last_idx[x]-first_idx[x]
+    // 如果有多个满足要求的数字x，我们取最小值min({last_idx[x]-first_idx[x]})
 public:
     int findShortestSubArray(const vector<int> &nums) {
         unordered_map<int, int> counter;  // 数字出现的频率
@@ -26,14 +28,14 @@ public:
             last_idx[x] = i;
             degree = max(degree, counter[x]);
         }
-        int res = INT_MAX;
+        int ans = INT_MAX;
         for (const auto &x: nums) {
             if (counter[x] != degree) {
                 continue;
             }
-            res = min(res, last_idx[x] - first_idx[x] + 1);
+            ans = min(ans, last_idx[x] - first_idx[x] + 1);
         }
-        return res;
+        return ans;
     }
 };
 
