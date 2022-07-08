@@ -5,31 +5,20 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0700_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0700_H
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
+#include "treenode.h"
 
 class Solution {
+    // 根据BST的性质，迭代搜索
 public:
     TreeNode *searchBST(TreeNode *root, int val) {
-        if (!root) {
-            return nullptr;
+        while (root && val != root->val) {
+            if (val < root->val) {
+                root = root->left;
+            } else {
+                root = root->right;
+            }
         }
-        if (root->val == val) {
-            return root;
-        }
-        if (root->val > val) {
-            return searchBST(root->left, val);
-        }
-        return searchBST(root->right, val);
+        return root;
     }
 };
 
