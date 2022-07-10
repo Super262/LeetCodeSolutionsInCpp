@@ -10,6 +10,7 @@
 using namespace std;
 
 class Solution {
+    // 遍历s，跳过小写字母，将大写字母"偏移"距离d，d='a'-'A'
 public:
     string toLowerCase(string s) {
         auto d = 'a' - 'A';
