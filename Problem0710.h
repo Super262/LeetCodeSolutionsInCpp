@@ -12,26 +12,26 @@
 using namespace std;
 
 class Solution {
-    // 经典算法，直接背诵：映射黑名单到白名单：黑名单长度为m，将[0,n-m)分配给白名单，将[n-m,n)作为黑名单的替代
+    // 映射黑名单到白名单：黑名单长度为m，将[0,n-m)分配给白名单，将[n-m,n)作为黑名单的替代
     // https://www.acwing.com/solution/content/4409/
 public:
-    Solution(int k, vector<int> &blacklist) {
+    Solution(int k, vector<int> &black_list) {
+        sort(black_list.begin(), black_list.end());
         n = k;
-        m = (int) blacklist.size();
-        auto num = n - 1;
-        for (const auto &x: blacklist) {
+        m = (int) black_list.size();
+        auto num = n - m;
+        for (const auto &x: black_list) {
             equivalent[x] = -1;
         }
-        sort(blacklist.begin(), blacklist.end());
-        for (const auto &x: blacklist) {
+        for (const auto &x: black_list) {
             if (x >= n - m) {
                 break;
             }
             while (equivalent.count(num)) {
-                --num;
+                ++num;
             }
             equivalent[x] = num;
-            --num;
+            ++num;
         }
     }
 
