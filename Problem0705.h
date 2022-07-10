@@ -11,10 +11,9 @@ using namespace std;
 
 class MyHashSet {
     // 需要删除，选"拉链"法；无需删除，选择开放寻址法
+    // 插入：根据key计算出索引i=key%N，将元素key插入桶bins[i]；查找：遍历bins[i]，查找key；删除：在bins[i]中删除key
 public:
-    MyHashSet() {
-
-    }
+    MyHashSet() = default;
 
     void add(int key) {
         auto idx = key % N;
