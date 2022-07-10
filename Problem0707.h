@@ -6,6 +6,9 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0707_H
 
 class MyLinkedList {
+    // 设置全局变量head和tail，分别指示链表头部、尾部
+    // 查询：输入为index，从头部开始遍历，直到移动index步到达p，返回p->val
+    // 插入：输入为index，从头部开始遍历，直到移动index-1步到达p，在p后插入新节点；特殊情况：链表为空、头部插入、尾部插入
 public:
     MyLinkedList() {
         head = nullptr;
