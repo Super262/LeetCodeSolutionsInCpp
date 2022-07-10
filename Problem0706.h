@@ -10,10 +10,9 @@
 using namespace std;
 
 class MyHashMap {
+    // 与705类似，区别是bins内元素不是整数，而是pair
 public:
-    MyHashMap() {
-
-    }
+    MyHashMap() = default;
 
     void put(int key, int value) {
         auto idx = key % N;
