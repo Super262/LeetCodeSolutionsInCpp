@@ -6,7 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0558_H
 
 #include <algorithm>
-#include "quad_node.h"
+#include "node_quad.h"
 
 using namespace std;
 

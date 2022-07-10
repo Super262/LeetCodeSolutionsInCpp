@@ -8,7 +8,7 @@
 #include <vector>
 #include <queue>
 #include <unordered_map>
-#include "node.h"
+#include "node_random.h"
 
 using namespace std;
 

@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0116_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0116_H
 
-#include "node.h"
+#include "node_random.h"
 
 class Solution {
     // 经典算法，直接背诵

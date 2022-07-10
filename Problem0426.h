@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0426_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0426_H
 
-#include "node.h"
+#include "node_random.h"
 
 class Solution {
     // 类似中序遍历，有序遍历BST的每个节点，并连接双链表

@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0510_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0510_H
 
-#include "simple_node.h"
+#include "node_parent.h"
 
 class Solution {
     // 根据题意，我们要寻找node在中序遍历下的后继节点

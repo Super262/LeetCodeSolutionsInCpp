@@ -2,8 +2,8 @@
 // Created by Fengwei Zhang on 5/12/22.
 //
 
-#ifndef LEETCODESOLUTIONSINCPP_NODE_H
-#define LEETCODESOLUTIONSINCPP_NODE_H
+#ifndef LEETCODESOLUTIONSINCPP_NODE_RANDOM_H
+#define LEETCODESOLUTIONSINCPP_NODE_RANDOM_H
 
 #include <vector>
 
@@ -24,4 +24,4 @@ public:
             : val(_val), left(_left), right(_right), next(_next) {}
 };
 
-#endif //LEETCODESOLUTIONSINCPP_NODE_H
+#endif //LEETCODESOLUTIONSINCPP_NODE_RANDOM_H

@@ -7,7 +7,7 @@
 
 #include <queue>
 #include "treenode.h"
-#include "nary_node.h"
+#include "node_nary.h"
 
 using namespace std;
 

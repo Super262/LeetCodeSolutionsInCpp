@@ -7,7 +7,7 @@
 
 #include <string>
 #include <algorithm>
-#include "nary_node.h"
+#include "node_nary.h"
 
 using namespace std;
 
