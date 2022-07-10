@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0713 {
     // 由于nums中只包含正数，乘积和数组长度正相关，可用"双指针"解决；若nums[l:r]满足乘积小于k，那么nums[l:r]向答案新贡献了(r-l+1)
     // 因为新增加的以nums[r]结尾的子数组有r-l+1个（双指针：r每次右移1，l向左移动以满足题意）
 public:

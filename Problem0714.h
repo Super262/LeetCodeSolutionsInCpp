@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0714 {
     // 状态机DP，f[i][0]表示无股票，f[i][1]表示有股票
     // 我们可以在f[i-1][0]买入股票，转移到f[i][1]；也可以在f[i-1][1]卖出股票，转移到f[i][0]
 public:

@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0712 {
     // 动态规划，f[i][j]表示将s1的前i个字符、s2的前j个字符调整为相等的序列，需要删除的字符的最小加和
     // 初始时，f[0][i]=f[0][i-1]+s2[i-1]，f[i][0]=f[i-1][0]+s1[i-1]；转移时，若s1[i-1]=s2[i-1]，f[i][j]=min({f[i-1][j-1]})
     // 若s1[i-1]!=s2[i-1]，f[i][j]=min({f[i-1][j]+s1[i-1]},{f[i][j-1]+s2[j-1]})
