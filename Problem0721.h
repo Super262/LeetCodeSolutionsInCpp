@@ -12,25 +12,27 @@
 
 using namespace std;
 
-class Solution {
+class Problem0721 {
     // 并查集 + set去重（题目要求有序输出结果）
 public:
     vector<vector<string>> accountsMerge(const vector<vector<string>> &accounts) {
         const auto n = (int) accounts.size();
         int parent[n];
+        int set_size[n];
         for (int i = 0; i < n; ++i) {
             parent[i] = i;
+            set_size[i] = 1;
         }
         unordered_map<string, vector<int>> email_to_id;
         for (int i = 0; i < n; ++i) {
-            for (int j = 1; j < accounts[i].size(); ++j) {
+            for (int j = 1; j < (int) accounts[i].size(); ++j) {
                 email_to_id[accounts[i][j]].emplace_back(i);
             }
         }
         for (const auto &item: email_to_id) {  // 合并相关集合
             const auto &ids = item.second;
-            for (int i = 1; i < ids.size(); ++i) {
-                parent[findRoot(parent, ids[i])] = findRoot(parent, ids[0]);
+            for (const auto &id: item.second) {
+                mergeSets(findRoot(parent, item.second[0]), findRoot(parent, id), parent, set_size);
             }
         }
         vector<set<string>> parent_emails(n);  // 集合i对应的邮件地址
@@ -40,7 +42,7 @@ public:
                 parent_emails[pid].emplace(accounts[i][j]);
             }
         }
-        vector<vector<string>> res;
+        vector<vector<string>> ans;
         for (int i = 0; i < n; ++i) {
             if (parent_emails[i].empty()) {
                 continue;
@@ -50,9 +52,9 @@ public:
             for (const auto &s: parent_emails[i]) {
                 t.emplace_back(s);
             }
-            res.emplace_back(t);
+            ans.emplace_back(t);
         }
-        return res;
+        return ans;
     }
 
 private:
@@ -61,6 +63,20 @@ private:
             parent[x] = findRoot(parent, parent[x]);
         }
         return parent[x];
+    }
+
+    int mergeSets(int a, int b, int parent[], int set_size[]) {
+        if (a == b) {
+            return -1;
+        }
+        if (set_size[a] > set_size[b]) {
+            set_size[a] += set_size[b];
+            parent[b] = a;
+            return a;
+        }
+        set_size[b] += set_size[a];
+        parent[a] = b;
+        return b;
     }
 };
 
