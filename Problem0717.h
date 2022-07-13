@@ -10,9 +10,10 @@
 using namespace std;
 
 class Solution {
+    // 遇到"0"，判断当前是不是最后位；遇到"1"，直接后移2位
 public:
     bool isOneBitCharacter(const vector<int> &bits) {
-        for (int i = 0; i < bits.size(); ++i) {
+        for (int i = 0; i < (int) bits.size(); ++i) {
             if (!bits[i] && i == (int) (bits.size() - 1)) {  // 最后位为0
                 return true;
             }
