@@ -11,7 +11,8 @@
 using namespace std;
 
 class Solution {
-    // 巧妙做法，直接背诵：二分 + 双指针
+    // 贪心：设d是最小的数对距离，易知若(a,b)满足d=b-a，那么a、b在有序数组中相邻；因此，我们可以先将输入的nums排序，再进行其他操作
+    // 二分：二分查找d，计算nums中满足b-a>d的数对(a,b)的个数ans；若ans>=k，尝试减少d；我们可以将d逼近到第k个数对距离
 public:
     int smallestDistancePair(vector<int> &nums, int k) {
         sort(nums.begin(), nums.end());
@@ -32,7 +33,7 @@ private:
     int countPairs(const vector<int> &nums, const int d) {
         int res = 0;
         for (int l = 0, r = 1; r < nums.size(); ++r) {
-            while (nums[r] - nums[l] > d) {
+            while (nums[r] - nums[l] > d) {  // 若nums[r]-nums[l]<=d，那么nums[l:r]中满足数对差不大于d的数对(a,nums[r])有(r-l)个
                 ++l;
             }
             res += r - l;
