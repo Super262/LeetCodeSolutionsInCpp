@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0717 {
     // 遇到"0"，判断当前是不是最后位；遇到"1"，直接后移2位
 public:
     bool isOneBitCharacter(const vector<int> &bits) {

@@ -10,20 +10,20 @@
 
 using namespace std;
 
-class Solution {
-    // Trie + 前序遍历
-    // Trie保存单词的索引；前序搜索保证结果的子典序最最小
+class Problem0720 {
+    // Trie+前序遍历；首先，我们将所有单词插入Trie，Trie中节点保存前缀（从根出发的路径）对应的单词
+    // 若答案是w，则w的所有前缀均有效；为保证答案w的字典序最小，我们采取先序遍历，先保存字典序较小的单词为答案
 public:
     string longestWord(const vector<string> &words) {
         auto root = new Node();
         for (int i = 0; i < words.size(); ++i) {
             insert(root, words[i], i);
         }
-        auto res = preOrder(root, 0);
-        if (res.second == -1) {
+        auto ans = preOrder(root, 0);
+        if (ans.second == -1) {
             return "";
         }
-        return words[res.second];
+        return words[ans.second];
     }
 
 private:
@@ -50,10 +50,10 @@ private:
         root->idx = idx;
     }
 
-    pair<int, int> preOrder(Node *root, int l) {
+    pair<int, int> preOrder(Node *root, int l) {  // 返回(l,i)，l是当前最长的前缀长度，words[i]是这个最长前缀对应的单词
         pair<int, int> res(l, root->idx);
         for (const auto kid: root->items) {
-            if (!kid || kid->idx == -1) {  // 不要忘记排除idx == -1的结点
+            if (!kid || kid->idx == -1) {  // 不要忘记排除idx=-1的结点（idx=-1说明前缀无效）
                 continue;
             }
             auto t = preOrder(kid, l + 1);
