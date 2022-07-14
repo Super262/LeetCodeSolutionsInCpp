@@ -10,41 +10,44 @@
 
 using namespace std;
 
-class Solution {
-    // 经典算法，直接背诵
+class Problem0722 {
+    //
 public:
     vector<string> removeComments(const vector<string> &source) {
-        string str;
-        for (const auto &s: source) {
-            str += s;
-            str += '\n';
-        }
-        vector<string> res;
-        string line;
+        vector<string> ans;
+        ans.reserve(source.size());
         int i = 0;
-        while (i < str.size()) {
-            if (i + 1 < str.size() && str[i] == '/' && str[i + 1] == '/') {  // 行注释
-                while (str[i] != '\n') {
-                    ++i;
+        int j = 0;
+        string line;
+        while (i < (int) source.size()) {
+            if (j < (int) source[i].size() && j + 1 < (int) source[i].size() && source[i][j] == '/' &&
+                source[i][j + 1] == '/') {  // 单行注释
+                j = (int) source[i].size();  // 直接跳过整行
+            } else if (j < (int) source[i].size() && j + 1 < (int) source[i].size() && source[i][j] == '/' &&
+                       source[i][j + 1] == '*') {  // 多行注释
+                j += 2;  // 跳过起点
+                while (i < (int) source.size() && (source[i][j] != '*' || source[i][j + 1] != '/')) {
+                    ++j;
+                    if (j >= (int) source[i].size()) {
+                        ++i;
+                        j = 0;
+                    }
                 }
-            } else if (i + 1 < str.size() && str[i] == '/' && str[i + 1] == '*') {
-                i += 2;
-                while (str[i] != '*' || str[i + 1] != '/') {
-                    ++i;
-                }
-                i += 2;
-            } else if (str[i] == '\n') {
-                if (!line.empty()) {
-                    res.emplace_back(line);
+                j += 2;  // 跳过终点
+            } else if (j < (int) source[i].size()) {  // 常规字符
+                line += source[i][j];
+                ++j;
+            }
+            if (i < (int) source.size() && j >= (int) source[i].size()) {  // 到达当前行终点
+                if (!line.empty()) {  // 保存当前行
+                    ans.emplace_back(line);
                     line.clear();
                 }
-                ++i;
-            } else {
-                line += str[i];
+                j = 0;  // 跳转下行
                 ++i;
             }
         }
-        return res;
+        return ans;
     }
 };
 
