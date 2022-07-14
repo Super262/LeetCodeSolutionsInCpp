@@ -11,7 +11,7 @@
 using namespace std;
 
 class Problem0722 {
-    //
+    // 直接模拟；发现"//"后，直接跳过整行；发现"/*"后，跨行遍历，直到发现终止符"*/"
 public:
     vector<string> removeComments(const vector<string> &source) {
         vector<string> ans;
