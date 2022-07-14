@@ -59,10 +59,16 @@ public:
 
 private:
     int findRoot(int parent[], int x) {
-        if (parent[x] != x) {
-            parent[x] = findRoot(parent, parent[x]);
+        auto u = parent[x];
+        while (u != parent[u]) {
+            u = parent[u];
         }
-        return parent[x];
+        while (x != u) {
+            auto p = parent[x];
+            parent[x] = u;
+            x = p;
+        }
+        return u;
     }
 
     int mergeSets(int a, int b, int parent[], int set_size[]) {
