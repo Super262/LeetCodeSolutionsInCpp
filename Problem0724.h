@@ -11,7 +11,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0724 {
+    // 遍历，累计前缀和s，判断2*s=sum-nums[i]是否成立
 public:
     int pivotIndex(const vector<int> &nums) {
         auto sum = accumulate(nums.begin(), nums.end(), 0);

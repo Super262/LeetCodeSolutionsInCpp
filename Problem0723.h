@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0723 {
     // 首先，合并每行的相邻糖果（相同区段长度大于2），记录每个位置(i,j)的原值为visited[i*n+j]
     // 然后，根据board和visited，合并每列的相邻糖果（相同区段长度大于2）
     // 最后，将在高处的糖果board[l][j]"下滑到"board[r][j]（l<=r）；注意细节：l可能等于r，因此我们不能直接将board[l][j]设置为"0"，应执行类似"swap"的操作
