@@ -10,31 +10,33 @@
 #include <string>
 #include <cstring>
 #include <map>
+#include <unordered_map>
 
 using namespace std;
 
-class Solution {
-    // map存储时，key是有序的
+class Problem0726 {
+    // DFS，哈希表存储元素个数；遇到"("，开始下层递归'；遇到")"，结束本层递归；最后，用map存储元素，获得有序排列
 public:
     string countOfAtoms(const string &formula) {
         int ch_idx = 0;
         auto ele_cnt = dfs(formula, ch_idx);
-        string result;
-        for (auto &item: ele_cnt) {
-            result += item.first;
+        string ans;
+        map<string, int> ele_cnt_sorted = {ele_cnt.begin(), ele_cnt.end()};
+        for (const auto &item: ele_cnt_sorted) {
+            ans += item.first;
             if (item.second > 1) {
-                result += to_string(item.second);
+                ans += to_string(item.second);
             }
         }
-        return result;
+        return ans;
     }
 
 private:
-    map<string, int> dfs(const string &formula, int &ch_idx) {  // 不要忘记：chIdx是引用
-        map<string, int> result;
+    unordered_map<string, int> dfs(const string &formula, int &ch_idx) {  // 不要忘记：ch_idx是引用
+        unordered_map<string, int> counter;
         while (ch_idx < (int) formula.size()) {
             if (formula[ch_idx] == ')') {  // 递归的结束条件
-                break;
+                return counter;
             }
             if (formula[ch_idx] == '(') {  // 子方程式，递归
                 ++ch_idx;  // 跳过左括号
@@ -51,7 +53,7 @@ private:
                     ch_idx = i;
                 }
                 for (auto &item: ele_cnt) {
-                    result[item.first] += item.second * factor;
+                    counter[item.first] += item.second * factor;
                 }
             } else {
                 auto i = ch_idx + 1; // 跳过大写字母
@@ -68,10 +70,10 @@ private:
                     factor = stoi(formula.substr(ch_idx, i - ch_idx));
                     ch_idx = i;
                 }
-                result[key] += factor;
+                counter[key] += factor;
             }
         }
-        return result;
+        return counter;
     }
 };
 
