@@ -10,24 +10,28 @@
 using namespace std;
 
 class MyCalendarTwo {
-    // 最优解是线段树；本题数据范围小，可以用差分数组算法
-    // 使用map
+    // 最优解是线段树；本题数据范围小，可以用差分数组解决；为区间(start,end-1)加入事件后，修改头、尾的差分值；差分数组用map实现，保证索引有序
+    // 差分数组的前缀和prefix[i]表示时刻i被事件覆盖的次数；我们计算prefix[start]~prefix[end-1]，若发现prefix[i]>=3，撤销修改，返回false
 public:
-    MyCalendarTwo() {
-
-    }
+    MyCalendarTwo() = default;
 
     bool book(int start, int end) {
-        ++diff[start];
-        --diff[end];
-        int counter = 0;  // 当前点被所有日程覆盖的次数
+        diff[start]++;
+        diff[end]--;
+        int prefix = 0;  // 当前点被所有日程覆盖的次数
         for (const auto &d: diff) {
-            counter += d.second;
-            if (counter >= 3) {
-                --diff[start];
-                ++diff[end];
-                return false;
+            prefix += d.second;
+            if (d.first < start) {
+                continue;
             }
+            if (d.first > end || prefix >= 3) {
+                break;
+            }
+        }
+        if (prefix >= 3) {
+            diff[start]--;
+            diff[end]++;
+            return false;
         }
         return true;
     }
