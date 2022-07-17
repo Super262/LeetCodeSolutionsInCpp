@@ -11,20 +11,18 @@ using namespace std;
 
 class MyCalendarThree {
 public:
-    MyCalendarThree() {
-
-    }
+    MyCalendarThree() = default;
 
     int book(int start, int end) {
         ++diff[start];
         --diff[end];
-        int counter = 0;
-        int res = 0;
+        int prefix = 0;
+        int ans = 0;
         for (const auto &d: diff) {
-            counter += d.second;
-            res = max(res, counter);
+            prefix += d.second;
+            ans = max(ans, prefix);
         }
-        return res;
+        return ans;
     }
 
 private:
