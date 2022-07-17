@@ -11,24 +11,28 @@
 
 using namespace std;
 
-class Solution {
+class Problem0728 {
+    // 遍历区间[left:right]内所有数字，逐个检查每个数字是否为自除数
 public:
     vector<int> selfDividingNumbers(int left, int right) {
-        vector<int> res;
-        for (int x = left; x <= right; ++x) {
+        vector<int> ans;
+        for (auto x = left; x <= right; ++x) {
             if (checkSelf(x)) {
-                res.emplace_back(x);
+                ans.emplace_back(x);
             }
         }
-        return res;
+        return ans;
     }
 
 private:
-    static bool checkSelf(int x) {
-        for (const auto &ch: to_string(x)) {
-            if (ch == '0' || x % (ch - '0')) {
+    bool checkSelf(const int &x) {
+        auto t = x;
+        while (t) {
+            auto a = t % 10;
+            if (!a || x % a) {
                 return false;
             }
+            t /= 10;
         }
         return true;
     }
