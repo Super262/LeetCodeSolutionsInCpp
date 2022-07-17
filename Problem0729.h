@@ -11,7 +11,8 @@
 using namespace std;
 
 class MyCalendar {
-    // 区间问题，细节：2个哨兵结点（-INF和INF）
+    // 我们用平衡树（set）保存区间；设当前区间为t=(start,end)，通过二分查找（lower_bound），找到可能和t相交的区间i、i-1
+    // 细节：初始化时，向集合加入2个"哨兵"，使得所有查找操作不会返回"空值"；查找距离t最近的区间时，关键字为(start,-INF)
 public:
     MyCalendar() {
         s.insert({-INF, -INF});
@@ -34,7 +35,7 @@ private:
     set<pair<int, int>> s;
     static const int INF = 0x3f3f3f3f;
 
-    static bool hasIntersection(pair<int, int> a, pair<int, int> b) {  // 判断a、b是否相交，注意细节
+    static bool hasIntersection(const pair<int, int> &a, const pair<int, int> &b) {  // 判断a、b是否相交，注意细节
         if (a.second <= b.first || b.second <= a.first) {
             return false;
         }
