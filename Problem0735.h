@@ -10,25 +10,25 @@
 using namespace std;
 
 class Solution {
-    // 经典贪心算法，直接背诵
+    // 贪心：对每个陨石x，若x>0，直接保存x；若x<0，从尾部遍历当前答案，除去较小的反向陨石和相等的反向陨石
 public:
     vector<int> asteroidCollision(const vector<int> &asteroids) {
-        vector<int> res;
+        vector<int> ans;
         for (const auto &x: asteroids) {
             if (x > 0) {
-                res.emplace_back(x);
+                ans.emplace_back(x);
                 continue;
             }
-            while (!res.empty() && res.back() > 0 && res.back() < -x) {
-                res.pop_back();
+            while (!ans.empty() && ans.back() > 0 && ans.back() < -x) {
+                ans.pop_back();
             }
-            if (!res.empty() && res.back() == -x) {
-                res.pop_back();
-            } else if (res.empty() || res.back() < 0) {
-                res.emplace_back(x);
+            if (!ans.empty() && ans.back() == -x) {
+                ans.pop_back();
+            } else if (ans.empty() || ans.back() < 0) {
+                ans.emplace_back(x);
             }
         }
-        return res;
+        return ans;
     }
 };
 
