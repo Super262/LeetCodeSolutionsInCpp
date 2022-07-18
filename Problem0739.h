@@ -10,23 +10,24 @@
 
 using namespace std;
 
-class Solution {
+class Problem0739 {
+    // 单调栈：从后向前遍历temps，将所有较小的温度值的索引i从栈顶弹出，再根据栈顶得出答案
 public:
-    vector<int> dailyTemperatures(const vector<int> &temperatures) {
-        vector<int> res(temperatures.size());
+    vector<int> dailyTemperatures(const vector<int> &temps) {
+        vector<int> ans(temps.size());
         stack<int> stk;
-        for (auto i = (int) temperatures.size() - 1; i >= 0; --i) {
-            while (!stk.empty() && temperatures[i] >= temperatures[stk.top()]) {
+        for (auto i = (int) temps.size() - 1; i >= 0; --i) {
+            while (!stk.empty() && temps[i] >= temps[stk.top()]) {
                 stk.pop();
             }
             if (stk.empty()) {
-                res[i] = 0;
+                ans[i] = 0;
             } else {
-                res[i] = stk.top() - i;
+                ans[i] = stk.top() - i;
             }
             stk.emplace(i);
         }
-        return res;
+        return ans;
     }
 };
 
