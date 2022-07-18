@@ -9,8 +9,9 @@
 
 using namespace std;
 
-class Solution {
-    // 直接背诵：找到第一个递减位置，将后面数字全部置为9
+class Problem0738 {
+    // 我们要找到小于num的、最大的"单调递增"数字（相邻两位x、y满足：x<=y）；贪心：找到数字num的首个非"单调递增"位置k，
+    // 递减k，直到出现递增（num[k-1]<num[k]），将num[k]减1，将num[k+1:n-1]所有位设置为'9'
 public:
     int monotoneIncreasingDigits(int n) {
         auto num = to_string(n);
