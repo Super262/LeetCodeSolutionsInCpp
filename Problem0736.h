@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0736 {
     // 经典算法，直接背诵
 public:
     int evaluate(const string &expression) {

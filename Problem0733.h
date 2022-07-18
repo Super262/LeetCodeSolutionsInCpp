@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0733 {
     // 从起点(sx,sy)开始BFS，将所有搜索到的点染色
 public:
     vector<vector<int>> floodFill(vector<vector<int>> &image, int sx, int sy, int nc) {

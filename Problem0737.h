@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0737 {
     // 并查集，我们将相似的两个单词合并到同一个集合；我们要先将单词离散化，建立"单词-数字"映射，再建立并查集
     // 判断s1、s2是否相似，就是判断s1[i]和s2[i]是否相等，或者在1个集合中；注意边界情况：similarPairs为空或s1.size()!=s2.size()
 public:

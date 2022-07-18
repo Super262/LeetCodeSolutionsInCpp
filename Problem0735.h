@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0735 {
     // 贪心：对每个陨石x，若x>0，直接保存x；若x<0，从尾部遍历当前答案，除去较小的反向陨石和相等的反向陨石
 public:
     vector<int> asteroidCollision(const vector<int> &asteroids) {
