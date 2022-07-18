@@ -9,8 +9,9 @@
 
 using namespace std;
 
-class Solution {
-    // 经典DP，参见提高课
+class Problem0741 {
+    // 经典DP，参见AcWing1027；f[s][x1][x2]表示从(1,1)走到(n,n)的两条路径的长度和的最大值，s=x1+y1=x2+y2
+    // 这里我们假设左上角为(1,1)、右下角为(n,n)；
 public:
     int cherryPickup(const vector<vector<int>> &grid) {
         const auto m = (int) grid.size();
