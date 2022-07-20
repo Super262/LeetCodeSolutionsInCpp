@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0742 {
     // 首先，我们先将这棵树转化为无向图，通过BFS实现；然后，我们以无向图中值为k的点为起点，搜索树中的叶节点，返回第1个叶节点
     // 判断叶节点：若a为根且a在图中没有邻接点，a是叶节点；若a不是根且a在图中最多有1个邻接点，a是叶节点
 public:
