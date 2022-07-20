@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0746 {
     // 经典DP，直接背诵：f[i]到达索引为i的位置的最小代价
 public:
     int minCostClimbingStairs(const vector<int> &cost) {
