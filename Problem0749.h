@@ -11,7 +11,11 @@
 
 using namespace std;
 
-class Solution {
+class Problem0749 {
+    // 核心：每次执行扫描，返回应添加的防火墙的数量cnt；若cnt=0，程序结束
+    // 扫描算法：遍历所有位置，记录每个被感染的区域，并记录下威胁最大的感染区域x；返回包围x所需的防火墙数量cnt；标记所有被威胁的区域为1
+    // 探索某个感染区域：BFS，用集合记录被威胁的点，用visited数组记录被访问的感染点，返回包围当前区域需要的墙的数量
+    // 细节：pair类型不提供哈希值
 public:
     int containVirus(vector<vector<int>> &grid) {
         int walls = 0;
