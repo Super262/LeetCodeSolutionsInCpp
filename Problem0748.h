@@ -11,7 +11,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0748 {
+    // 先统计出license中每个字符的频率counter，再将每个单词中字符的频率和counter比较，找到最短的完全词
 public:
     string shortestCompletingWord(const string &license, const vector<string> &words) {
         unordered_map<char, int> counter;
@@ -21,17 +22,17 @@ public:
             }
             ++counter[(char) tolower(ch)];
         }
-        int res = -1;
+        int ans = -1;
         for (int i = 0; i < (int) words.size(); ++i) {
             const auto &w = words[i];
             if (!compareWord(counter, w)) {
                 continue;
             }
-            if (res == -1 || words[res].size() > w.size()) {
-                res = i;
+            if (ans == -1 || words[ans].size() > w.size()) {
+                ans = i;
             }
         }
-        return res == -1 ? "" : words[res];
+        return ans == -1 ? "" : words[ans];
     }
 
 private:
