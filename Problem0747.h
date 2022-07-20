@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0747 {
     // 先找到最大值，再逐一验证
 public:
     int dominantIndex(const vector<int> &nums) {
