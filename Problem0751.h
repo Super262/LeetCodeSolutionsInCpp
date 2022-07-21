@@ -11,6 +11,8 @@
 using namespace std;
 
 class Problem0751 {
+    // 贪心算法：对当前IP和n，我们尝试使用最长的子网掩码；我们比较lowBit(ip)和n的二进制长度，得到最大值x，那么mask=33-x；再更新当前IP，继续尝试
+    // 为了简化计算，我们会先将IP转化为1个256进制数字；特殊情况：IP为"0.0.0.0"时，mask只与n相关
 public:
     vector<string> ipToCIDR(const string &ip, int n) {
         auto start = ipToInteger(ip);
@@ -31,7 +33,7 @@ public:
     }
 
 private:
-    int bitLength(unsigned long long x) {
+    int bitLength(unsigned long long x) {  // 求数字x的二进制长度
         if (!x) {
             return 1;
         }
@@ -43,7 +45,7 @@ private:
         return cnt;
     }
 
-    unsigned long long ipToInteger(const string &s) {
+    unsigned long long ipToInteger(const string &s) {  // 转化IP地址为256进制数字
         unsigned long long num = 0;
         int l = 0;
         while (l < (int) s.size()) {
@@ -59,7 +61,7 @@ private:
         return num;
     }
 
-    string integerToIp(unsigned long long x) {
+    string integerToIp(unsigned long long x) {  // 转化256进制数字为IP地址
         string s;
         unsigned long long b = 256 * 256 * 256;
         while (b) {
