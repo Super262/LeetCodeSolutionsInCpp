@@ -20,23 +20,23 @@ public:
         }
         unordered_set<string> visited;
         auto st = string(n - 1, '0');
-        string res;
-        findEuler(st, k, visited, res);
-        res.append(st);
-        reverse(res.begin(), res.end());
-        return res;
+        string ans;
+        findEuler(st, k, visited, ans);
+        ans.append(st);
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 
 private:
-    void findEuler(const string &cur, const int k, unordered_set<string> &visited, string &res) {
+    void findEuler(const string &cur, const int k, unordered_set<string> &visited, string &ans) {
         for (int i = 0; i < k; ++i) {
             auto next = cur + to_string(i);
             if (visited.count(next)) {
                 continue;
             }
             visited.insert(next);
-            findEuler(next.substr(1), k, visited, res);
-            res.append(to_string(i));
+            findEuler(next.substr(1), k, visited, ans);
+            ans.append(to_string(i));
         }
     }
 };
