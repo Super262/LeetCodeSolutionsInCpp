@@ -13,7 +13,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0752 {
+    // BFS，从起点st="0000"开始，每次变换1个字符，跳过被访问过的位置和"死亡数字"，直至抵达终点ed，返回所需步数
 public:
     int openLock(const vector<string> &dead_ends, const string &ed) {
         string st = "0000";
