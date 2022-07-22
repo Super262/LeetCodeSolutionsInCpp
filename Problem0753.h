@@ -11,8 +11,8 @@
 
 using namespace std;
 
-class Solution {
-    // 欧拉回路，必须掌握：https://www.jianshu.com/p/8394b8e5b878
+class Problem0753 {
+    // Hierholzer算法求欧拉回路，必须掌握：https://www.jianshu.com/p/8394b8e5b878
 public:
     string crackSafe(int n, int k) {
         if (n == 1 && k == 1) {
