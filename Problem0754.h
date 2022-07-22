@@ -9,8 +9,11 @@
 
 using namespace std;
 
-class Solution {
-    // 数学，直接背诵：https://leetcode-cn.com/problems/reach-a-number/solution/dao-da-zhong-dian-shu-zi-by-leetcode/
+class Problem0754 {
+    // 假设我们移动了k次，每次任意地向左或向右移动，那么最终到达的位置实际上就是将1，2，3，……，k这k个数添加正号或负号后求和的值
+    // 若最终到达的位置为t且t<0，那么我们可以将这k个数的负号全部取反，这样求和的值为-t>0。因此，我们只考虑target>0的情况
+    // 首先，我们要求出最小的满足s=1+2+3+...+k>=target的k值；若s=target，那么答案就是k；若s>target，那么我们应将部分数字设置为负数
+    // 设D=a+b+...+x，若更改a～x的符号为负号后满足s=target，说明target=s-2*D；因此，我们给s增加k，直到当2*D为偶数时，存在使得s=target的方案
 public:
     int reachNumber(int target) {
         if (target == 0) {
