@@ -15,7 +15,7 @@ class Problem0757 {
     // 贪心算法：按照右端点排序，短区间在前；从左开始遍历，没有点相交，加入2个点；有1点相交，加入尾结点
 public:
     int intersectionSizeTwo(vector<vector<int>> &intervals) {
-        sort(intervals.begin(), intervals.end(), [](const vector<int> &a, const vector<int> &b) {
+        sort(intervals.begin(), intervals.end(), [&](const vector<int> &a, const vector<int> &b) {
             if (a[1] != b[1]) {
                 return a[1] < b[1];
             }
