@@ -10,7 +10,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0756 {
+    // DFS，从底部开始，逐个枚举所有"三角形"，直到顶部
 public:
     bool pyramidTransition(const string &bottom, const vector<string> &allowed) {
         vector<vector<vector<char>>> g(7, vector<vector<char>>(7, vector<char>()));  // g[A][B]表示AB的顶点
