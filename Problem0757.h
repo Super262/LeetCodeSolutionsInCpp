@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0757 {
     // 贪心算法：按照右端点排序，短区间在前；从左开始遍历，没有点相交，加入2个点；有1点相交，加入尾结点
 public:
     int intersectionSizeTwo(vector<vector<int>> &intervals) {
@@ -21,16 +21,16 @@ public:
             }
             return a[0] > b[0];  // 短区间在前
         });
-        vector<int> q;
+        vector<int> s;
         for (const auto &r: intervals) {
-            if (q.empty() || r[0] > q.back()) {
-                q.emplace_back(r[1] - 1);
-                q.emplace_back(r[1]);
-            } else if (q.size() > 1 && r[0] > q[q.size() - 2]) {
-                q.emplace_back(r[1]);
+            if (s.empty() || r[0] > s.back()) {
+                s.emplace_back(r[1] - 1);
+                s.emplace_back(r[1]);
+            } else if (s.size() > 1 && r[0] > s[s.size() - 2]) {
+                s.emplace_back(r[1]);
             }
         }
-        return (int) q.size();
+        return (int) s.size();
     }
 };
 
