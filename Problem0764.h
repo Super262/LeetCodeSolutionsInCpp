@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0764 {
     // f[i][j]：(i,j)向外延伸的最小值
 public:
     int orderOfLargestPlusSign(int n, const vector<vector<int>> &mines) {
@@ -60,13 +60,13 @@ public:
                 f[i][j] = min(s, f[i][j]);
             }
         }
-        int res = 0;
+        int ans = 0;
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
-                res = max(res, f[i][j]);
+                ans = max(ans, f[i][j]);
             }
         }
-        return res;
+        return ans;
     }
 };
 
