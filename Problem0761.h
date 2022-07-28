@@ -12,7 +12,11 @@
 using namespace std;
 
 class Solution {
-    // 贪心算法 + 递归处理：https://www.acwing.com/solution/content/3594/
+    // 贪心算法 + 递归处理；首先，我们观察到，特殊二进制字符串的首位是1、末位是0；对于输入s，存在2种情况：
+    // (1) s能够拆分为多个特殊二进制字符串，去掉首尾的1、0后得到的不是特殊二进制字符串
+    // (2) s只由1个特殊二进制字符串构成，去掉首尾的1、0后得到的也是特殊二进制字符串
+    // 因此，若发现s[l:r]是特殊二进制字符串，我们递归处理s[l+1,r-1]，将结果存入序列；最后从大到小排序序列，拼接成答案
+    // https://www.acwing.com/solution/content/3594/
 public:
     string makeLargestSpecial(const string &s) {
         if (s.empty()) {
