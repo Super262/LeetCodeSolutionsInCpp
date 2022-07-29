@@ -10,7 +10,7 @@
 using namespace std;
 
 class Problem0764 {
-    // f[i][j]：(i,j)向外延伸的最小值
+    // 对于任意为1的点(i,j)，我们计算出它向4个方向延伸的最小值f[i][j]；再次全遍历，答案即为f中最大值
 public:
     int orderOfLargestPlusSign(int n, const vector<vector<int>> &mines) {
         bool grid[n][n];
