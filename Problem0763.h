@@ -12,6 +12,7 @@
 using namespace std;
 
 class Problem0763 {
+    // 用哈希表记录每种字符的最后出现位置，以确定每个分段的结尾位置
 public:
     vector<int> partitionLabels(const string &s) {
         unordered_map<char, int> last_idx;
