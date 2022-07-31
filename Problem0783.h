@@ -10,8 +10,9 @@
 
 using namespace std;
 
-class Solution {
-    // BST中序是有序的，所以最小差值一定出现在中序序列的相邻元素之间；因此，我们采取中序遍历，记录当前点root和上个点prev的差值，适时更新答案
+class Problem0783 {
+    // BST中序是有序的，所以最小差值一定出现在中序序列的相邻元素之间
+    // 因此，我们采取中序遍历，记录当前点root和上个点prev的差值，适时更新答案
     // 同LeetCode 530
 public:
     int minDiffInBST(TreeNode *root) {
