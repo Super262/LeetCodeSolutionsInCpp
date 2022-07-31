@@ -9,8 +9,9 @@
 
 using namespace std;
 
-class Solution {
-    // L、R相对顺序不变的必要条件：删除X后，start=end；在操作过程中，L只能向左，R只能向右
+class Problem0777 {
+    // 经观察，我们可以得出L、R相对顺序不变的必要条件：删除X后，start=end成立；由题意可知，每次操作后，L只能向左，R只能向右
+    // 因此，我们首先比较删去"X"后的字符串，再判断变换后的"L"是否未向右、变换后的"R"是否未向左
 public:
     bool canTransform(const string &start, const string &end) {
         string a;
@@ -32,7 +33,7 @@ public:
         if (a != b) {
             return false;
         }
-        for (int i = 0, j = 0; i < start.size() && j < end.size(); ++i, ++j) {
+        for (int i = 0, j = 0; i < (int) start.size() && j < (int) end.size(); ++i, ++j) {
             while (i < start.size() && start[i] != 'L') {
                 ++i;
             }
