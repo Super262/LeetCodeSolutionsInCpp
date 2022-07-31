@@ -9,19 +9,19 @@
 
 using namespace std;
 
-class Solution {
-    // 设a排序后为b，根据题意，任意长度为l的b的分段等于{x, x+1, ..., x+l-1}
-    // 我们可以用前缀最大值s来对比当前分段和目标分段，s=l-1时，所有元素相同
+class Problem0769 {
+    // 设分段{a}排序后为{b}，根据题意，任意长度为l的{b}分段等于{x, x+1, ..., x+l-1}
+    // 我们可以用{a}的前缀最大值s来对比当前分段{a}和目标分段{b}，s=l-1时，{a}和{b}的所有元素相同
 public:
     int maxChunksToSorted(const vector<int> &a) {
-        int res = 0;
+        int ans = 0;
         for (int i = 0, s = -1; i < (int) a.size(); ++i) {
             s = max(s, a[i]);
             if (s == i) {
-                ++res;
+                ++ans;
             }
         }
-        return res;
+        return ans;
     }
 };
 
