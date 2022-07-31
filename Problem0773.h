@@ -12,12 +12,12 @@
 
 using namespace std;
 
-class Solution {
-    // 经典BFS
+class Problem0773 {
+    // BFS，将每个图形看作是1个状态；我们从起点开始搜索，直至终点；每次变换，相当于前进一步
 public:
     int slidingPuzzle(const vector<vector<int>> &board) {
-        auto m = (int) board.size();
-        auto n = (int) board[0].size();
+        const auto m = (int) board.size();
+        const auto n = (int) board[0].size();
         string str;
         str.reserve(m * n);
         for (const auto &b: board) {  // 转化二维矩阵为字符串（行优先）
