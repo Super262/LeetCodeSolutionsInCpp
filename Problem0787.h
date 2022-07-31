@@ -11,7 +11,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0787 {
+    // Bellman-Ford算法查找最多包含k+1条边的最短路径，k是中间节点的个数（不包括终点和起点）
 public:
     int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k) {
         const int INF = 0x3f3f3f3f;
