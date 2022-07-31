@@ -5,10 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0780_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0780_H
 
-class Solution {
-    // 辗转相除：https://www.acwing.com/solution/content/8753/
-    // 技巧：用取模运算替代减法运算，避免超时
-    // 根据题意，整个变换过程中，所有可能的(x,y)满足x>=0且y>=0
+class Problem0780 {
+    // 试图从点(sx,sy)向点(tx,ty)进行转换十分不便，因为我们不确定要进行哪种转换；因此，我们可以逆向操作，逆向转换总是确定的
+    // 例如，当前为(tx,ty)，上步为(tx-ty,ty)或(tx,ty-tx)；但是，数据范围很大(10^9)，我们不能使用简单的减法
+    // 根据题意，sx和sy是正数；假设从(sx,sy)到(tx,ty)只经历了一种变换，那么tx=sx+k*sy或ty=sy+k*sx；因此，我们用取余替代减法
 public:
     bool reachingPoints(int sx, int sy, int tx, int ty) {
         while (tx >= sx && ty >= sy) {
