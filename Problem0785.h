@@ -13,7 +13,7 @@ class Problem0785 {
     // "染色法"判定二分图，同AcWing 860
 public:
     bool isBipartite(const vector<vector<int>> &graph) {
-        auto n = (int) graph.size();
+        const auto n = (int) graph.size();
         int color[n];
         memset(color, 0, sizeof color);
         for (int u = 0; u < n; ++u) {
