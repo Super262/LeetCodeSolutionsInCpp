@@ -10,7 +10,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0784 {
+    // 直接DFS，枚举所有情况：若当前位是数字，直接加入答案；若是字母，尝试大写和小写
 public:
     vector<string> letterCasePermutation(const string &s) {
         string temp;
