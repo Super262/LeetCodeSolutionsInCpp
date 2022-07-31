@@ -10,17 +10,18 @@
 
 using namespace std;
 
-class Solution {
+class Problem0771 {
+    // 哈希表，直接遍历
 public:
     int numJewelsInStones(const string &jewels, const string &stones) {
         unordered_set<char> jew_set(jewels.begin(), jewels.end());
-        int res = 0;
+        int ans = 0;
         for (const auto &s: stones) {
             if (jew_set.count(s)) {
-                ++res;
+                ++ans;
             }
         }
-        return res;
+        return ans;
     }
 };
 
