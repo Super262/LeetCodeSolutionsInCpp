@@ -5,7 +5,8 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0788_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0788_H
 
-class Solution {
+class Problem0788 {
+    // 遍历[1:n]中所有数字，验证每个数字是否是Good数字
     // 也要掌握动态规划解法！
 public:
     int rotatedDigits(int n) {
