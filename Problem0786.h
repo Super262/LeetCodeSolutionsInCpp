@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // 二分 + 双指针：https://www.acwing.com/solution/content/2801/
+class Problem0786 {
+    // 二分+双指针；二分查找满足题意的分数t，验证小于或等于t的分数的个数不超过k，并记录下答案ans
 public:
     vector<int> kthSmallestPrimeFraction(const vector<int> &arr, int k) {
         double l = 0;
@@ -29,6 +29,8 @@ public:
     }
 
 private:
+    const double ZERO = 1e-8;
+
     int countLessOrEqual(const vector<int> &arr, double t, vector<int> &ans) {
         int res = 0;
         for (int l = 0, r = 0; r < (int) arr.size(); ++r) {
@@ -43,8 +45,6 @@ private:
         }
         return res;
     }
-
-    const double ZERO = 1e-8;
 };
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0786_H
