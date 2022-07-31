@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0770 {
 public:
     vector<string> basicCalculatorIV(const string &expr, vector<string> &vars, vector<int> &vals) {
         unordered_map<string, int> values;  // 自变量的值
