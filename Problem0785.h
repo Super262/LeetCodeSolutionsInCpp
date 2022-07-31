@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0785 {
+    // "染色法"判定二分图，同AcWing 860
 public:
     bool isBipartite(const vector<vector<int>> &graph) {
         auto n = (int) graph.size();
