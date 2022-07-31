@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0789 {
     // 贪心思想：若ghost距终点的距离比人更短，人无法逃脱
 public:
     bool escapeGhosts(const vector<vector<int>> &ghosts, const vector<int> &target) {
