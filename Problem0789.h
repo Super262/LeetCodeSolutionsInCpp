@@ -14,8 +14,9 @@ class Problem0789 {
     // 贪心思想：若ghost距终点的距离比人更短，人无法逃脱
 public:
     bool escapeGhosts(const vector<vector<int>> &ghosts, const vector<int> &target) {
+        const auto &d = getDist(0, 0, target[0], target[1]);
         for (const auto &g: ghosts) {
-            if (getDist(g[0], g[1], target[0], target[1]) <= getDist(0, 0, target[0], target[1])) {
+            if (getDist(g[0], g[1], target[0], target[1]) <= d) {
                 return false;
             }
         }
