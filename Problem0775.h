@@ -10,9 +10,10 @@
 
 using namespace std;
 
-class Solution {
-    // 由于A是[0, n - 1]的排列，当(i - A[i]) <= 1，全局倒置与局部倒置相等
-    // https://www.acwing.com/solution/content/24554/
+class Problem0775 {
+    // 数学：假设下标从0开始，任意的A[i]与i的距离都不超过1，则全局倒置与局部倒置相等
+    // 反证：假设存在i、j，满足A[i]>A[j]，且i+1<j；那么，A[i]+j>A[j]+i+1，A[i]-i>A[j]-j+1；由于任意A[i]与i的距离不超过1，
+    // 我们只能规定A[i]-i=1，A[j]-j=-1；那么，A[i]=i+1<j=A[j]+1，与A[i]>A[j]矛盾
 public:
     bool isIdealPermutation(const vector<int> &nums) {
         for (int i = 0; i < (int) nums.size(); ++i) {
