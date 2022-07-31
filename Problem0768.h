@@ -11,14 +11,14 @@
 
 using namespace std;
 
-class Solution {
+class Problem0768 {
     // 贪心算法：对于有序数组的某个分段s，当原数组中这段的数字集合与s的数字集合相等时，s最长
     // 判断区间a、b元素相同：若x在a中出现，cnt[x]--；若x在b出现，cnt[x]++；我们维护非零元素数量s；s=0，说明{a}={b}
 public:
     int maxChunksToSorted(const vector<int> &a) {
         auto b = a;
         unordered_map<int, int> counter;
-        int res = 0;
+        int ans = 0;
         sort(b.begin(), b.end());
         for (const auto &x: a) {  // 初始化
             counter[x] = 0;
@@ -37,10 +37,10 @@ public:
             }
             ++counter[b[i]];
             if (!s) {  // 发现{a}={b}
-                ++res;
+                ++ans;
             }
         }
-        return res;
+        return ans;
     }
 };
 
