@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // 正确定义比较函数！！
+class Problem0791 {
+    // 正确定义比较函数，直接调用sort
 public:
     string customSortString(const string &order, const string &s) {
         unordered_map<char, int> ch_idx;
