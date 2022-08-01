@@ -10,7 +10,9 @@
 
 using namespace std;
 
-class Solution {
+class Problem0794 {
+    // 直接枚举所有情况，逐个验证；若字符t（"X"或"O"）获胜，我们逐个遍历以下位置，检查这些位置是否全为字符t：每行、每列、两条对角线
+    // 另外，我们还要检查整个棋盘的字符个数：若先手获胜，"X"多于"O"；若后手获胜，"X"应等于"O"
 public:
     bool validTicTacToe(const vector<string> &board) {
         auto wx = hasWon(board, 'X');
