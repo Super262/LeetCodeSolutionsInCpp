@@ -7,8 +7,9 @@
 
 #include <cstring>
 
-class Solution {
-    // f[i][s]：将0～(i - 1)列全部铺满，第i列的状态为s的方案数
+class Problem0790 {
+    // f[i][s]：将0～(i-1)列全部铺满，第i列的状态为s的方案数；若有部分从第i-1列突出，第i列对应位置的状态为1，否则为0；因此答案为f[n][0]
+    // 若相邻2列的状态分别为s、t，w[s][t]=1说明方案可行，即f[i-1][s]可转移到f[i][t]
 public:
     int numTilings(int n) {
         const int MOD = 1e9 + 7;
