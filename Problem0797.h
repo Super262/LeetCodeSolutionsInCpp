@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0797 {
+    // 直接从起点DFS，搜索出所有路径
 public:
     vector<vector<int>> allPathsSourceTarget(const vector<vector<int>> &graph) {
         vector<int> path;
