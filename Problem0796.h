@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0796 {
+    // 前缀哈希加速字符串比较；设字符串长度为n，若b是由a翻转得到，那么存在i使得a[0:i]==b[n-i-1,n-1]
 public:
     bool rotateString(const string &a, const string &b) {
         if (a == b) {
@@ -40,7 +41,7 @@ public:
 private:
     const int P = 131;
 
-    unsigned long long getHash(int l, int r, unsigned long long h[], unsigned long long p[]) {
+    unsigned long long getHash(int l, int r, unsigned long long h[], const unsigned long long p[]) {
         return h[r] - h[l - 1] * p[r - l + 1];
     }
 };
