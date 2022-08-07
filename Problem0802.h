@@ -11,8 +11,8 @@
 
 using namespace std;
 
-class Solution {
-    // 拓扑排序：将原图反向，然后拓扑序输出节点，相当于从原图的终端点找到所有安全点
+class Problem0802 {
+    // 拓扑排序；将原图的所有边反向，然后拓扑序输出节点，相当于从原图的终端点找到所有安全点
 public:
     vector<int> eventualSafeNodes(const vector<vector<int>> &t) {
         const auto n = (int) t.size();
