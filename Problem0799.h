@@ -10,8 +10,9 @@
 
 using namespace std;
 
-class Solution {
-    // 逐行递推
+class Problem0799 {
+    // 动态规划，f[r][c]表示(r,c)处杯子的香槟量；f[r][c]=(f[r-1][c-1]-1)/2+(f[r-1][c]-1)/2
+    // 我们从第r=1行开始递推，初始时，f[0][0]=poured
 public:
     double champagneTower(int poured, int query_row, int query_glass) {
         double f[query_row + 1][query_row + 1];
