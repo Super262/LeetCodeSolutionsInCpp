@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // 当前操作只与前1项有关，可采用动态规划：https://www.acwing.com/solution/content/2630/
+class Problem0801 {
+    // 动态规划，第i次操作只与第i-1次有关；f[i]表示使得两序列[0:i]递增的最少操作次数
     // f[i][0]：不交换第i项，使得nums1和nums2为递增序列；f[i][1]：交换第i项，使得nums1和nums2为递增序列
 public:
     int minSwap(const vector<int> &nums1, const vector<int> &nums2) {
