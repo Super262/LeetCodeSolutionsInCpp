@@ -10,86 +10,113 @@
 
 using namespace std;
 
-class Solution {
-    // 不能正向操作，每次BFS的搜索空间太大
-    // 反向操作，先删除所有被击中的砖块，再依次将其加入，再BFS得出新增稳定砖块的个数
-    // https://www.acwing.com/solution/content/7442/
+class Problem0803 {
+    // 并查集；正向解决，每次都需要迭代，会导致超时；我们逆向思考：先将所有被击中的砖块去掉，合并剩余砖块，
+    // 再将被击中的砖块逆序加回，答案就是差值；使用并查集来代表每组相连的砖块，编号为s=m*n的集合表示和顶部相连的砖块
+    // 初始化：拷贝grid到temp，设置被击中的位置为0，set_size[s]=0；将第0行砖块和s集合合并；将第0列砖块(i,0)和位置(i-1,0)的砖块合并
+    // 从上至下、从左至右遍历，将当前砖块和左侧、上侧砖块合并；然后，逆序遍历hits数组，加入砖块、四周合并；若是第0行，将当前砖块和s合并
+    // 因此，第i次hit后的答案就是 max(cur_cnt - pre_cnt - 1, 0)；别忘记最后的减1，要减去被击中的砖块，它不包括在下落的砖块中
 public:
-    vector<int> hitBricks(vector<vector<int>> &grid, vector<vector<int>> &hits) {
+    vector<int> hitBricks(const vector<vector<int>> &grid, vector<vector<int>> &hits) {
         const auto m = (int) grid.size();
         const auto n = (int) grid[0].size();
-        vector<int> ans(hits.size(), -1);
-        for (auto i = (int) hits.size() - 1; i >= 0; --i) {  // 删去被直接击中的砖块
-            if (!grid[hits[i][0]][hits[i][1]]) {
-                ans[i] = 0;
-            } else {
-                grid[hits[i][0]][hits[i][1]] = 0;
+        const int s = m * n;
+        int parent[s + 1];
+        int sets_size[s + 1];
+        for (int i = 0; i <= s; ++i) {
+            parent[i] = i;
+            sets_size[i] = 1;
+        }
+        sets_size[s] = 0;
+        vector<vector<int>> temp(grid);
+        for (const auto &x: hits) {
+            temp[x[0]][x[1]] = 0;
+        }
+        vector<int> ans(hits.size());
+        for (int j = 0; j < n; ++j) {
+            if (!temp[0][j]) {
+                continue;
+            }
+            mergeSets(findRoot(j, parent), findRoot(s, parent), sets_size, parent);
+        }
+        for (int i = 1; i < m; ++i) {
+            if (!temp[i][0]) {
+                continue;
+            }
+            if (temp[i - 1][0]) {
+                mergeSets(findRoot((i - 1) * n, parent), findRoot(i * n, parent), sets_size, parent);
             }
         }
-        for (int i = 1; i < m; ++i) {  // 标记非顶部的其它砖块
-            for (int j = 0; j < n; ++j) {
-                if (grid[i][j] != 1) {
+        for (int i = 1; i < m; ++i) {
+            for (int j = 1; j < n; ++j) {
+                if (!temp[i][j]) {
                     continue;
                 }
-                grid[i][j] = 2;
+                auto x = i * n + j;
+                if (temp[i - 1][j]) {
+                    mergeSets(findRoot((i - 1) * n + j, parent), findRoot(x, parent), sets_size, parent);
+                }
+                if (temp[i][j - 1]) {
+                    mergeSets(findRoot(i * n + j - 1, parent), findRoot(x, parent), sets_size, parent);
+                }
             }
         }
-        vector<pair<int, int>> st;  // 从顶部开始遍历，构建反推的起点
-        for (int j = 0; j < n; ++j) {
-            if (!grid[0][j]) {
-                continue;
-            }
-            st.emplace_back(0, j);
-        }
-        bfs(grid, st);
         for (auto i = (int) hits.size() - 1; i >= 0; --i) {
-            if (!ans[i]) {
+            auto r = hits[i][0];
+            auto c = hits[i][1];
+            if (!grid[r][c]) {
+                ans[i] = 0;
                 continue;
             }
-            auto hx = hits[i][0];
-            auto hy = hits[i][1];
-            if (hx != 0 && grid[hx - 1][hy] != 1 && (hx == m - 1 || grid[hx + 1][hy] != 1) &&
-                (hy == n - 1 || grid[hx][hy + 1] != 1) && (hy == 0 || grid[hx][hy - 1] != 1)) {  // 删除后不会影响其他砖块
-                ans[i] = 0;
-                grid[hx][hy] = 2;
-            } else {
-                grid[hx][hy] = 1;
-                st.clear();
-                st.emplace_back(hx, hy);
-                ans[i] = bfs(grid, st);
+            auto pre_cnt = sets_size[findRoot(s, parent)];
+            auto x = r * n + c;
+            for (int k = 0; k < 4; ++k) {
+                auto nr = r + dx[k];
+                auto nc = c + dy[k];
+                if (nr < 0 || nc < 0 || nr >= m || nc >= n || !temp[nr][nc]) {
+                    continue;
+                }
+                mergeSets(findRoot(x, parent), findRoot(nr * n + nc, parent), sets_size, parent);
             }
+            if (!r) {
+                mergeSets(findRoot(x, parent), findRoot(s, parent), sets_size, parent);
+            }
+            temp[r][c] = 1;
+            auto cur_cnt = sets_size[findRoot(s, parent)];
+            ans[i] = max(cur_cnt - pre_cnt - 1, 0);
         }
         return ans;
     }
 
 private:
-    int bfs(vector<vector<int>> &grid, const vector<pair<int, int>> &st) {
-        const auto m = (int) grid.size();
-        const auto n = (int) grid[0].size();
-        const int dx[] = {0, 1, 0, -1};
-        const int dy[] = {1, 0, -1, 0};
-        queue<pair<int, int>> q;
-        for (const auto &p: st) {
-            q.emplace(p);
+    const int dx[4] = {0, 1, 0, -1};
+    const int dy[4] = {1, 0, -1, 0};
+
+    int findRoot(int x, int parent[]) {
+        auto u = x;
+        while (u != parent[u]) {
+            u = parent[u];
         }
-        int ans = 0;
-        while (!q.empty()) {
-            auto t = q.front();
-            q.pop();
-            auto tx = t.first;
-            auto ty = t.second;
-            for (int i = 0; i < 4; ++i) {
-                auto nx = tx + dx[i];
-                auto ny = ty + dy[i];
-                if (nx < 0 || nx >= m || ny < 0 || ny >= n || grid[nx][ny] != 2) {
-                    continue;
-                }
-                grid[nx][ny] = 1;
-                q.emplace(nx, ny);
-                ++ans;
-            }
+        while (x != u) {
+            auto p = parent[x];
+            parent[x] = u;
+            x = p;
         }
-        return ans;
+        return u;
+    }
+
+    int mergeSets(int pa, int pb, int sets_size[], int parent[]) {
+        if (pa == pb) {
+            return -1;
+        }
+        if (sets_size[pa] > sets_size[pb]) {
+            sets_size[pa] += sets_size[pb];
+            parent[pb] = pa;
+            return pa;
+        }
+        sets_size[pb] += sets_size[pa];
+        parent[pa] = pb;
+        return pb;
     }
 };
 
