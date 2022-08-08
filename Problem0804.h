@@ -11,7 +11,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0804 {
+    // 哈希表；将单词转化为电码，再用哈希表计数
 public:
     int uniqueMorseRepresentations(const vector<string> &words) {
         string ch_to_m[26] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..",
