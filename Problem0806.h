@@ -10,7 +10,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0806 {
+    // 直接枚举，模拟换行
 public:
     vector<int> numberOfLines(vector<int> &widths, const string &s) {
         vector<int> ans = {1, 0};
