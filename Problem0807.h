@@ -10,7 +10,9 @@
 
 using namespace std;
 
-class Solution {
+class Problem0807 {
+    // 天际线高度取决于每行、列的最大高度；首先，我们遍历每个点(i,j)，计算出当前行的最大高度row_max[i]、当前列的最大高度col_max[j]
+    // 更新高度后，点(i,j)的最大高度就是min(row_max[i],col_max[j])
 public:
     int maxIncreaseKeepingSkyline(const vector<vector<int>> &grid) {
         const auto m = (int) grid.size();
