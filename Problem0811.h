@@ -11,28 +11,40 @@
 
 using namespace std;
 
-class Solution {
-    // 对每个域名，记录其所有有效后缀出现的次数
+class Problem0811 {
+    // 哈希表；对每个域名，记录其所有有效后缀出现的次数；注意：输出答案时，要将后缀反序
 public:
     vector<string> subdomainVisits(const vector<string> &cps) {
         unordered_map<string, int> counter;
         for (const auto &cp: cps) {
-            auto k = cp.find_first_of(' ');
-            auto f = stoi(cp.substr(0, k));
-            auto s = cp.substr(k + 1);
-            while (true) {
-                counter[s] += f;
-                k = s.find_first_of('.');
-                if (k == string::npos) {
+            int i = 0;
+            int freq = 0;  // 获取频率
+            while (i < (int) cp.size() && cp[i] != ' ') {
+                freq = freq * 10 + (cp[i] - '0');
+                ++i;
+            }
+            i = (int) cp.size() - 1;
+            string s;  // 获取后缀
+            while (i >= 0) {
+                if (cp[i] == '.') {
+                    if (!s.empty()) {
+                        counter[s] += freq;
+                    }
+                } else if (cp[i] == ' ') {
+                    if (!s.empty()) {
+                        counter[s] += freq;
+                    }
                     break;
                 }
-                s = s.substr(k + 1);
+                s += cp[i];
+                --i;
             }
         }
         vector<string> ans;
         ans.reserve(counter.size());
         for (const auto &item: counter) {
-            ans.emplace_back(to_string(item.second) + " " + item.first);
+            const auto &s = string(item.first.rbegin(), item.first.rend());
+            ans.emplace_back(to_string(item.second) + " " + s);
         }
         return ans;
     }
