@@ -9,10 +9,9 @@
 
 using namespace std;
 
-class Solution {
-    // 如果所有数字异或和为 0，则显然先手获胜
-    // 否则，如果数组长度为偶数，则先手必胜；数组长度为奇数，先手必败
-    // 博弈论：https://www.acwing.com/solution/content/24119/
+class Problem0810 {
+    // 必胜态：存在某种方式转移到必败态；必败态：只能转移到必胜态；设所有数字的异或和为s
+    // 通过观察得出：必胜态：s=0或n是偶数；必败态：s!=0且n是奇数
 public:
     bool xorGame(const vector<int> &nums) {
         int s = 0;
