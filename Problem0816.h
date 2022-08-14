@@ -10,7 +10,9 @@
 
 using namespace std;
 
-class Solution {
+class Problem0816 {
+    // 枚举分界点i，将数字s分成2部分a、b，分别处理；对子字符串a，枚举小数点的位置，生成多种方案
+    // 对于任意小数，末尾不能有0、整数部分不能有前导0；最后，组合a、b的任意2种方案，生成答案
 public:
     vector<string> ambiguousCoordinates(string s) {
         s = s.substr(1, s.size() - 2);
@@ -41,7 +43,7 @@ public:
 private:
     vector<string> generateNumbers(const string &s) {
         vector<string> ans;
-        if (s.size() == 1 || s[0] != '0') {
+        if (s.size() == 1 || s[0] != '0') {  // 不含小数点的情况
             ans.emplace_back(s);
         }
         for (int i = 1; i < s.size(); ++i) {  // 枚举小数点的位置
