@@ -10,9 +10,9 @@
 
 using namespace std;
 
-class Solution {
-    // 查找到所有单词s，满足：words中除去s后，s不包含于任何单词的后缀中
-    // 反序插入单词到Trie，记录词频（过滤重复的单词）、是否为叶节点
+class Problem0820 {
+    // Trie结构；对于words中任意2个单词x、y，若x是y的后缀，x不会出现在编码字符串s中
+    // 因此，我们可以使用Trie结构快速验证后缀：插入每个单词word的逆序，判断子节点是否存在
 public:
     int minimumLengthEncoding(const vector<string> &words) {
         auto trie = new Node();
