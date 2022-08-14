@@ -10,9 +10,10 @@
 
 using namespace std;
 
-class Solution {
-    // 经典的BFS剪枝，直接背诵！牢记自定义结构体的哈希语法！
-    // https://www.acwing.com/solution/content/927/
+class Problem0818 {
+    // BFS+剪枝；建立3维的状态：(pos,spd,dir)，表示当前位置为pos、速度为2^spd、方向为dir（true：正向，false：反向）
+    // 哈希表dist指示(pos,spd,dir)距起点的距离；注意掌握自定义数据结构的哈希函数实现
+    // 剪枝：进入负位置是无意义的；越过target也是无意义的；搜索范围为[0, target]；时间复杂度为O(target*log(target))
 public:
     int racecar(const int target) {
         queue<Node> q;
