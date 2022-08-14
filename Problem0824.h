@@ -10,14 +10,15 @@
 
 using namespace std;
 
-class Solution {
+class Problem0824 {
+    // 直接遍历，并按要求构造答案
 public:
     string toGoatLatin(const string &s) {
         unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u'};
         string ans;
-        for (int i = 0, k = 1; i < s.size(); ++i) {
+        for (int i = 0, k = 1; i < (int) s.size(); ++i) {
             auto j = i;
-            while (j < s.size() && s[j] != ' ') {
+            while (j < (int) s.size() && s[j] != ' ') {
                 ++j;
             }
             auto word = s.substr(i, j - i);
