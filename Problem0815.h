@@ -9,6 +9,7 @@
 #include <cstring>
 #include <queue>
 #include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ public:
         const auto n = (int) routes.size();
         unordered_map<int, vector<int>> graph;
         int dist[n];
+        unordered_set<int> visited;
         queue<int> q;
         memset(dist, 0x3f, sizeof dist);
         for (int i = 0; i < n; ++i) {
@@ -37,6 +39,9 @@ public:
             auto u = q.front();
             q.pop();
             for (const auto &x: routes[u]) {
+                if (visited.count(x)) {
+                    continue;
+                }
                 if (x == ed) {
                     return dist[u];
                 }
@@ -47,7 +52,7 @@ public:
                     dist[v] = dist[u] + 1;
                     q.emplace(v);
                 }
-                graph.erase(x);  // 别忘记删去被访问过的路径！！
+                visited.emplace(x);
             }
         }
         return -1;
