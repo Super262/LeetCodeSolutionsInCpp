@@ -9,9 +9,8 @@
 
 using namespace std;
 
-class Solution {
-    // 动态规划，f[i][k]：将前i个数字分成k段的方案
-    // 利用前缀和来快速求解nums[l:r]段的平均值
+class Problem0813 {
+    // 动态规划，f[i][k]：将前i个数字分成k段的方案；利用前缀和来快速求解nums[l:r]段的平均值
 public:
     double largestSumOfAverages(const vector<int> &nums, int k) {
         const auto n = (int) nums.size();
