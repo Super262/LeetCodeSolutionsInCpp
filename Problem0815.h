@@ -12,8 +12,8 @@
 
 using namespace std;
 
-class Solution {
-    // 建图：将1条公交路线看作1个点；记录每个公交站上经过哪些公交路线
+class Problem0815 {
+    // BFS；有向图，边(u,i)表示车站u可达编号为i的公交线路；从起点开始搜索，直到终点
 public:
     int numBusesToDestination(const vector<vector<int>> &routes, int st, int ed) {
         if (st == ed) {
