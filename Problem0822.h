@@ -10,8 +10,9 @@
 
 using namespace std;
 
-class Solution {
+class Problem0822 {
     // 脑筋急转弯：若对于某个数字x，存在i使得fronts[i] = backs[i]，x不合法
+    // 先找出所有不合法的数字，再遍历，找到最小的good integer
 public:
     int flipgame(const vector<int> &fronts, const vector<int> &backs) {
         unordered_set<int> invalid_nums;
