@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // 使用向量的叉积来计算三角形面积
+class Problem0812 {
+    // 向量的叉积；任选3点a、b、c，构成向量a-b、a-c，使用向量的叉积来计算三角形面积
 public:
     double largestTriangleArea(const vector<vector<int>> &points) {
         double ans = 0;
