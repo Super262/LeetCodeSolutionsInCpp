@@ -7,37 +7,27 @@
 
 #include <vector>
 #include <unordered_set>
+#include "listnode.h"
 
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
-class Solution {
+class Problem0817 {
 public:
     int numComponents(ListNode *head, const vector<int> &nums) {
         unordered_set<int> elements(nums.begin(), nums.end());
         int ans = 0;
-        int cur = 0;
+        int cur_size = 0;
         for (auto p = head; p; p = p->next) {
             if (elements.count(p->val)) {
-                ++cur;
-            } else {
-                if (cur) {
-                    ++ans;
-                    cur = 0;
-                }
+                ++cur_size;
+                continue;
+            }
+            if (cur_size) {
+                ++ans;
+                cur_size = 0;
             }
         }
-        if (cur) {
+        if (cur_size) {
             ++ans;
         }
         return ans;
