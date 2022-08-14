@@ -10,8 +10,9 @@
 
 using namespace std;
 
-class Solution {
-    // 统计每个年龄出现的频率
+class Problem0825 {
+    // 这里采用求补集的思想：我们设置答案ans的初值为n*n，再从答案中减去不符合要求的部分；设年龄x的频率是f[x]
+    // 不符合要求的部分：(1) 若年龄x、y满足题意中的违例，ans-=f[x]*f[y]；(2) 有多人年龄均为x，ans-=f[x]（每个人不能给自己发请求）
 public:
     int numFriendRequests(const vector<int> &ages) {
         const auto n = (int) ages.size();
