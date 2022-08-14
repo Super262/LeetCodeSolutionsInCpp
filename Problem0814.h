@@ -5,19 +5,10 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0814_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0814_H
 
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
+#include "treenode.h"
 
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
+class Problem0814 {
+    // 后序遍历；先处理左、右子树；若左、右子树均被删去，且根结点为1，返回空值
 public:
     TreeNode *pruneTree(TreeNode *root) {
         if (!root) {
