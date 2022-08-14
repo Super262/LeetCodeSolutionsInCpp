@@ -12,10 +12,11 @@
 
 using namespace std;
 
-class Solution {
+class Problem0819 {
+    // 哈希表；直接遍历，跳过被禁止的单词
 public:
     string mostCommonWord(const string &para, const vector<string> &banned) {
-        unordered_set<string> s(banned.begin(), banned.end());
+        unordered_set<string> banned_set(banned.begin(), banned.end());
         unordered_map<string, int> counter;
         string w;
         for (const auto &ch: para) {
@@ -24,24 +25,24 @@ public:
                 continue;
             }
             if (!w.empty()) {
-                if (!s.count(w)) {
+                if (!banned_set.count(w)) {
                     ++counter[w];
                 }
                 w.clear();
             }
         }
-        if (!w.empty() && !s.count(w)) {
+        if (!w.empty() && !banned_set.count(w)) {
             ++counter[w];
         }
-        string res;
+        string ans;
         int cnt = 0;
         for (const auto &item: counter) {
             if (item.second > cnt) {
                 cnt = item.second;
-                res = item.first;
+                ans = item.first;
             }
         }
-        return res;
+        return ans;
     }
 };
 
