@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0043 {
     // 技巧：延迟进位！
 public:
     string multiply(const string &num1, const string &num2) {
