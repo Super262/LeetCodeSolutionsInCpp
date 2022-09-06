@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0351 {
     // 枚举序列长度，从m到n，直接DFS；根据前驱判断当前选择是否合法，最后累加答案
 public:
     int numberOfPatterns(int m, int n) {
