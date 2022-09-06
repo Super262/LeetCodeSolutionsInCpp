@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0075 {
     // 经典算法，直接背诵：交换目标元素到特定位置
 public:
     void sortColors(vector<int> &nums) {
