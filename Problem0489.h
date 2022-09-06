@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0489 {
     // 从(0.0)点向4个方向（顺时针）尝试DFS，标记被清洁的点；不能用BFS，因为我们无法记录robot的状态
 public:
     void cleanRoom(Robot &robot) {
