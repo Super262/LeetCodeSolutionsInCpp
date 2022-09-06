@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0118 {
     // 经典DP
 public:
     vector<vector<int>> generate(const int num_rows) {
