@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0505 {
     // BFS+贪心，类似Dijkstra算法：设当前位置（队头）是(x,y)，枚举移动方向d（上、下、左、右），并在方向d上走到最远点(nx,ny)（直到进洞或碰壁，贪心思想，将整个滚动路径看作1个点），
     // dist[nx][ny]变小或path[nx][ny]变小，更新dist[nx][ny]和path[nx][ny]，将(nx,ny)压入队列，最后返回目标点的距离
 public:
