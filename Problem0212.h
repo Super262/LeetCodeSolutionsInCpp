@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0212 {
     // 用Trie指引在矩阵上的搜索
 public:
     vector<string> findWords(vector<vector<char>> &board, vector<string> &words) {
