@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0048 {
     // 经典算法，直接背诵
     // 顺指针旋转90度：先沿对角线翻转，再沿中轴翻转
 public:
