@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0853 {
     // 排序；从终点向起点依次枚举每辆车，讨论它是否会追赶上后面的车
 public:
     int carFleet(int target, vector<int> &position, vector<int> &speed) {
