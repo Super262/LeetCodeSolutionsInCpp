@@ -32,4 +32,28 @@ private:
     }
 };
 
+// 非递归写法（借助栈；也可用morris遍历）
+/*class Solution {
+public:
+    TreeNode* bstToGst(TreeNode* root) {
+        auto cur = root;
+        int sum = 0;
+        stack<TreeNode*> stk;
+        while(!stk.empty() || cur) {
+            while (cur) {
+                stk.emplace(cur);
+                cur = cur->right;
+            }
+            if (!stk.empty()) {
+                cur = stk.top();
+                stk.pop();
+                cur->val += sum;
+                sum = cur->val;
+                cur = cur->left;
+            }
+        }
+        return root;
+    }
+};*/
+
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM1038_H
