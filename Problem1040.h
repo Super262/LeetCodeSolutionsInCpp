@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1040 {
     // 贪心：找到坐标范围，依次枚举
     // 最大操作次数：若选择最左侧石子，可用空位为spaces{stones[1]:stones[n-1]}；
     //    若选择最左侧石子，可用空位为spaces{stones[0]:stones[n-2]}；最大操作次数为以上两者的最小值
