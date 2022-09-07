@@ -9,9 +9,8 @@
 
 using namespace std;
 
-class Solution {
-    // 初始时向北，枚举指令的每个操作，若可以回到起点(0,0)，返回true
-    // 若未回到起点，观察最后的方向：朝北，返回false；向东，未来会经历转向，会回到起点；向西、向南同理，返回false
+class Problem1041 {
+    // 1轮执行结束后，方向与初始方向一致（向北），并且不是位于初始地点（0，0），那么将永远不会循环；否则，一定会产生循环
 public:
     bool isRobotBounded(const string &instructions) {
         const int dx[4] = {0, -1, 0, 1};
@@ -33,7 +32,7 @@ public:
                 i = ((i - 1) % 4 + 4) % 4;
             }
         }
-        return (!x && !y) || i;  // 回到原点或朝北，返回true
+        return (!x && !y) || i;
     }
 };
 
