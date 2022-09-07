@@ -7,7 +7,7 @@
 
 #include "treenode.h"
 
-class Solution {
+class Problem1038 {
     // 类似中序遍历，先遍历右子树
 public:
     TreeNode *bstToGst(TreeNode *root) {
