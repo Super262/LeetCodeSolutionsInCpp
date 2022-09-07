@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1039 {
     // 区间DP：凸多边形划分（AcWing 1069）
     // f[i][j]：所有划分i～j的方案的集合，求最小值；f[i][j] = min{f[i][k] + Wi * Wk * Wj + f[k][j]}，i < k < j
 public:
