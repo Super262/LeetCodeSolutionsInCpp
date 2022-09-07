@@ -30,7 +30,7 @@ private:
         const auto n = (int) stones.size();
         int m = 0;
         for (int l = 0, r = 0; r < n; r++) {  // 遍历长度为n的窗口，求得最大的m
-            while (stones[r] - stones[l] >= n) {
+            while (l < r && stones[r] - stones[l] + 1 > n) {
                 ++l;
             }
             m = max(m, r - l + 1);
