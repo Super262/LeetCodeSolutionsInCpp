@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1037 {
     // 若a、b、c三点共线，则由ab、ac构成的三角形面积为0，即 ab X ac == 0
 public:
     bool isBoomerang(const vector<vector<int>> &points) {
