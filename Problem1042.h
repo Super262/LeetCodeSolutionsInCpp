@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1042 {
     // 每个点最多有3条边和其它点相连，因为我们有4种颜色可选，我们可以对每个点任意染色
 public:
     vector<int> gardenNoAdj(int n, const vector<vector<int>> &paths) {
