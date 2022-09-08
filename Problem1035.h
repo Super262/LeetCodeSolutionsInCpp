@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1035 {
     // 可以证明，此问题等价于最长公共子序列问题
 public:
     int maxUncrossedLines(const vector<int> &nums1, const vector<int> &nums2) {
