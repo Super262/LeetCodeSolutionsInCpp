@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1030 {
     // 从中心搜索距离为d的点，不断扩大d，直到覆盖整个矩阵
     // 使用方向数组确定搜索顺序，类似54题（螺旋矩阵）
 public:
@@ -17,6 +17,7 @@ public:
         vector<vector<int>> ans;
         const int dx[4] = {1, 1, -1, -1};
         const int dy[4] = {1, -1, -1, 1};
+        ans.reserve(m * n);
         ans.push_back({sx, sy});
         for (int d = 1; true; ++d) {  // 枚举距离
             auto x = sx - d;  // 起点坐标；起点离(sx,sy)的距离是d
