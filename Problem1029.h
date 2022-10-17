@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1029 {
     // 贪心算法：按(cost[0] - cost[1])排序，前一半去A，后一半去B；采用交换法（反证）可得到正确性
 public:
     int twoCitySchedCost(vector<vector<int>> &costs) {
