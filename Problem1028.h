@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1028 {
     // 先序遍历依照"根-左-右"的顺序访问节点，并且题目中规定了如果节点只有1个子节点，那么保证该子节点为左子节点
     // 因此，我们可以求出每个节点的深度，将它们和前驱节点相连，获得答案
 public:
@@ -20,7 +20,7 @@ public:
         stack<TreeNode *> s;
         while (i < (int) traversal.size()) {
             int level = 0;
-            while (traversal[i] == '-') {
+            while (i < (int) traversal.size() && traversal[i] == '-') {
                 ++i;
                 ++level;
             }
