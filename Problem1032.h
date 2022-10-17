@@ -13,7 +13,7 @@
 using namespace std;
 
 class StreamChecker {
-    // AC自动机模版题
+    // AC自动机（Aho–Corasick Algorithm）模版题
 public:
     StreamChecker(vector<string> &words) {
         root = new Node();
