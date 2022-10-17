@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1033 {
     // 分情况讨论，注意细节
 public:
     vector<int> numMovesStones(int a, int b, int c) {
