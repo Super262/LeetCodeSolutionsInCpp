@@ -21,7 +21,7 @@ public:
         for (int i = 0; i < n; ++i) {
             f[i][i] = 0;
         }
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < n; ++i) {  // 不要忘记这步初始化操作！
             f[i - 1][i] = 0;
         }
         for (int length = 3; length <= n; ++length) {
