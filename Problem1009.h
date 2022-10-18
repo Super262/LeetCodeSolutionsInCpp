@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM1009_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM1009_H
 
-class Solution {
+class Problem1009 {
 public:
     int bitwiseComplement(int n) {
         if (!n) {
