@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM1006_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM1006_H
 
-class Solution {
+class Problem1006 {
     // 直接模拟，根据余数处理尾部
 public:
     int clumsy(int n) {
