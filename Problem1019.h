@@ -7,29 +7,16 @@
 
 #include <vector>
 #include <stack>
+#include "listnode.h"
 
 using namespace std;
 
-/**
- * Definition for singly-linked list.
- */
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
-class Solution {
+class Problem1019 {
     // 单调栈问题：栈内除了保存数值，还有下标
 public:
     vector<int> nextLargerNodes(ListNode *head) {
         vector<int> ans;
-        stack<pair<int, int>> stk;  // 保存(值,ans下标)
+        stack<pair<int, int>> stk;  // 保存 (节点值, 节点编号)
         int i = 0;
         while (head) {
             while (!stk.empty() && head->val > stk.top().first) {
