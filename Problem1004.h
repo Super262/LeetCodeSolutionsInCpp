@@ -9,8 +9,8 @@
 
 using namespace std;
 
-class Solution {
-    // 双指针：找到最长的子数组，最多包含k个0
+class Problem1004 {
+    // 双指针：找到最长的子数组s，s最多包含k个0
 public:
     int longestOnes(const vector<int> &nums, int k) {
         int ans = 0;
