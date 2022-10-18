@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1013 {
     // 我们要寻找最靠左的索引i，最靠右的索引j，以保证sum{0:i} == sum{j:n-1} == sum{0:n-1} / 3，并且i + 1 <= j - 1成立
 public:
     bool canThreePartsEqualSum(const vector<int> &arr) {
