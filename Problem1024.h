@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1024 {
     // 贪心：按左端点排序，选择右端点最大的区间
 public:
     int videoStitching(vector<vector<int>> &clips, int time) {
