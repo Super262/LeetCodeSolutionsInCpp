@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1021 {
     // 通过记录左括号的数量，我们可以确定最外层括号序列的位置
 public:
     string removeOuterParentheses(const string &s) {
