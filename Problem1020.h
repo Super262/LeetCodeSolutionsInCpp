@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1020 {
     // BFS：从边界岛屿搜索
 public:
     int numEnclaves(vector<vector<int>> &grid) {
