@@ -10,11 +10,11 @@
 
 using namespace std;
 
-class Solution {
+class Problem1000 {
     // 原始方程：f[i][j][k]，将stones[i:j]合并为k堆的最小代价，时间复杂度O(n^3 * k)
     // f[i][j][k] = min(f[i][j][k], f[i][u][k-1] + f[u+1][j][1])，区间DP
     // 在将[i:j]段合并为k堆前，[i:j]段应正好包含(j-i+1)堆石子；我们观察到，若每次合并m堆石子，堆数减少(m-1)
-    // 因此，(m-1)应整除(j-i+1-k)，k=(j-i+1)%(m-1)，所以我们可以删去DP方程的第三维k
+    // 因此，(m-1)应整除(j-i+1-k)，k=(j-i+1)%(m-1)，所以我们可以删去DP方程的第三维k，时间复杂度为O(n^3 / k)
     // https://www.acwing.com/solution/content/75892/
 public:
     int mergeStones(const vector<int> &stones, int k) {
