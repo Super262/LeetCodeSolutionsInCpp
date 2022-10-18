@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // f[i][j]：以nums[i]结尾、公差为j的最长子序列
+class Problem1027 {
+    // f[i][j]：以nums[i]结尾、公差为j的最长子序列；细节：公差可能是负数，需要设置偏移量
     // 注意，时间复杂度是O(n^2)，不是O(n^3)
 public:
     int longestArithSeqLength(const vector<int> &nums) {
