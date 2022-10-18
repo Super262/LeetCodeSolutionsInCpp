@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1007 {
     // 遍历1次将每层的每种点数x的数目算出来；不要忽略上下相等的骨牌的数量all_same
     // 若top[x] + bottom[x] - all_same >= n，x可能成为目标值
 public:
