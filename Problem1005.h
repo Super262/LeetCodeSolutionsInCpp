@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1005 {
     // 采用桶排序的思想，找到负数、零和正数；优先将负数翻转，尽量对正数做偶数次翻转
 public:
     int largestSumAfterKNegations(const vector<int> &nums, int k) {
