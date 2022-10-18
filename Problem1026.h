@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // 当前节点与所有祖先节点差值的最大值，只和所有祖先节点的最大值、最小值相关
+class Problem1026 {
+    // 类似先序遍历；当前节点与所有祖先节点差值的最大值，只和所有祖先节点的最大值、最小值相关
     // 由于数据范围较小，我们直接遍历整棵树
 public:
     int maxAncestorDiff(TreeNode *root) {
