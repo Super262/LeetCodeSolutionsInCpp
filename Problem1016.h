@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1016 {
     // 反向思考，直接枚举s的长度不超过30的子串，如果子串构成了1～n中的数字，则加到一个集合中，最后判断集合的大小是否等于n
 public:
     bool queryString(const string &s, int n) {
