@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1003 {
     // 类似"合法的括号序列"问题，直接利用栈来模拟
 public:
     bool isValid(const string &s) {
