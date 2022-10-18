@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // 数位DP模版题：求补集，统计所有数位都不重复的正整数的个数
+class Problem1012 {
+    // 数位DP模版题：求补集，统计所有数位都不重复的正整数的个数ans，答案为n-ans-1
 public:
     int numDupDigitsAtMostN(int n) {
         auto digits = getDigits(n);
@@ -20,7 +20,7 @@ public:
         for (int length = 1; length < (int) digits.size(); ++length) {
             ans += 9 * perm(9, length - 1);  // 9 * C(9, len-1)：最高位只有9种选择，没有前导零
         }
-        bool used[10];  // digits[i+1:n-1]使用了哪些数字
+        bool used[10];  // digits[n-1:i+1]使用了哪些数字
         memset(used, 0, sizeof used);
         for (auto i = (int) digits.size() - 1; i >= 0; --i) {  // 计算所有长度等于n的、各位不重复的数字的个数
             int uni_cnt = 0;  // 当前位的可选数字
