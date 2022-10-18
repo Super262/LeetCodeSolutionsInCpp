@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1001 {
     // 哈希表存储：行、列、2条对角线上的灯泡坐标
 public:
     vector<int> gridIllumination(const int n, const vector<vector<int>> &lamps, const vector<vector<int>> &queries) {
