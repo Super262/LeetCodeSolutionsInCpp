@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1014 {
     // 双指针问题：我们希望找到i、j，满足i<j，且(values[j]-j)+(values[i]+i)最大
 public:
     int maxScoreSightseeingPair(const vector<int> &values) {
