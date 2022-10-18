@@ -5,23 +5,11 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM1022_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM1022_H
 
-/**
- * Definition for a binary tree node.
-  */
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
 
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+#include "treenode.h"
 
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
-    // 直接遍历
+class Problem1022 {
+    // 类似先序遍历
 public:
     int sumRootToLeaf(TreeNode *root) {
         if (!root) {
