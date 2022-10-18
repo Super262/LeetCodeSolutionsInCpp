@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1002 {
     // 统计每个字符串中的字符种类和频率，记录全局最小值并输出
 public:
     vector<string> commonChars(const vector<string> &words) {
