@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Prolem1011 {
     // 二分查找
 public:
     int shipWithinDays(const vector<int> &weights, int days) {
