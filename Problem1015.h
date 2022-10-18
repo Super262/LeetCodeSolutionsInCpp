@@ -9,10 +9,10 @@
 
 using namespace std;
 
-class Solution {
-    // 参考 AcWing 202
+class Problem1015 {
     // 由题意可知，我们希望找到最小的x，使 k 能整除 (10^x - 1) / 9
-    // 因此，10^x = 1 (mod 9*k)，即 10^x 和 9*k 互质；根据欧拉定理与费马小定理，x是phi(9*k)的约数
+    // 因此，10^x = 1 (mod 9*k) (linear congruences)，即 10^x 和 9*k 互质；根据欧拉定理与费马小定理，x是phi(9*k)的约数
+    // 参考 AcWing 202（https://www.acwing.com/solution/content/47979/）
 public:
     int smallestRepunitDivByK(int k) {
         if (k % 2 == 0 || k % 5 == 0) {  // 9*k应和10互质
@@ -24,10 +24,10 @@ public:
             if (phi % i) {
                 continue;
             }
-            if (quick_power(10, i, 9 * k) == 1) {  // 找到合适的因子
+            if (quickPower(10, i, 9 * k) == 1) {  // 找到合适的因子
                 return i;
             }
-            if (quick_power(10, phi / i, 9 * k) == 1) {
+            if (quickPower(10, phi / i, 9 * k) == 1) {
                 ans = min(ans, phi / i);
             }
         }
@@ -35,7 +35,7 @@ public:
     }
 
 private:
-    int quick_power(int a, int x, const int m) {
+    int quickPower(int a, int x, const int m) {
         int ans = 1;
         while (x) {
             if (x & 1) {
