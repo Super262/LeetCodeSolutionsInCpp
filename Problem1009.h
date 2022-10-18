@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM1009_H
 
 class Problem1009 {
+    // 求补码，模版题
 public:
     int bitwiseComplement(int n) {
         if (!n) {
