@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem1010 {
     // 双指针 + 哈希表，统计同余数字的个数
 public:
     int numPairsDivisibleBy60(const vector<int> &time) {
