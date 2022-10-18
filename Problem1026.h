@@ -19,7 +19,7 @@ public:
             return INT_MIN;
         }
         int ans = INT_MIN;
-        dfs(root, root->val - 1, root->val + 1, ans);
+        dfs(root, root->val, root->val, ans);
         return ans;
     }
 
