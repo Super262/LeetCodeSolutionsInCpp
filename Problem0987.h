@@ -7,25 +7,11 @@
 
 #include <unordered_map>
 #include <vector>
+#include "treenode.h"
 
 using namespace std;
 
-/**
- * Definition for a binary tree node.
- */
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
-
-class Solution {
+class Problem0987 {
     // 先序遍历，获得所有节点的坐标(x,y)，用哈希表保存当前列（y）的所有节点
     // 依照y从小到大的顺序遍历哈希表，排序列节点，输出答案
 public:
