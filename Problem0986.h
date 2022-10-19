@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0986 {
     // 双指针算法：i指向first头部、j指向second头部，设i指向(a,b)、j指向(c,d)
     // 设i、j的交集为(x,y)：若y=b，i后移；若y=d，j后移
 public:
