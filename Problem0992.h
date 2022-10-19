@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0992 {
     // 双指针：设r为右指针，l1、l2为左指针
     // 借助哈希表，我们保证：l1是最靠左的、保证[l1:r]段有k种数字的位置，l2是最靠左的、保证[l2:r]段有k-1种数字的位置（l1 < l2）
     // [l1:l2-1]和r分别构成合法子数组的起点和终点
@@ -28,14 +28,14 @@ public:
                 ++cnt2;
             }
             counter2[nums[r]]++;
-            while (l1 <= r && cnt1 > k) {  // cnt1大于k且子数组长度大于0，左移l1
+            while (l1 <= r && cnt1 > k) {  // cnt1大于k且子数组长度大于0，右移l1
                 if (counter1[nums[l1]] == 1) {
                     --cnt1;
                 }
                 counter1[nums[l1]]--;
                 ++l1;
             }
-            while (l2 <= r && cnt2 > k - 1) {  // cnt2大于k-1且子数组长度大于0，左移l2
+            while (l2 <= r && cnt2 > k - 1) {  // cnt2大于k-1且子数组长度大于0，右移l2
                 if (counter2[nums[l2]] == 1) {
                     --cnt2;
                 }
