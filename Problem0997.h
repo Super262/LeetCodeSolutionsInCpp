@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0997 {
     // 统计入度和出度，返回满足题意的点
 public:
     int findJudge(int n, const vector<vector<int>> &trust) {
