@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0990 {
     // 并查集：将等式两端的集合合并，判断不等式两端的集合是否在同个集合
 public:
     bool equationsPossible(const vector<string> &equations) {
@@ -44,13 +44,19 @@ public:
 
 private:
     int findRoot(int x, int parent[]) {
-        if (parent[x] != x) {
-            parent[x] = findRoot(parent[x], parent);
+        auto u = x;
+        while (u != parent[u]) {
+            u = parent[u];
         }
-        return parent[x];
+        while (x != u) {
+            auto p = parent[x];
+            parent[x] = u;
+            x = p;
+        }
+        return u;
     }
 
-    static int mergeSets(int a, int b, int parent[], int set_size[]) {
+    int mergeSets(int a, int b, int parent[], int set_size[]) {
         if (a == b) {
             return -1;
         }
