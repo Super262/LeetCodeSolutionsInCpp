@@ -9,7 +9,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0999 {
+    // 直接模拟，先找到Rook的位置，再分别尝试向4个方向移动
 public:
     int numRookCaptures(const vector<vector<char>> &board) {
         const auto m = (int) board.size();
