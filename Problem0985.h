@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0985 {
     // 直接模拟：若a是偶数，a+val是奇数，则sum-=a；若a+val是偶数，sum+=val。若a是奇数、a+val是偶数，sum+=a+val
 public:
     vector<int> sumEvenAfterQueries(vector<int> &nums, const vector<vector<int>> &queries) {
