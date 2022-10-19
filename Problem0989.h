@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0989 {
     // 依次枚举，从低位开始处理进位
 public:
     vector<int> addToArrayForm(const vector<int> &num, int k) {
