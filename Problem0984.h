@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0984 {
     // "a"多于"b"时，我们优先放置"aab"，再放置"ab"；"b"多于"a"时同理
 public:
     string strWithout3a3b(int a, int b) {
