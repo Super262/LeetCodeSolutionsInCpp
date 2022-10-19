@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0994 {
     // 多源BFS问题：从所有腐烂点向四周扩散，直至扩散结束
 public:
     int orangesRotting(vector<vector<int>> &grid) {
