@@ -12,9 +12,9 @@
 
 using namespace std;
 
-class Solution {
+class Problem0996 {
     // 若我们不考虑重复的情况，即假设若排列的下标不同就是不同的排列，得到f个可行的排列，
-    // 由排列转组合的经验得知，满足题意的组合的个数是f/{(a!)...(x!)}，a是数字a出现的次数
+    // 牢记此性质：由排列转组合的经验得知，满足题意的组合的个数是f/{(a!)...(x!)}，a是数字a出现的次数
     // f[s][i]：当前排列包含的数字是s（状态压缩），最后的数字的索引是i，合法的方案数
 public:
     int numSquarefulPerms(const vector<int> &nums) {
