@@ -10,9 +10,9 @@
 
 using namespace std;
 
-class Solution {
+class Problem0001 {
 public:
-    vector<int> twoSum(const vector<int>& nums, int target) {
+    vector<int> twoSum(const vector<int> &nums, int target) {
         unordered_map<int, int> num_idx;
         for (int i = 0; i < (int) nums.size(); ++i) {
             auto y = target - nums[i];
