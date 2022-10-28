@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0019 {
     // 经典算法，直接背诵：找到第n个节点的前驱，删除第n个节点
 public:
     ListNode *removeNthFromEnd(ListNode *head, int n) {
