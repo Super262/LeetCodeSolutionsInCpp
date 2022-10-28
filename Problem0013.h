@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0013 {
     // 经典算法，直接背诵
 public:
     int romanToInt(const string &s) {
