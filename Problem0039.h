@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0039 {
 public:
     vector<vector<int>> combinationSum(const vector<int> &candidates, int target) {
         vector<vector<int>> result;
