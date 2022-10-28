@@ -10,8 +10,8 @@
 
 using namespace std;
 
-class Solution {
-    // dp[i][j]：s的前i个字符是否能匹配p的前j个字符（i, j >= 1）
+class Problem0010 {
+    // f[i][j]：s的前i个字符是否能匹配p的前j个字符（i, j >= 1）
     // https://www.acwing.com/solution/content/557/
 public:
     bool isMatch(const string &s, const string &p) {
