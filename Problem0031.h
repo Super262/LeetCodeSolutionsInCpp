@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0031 {
 public:
     void nextPermutation(vector<int> &nums) {
         if (nums.size() < 3) {  // 特殊情况：序列长度小于3，直接反序
