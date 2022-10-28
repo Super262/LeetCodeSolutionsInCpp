@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0011 {
     // 直接背诵，双指针算法经典题目
 public:
     int maxArea(const vector<int> &height) {
