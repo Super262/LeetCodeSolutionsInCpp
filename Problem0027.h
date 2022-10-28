@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0027 {
 public:
     int removeElement(vector<int> &nums, const int &val) {
         int k = 0;
