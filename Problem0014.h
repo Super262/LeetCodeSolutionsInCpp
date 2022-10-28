@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0014 {
 public:
     string longestCommonPrefix(const vector<string> &strs) {
         if (strs.empty()) {
