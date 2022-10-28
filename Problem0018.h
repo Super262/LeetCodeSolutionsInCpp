@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0018 {
     // 经典题目，直接背诵
 public:
     vector<vector<int>> fourSum(vector<int> &nums, const int target) {
