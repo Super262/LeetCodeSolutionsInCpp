@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0030 {
     // 直接背诵，暴力枚举：https://www.acwing.com/solution/content/113/
     // https://www.acwing.com/video/1352/
     // 由于数组中每个单词长度都是相同的，故可以按照单词的长度 len 来将 s 划分为 len 种候选单词序列

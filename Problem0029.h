@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0029 {
     // 直接背诵，贪心算法：https://www.acwing.com/solution/content/15056/
     // 设除数为y、被除数为x，x=t*y+r；设n为满足(2^n)*y<=x的最大值；
     // 从大到小枚举i（0 <= i <= n），若(2^i)*y<=x，将2^i加入结果ans中，更新x=x-(2^i)*y
