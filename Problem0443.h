@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0443 {
     // 双指针：i指示当前的可写位置，chars[l:r]是一段重复字符，我们在chars[i]保存当前字符
     // 当chars[l:r]长度大于1时，我们将数字(r-l+1)存储到i后面的可写位置，然后更新l=r-1，处理新字符
     // 细节：由于这里要求我们使用O(1)空间，我们不能使用to_string函数
