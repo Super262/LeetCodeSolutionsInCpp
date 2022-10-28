@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0015 {
     // "双指针"的前提：序列有序；"双指针"最多能把O(n^2)的运算优化为O(n)
     // 思路：固定i，移动j和k（i < j < k）；注意去重！
 public:
