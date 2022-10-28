@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0023 {
     // 直接背诵，堆的经典应用：掌握比较器（结构体类型）的实现
 public:
     ListNode *mergeKLists(const vector<ListNode *> &lists) {
