@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0017 {
 public:
     vector<string> letterCombinations(const string &digits) {
         if (digits.empty()) {
