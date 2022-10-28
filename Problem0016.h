@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0016 {
     // 经典算法，直接背诵：双指针 + 排序
     // https://www.acwing.com/solution/content/15002/
 public:
