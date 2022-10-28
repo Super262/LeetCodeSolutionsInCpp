@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0020 {
 public:
     bool isValid(const string &s) {
         char couple[256];
