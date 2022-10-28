@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0036 {
 public:
     bool isValidSudoku(const vector<vector<char>> &board) {
         bool existed[10];

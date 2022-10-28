@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0037 {
 public:
     void solveSudoku(vector<vector<char>> &board) {
         memset(col_used, 0, sizeof col_used);

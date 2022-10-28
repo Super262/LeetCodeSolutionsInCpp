@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0035 {
     // 二分查找大于等于目标值的第一个位置
     // 直接背诵，注意细节
 public:
