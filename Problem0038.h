@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0038 {
     // 依次迭代，从1到n-1：统计当前s中各数字出现的次数，生成新的s
 public:
     string countAndSay(const int n) {
