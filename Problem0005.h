@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0005 {
     // 区间DP，dp[i][j]：s[i:j]是否为回文字符串
 public:
     string longestPalindrome(const string &s) {
