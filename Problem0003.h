@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0003 {
 public:
     int lengthOfLongestSubstring(const string &s) {
         unordered_map<char, int> counter;
