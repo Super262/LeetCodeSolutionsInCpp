@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0007 {
     // 评测系统不允许使用long long类型
     // 溢出判断：若当前待加入的个位数字是x，若不溢出，INT_MIN <= ans * 10 + x <= INT_MAX成立
     // 设INT_MAX的个位数字是max_tail，则 (ans < INT_MAX / 10) || (ans == INT_MAX / 10 && x <= max_tail) 成立；同理INT_MIN
