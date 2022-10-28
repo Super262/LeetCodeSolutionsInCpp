@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0012 {
     // 从大到小试除因子
 public:
     string intToRoman(int num) {
