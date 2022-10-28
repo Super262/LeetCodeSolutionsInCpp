@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0006 {
 public:
     string convert(const string &s, const int &n) {
         if (n == 1) {
