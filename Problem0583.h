@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0583 {
     // 动态规划，f[i][j]表示将w1[0:i-1]和w2[0:j-1]调整至相等，需要最少的操作次数
 public:
     int minDistance(const string &w1, const string &w2) {
