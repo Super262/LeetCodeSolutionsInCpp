@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0028 {
     // KMP算法，直接背诵
 public:
     int strStr(const string &haystack, const string &needle) {
