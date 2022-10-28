@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0004 {
 public:
     double findMedianSortedArrays(const vector<int> &nums1, const vector<int> &nums2) {
         auto total = (int) nums1.size() + (int) nums2.size();
