@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0025 {
     // 经典算法，直接背诵：反序k个节点，需要反序(k-1)条链
     // for循环的条件语句必须有2个分号
 public:
