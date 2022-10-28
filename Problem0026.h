@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0026 {
 public:
     int removeDuplicates(vector<int> &nums) {
         int k = 0;
