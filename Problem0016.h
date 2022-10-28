@@ -17,22 +17,26 @@ public:
     int threeSumClosest(vector<int> &nums, const int target) {
         sort(nums.begin(), nums.end());
         int answer = 0x3f3f3f3f;
-        for (int i = 0; i < nums.size(); ++i) {  // 固定i
-            for (auto l = i + 1, r = (int) nums.size() - 1; l < r; ++l) {
-                while (l < r - 1 && nums[i] + nums[l] + nums[r - 1] >= target) {  // 固定l，移动r
+        for (int i = 0; i < (int) nums.size(); ++i) {  // 固定i
+            if (i && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            auto l = i + 1;
+            auto r = (int) nums.size() - 1;
+            while (l < r) {
+                auto sum = nums[i] + nums[l] + nums[r];
+                if (abs(sum - target) < abs(answer - target)) {
+                    answer = sum;
+                }
+                if (sum > target) {
                     --r;
-                }
-                auto s1 = nums[i] + nums[l] + nums[r];
-                if (abs(s1 - target) < abs(answer - target)) {
-                    answer = s1;
-                }
-                if (l == r - 1) {  // 若nums[l]和nums[r]间无其他数字，继续
                     continue;
                 }
-                auto s2 = nums[i] + nums[l] + nums[r - 1];
-                if (abs(s2 - target) < abs(answer - target)) {
-                    answer = s2;
+                if (sum < target) {
+                    ++l;
+                    continue;
                 }
+                return target;
             }
         }
         return answer;
