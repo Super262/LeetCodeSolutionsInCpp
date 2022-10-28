@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0024 {
 public:
     ListNode *swapPairs(ListNode *head) {
         auto dummy = new ListNode(-1);
