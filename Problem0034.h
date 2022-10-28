@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0034 {
 public:
     vector<int> searchRange(const vector<int> &nums, int target) {
         if (nums.empty()) {

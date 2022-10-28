@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0033 {
     // 经典算法，直接背诵
     // 2步二分，先找分界点，再找target
 public:

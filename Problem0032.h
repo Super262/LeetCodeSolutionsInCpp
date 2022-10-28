@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0032{
     // 合法的括号序列：左括号和右括号数量相等；任意前缀中的左括号数量大于或等于右括号数量
     // 假设i是第一个不满足以上性质的位置，则合法的括号序列一定在i左侧
 public:
