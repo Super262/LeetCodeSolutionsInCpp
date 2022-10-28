@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0008 {
     // 判断溢出：类似第7题，注意细节！不要使用 long long 类型数据
 public:
     int myAtoi(const string &s) {
