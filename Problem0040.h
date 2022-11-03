@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0040 {
 public:
     vector<vector<int>> combinationSum2(vector<int> &candidates, const int target) {
         sort(candidates.begin(), candidates.end());
