@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0057 {
     // 经典算法，直接背诵：分段处理
     // 将intervals从左到右分成三段a、b、c：a和x无交集，b和x有交集，c和x无交集
     // 对于结果ans，a、c保持不变，将b和x合并后生成的新分段加入ans
