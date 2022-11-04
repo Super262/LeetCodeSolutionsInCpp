@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0044 {
     // f[i][j]描述s的前i个字符和p的前j个字符的匹配情况（i,j >= 1）
     // 优化：借鉴完全背包问题的思想
 public:
