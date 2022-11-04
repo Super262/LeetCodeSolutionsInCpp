@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0048 {
     // 若s1、s2同属一组anagram，分别对s1、s2排序，排序后s1==s2成立
 public:
     vector<vector<string>> groupAnagrams(const vector<string> &strs) {
