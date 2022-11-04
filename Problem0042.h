@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0042 {
 public:
     int trap(const vector<int> &height) {
         stack<int> stk;  // 单调栈，体积递减
