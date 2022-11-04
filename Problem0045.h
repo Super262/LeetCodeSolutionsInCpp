@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0045 {
     // DP + 贪心：f[i]表示到达i所需要的最少步数；last为第一次到达i时，上一步所在的索引；f[i] = f[last] + 1
     // https://www.acwing.com/solution/content/107/
 public:
