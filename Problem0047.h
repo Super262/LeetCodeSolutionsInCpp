@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0047 {
 public:
     vector<vector<int>> permuteUnique(vector<int> &nums) {
         vector<vector<int>> result;
