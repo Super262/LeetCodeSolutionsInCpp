@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0051 {
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<string> cur(n, string(n, '.'));

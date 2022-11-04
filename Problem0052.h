@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0052 {
 public:
     int totalNQueens(int n) {
         bool col_used[n];
