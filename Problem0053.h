@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0053 {
 public:
     int maxSubArray(const vector<int> &nums) {
         auto cur_max = nums[0];
