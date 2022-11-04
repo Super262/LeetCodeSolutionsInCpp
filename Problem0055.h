@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0055 {
 public:
     bool canJump(const vector<int> &nums) {
         for (int l = 0, r = 0; l < (int) nums.size(); ++l) {
