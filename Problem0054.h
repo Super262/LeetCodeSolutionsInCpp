@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0054 {
 public:
     vector<int> spiralOrder(const vector<vector<int>> &matrix) {
         const int m = (int) matrix.size();
