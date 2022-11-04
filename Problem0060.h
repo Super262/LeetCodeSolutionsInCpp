@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0060 {
     // 我们从高位到低位依次生成n个数，形成最终结果ans；设i的阶乘为f(i)
     // 对与结果ans中的第i位（0<=i<=n-1），若尝试将第i位设置为x，若k>f(i)，我们应尝试x+1，并更新k=k-f(n-i-1)
     // 若k<=f(n-i-1)，设置第i位为x，标记x以避免重复，继续尝试第i+1位
