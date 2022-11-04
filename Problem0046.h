@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0046 {
 public:
     vector<vector<int>> permute(const vector<int> &nums) {
         vector<vector<int>> result;
