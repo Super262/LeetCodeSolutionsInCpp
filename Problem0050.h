@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0050 {
 public:
     double myPow(double x, int n) {  // 快速幂，背诵
         double res = 1;
