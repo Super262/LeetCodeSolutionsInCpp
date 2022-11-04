@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0056 {
     // 经典算法，直接背诵
 public:
     vector<vector<int>> merge(vector<vector<int>> &intervals) {
