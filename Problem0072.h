@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0072 {
     // f[i][j]：将长度为i的字符串a、长度为j的字符串b修正为相同的字符串修正为相同的字符串需要的最少操作次数
 public:
     int minDistance(const string &a, const string &b) {
