@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0076 {
     // 经典思路，直接背诵：https://www.acwing.com/solution/content/160/
     // 哈希表记录滑动窗口内的字符频率，找到所有字符时更新最小窗口长度
 public:
