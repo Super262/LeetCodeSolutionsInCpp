@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0079 {
 public:
     bool exist(vector<vector<char>> &board, const string &word) {
         for (int i = 0; i < board.size(); ++i) {
