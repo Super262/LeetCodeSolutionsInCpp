@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0081 {
     // 直接背诵，二分算法经典题目
     // 时间复杂度：O(n)最坏情况下数组元素均相等且不为target，我们需要访问所有位置才能得出结果。
     // 优化策略：忽略部分重复元素
