@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0062 {
 public:
     int uniquePaths(int m, int n) {
         int f[m][n];
