@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0071 {
     // 从开头依次遍历：遇到".."，弹出栈顶直到上个目录名；跳过"."和空目录名
 public:
     string simplifyPath(string path) {
