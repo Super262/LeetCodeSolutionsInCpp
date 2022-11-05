@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0073 {
     // 经典解法，直接背诵：使用第1行和第1列暂存其它行、列的信息，节约空间
 public:
     void setZeroes(vector<vector<int>> &matrix) {
