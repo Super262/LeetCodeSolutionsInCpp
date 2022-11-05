@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0084 {
     // 经典算法，直接背诵
     // 双指针，找到左边界和右边界（边界是第一个大于x的位置），边界间的位置构成矩形
 public:
