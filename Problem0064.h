@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0064 {
 public:
     int minPathSum(const vector<vector<int>> &grid) {
         const int m = (int) grid.size();
