@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0083 {
     // 经典算法，直接背诵
 public:
     ListNode *deleteDuplicates(ListNode *head) {
