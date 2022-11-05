@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0067 {
     // 类似大整数加法：从低位到高位依次进位
 public:
     string addBinary(const string &a, const string &b) {
