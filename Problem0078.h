@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0078 {
 public:
     // 利用二进制状态表示每个数是否被选择
     vector<vector<int>> subsets(const vector<int> &nums) {
