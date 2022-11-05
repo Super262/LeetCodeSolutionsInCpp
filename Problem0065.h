@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0065 {
     // 经典算法，直接背诵
     // 1. 去掉字符串开始和末尾的空格
     // 2. e前面或后面如果是空的，则不合法
