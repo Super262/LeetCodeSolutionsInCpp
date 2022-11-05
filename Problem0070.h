@@ -5,7 +5,7 @@
 #ifndef LEETCODESOLUTIONSINCPP_PROBLEM0070_H
 #define LEETCODESOLUTIONSINCPP_PROBLEM0070_H
 
-class Solution {
+class Problem0070 {
     // f[i]：到达位置i的方案数
 public:
     int climbStairs(int n) {  // 滑动窗口优化
