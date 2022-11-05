@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0063 {
     // 注意边界情况（输入数据为[[1]]）
 public:
     int uniquePathsWithObstacles(const vector<vector<int>> &obstacle_grid) {
