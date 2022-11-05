@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0069 {
     // 二分查找
 public:
     int mySqrt(int x) {
