@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0068 {
     // 最后一行：左对齐
     // 只包含一个单词：左对齐
     // 其他：左右对齐
