@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0080 {
     // 经典算法，直接背诵
 public:
     int removeDuplicates(vector<int> &nums) {
