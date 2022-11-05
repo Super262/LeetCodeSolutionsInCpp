@@ -10,10 +10,10 @@
 
 using namespace std;
 
-class Solution {
+class Problem0061 {
     // 注意细节：k%n
 public:
-    ListNode* rotateRight(ListNode* head, int k) {
+    ListNode *rotateRight(ListNode *head, int k) {
         if (!head) {
             return head;
         }
