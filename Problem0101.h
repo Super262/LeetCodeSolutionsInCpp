@@ -11,7 +11,7 @@
 using namespace std;
 
 class Problem0101 {
-    // 迭代法，直接背诵：以2个相同的根结点为搜索起点
+    // 迭代法，类似层序遍历：以2个相同的根结点为搜索起点
 public:
     bool isSymmetric(TreeNode *root) {
         if (!root) {
