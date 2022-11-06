@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0111 {
     // 非递归解法：从根开始BFS，发现叶节点时停止搜索
 public:
     int minDepth(TreeNode *root) {
