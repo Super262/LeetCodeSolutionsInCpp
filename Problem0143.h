@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0143 {
     // 经典算法，必须掌握
     // 将链表分成两部分：[0:(n+1)/2-1]和[(n+1)/2:n]；翻转后半部分；将后半部分的节点插入到前半部分
 public:
