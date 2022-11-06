@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0103 {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
         if (!root) {
