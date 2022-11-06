@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0093 {
     // 直接DFS：尝试当前段的长度为1~3，避免包含前导零的数字、大于255的数字
 public:
     vector<string> restoreIpAddresses(const string &s) {
