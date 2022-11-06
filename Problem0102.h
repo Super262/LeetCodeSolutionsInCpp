@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0102 {
 public:
     vector<vector<int>> levelOrder(TreeNode *root) {
         if (!root) {
