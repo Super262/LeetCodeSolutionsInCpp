@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0115 {
     // f[i][j]表示s[1,i]的子序列生成t[1,j]的方式数
     // 防溢出：最终答案不超过INT_MAX，但中间结果可能超过INT_MAX
 public:
