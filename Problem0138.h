@@ -7,7 +7,7 @@
 
 #include "node_random.h"
 
-class Solution {
+class Problem0138 {
     // 巧妙方法（空间O(1)），直接背诵：将复制a后生成的新节点a'暂存为a的后继（a->next=a'），最后分离新链和旧链
 public:
     Node *copyRandomList(Node *head) {
