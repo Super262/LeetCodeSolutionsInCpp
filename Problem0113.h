@@ -12,8 +12,8 @@
 
 using namespace std;
 
-class Solution {
-    // BFS解法，必须掌握：用Map保存搜索路径
+class Problem0113 {
+    // BFS解法，必须掌握：用Map保存前驱节点
 public:
     vector<vector<int>> pathSum(TreeNode *root, const int target) {
         if (!root) {
