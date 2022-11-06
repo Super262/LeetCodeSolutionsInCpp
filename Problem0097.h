@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0097 {
     // f[i][j]：s1[0:i-1]和s2[0:j-1]组成s3[0:i+j-1]，最后的字符来自s1或s2
 public:
     bool isInterleave(const string &s1, const string &s2, const string &s3) {
