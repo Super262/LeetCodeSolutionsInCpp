@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0130 {
     // 逆向思维：从边界寻找没有被X包围的O
 public:
     void solve(vector<vector<char>> &board) {
