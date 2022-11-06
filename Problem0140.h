@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0140 {
     // 预处理出f[i]：前i个字符是否可被分割（1 <= i <= n）
     // DFS：从后向前枚举分界点，记录所有可行方案
 public:
