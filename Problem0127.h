@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0127 {
     // BFS：根据各个单词间的关系，建立有向图（只保存dist，不保存边a->b）
 public:
     int ladderLength(const string &begin_word,
