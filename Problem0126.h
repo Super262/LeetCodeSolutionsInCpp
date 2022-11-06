@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0126 {
     // BFS：根据各个单词间的关系，建立有向图（只保存dist，不保存边a->b）
     // DFS：搜索从st到ed的所有路径，注意剪枝
 public:
