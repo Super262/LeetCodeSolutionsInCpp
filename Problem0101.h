@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0101 {
     // 迭代法，直接背诵：以2个相同的根结点为搜索起点
 public:
     bool isSymmetric(TreeNode *root) {
