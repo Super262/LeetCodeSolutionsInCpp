@@ -12,7 +12,7 @@
 using namespace std;
 
 class Problem0111 {
-    // 非递归解法：从根开始BFS，发现叶节点时停止搜索
+    // 从根开始BFS，发现叶节点时停止搜索
 public:
     int minDepth(TreeNode *root) {
         if (!root) {
@@ -38,26 +38,5 @@ public:
         return INT_MAX;
     }
 };
-
-/*class Solution {
-    // 经典算法，直接背诵
-    // 递归解法
-public:
-    int minDepth(TreeNode *root) {
-        if (!root) {
-            return 0;
-        }
-        if (!root->left && !root->right) {
-            return 1;
-        }
-        if (root->left && root->right) {
-            return min(minDepth(root->left), minDepth(root->right)) + 1;
-        }
-        if (root->left) {
-            return minDepth(root->left) + 1;
-        }
-        return minDepth(root->right) + 1;
-    }
-};*/
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0111_H
