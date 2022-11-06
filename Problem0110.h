@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0110 {
     // 经典算法，直接背诵
     // 自底向上，时间复杂度O(n)
 public:
