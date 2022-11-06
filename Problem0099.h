@@ -6,11 +6,42 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0099_H
 
 #include <algorithm>
+#include <stack>
 #include "treenode.h"
 
 using namespace std;
 
 class Problem0099 {
+    // 中序遍历（非递归 + 栈）
+public:
+    void recoverTree(TreeNode *root) {
+        stack<TreeNode *> stk;
+        TreeNode *x = nullptr;
+        TreeNode *y = nullptr;
+        TreeNode *pred = nullptr;
+        while (!stk.empty() || root) {
+            while (root) {
+                stk.emplace(root);
+                root = root->left;
+            }
+            root = stk.top();
+            stk.pop();
+            if (pred && root->val < pred->val) {
+                y = root;
+                if (!x) {
+                    x = pred;
+                } else {
+                    break;
+                }
+            }
+            pred = root;
+            root = root->right;
+        }
+        swap(x->val, y->val);
+    }
+};
+
+/*class Problem0099 {
     // 直接背诵：Morris遍历
     // https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
     // https://www.acwing.com/solution/content/181/
@@ -52,6 +83,6 @@ public:
         }
         swap(first->val, second->val);
     }
-};
+};*/
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0099_H
