@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0107 {
 public:
     vector<vector<int>> levelOrderBottom(TreeNode *root) {
         if (!root) {
