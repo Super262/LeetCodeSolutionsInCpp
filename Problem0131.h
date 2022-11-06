@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0131 {
     // 直接DFS：枚举分界点
     // 预处理：is_pa[l][r]指示s[l][r]是否为回文串
 public:
