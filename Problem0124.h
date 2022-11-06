@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0124 {
     // 经典算法，直接背诵
     // https://www.acwing.com/solution/content/215/
 public:
