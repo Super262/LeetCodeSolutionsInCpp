@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0121 {
 public:
     int maxProfit(const vector<int> &prices) {
         int result = 0;
