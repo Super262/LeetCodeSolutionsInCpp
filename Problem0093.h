@@ -27,7 +27,7 @@ private:
         if (num_idx == 4) {
             if (ch_idx == (int) s.size()) {
                 temp.pop_back();  // 弹出分隔符
-                res.emplace_back(string(temp));
+                res.emplace_back(temp);
             }
             return;
         }
