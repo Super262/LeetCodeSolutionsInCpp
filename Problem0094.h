@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0094 {
     // 直接背诵，注意细节；面试前背诵Morris遍历
 public:
     vector<int> inorderTraversal(TreeNode *root) {
