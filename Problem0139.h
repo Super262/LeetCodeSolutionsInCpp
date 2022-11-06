@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0139 {
     // f[i]：前i个字符是否可被分割（1<=i<=n）
     // 优化查找速度：字符串哈希替代哈希表
 public:
