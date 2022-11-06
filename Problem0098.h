@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0098 {
     // DFS：记录子树的最值、合法性
 public:
     bool isValidBST(const TreeNode *root) {
