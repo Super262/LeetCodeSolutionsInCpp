@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0141 {
     // 快慢指针：slow每次前进1步，fast每次前进2步；若两者相遇，说明有环
 public:
     bool hasCycle(ListNode *head) {
