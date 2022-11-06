@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0099 {
     // 直接背诵：Morris遍历
     // https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
     // https://www.acwing.com/solution/content/181/
