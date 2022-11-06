@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0104 {
 public:
     int maxDepth(TreeNode *root) {
         if (!root) {
