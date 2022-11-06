@@ -7,7 +7,7 @@
 
 #include "treenode.h"
 
-class Solution {
+class Problem0114 {
     // 经典算法，必须掌握
 public:
     void flatten(TreeNode *root) {
