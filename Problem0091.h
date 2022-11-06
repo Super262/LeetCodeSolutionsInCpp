@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0091 {
     // f[i]：s[0:i-1]部分的解码方式
 public:
     int numDecodings(const string &s) {
