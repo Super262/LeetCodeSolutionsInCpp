@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0092 {
 public:
     ListNode *reverseBetween(ListNode *head, const int left, const int right) {
         if (!head || right - left + 1 < 2) {
