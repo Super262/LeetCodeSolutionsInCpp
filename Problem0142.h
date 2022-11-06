@@ -7,9 +7,7 @@
 
 #include "listnode.h"
 
-using namespace std;
-
-class Solution {
+class Problem0142 {
     // 经典算法，记忆推导过程：https://www.acwing.com/solution/content/2946/
 public:
     ListNode *detectCycle(ListNode *head) {
