@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0086 {
     // 经典算法，直接背诵
 public:
     ListNode *partition(ListNode *head, int x) {
