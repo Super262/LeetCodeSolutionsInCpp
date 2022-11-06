@@ -7,7 +7,7 @@
 
 #include "node_random.h"
 
-class Solution {
+class Problem0117 {
     // 相比满二叉树（116题），这里的非叶节点可能只有1个孩子，因此我们需要一个tail指针来保存上个邻居的位置
     // 为统一操作，我们引入dummy为伪头节点
 public:
