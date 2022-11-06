@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0105 {
     // 非递归方法，必须掌握
     // https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/cong-qian-xu-yu-zhong-xu-bian-li-xu-lie-gou-zao-9/
 public:
