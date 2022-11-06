@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0112 {
     // BFS，必须掌握
 public:
     bool hasPathSum(TreeNode *root, const int target) {
