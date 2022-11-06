@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0129 {
     // BFS解法，必须掌握
 public:
     int sumNumbers(TreeNode *root) {
