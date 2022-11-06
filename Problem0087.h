@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0087 {
     // 区间DP，经典算法，直接背诵：https://www.acwing.com/solution/content/170/
     // f[i][j][k]：s1[i:i+k-1]和s2[j:j+k-1]是否匹配；设分界点为m（0<=m<k-1）
     // 两种匹配情况：s1[i:i+m]和s2[j:j+m]匹配，s1[i+m+1:i+k-1]和s2[j+m+1:j+k-1]匹配
