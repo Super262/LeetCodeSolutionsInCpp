@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0132 {
     // f[i]：前i个字符最少分为dp[i]个回文串（i >= 1）
     // 预处理is_pa[i][j]：s[i][j]是否为回文串
 public:
