@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0095 {
     // DFS：设根结点的值为idx，那么左子树的节点值为[l:idx-1]、右子树[idx+1:r]
 public:
     vector<TreeNode *> generateTrees(const int n) {
