@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0089 {
     // 特殊规律，要牢记：移出一位，再补上一位
 public:
     vector<int> grayCode(int n) {
