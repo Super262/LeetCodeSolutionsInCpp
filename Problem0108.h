@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0108 {
 public:
     TreeNode *sortedArrayToBST(const vector<int> &nums) {
         return buildTree(nums, 0, (int) nums.size() - 1);
