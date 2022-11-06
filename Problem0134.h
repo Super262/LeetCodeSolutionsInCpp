@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0134 {
     // 贪心算法，直接背诵：若ed不可达，[st, ed]所有点都不是合法起点
     // https://www.acwing.com/video/1499/
 public:
