@@ -7,7 +7,7 @@
 
 #include "treenode.h"
 
-class Solution {
+class Problem0100 {
 public:
     bool isSameTree(TreeNode *p, TreeNode *q) {
         if (!p && !q) {
