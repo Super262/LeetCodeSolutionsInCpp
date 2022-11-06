@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0123 {
     // 前后缀分解：预处理前缀，枚举后缀
 public:
     int maxProfit(const vector<int> &prices) {
