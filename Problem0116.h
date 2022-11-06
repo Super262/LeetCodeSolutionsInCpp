@@ -7,7 +7,7 @@
 
 #include "node_random.h"
 
-class Solution {
+class Problem0116 {
     // 经典算法，直接背诵
     // 注意：输入是满二叉树
 public:
