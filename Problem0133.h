@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0133 {
     // BFS 解法
 public:
     Node *cloneGraph(Node *root) {
