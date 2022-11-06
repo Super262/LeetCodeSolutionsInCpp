@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0090 {
     // 排序 + DFS，注意细节
 public:
     vector<vector<int>> subsetsWithDup(vector<int> &nums) {
