@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0136 {
 public:
     int singleNumber(const vector<int> &nums) {
         int result = 0;
