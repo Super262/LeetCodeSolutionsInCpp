@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0120 {
     // f[i][i]：从(0,0)到(i,j)的最小路径和
 public:
     int minimumTotal(const vector<vector<int>> &triangle) {

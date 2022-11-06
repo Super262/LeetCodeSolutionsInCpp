@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0119 {
 public:
     vector<int> getRow(const int &rowIndex) {
         vector<vector<int>> f(2, vector<int>(rowIndex + 1, 1));
