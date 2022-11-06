@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0125 {
 public:
     bool isPalindrome(const string &s) {
         int l = 0;
