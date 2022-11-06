@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0085 {
     // 单调栈经典应用
 public:
     int maximalRectangle(const vector<vector<char>> &matrix) {
