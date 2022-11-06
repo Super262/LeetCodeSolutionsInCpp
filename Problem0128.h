@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0128 {
     // 巧妙的做法，要牢记：利用哈希表保存前缀，快速查找a的后继a+1是否存在
     // 注意细节：完成搜索后，删除结果序列，避免重复查找（否则，时间复杂度高于O(n)）
 public:
