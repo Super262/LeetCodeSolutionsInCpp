@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0148 {
     // 经典算法，直接背诵：链表的归并排序
     // https://www.acwing.com/solution/content/408/
 public:
