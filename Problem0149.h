@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0149 {
     // 经典算法，必须掌握：选择起点points[i]，计算points[i]和其它点构成的直线穿过的点的数量
     // 共有2种直线：斜率为k（k>=0）的直线，和x轴垂直的直线；不要忽略相互重合的点
 public:
