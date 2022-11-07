@@ -7,7 +7,7 @@
 
 #include "treenode.h"
 
-class Solution {
+class Problem0236 {
     // 简化版LCA算法，类似后序遍历
 public:
     TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
