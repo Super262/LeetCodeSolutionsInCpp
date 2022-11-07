@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0347 {
     // 首先统计每种数字的频率f；再统计所有频次的频率f'；为保持时间复杂度为O(n)，我们不会对所有f'排序
     // 易知f'最大值为n（数组的长度），我们从n开始递减统计f'，找到第k个；再根据第k个f'，筛选出满足条件的元素
 public:
