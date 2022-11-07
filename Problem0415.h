@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0415 {
     // 大整数加法，从低位到高位，逐个求和、进位
 public:
     string addStrings(const string &num1, const string &num2) {
