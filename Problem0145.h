@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0145 {
     // Morris遍历，空间O(1)
     // 经典算法，直接背诵
 public:
