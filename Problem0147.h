@@ -7,7 +7,7 @@
 
 #include "listnode.h"
 
-class Solution {
+class Problem0147 {
     // 引入伪头节点，降低代码复杂度
 public:
     ListNode *insertionSortList(ListNode *head) {
