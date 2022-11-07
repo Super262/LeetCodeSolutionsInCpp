@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0151 {
     // 去掉前导空格、后余空格，翻转每个单词
 public:
     string reverseWords(string s) {
