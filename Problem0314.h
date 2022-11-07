@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0314 {
     // 层序遍历，保持每列的层序关系；根结点的列号为0， 向左减1，向右加1
     // 利用Map维持列的有序性
 public:
