@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0253 {
     // 贪心算法，区间分组问题
 public:
     int minMeetingRooms(vector<vector<int>> &intervals) {
