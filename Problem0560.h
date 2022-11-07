@@ -20,7 +20,7 @@ public:
         prefix_cnt[0] = 1;
         for (const auto &x: nums) {
             prefix += x;
-            if (prefix_cnt[prefix - k]) {
+            if (prefix_cnt.count(prefix - k)) {
                 ans += prefix_cnt[prefix - k];
             }
             ++prefix_cnt[prefix];
