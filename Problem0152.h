@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0152 {
     // 由于输入可能有负数，我们既要保存最小值，也要保存最大值
     // f[i][0]：所有以nums[i]结尾的子数组的乘积的最大值
     // f[i][1]：所有以nums[i]结尾的子数组的乘积的最小值
