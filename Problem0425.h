@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0425 {
     // DFS，Trie优化前缀查询。我们从第1行尝试构建方块，假设当前已经构建到第i行，根据单词方块的定义（参考422题），
     // 第i+1行的单词的前缀应是(square[0][i+1]+square[1][i+1]+...+square[i][i+1])；我们找到所有满足要求的单词，继续DFS
     // 优化：利用Trie加速前缀查询；临时方块只保存被选中的单词的索引，减少递归过程中的字符串拷贝
