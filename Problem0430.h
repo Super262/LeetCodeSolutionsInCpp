@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0430 {
     // 递归解析，返回解析后得到的头节点和尾节点
 public:
     Node *flatten(Node *head) {
