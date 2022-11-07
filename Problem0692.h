@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0692 {
     // 首先，利用哈希表统计每个单词的频率；然后，我们遍历哈希表，将"(词频，单词)"压入大根堆；最后，弹出堆内前k个单词
     // 使用堆避免全排序，节约时间；make_heap()是线性时间构建堆；make_heap默认建立最大堆，注意自定义比较器的实现（相当于less）
 public:
