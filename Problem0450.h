@@ -7,7 +7,7 @@
 
 #include "treenode.h"
 
-class Solution {
+class Problem0450 {
     // BST基本操作，必知必会，直接背诵
 public:
     TreeNode *deleteNode(TreeNode *root, int key) {
