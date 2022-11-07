@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0560 {
     // 前缀和+哈希表，固定索引i，查找索引j的个数，满足prefix[i]-prefix[j]=k
 public:
     int subarraySum(const vector<int> &nums, int k) {
