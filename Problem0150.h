@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0150 {
 public:
     int evalRPN(const vector<string> &tokens) {
         stack<int> stk;
