@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0394 {
     // DFS，维护全局指针
 public:
     string decodeString(const string &s) {
