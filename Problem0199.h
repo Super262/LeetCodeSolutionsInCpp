@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0199 {
     // 层序遍历，保存每层最后一个点
 public:
     vector<int> rightSideView(TreeNode *root) {
