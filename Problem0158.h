@@ -7,7 +7,7 @@
 
 int read4(char *buf4);
 
-class Solution {
+class Problem0158 {
 private:
     char temp[4]{};  // 缓存
     int hh = 0;  // 缓存头索引
