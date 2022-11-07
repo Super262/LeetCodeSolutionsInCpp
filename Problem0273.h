@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0273 {
     // 输入的数据范围为[0:2^31)，因此我们首先尝试提取10^9位，以1000位步长：10^9, 10^6, 10^3
 public:
     string numberToWords(int num) {
