@@ -10,7 +10,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0468 {
 public:
     string validIPAddress(const string &ip) {
         if (ip.find('.') != string::npos) {
@@ -92,7 +92,6 @@ private:
         return true;
     }
 };
-
 
 
 #endif //LEETCODESOLUTIONSINCPP_PROBLEM0468_H
