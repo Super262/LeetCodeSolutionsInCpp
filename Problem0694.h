@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0694 {
     // 首先，我们通过BFS搜索出每个岛屿，返回散列值s（字符串）；利用哈希表统计不同散列值的个数
     // 岛屿的散列值s是从搜索起点到终点的坐标序列（字符串），分隔符为"#"，如"0,0#0,1#1,1#"
 public:
