@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0272 {
     // O(n)时间解法：利用BST中序序列的有序性，将遍历过的点存入队列
     // 队头是距离target最远的点，若当前点比队头更远，则终止遍历；否则，弹出队头，压入当前点
 public:
