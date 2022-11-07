@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class Solution {
+class Problem0227 {
 public:
     int calculate(const string &s) {
         int priority[256];
