@@ -22,14 +22,14 @@ private:
             return; // No need to sort
         }
 
-        auto p = myPartition(nums, st, ed); // Get pivot index
+        auto p = myQuickSortPartition(nums, st, ed); // Get pivot index
         if (p > 0) { // Ensure no underflow when subtracting 1
             myQuickSort(nums, st, p - 1); // Recursively sort left part
         }
         myQuickSort(nums, p + 1, ed);     // Recursively sort right part
     }
 
-    size_t myPartition(vector<int>& nums, size_t st, size_t ed) {
+    size_t myQuickSortPartition(vector<int>& nums, size_t st, size_t ed) {
         auto p = st + (ed - st) / 2; // Choose middle as pivot
         auto pivot = nums[p];          // Store the pivot value
         auto l = st + 1;
