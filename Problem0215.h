@@ -10,15 +10,16 @@
 using namespace std;
 
 class Solution {
-    // 快速选择算法，平均O(n)，最坏O(n^2)
+    // The same solution for problem 912 cannot be applied here 
+    // due to exceeding time limitations.
 public:
     int findKthLargest(vector<int> &nums, int k) {
-        helper(nums, 0, (int) nums.size() - 1, k);
+        myQuickSelect(nums, 0, (int) nums.size() - 1, k);
         return nums[k - 1];
     }
 
 private:
-    void helper(vector<int> &nums, const int st, const int ed, const int k) {
+    void myQuickSelect(vector<int> &nums, int st, int ed, int k) {
         if (st >= ed) {
             return;
         }
@@ -26,16 +27,22 @@ private:
         auto l = st - 1;
         auto r = ed + 1;
         while (l < r) {
-            while (nums[++l] > pivot);
-            while (nums[--r] < pivot);
+            ++l;
+            while (nums[l] > pivot) {
+                ++l;
+            }
+            --r;
+            while (nums[r] < pivot) {
+                --r;
+            }
             if (l < r) {
                 swap(nums[l], nums[r]);
             }
         }
         if (r - st + 1 >= k) {
-            helper(nums, st, r, k);
+            myQuickSelect(nums, st, r, k);
         } else {
-            helper(nums, r + 1, ed, k - (r - st + 1));
+            myQuickSelect(nums, r + 1, ed, k - (r - st + 1));
         }
     }
 };
