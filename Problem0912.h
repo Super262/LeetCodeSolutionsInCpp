@@ -22,7 +22,7 @@ private:
             return; // No need to sort
         }
 
-        size_t p = myPartition(nums, st, ed); // Get pivot index
+        auto p = myPartition(nums, st, ed); // Get pivot index
         if (p > 0) { // Ensure no underflow when subtracting 1
             myQuickSort(nums, st, p - 1); // Recursively sort left part
         }
@@ -30,10 +30,10 @@ private:
     }
 
     size_t myPartition(vector<int>& nums, size_t st, size_t ed) {
-        size_t p = st + (ed - st) / 2; // Choose middle as pivot
+        auto p = st + (ed - st) / 2; // Choose middle as pivot
         auto pivot = nums[p];          // Store the pivot value
-        size_t l = st + 1;
-        size_t r = ed;
+        auto l = st + 1;
+        auto r = ed;
 
         swap(nums[p], nums[st]); // Move pivot to start
 
