@@ -31,7 +31,7 @@ private:
 
     size_t myPartition(vector<int>& nums, size_t st, size_t ed) {
         size_t p = st + (ed - st) / 2; // Choose middle as pivot
-        int pivot = nums[p];          // Store the pivot value
+        auto pivot = nums[p];          // Store the pivot value
         size_t l = st + 1;
         size_t r = ed;
 
