@@ -6,6 +6,7 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM0493_H
 
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
 
@@ -13,59 +14,73 @@ class Solution {
     // 基于归并排序，统计逆序对个数
     // 由于逆序对的定义和元素大于的定义不同（逆序：nums[i]>2*nums[j]，大于：nums[i]>nums[j]），我们拆分归并、计算逆序对这两步
 public:
-    int reversePairs(vector<int> &nums) {
-        const auto n = (int) nums.size();
-        int temp[n];
-        return mergeSort(nums, 0, n - 1, temp);
+    int reversePairs(vector<int>& nums) {
+        auto n = nums.size();
+        if (!n) {
+            return 0;
+        }
+        int *temp = (int *) malloc(n * sizeof(int));
+        auto answer = myMergeCount(nums, 0, n - 1, temp);
+        free(temp);
+        return static_cast<int>(answer);
     }
-
 private:
-    int mergeSort(vector<int> &nums, const int st, const int ed, int temp[]) {
+    size_t myMergeCount(vector<int>& nums, size_t st, size_t ed, int *temp) {
         if (st >= ed) {
             return 0;
         }
-        const auto mid = st + (ed - st) / 2;
-        auto ans = mergeSort(nums, st, mid, temp) + mergeSort(nums, mid + 1, ed, temp);
-        auto l = st, r = mid + 1;
+        auto mid = st + (ed - st) / 2;
+        auto answer = myMergeCount(nums, st, mid, temp) + myMergeCount(nums, mid + 1, ed, temp);
+        auto l = st;
+        auto r = mid + 1;
         // 统计逆序对：以下2种写法均可
         // 左计数（固定r，移动l）
         while (r <= ed) {
-            while (l <= mid && (long long) nums[l] <= 2 * (long long) nums[r]) {
+            while (l <= mid && nums[l] <= 2 * (long long) nums[r]) { // 类型转换，避免overflow
                 ++l;
             }
-            ans += mid - l + 1;
+            answer += mid - l + 1;
             ++r;
         }
         // 右计数（固定l，移动r）
         // while (l <= mid) {
-        //     while (r <= ed && (long long) nums[l] > 2 * (long long) nums[r]) {
+        //     while (r <= ed && nums[l] > 2 * (long long) nums[r]) {
         //         ++r;
         //     }
-        //     ans += r - (mid + 1);
+        //     answer += r - (mid + 1);
         //     ++l;
         // }
 
         // 归并
-        l = st, r = mid + 1;
-        auto tt = st;
+        l = st;
+        r = mid + 1;
+        auto t = st;
         while (l <= mid && r <= ed) {
-            if (nums[l] <= nums[r]) {
-                temp[tt++] = nums[l++];
-            } else {
-                temp[tt++] = nums[r++];
+            if (nums[l] < nums[r]) {
+                temp[t] = nums[l];
+                ++l;
             }
+            else {
+                temp[t] = nums[r];
+                ++r;
+            }
+            ++t;
         }
         while (l <= mid) {
-            temp[tt++] = nums[l++];
+            temp[t] = nums[l];
+            ++t;
+            ++l;
         }
         while (r <= ed) {
-            temp[tt++] = nums[r++];
+            temp[t] = nums[r];
+            ++t;
+            ++r;
         }
-        for (int i = st; i <= ed; ++i) {  // 不要忘记最后的拷贝步骤
+        for (auto i = st; i <= ed; ++i) {
             nums[i] = temp[i];
         }
-        return ans;
+        return answer;
     }
 };
 
-#endif //LEETCODESOLUTIONSINCPP_PROBLEM0493_H
+#endif // LEETCODESOLUTIONSINCPP_PROBLEM0493_H
