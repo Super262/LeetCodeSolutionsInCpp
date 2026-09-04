@@ -10,45 +10,65 @@
 
 using namespace std;
 
-class Problem0743 {
-    // Dijkstra求从s到其它所有点的最短路径的长度；答案即为所有最短路中的最大值
-    // 注意细节：最外层循环执行n次（n是节点个数）
+class Problem0743
+{
 public:
-    int networkDelayTime(const vector<vector<int>> &times, const int n, const int s) {
-        const int INF = 0x3f3f3f3f;
-        int graph[n + 1][n + 1];
-        memset(graph, 0x3f, sizeof graph);
-        for (const auto &e: times) {
-            graph[e[0]][e[1]] = min(graph[e[0]][e[1]], e[2]);
+    int networkDelayTime(const vector<vector<int>>& times, int n, int k)
+    {
+        /* Dijkstra */
+        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> min_heap;
+        bool *selected = (bool *)malloc((n + 1) * sizeof(bool));
+        int *dist = (int *)malloc((n + 1) * sizeof(int));
+        vector<vector<pair<int, int>>> graph(n + 1);
+
+        for (const vector<int> &edge : times)
+            graph[edge[0]].emplace_back(edge[2], edge[1]);
+
+        for (int i = 1; i <= n; ++i)
+        {
+            selected[i] = false;
+            if (i == k)
+                dist[k] = 0;
+            else
+                dist[i] = -1;
         }
-        int dist[n + 1];
-        bool selected[n + 1];
-        memset(dist, 0x3f, sizeof dist);
-        memset(selected, 0, sizeof selected);
-        dist[s] = 0;
-        for (int k = 1; k <= n; ++k) {
-            int closest_v = -1;
-            for (int v = 1; v <= n; ++v) {
-                if (selected[v]) {
-                    continue;
-                }
-                if (closest_v == -1 || dist[v] < dist[closest_v]) {
-                    closest_v = v;
-                }
+
+        min_heap.emplace(0, k);
+        while (!min_heap.empty())
+        {
+            pair<int, int> p = min_heap.top();
+            min_heap.pop();
+
+            if (selected[p.second])
+                continue;
+            selected[p.second] = true;
+
+            for (const pair<int, int> &np : graph[p.second])
+            {
+                if (dist[np.second] == -1)
+                    dist[np.second] = dist[p.second] + np.first;
+                else
+                    dist[np.second] = min(dist[np.second], dist[p.second] + np.first);
+                min_heap.emplace(dist[np.second], np.second);
             }
-            if (dist[closest_v] == INF) {
+        }
+
+        int answer = 0;
+        for (int i = 1; i <= n; ++i)
+        {
+            if (selected[i])
+                answer = max(answer, dist[i]);
+            else
+            {
+                free(selected);
+                free(dist);
                 return -1;
             }
-            selected[closest_v] = true;
-            for (int v = 1; v <= n; ++v) {
-                dist[v] = min(dist[v], dist[closest_v] + graph[closest_v][v]);
-            }
         }
-        auto res = 0;
-        for (int v = 1; v <= n; ++v) {
-            res = max(res, dist[v]);
-        }
-        return res == INF ? -1 : res;
+
+        free(selected);
+        free(dist);
+        return answer;
     }
 };
 
