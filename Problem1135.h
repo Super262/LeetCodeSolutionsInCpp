@@ -15,83 +15,110 @@ using namespace std;
 class Problam1135
 {
 private:
-    bool prim(int *graph, bool *connected, int n, int *answer)
+    struct Edge
     {
-        priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> min_heap;
-        bool *selected = (bool *)calloc(n + 1, sizeof(bool));
-        bool *reachable = (bool *)calloc(n + 1, sizeof(bool));
+        int x, y, w;
+
+        bool operator<(const Edge &e) const
+        {
+            return w < e.w;
+        }
+    };
+
+    int findRoot(int x, int *parent)
+    {
+        int u = x;
+        int t;
+
+        while (parent[u] != u)
+            u = parent[u];
+
+        while (x != u)
+        {
+            t = parent[x];
+            parent[x] = u;
+            x = t;
+        }
+
+        return u;
+    }
+
+    int mergeSets(int a, int b, int *parent, int *set_size)
+    {
+        int pa = findRoot(a, parent);
+        int pb = findRoot(b, parent);
+
+        if (pa == pb)
+            return pa;
+
+        if (set_size[pa] > set_size[pb])
+        {
+            parent[pb] = pa;
+            set_size[pa] += set_size[pb];
+            return pa;
+        }
+
+        parent[pa] = pb;
+        set_size[pb] += set_size[pa];
+        return pb;
+    }
+
+    int kruskal(struct Edge *edges, int m, int *parent, int *set_size, int *answer)
+    {
         int result = 0;
-        int mst_size = 0;
+        int edges_cnt = 0;
 
-        reachable[1] = true;
-        min_heap.emplace(0, 1);
-        while (!min_heap.empty())
+        sort(edges, edges + m);
+        for (int i = 0, x, y, w; i < m; ++i)
         {
-            pair<int, int> p = min_heap.top();
-            min_heap.pop();
-            if (selected[p.second])
+            x = edges[i].x;
+            y = edges[i].y;
+
+            if (findRoot(x, parent) == findRoot(y, parent))
                 continue;
-
-            int v = p.second;
-            result += p.first;
-            selected[v] = true;
-            ++mst_size;
-
-            for (int i = 1; i <= n; ++i)
-            {
-                if (connected[v * n + i] &&
-                    !selected[i])
-                {
-                    min_heap.emplace(graph[v * n + i], i);
-                    if (!reachable[i])
-                        reachable[i] = true;
-                }
-            }
+            
+            mergeSets(x, y, parent, set_size);
+            result += edges[i].w;
+            ++edges_cnt;
         }
 
-        free(selected);
-        free(reachable);
-
-        if (mst_size == n)
-        {
-            *answer = result;
-            return true;
-        }
-        return false;
+        *answer = result;
+        return edges_cnt;
     }
 
 public:
     int minimumCost(int n, const vector<vector<int>>& connections)
     {
-        int *graph = (int *)malloc((n + 1) * (n + 1) * sizeof(int));
-        bool *connected = (bool *)calloc((n + 1) * (n + 1), sizeof(bool));
+        int m = (int)connections.size();
+        struct Edge *edges = (struct Edge *)malloc(sizeof(struct Edge) * m);
+        int *parent = (int *)malloc(sizeof(int) * (n + 1));
+        int *set_size = (int *)malloc(sizeof(int) * (n + 1));
+        int answer;
 
-        for (const vector<int> &e : connections)
+        for (int i = 1; i <= n; ++i)
         {
-            if (connected[e[0] * n + e[1]])
-            {
-                graph[e[0] * n + e[1]] = min(graph[e[0] * n + e[1]], e[2]);
-                graph[e[1] * n + e[0]] = graph[e[0] * n + e[1]];
-            }
-            else
-            {
-                connected[e[0] * n + e[1]] = true;
-                connected[e[1] * n + e[0]] = true;
-                graph[e[0] * n + e[1]] = e[2];
-                graph[e[1] * n + e[0]] = e[2];
-            }
+            parent[i] = i;
+            set_size[i] = 1;
         }
 
-        int answer;
-        if (prim(graph, connected, n, &answer))
+        for (int i = 0; i < m; ++i)
         {
-            free(graph);
-            free(connected);
+            edges[i].x = connections[i][0];
+            edges[i].y = connections[i][1];
+            edges[i].w = connections[i][2];
+        }
+
+        if (kruskal(edges, m, parent, set_size, &answer) == n - 1)
+        {
+            free(edges);
+            free(parent);
+            free(set_size);
             return answer;
         }
 
-        free(graph);
-        free(connected);
+        free(edges);
+        free(parent);
+        free(set_size);
         return -1;
     }
 };
