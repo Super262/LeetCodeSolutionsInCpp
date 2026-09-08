@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class Problam1135
+class Problem1135
 {
 private:
     struct Edge
