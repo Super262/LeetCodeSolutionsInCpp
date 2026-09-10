@@ -17,7 +17,7 @@ class Problem1449
 最初：
     DP 直接保存最大字符串。
     思路直观，但每次转移都涉及 string copy / append / compare，
-    开销较大，容易 TLE（cost最大长度可达5000）。
+    开销较大，容易 TLE（target最大可达5000）。
 
 优化：
     最大整数首先取决于位数，所以只记录：
