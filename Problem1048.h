@@ -6,56 +6,90 @@
 #define LEETCODESOLUTIONSINCPP_PROBLEM1048_H
 
 #include <vector>
-#include <stack>
 #include <string>
-#include <cstring>
-#include <map>
 #include <algorithm>
 
 using namespace std;
 
-class Problem1048 {
-private:
-    // 动态规划：dp[i]是以words[i]结尾的的最长字符串链长度
-    static bool compare(const string &a, const string &b) {
-        return a.size() < b.size();
+class Problem1048
+{
+public:
+    /*
+    ** 先对words按照长度排序，
+    ** 确保当 i >= j 时，words[i]不是words[j]的前序单词
+    ** f[i]：以words[i]结尾的最长的单词链的长度
+    */
+    int longestStrChain(vector<string>& words)
+    {
+        /* 按长度排序 */
+        sort(words.begin(), words.end(),
+             [](const string &w1, const string &w2){return w1.size() < w2.size();});
+
+        const int &n = (int)words.size();
+        vector<int> f(n, 1);
+        int answer = 1;
+
+        for (int i = 0; i < n; ++i)
+        {
+            for (int j = i - 1, t; j >= 0; --j)
+            {
+                if (words[j].size() == words[i].size())
+                    continue;
+
+                if (words[j].size() + 1 < words[i].size())
+                    break;
+                
+                if (checkPredecessor(words[j], words[i]))
+                {
+                    int t = f[j] + 1;
+
+                    if (t > f[i])
+                    {
+                        f[i] = t;
+                        if (t > answer)
+                            answer = t;
+                    }
+                }
+            }
+        }
+
+        return answer;
     }
 
-    bool isPrev(const string &cur, const string &next) {
-        if (cur.size() + 1 != next.size()) {
+private:
+    /* 若a是b的前序单词，返回true。 */
+    bool checkPredecessor(const string &a, const string &b)
+    {
+        if (a.size() + 1 != b.size())
             return false;
-        }
-        int i = 0, j = 0;
-        while (i < cur.size() && j < next.size()) {
-            if (cur[i] == next[j]) {
+        
+        for (int pivot = 0, i; pivot < (int) b.size(); ++pivot)
+        {
+            for (i = 0; i < pivot && i < (int) a.size(); ++i)
+            {
+                if (a[i] != b[i])
+                    break;
+            }
+
+            if (i != pivot)
+                continue;
+            
+            while (i < (int) a.size())
+            {
+                if (i + 1 >= (int) b.size())
+                    break;
+                
+                if (a[i] != b[i + 1])
+                    break;
+                
                 ++i;
             }
-            ++j;
-        }
-        if (i < cur.size()) {
-            return false;
-        }
-        return true;
-    }
 
-    int longestStrChain(vector<string> &words) {
-        sort(words.begin(), words.end(), compare);
-
-        int dp[words.size()];
-        memset(dp, 0, sizeof dp);
-
-        int result = 0;
-        for (int i = 0; i < (int) words.size(); ++i) {
-            dp[i] = 1;
-            for (int j = i - 1; j >= 0; --j) {
-                if (!isPrev(words[j], words[i])) {
-                    continue;
-                }
-                dp[i] = max(dp[i], dp[j] + 1);
-            }
-            result = max(result, dp[i]);
+            if (i == (int)a.size() && i + 1 == (int)b.size())
+                return true;
         }
-        return result;
+
+        return false;
     }
 };
 
