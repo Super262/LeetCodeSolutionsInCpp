@@ -13,6 +13,10 @@ using namespace std;
 class Problem1671
 {
 public:
+    /*
+    ** 双向LIS问题：对元素x，先求出以x为尾的最长上升子序列的长度，
+    ** 再求出以x为头的最长下降子序列的长度，我们希望长度之和最大
+    */
     int minimumMountainRemovals(const vector<int>& nums)
     {
         const int &n = (int) nums.size();
