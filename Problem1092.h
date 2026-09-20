@@ -1,9 +1,9 @@
 //
-// Created by Fengwei Zhang on 9/18/26.
+// Created by Fengwei Zhang on 9/19/26.
 //
 
-#ifndef LEETCODESOLUTIONSINCPP_PROBLEM1671_H
-#define LEETCODESOLUTIONSINCPP_PROBLEM1671_H
+#ifndef LEETCODESOLUTIONSINCPP_PROBLEM1092_H
+#define LEETCODESOLUTIONSINCPP_PROBLEM1092_H
 
 #include <string>
 #include <cstring>
@@ -98,4 +98,4 @@ public:
         return answer;
     }
 };
-#endif //LEETCODESOLUTIONSINCPP_PROBLEM1671_H
+#endif //LEETCODESOLUTIONSINCPP_PROBLEM1092_H
