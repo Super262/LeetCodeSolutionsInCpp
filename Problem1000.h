@@ -7,41 +7,88 @@
 
 #include <vector>
 #include <cstring>
+#include <algorithm>
 
 using namespace std;
 
-class Problem1000 {
-    // 原始方程：f[i][j][k]，将stones[i:j]合并为k堆的最小代价，时间复杂度O(n^3 * k)
-    // f[i][j][k] = min(f[i][j][k], f[i][u][k-1] + f[u+1][j][1])，区间DP
-    // 在将[i:j]段合并为k堆前，[i:j]段应正好包含(j-i+1)堆石子；我们观察到，若每次合并m堆石子，堆数减少(m-1)
-    // 因此，(m-1)应整除(j-i+1-k)，k=(j-i+1)%(m-1)，所以我们可以删去DP方程的第三维k，时间复杂度为O(n^3 / k)
-    // https://www.acwing.com/solution/content/75892/
+class Problem1000
+{
+/*
+** 区间 DP
+** 关键限制：每次只能合并恰好 k 堆，因此每次操作后堆数减少 k - 1。
+** 所以最终能合成 1 堆的必要条件是：(n - 1) % (k - 1) == 0
+** f[i][j]：区间 [i, j] 合并到当前能达到的最少堆数的最小代价。
+** 枚举分割点 mid，把区间拆成左右两部分：
+**     f[i][j] = min(f[i][mid] + f[mid + 1][j])
+**     mid 每次增加 k - 1。
+** 只有当：(length - 1) % (k - 1) == 0
+** 当前区间才能继续合成 1 堆，
+** 此时再加上整个区间的石子总和。
+** 核心：不能像普通区间合并那样每个区间都加区间和；
+** 只有当前区间确实能够完成一次 k -> 1 合并时才加。
+*/
 public:
-    int mergeStones(const vector<int> &stones, int k) {
-        const auto n = (int) stones.size();
-        if ((n - 1) % (k - 1)) {  // 每次合并，堆数减少(k-1)，所以(k-1)应整除整体的变化量
+    int mergeStones(const vector<int>& stones, int k)
+    {
+        const int &n = (int)stones.size();
+
+        if ((n - 1) % (k - 1))
             return -1;
-        }
-        int prefix[n + 1];  // 前缀和，用于快速计算合并代价
-        int f[n + 1][n + 1];
+        
+        int *_f_ = (int *)malloc(sizeof(int) * (n + 1) * (n + 1));
+        memset(_f_, -1, sizeof(int) * (n + 1) * (n + 1));
+
+#define f(i, j) (_f_[(i) * (n + 1) + (j)])
+
+        int *prefix = (int *)malloc(sizeof(int) * (n + 1));
         prefix[0] = 0;
-        for (int i = 1; i <= n; ++i) {
-            prefix[i] = prefix[i - 1] + stones[i - 1];
-            f[i][i] = 0;  // 初始化
+        memcpy(prefix + 1, stones.data(), n * sizeof(int));
+
+        for (int i = 1; i <= n ; ++i)
+        {
+            prefix[i] += prefix[i - 1];
+            f(i, i) = 0;
         }
-        for (int length = 2; length <= n; ++length) {  // 区间DP
-            for (int i = 1; i + length - 1 <= n; ++i) {
-                auto j = i + length - 1;
-                f[i][j] = 0x3f3f3f3f;
-                for (auto p = i; p < j; p += k - 1) {  // 枚举分界点，每次倍增(k-1)，因为每次合并后堆数减少(k-1)
-                    f[i][j] = min(f[i][j], f[i][p] + f[p + 1][j]);
+
+        for (int length = 2; length <= n; ++length)
+        {
+            for (int left = 1; left + length - 1 <= n; ++left)
+            {
+                int right = left + length - 1;
+                int cur = -1;
+
+                for (int mid = left; mid < right; mid += k - 1)
+                {
+                    if (f(left, mid) == -1 ||
+                        f(mid + 1, right) == -1)
+                        continue;
+                    
+                    if (cur == -1)
+                        cur = f(left, mid) + f(mid + 1, right);
+                    else
+                        cur = min(cur, f(left, mid) + f(mid + 1, right));
                 }
-                if ((length - 1) % (k - 1) == 0) {  // (k-1)若整除(length-1)，结果合法，最终只有1堆石子
-                    f[i][j] += prefix[j] - prefix[i - 1];
+
+                if (cur != -1)
+                {
+                    if (f(left, right) == -1)
+                        f(left, right) = cur;
+                    else
+                        f(left, right) = min(f(left, right), cur);
                 }
+
+                if ((length - 1) % (k - 1) == 0)
+                    f(left, right) += prefix[right] - prefix[left - 1];
             }
         }
-        return f[1][n];
+
+        int answer = f(1, n);
+
+#undef f
+
+        free(prefix);
+        free(_f_);
+        return answer;
     }
 };
 
