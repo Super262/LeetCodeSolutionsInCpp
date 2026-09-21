@@ -19,7 +19,7 @@ class Problem1547
 ** 枚举第一次切的位置 mid：
 **    f[i][j] = min(f[i][mid] + f[mid][j] + cuts[j] - cuts[i])
 ** 当前这一刀的代价是整个区间长度，切完后左右两部分互相独立。
-** 因此按区间长度从小到大计算。
+** 因此按区间长度从小到大计算。DP前，将0和n也加入cuts，再对cuts排序。
 */
 public:
     int minCost(int n, vector<int> &cuts)
@@ -32,9 +32,12 @@ public:
 
 #define f(i, j) (_f_[(i) * (k + 2) + (j)])
 
+        /* 将数轴起点（0）和终点（n）也加入cuts（可选切点） */
         newCuts[0] = 0;
         newCuts[k + 1] = n;
         memcpy(newCuts + 1, cuts.data(), sizeof(int) * k);
+
+        /* 按照下标对所有切点排序 */
         sort(newCuts, newCuts + k + 2);
 
         for (int i = 0; i < k + 1; ++i)
