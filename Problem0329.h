@@ -10,7 +10,8 @@
 
 using namespace std;
 
-class Solution {
+class Problem0329
+{
     // 转化点和点之间的关系为DAG，拓扑排序：若a、b邻接且a<b，DAG中包含边(b,a)
 public:
     int longestIncreasingPath(const vector<vector<int>> &matrix) {
@@ -62,7 +63,7 @@ public:
 };
 
 /*
-class Solution {
+class Problem0329 {
     // DFS，记忆化搜索严格递增序列，类似AcWing 901
 public:
     int longestIncreasingPath(const vector<vector<int>> &matrix) {
