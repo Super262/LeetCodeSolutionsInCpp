@@ -37,7 +37,7 @@ f(mask, v)：
 
 class Problem2741
 {
-ublic:
+public:
     int specialPerm(const vector<int>& nums)
     {
         const int &MOD = 1000000007;
